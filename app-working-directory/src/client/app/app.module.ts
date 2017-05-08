@@ -8,8 +8,25 @@ import { AngularFireModule } from 'angularfire2';
 
 import { AboutModule } from './about/about.module';
 import { HomeModule } from './home/home.module';
-import { BstestModule } from './bstest/bstest.module';
 import { SharedModule } from './shared/shared.module';
+
+import { BsDropdownModule,
+         AccordionModule,
+         AlertModule,
+         ButtonsModule,
+         CarouselModule,
+         CollapseModule,
+         DatepickerModule,
+         ModalModule,
+         PaginationModule,
+         PopoverModule,
+         ProgressbarModule,
+         RatingModule,
+         SortableModule,
+         TabsModule,
+         TimepickerModule,
+         TooltipModule,
+         TypeaheadModule } from 'ngx-bootstrap';
 
 const FIREBASE_APP_CONFIG = {
   apiKey: '<->',
@@ -28,7 +45,25 @@ const FIREBASE_APP_CONFIG = {
 
     AboutModule,
     HomeModule,
-    BstestModule,
+
+    // BOOTSTRAP IMPORTS
+    BsDropdownModule.forRoot(),
+    AccordionModule.forRoot(),
+    AlertModule.forRoot(),
+    ButtonsModule.forRoot(),
+    CarouselModule.forRoot(),
+    CollapseModule.forRoot(),
+    DatepickerModule.forRoot(),
+    ModalModule.forRoot(),
+    PaginationModule.forRoot(),
+    PopoverModule.forRoot(),
+    ProgressbarModule.forRoot(),
+    RatingModule.forRoot(),
+    SortableModule.forRoot(),
+    TabsModule.forRoot(),
+    TimepickerModule.forRoot(),
+    TooltipModule.forRoot(),
+    TypeaheadModule.forRoot(),
   ],
   declarations: [
     AppComponent

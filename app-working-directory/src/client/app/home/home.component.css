@@ -1,13 +1,9 @@
-:host {
-  display: block;
-  padding: 0 16px;
+.list-element{
+  background-color: #E5E5E5;
+  border: 3px solid white;
 }
-
-input {
-  width: 250px;
-}
-
-ul {
-  list-style-type: none;
-  padding: 0 0 0 8px;
+.add-list{
+  background-color: #0A8056;
+  border: 3px solid white;
+  color: white;
 }
