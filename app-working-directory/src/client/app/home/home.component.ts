@@ -11,4 +11,5 @@ import { NameListService } from '../shared/name-list/name-list.service';
   styleUrls: ['home.component.css'],
 })
 export class HomeComponent {
+  
 }
