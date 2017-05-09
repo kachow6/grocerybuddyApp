@@ -5,8 +5,8 @@ import { Component } from '@angular/core';
  */
 @Component({
   moduleId: module.id,
-  selector: 'gb-navbar',
-  templateUrl: 'navbar.component.html',
-  styleUrls: ['navbar.component.css'],
+  selector: 'gb-header',
+  templateUrl: 'header.component.html',
+  styleUrls: ['header.component.css'],
 })
-export class NavbarComponent { }
+export class HeaderComponent { }
