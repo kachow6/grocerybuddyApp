@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>GroceryBuddy</title>
+
+    <!-- Bootstrap -->
+    <link href="customizedbootstrap/yeti.css" rel="stylesheet">
+      <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+ 
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+  <!-- Added by Carlo -->
+	<link href="validation.css" rel="stylesheet">	
+	<script src="registerJS.js"></script>
+
+  </head>
+  <body>
+
+
+    <div class="container-fluid">
+    <header>
+   </header>
+
+  <!--
+    <nav class="navbar navbar-default"> 
+
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="#">Home</a></li>
+      
+    </ul>
+  </li>
+
+
+
+    </nav>
+
+    -->
+    <div class="col-sm-4">
+        <a href="yetiindex.html"><button type="button" class="btn btn-default btn-block">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+        </button></a>
+    </div>
+
+    <div class="col-sm-4"> <h1>Settings</h1>
+      <div class="well">
+
+
+    <form>
+     <div class="form-group">
+        <label for "notification"><h6>Notifications</h6></label> <div class="pull-right"><input type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="default"></div></div>
+
+        <div class="form-group">
+
+         <label for="notifyuser"><h6>Nofify me at:</h6></label>
+    <input type="time" class="form-control" id="notifyuser">
+	</div>
+	<div class="form-group">
+		<label for="reminder">Remind me again:</label>
+		<input type="time" class="form-control" id="reminder">
+	</div>
+	<h2> Account Setting: </h2>
+	<div class="form-group">
+		<label for="reminder">Username:</label>
+		<input type="username" class="form-control" id="username">
+	</div>
+
+    <div class="form-group">
+		<label for="email">Email:</label>
+		<input type="email" class="form-control" id="email">
+	</div>
+
+	<div class="form-group">
+        <label for="password_0">New Password:</label>
+		<span id="passworderror" class="error"></span>
+        <input type="password" class="form-control" id="password_0" name="user_password" onchange="warnPasswordInvalid('password_0')" required>
+    </div>
+
+    <div class="form-group">
+        <label for="password_1">Confirm Password:</label>
+		<span id="confirmpassworderror"  class="error"></span>
+        <input type="password" class="form-control" id="password_1" name="user_confirmpassword" onchange="warnConfirmPasswordInvalid('password', true)" required>
+    </div>
+
+  <div class="checkbox">
+    <label><input type="checkbox"> Remember me</label>
+  </div>
+  <button type="button" class="btn btn-success btn-block">Submit</button>
+  <button type="button" class="btn btn-warning btn-block">Clear</button>
+ 
+    </form>
+  </div>
+     </div> 
+
+    <footer>
+    </footer> 
+
+
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+    <!-- Bootstraptoggle http://www.bootstraptoggle.com/ --> 
+  </div>
+  </body>
+</html>
