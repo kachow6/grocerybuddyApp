@@ -1,12 +1,8 @@
-import { NgModule }                from '@angular/core';
-
-import { CommonModule }            from '@angular/common';
-import { AuthRoutingModule }       from './auth-routing.module';
-import { SharedModule }            from '../shared/shared.module';
-
-import { AuthComponent }           from './auth.component';
-import { RegisterComponent }       from './register.component';
-import { ConnectComponent }        from './connect.component';
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { BootstrapTestComponent } from './bootstrap-test.component';
+import { BootstrapTestRoutingModule } from './bootstrap-test-routing.module';
+import { SharedModule } from '../shared/shared.module';
 
 import { BsDropdownModule, AccordionModule, AlertModule, ButtonsModule,
          CarouselModule, CollapseModule, DatepickerModule, ModalModule,
@@ -16,7 +12,7 @@ import { BsDropdownModule, AccordionModule, AlertModule, ButtonsModule,
 
 @NgModule({
   imports: [
-    AuthRoutingModule,
+    BootstrapTestRoutingModule,
     SharedModule,
 
     // BOOTSTRAP IMPORTS
@@ -39,14 +35,12 @@ import { BsDropdownModule, AccordionModule, AlertModule, ButtonsModule,
     TypeaheadModule.forRoot(),
   ],
   declarations: [
-    AuthComponent,
-    ConnectComponent,
-    RegisterComponent,
+    BootstrapTestComponent
   ],
   exports: [
-    AuthComponent
+    BootstrapTestComponent
   ],
   providers: [
   ]
 })
-export class AuthModule { }
+export class BootstrapTestModule { }
