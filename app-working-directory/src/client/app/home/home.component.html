@@ -2,19 +2,23 @@
   <div class="row list-inline">
     <div class="input-group col-lg-6 col-md-6 col-sm-6 col-xs-6 pull-left" style="margin-left: 20px; margin-bottom: 15px">
       <label for="new-list"><h2>New List: </h2></label>
-      <input type="text" class="form-control" id="new-list-form">
+      <input [(ngModel)] = "nameInput" type="text" class="form-control" id="new-list-form" 
+             (keyup.enter)="addList(newListField.value)">
     </div>
     <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 col-lg-offset-4 col-md-offset-4 col-sm-offset-3 col-xs-offset-2 push-right" style="margin-top: 35px">
-      <button class="btn btn-lg btn-success" type="button" data-toggle="dropdown"><span class="glyphicon glyphicon-plus"></span></button>
+      <button (click)="addList()" class="btn btn-lg btn-success" type="button" data-toggle="dropdown">
+        <span class="glyphicon glyphicon-plus"></span>
+      </button>
     </div>
   </div>
 </div>
 
 <div class="container-fluid" style="padding-top: 125px">
-  <div class="container-fluid list-element">
+
+  <div class="container-fluid list-element" *ngFor = "let item of myList">
     <div class="row list-inline">
       <div class="col-lg-11 col-md-11 col-sm-10 col-xs-9">
-        <h3>Raly's BBQ</h3>
+        <h3>{{item.name}}</h3>
       </div>
       <div class="dropdown col-lg-1 col-md-1 col-sm-2 col-xs-2" style="margin-top: 10px">
         <button dropdownToggle class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><span class="glyphicon glyphicon-option-vertical"></span></button>
@@ -29,39 +33,6 @@
   </div>
 
 
-  <div class="container-fluid list-element">
-    <div class="row list-inline">
-      <div class="col-lg-11 col-md-11 col-sm-10 col-xs-9">
-        <h3>Weekly Groceries</h3>
-      </div>
-      <div class="dropdown col-lg-1 col-md-1 col-sm-2 col-xs-2" style="margin-top: 10px">
-        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><span class="glyphicon glyphicon-option-vertical"></span></button>
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-          <li class="menu-item"><a href="#">Rename</a></li>
-          <li class="menu-item"><a href="#">Copy</a></li>
-          <li class="menu-item"><a href="#">Delete</a></li>
-          <li class="menu-item"><a href="#">Reset</a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-  <div class="container-fluid list-element">
-    <div class="row list-inline">
-      <div class="col-lg-11 col-md-11 col-sm-10 col-xs-9">
-        <h3>Kevin Chow Cola</h3>
-      </div>
-      <div class="dropdown col-lg-1 col-md-1 col-sm-2 col-xs-2" style="margin-top: 10px">
-        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><span class="glyphicon glyphicon-option-vertical"></span></button>
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-          <li class="menu-item"><a href="#">Rename</a></li>
-          <li class="menu-item"><a href="#">Copy</a></li>
-          <li class="menu-item"><a href="#">Delete</a></li>
-          <li class="menu-item"><a href="#">Reset</a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
 </div>
 
 <!-- Options Modal -->
