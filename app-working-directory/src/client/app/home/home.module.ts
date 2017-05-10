@@ -4,6 +4,7 @@ import { HomeComponent } from './home.component';
 import { HomeRoutingModule } from './home-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { NameListService } from '../shared/name-list/name-list.service';
+import { FormsModule } from '@angular/forms';
 
 import { BsDropdownModule, AccordionModule, AlertModule, ButtonsModule,
          CarouselModule, CollapseModule, DatepickerModule, ModalModule,
@@ -15,6 +16,7 @@ import { BsDropdownModule, AccordionModule, AlertModule, ButtonsModule,
   imports: [
     HomeRoutingModule,
     SharedModule,
+    FormsModule,
 
     // BOOTSTRAP IMPORTS
     BsDropdownModule.forRoot(),

@@ -1,1 +1,87 @@
 <h1>Settings Page</h1>
+<div class="container-fluid">
+    <header>
+    </header>
+
+    <!--
+      <nav class="navbar navbar-default">
+
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Home</a></li>
+
+      </ul>
+    </li>
+
+
+
+      </nav>
+
+      -->
+    <div class="col-sm-4">
+
+    </div>
+
+    <div class="col-sm-4">
+
+        <a href="yetiindex.html"><button type="button" class="btn btn-default btn-block">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+        </button></a>
+        <h1>Settings</h1>
+        <div class="well">
+
+
+            <form>
+                <div class="form-group">
+                    <label><h6>Notifications</h6></label> <div class="pull-right"><input type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="default"></div></div>
+
+                <div class="form-group">
+
+                    <label for="notifyuser"><h6>Nofify me at:</h6></label>
+                    <input type="time" class="form-control" id="notifyuser">
+                </div>
+                <div class="form-group">
+                    <label for="reminder">Remind me again:</label>
+                    <input type="time" class="form-control" id="reminder">
+                </div>
+                <h2> Account Setting: </h2>
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" class="form-control" id="name" name="user_name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" class="form-control" id="email" name="user_email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <p id="passworderror" class="error">{{passwordmessage}}</p>
+                    <input type="password" class="form-control" id="password" name="user_password" #password (blur)="checkComplexity(password.value)" [(ngModel)]="userpassword" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="confirmpassword">Confirm Password:</label>
+                    <p id="confirmpassworderror" class="error">{{confirmpasswordmessage}}</p>
+                    <input type="password" class="form-control" id="confirmpassword" name="user_confirmpassword" #confirmpassword (blur)="confirmPassword(password.value, confirmpassword.value, true)" [(ngModel)]="userconfirmpassword" required>
+                </div>
+
+                <button type="button" class="btn btn-success btn-block">Submit</button>
+                <button type="button" class="btn btn-warning btn-block">Clear</button>
+
+            </form>
+        </div>
+    </div>
+
+    <footer>
+    </footer>
+
+
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+    <!-- Bootstraptoggle http://www.bootstraptoggle.com/ -->
+</div>

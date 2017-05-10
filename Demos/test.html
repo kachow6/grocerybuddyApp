@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Grocery Buddy</title>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<style>
+/* Navigation CSS */
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 3000;
+    top: 0;
+    left: 0;
+    background-color: white;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+.sidenav a {
+    font-family: Open Sans, Helvetica, Arial, sans-serif;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-size: 1.3em;
+    color: #818181;
+    display: block;
+    text-align: center;
+    transition: 0.3s;
+}
+.sidenav a:hover, .offcanvas a:focus {
+    color: #02b3ff;
+}
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+.hamburger {
+    color: white;
+    cursor:pointer;
+    font-size:35px;
+    padding-top: 25px;
+    text-shadow: 1px 1px #818181;
+}
+#banner {
+    z-index: 3;
+    transition: margin-left .5s;
+    background-color: #5CB85C;
+}
+#banner h2 {
+    color: white;
+    padding-bottom: 8px;
+    text-shadow: 1px 1px #818181;
+}
+.badge {
+    font-size: 1.8em;
+}
+.buddy-station {
+    padding-bottom: 10px;
+}
+ul.nav-tabs > li {
+    background-color: #2CBF26;
+    width: 33.33%;
+    text-align: center;
+}
+ul.nav-tabs > li a {
+    color: white;
+    font-size: 1.4em;
+}
+ul.nav-tabs > li a:hover {
+    background-color: #34E52E;
+}
+.page-top {
+    padding: 0;
+}
+.navbar-header {
+    margin-right: : 0;
+}
+
+/* Home Page CSS */
+.list-element {
+    background-color: #E5E5E5;
+    border: 3px solid white;
+}
+.add-list {
+    background-color: #0A8056;
+    border: 3px solid white;
+    color: white;
+}
+.title {
+    text-shadow: 2px 1px #818181;
+}
+</style> 
+
+<header>
+    <div id="mySidenav" class="sidenav pull-left">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        
+        <div class="buddy-station">
+            <img src="carrot.png" alt="grocerybuddy" width="100" height="100" class="img-circle img-responsive center-block">
+        </div>
+
+        <div class="alert alert-dismissible alert-info col-lg-10 col-md-10 col-sm-10 col-xs-10 col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>Hey there Buddy!</strong> Dont forget to eat your bananas today!
+        </div>
+        
+        <a href="#">MyBuddy</a>
+        <hr>
+        <a href="http://students.bcitdev.com/A00938416/2910app/yetisettings.html">Settings</a>
+        <hr>
+        <a href="#">Affiliates</a>
+        <hr>
+        <a href="#">Logout</a>
+    </div>
+    <div class="page-top container-fluid col-lg-12 col-md-12 col-sm-12 col-xs-12" style="position: fixed; z-index: 1;">
+        <div id="banner" class="navbar-header container-fluid col-sm-12">
+            <span class="pull-left navbar-brand hamburger col-lg-1 col-md-1 col-sm-1 col-xs-1" onclick="openNav()">&#9776; </span>
+            <h2 class="col-lg-8 col-md-8 col-sm-8 col-xs-8 col-xs-offset-1 col-sm-offset-0">Landing Page</h2>
+            <button class="btn btn-danger pull-right " type="button" style="margin-top: 10px; margin-right: 10px"><span class="badge">4</span></button>
+        </div>
+
+        <div class="container-fluid add-list col-lg-12 col-md-12 col-sm-12 col-xs-12" style="z-index: 1; border: 0">
+            <div class="row col-lg-offset-2 col-md-offset-1 col-sm-offset-1 list-inline">
+                <div class="input-group col-lg-6 col-md-6 col-sm-6 col-xs-6 pull-left" style="margin-left: 20px; margin-bottom: 15px;">
+                    <label for="new-list"><h2 class="title">New List: </h2></label>
+                    <input type="text" class="form-control" id="new-list-form">
+                </div>
+                <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 col-lg-offset-2 col-md-offset-3 col-sm-offset-3 col-xs-offset-2 push-right" style="margin-top: 35px; margin-right: 0">
+                    <button class="btn btn-lg btn-success" type="button"><span class="glyphicon glyphicon-plus"></span></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div class="container col-lg-8 col-md-10 col-lg-offset-2 col-md-offset-1" style="top: 195px;">
+    <div class="container-fluid list-element">
+        <div class="row list-inline">
+            <div class="col-lg-11 col-md-11 col-sm-10 col-xs-9">
+                <h3>Raly's BBQ</h3>
+            </div>
+            <div class="dropdown col-lg-1 col-md-1 col-sm-2 col-xs-2" style="margin-top: 10px">
+                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><span class="glyphicon glyphicon-option-vertical"></span></button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                    <li class="menu-item"><a href="#" data-toggle="modal" data-target="#renameModal">Rename</a></li>
+                    <li class="menu-item"><a href="#">Copy</a></li>
+                    <li class="menu-item"><a href="#">Delete</a></li>
+                    <li class="menu-item"><a href="#">Reset</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container-fluid list-element">
+        <div class="row list-inline">
+            <div class="col-lg-11 col-md-11 col-sm-10 col-xs-9">
+                <h3>Weekly Groceries</h3>
+            </div>
+            <div class="dropdown col-lg-1 col-md-1 col-sm-2 col-xs-2" style="margin-top: 10px">
+                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><span class="glyphicon glyphicon-option-vertical"></span></button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                    <li class="menu-item"><a href="#" data-toggle="modal" data-target="#renameModal">Rename</a></li>
+                    <li class="menu-item"><a href="#">Copy</a></li>
+                    <li class="menu-item"><a href="#">Delete</a></li>
+                    <li class="menu-item"><a href="#">Reset</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid list-element">
+        <div class="row list-inline">
+            <div class="col-lg-11 col-md-11 col-sm-10 col-xs-9">
+                <h3>Kevin Chow Cola</h3>
+            </div>
+            <div class="dropdown col-lg-1 col-md-1 col-sm-2 col-xs-2" style="margin-top: 10px">
+                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><span class="glyphicon glyphicon-option-vertical"></span></button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenu3">
+                    <li class="menu-item"><a href="#" data-toggle="modal" data-target="#renameModal">Rename</a></li>
+                    <li class="menu-item"><a href="#">Copy</a></li>
+                    <li class="menu-item"><a href="#">Delete</a></li>
+                    <li class="menu-item"><a href="#">Reset</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid list-element">
+        <div class="row list-inline">
+            <div class="col-lg-10 col-md-10 col-sm-10 col-xs-8">
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="margin: 12px 0;">
+                <button class="btn btn-default dropdown-toggle" type="button"><span class="glyphicon glyphicon-repeat"></span> Undo</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Rename Modal -->
+<div class="modal fade" id="renameModal" tabindex="-1" role="dialog" aria-labelledby="rename" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove"></span></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <form class="col-lg-11 col-md-11 col-sm-11 col-xs-11">
+                        <label for="rename-form"><h3 class="media-heading">Rename: </h3></label>
+                        <input type="text" class="form-control" id="rename-form">
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="row" style="text-align: center;">
+                    <button class="btn btn-lg btn-success">Save Changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid bot-bar col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <nav class="nav navbar-fixed-bottom">
+        <ul class='nav nav-tabs'>
+            <li><a data-toggle="tab" class="glyphicon glyphicon-th-list" href='#mylist'></a></li>
+            <li><a data-toggle="tab" class="glyphicon glyphicon-home" href='#myhome'></a></li>
+            <li><a data-toggle="tab" class="glyphicon glyphicon-calendar" href='#myfridge'></a></li>
+        </ul>
+    </nav>
+</div>
+</body>
+
+<script>
+function openNav() {
+    document.getElementById("mySidenav").style.width = "225px";
+    document.getElementById("banner").style.marginLeft = "225px";
+    document.body.style.backgroundColor = "rgba(0, 0, 0, 0.8)";
+}
+
+function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+    document.getElementById("banner").style.marginLeft= "0";
+    document.body.style.backgroundColor = "white";
+}
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</html>

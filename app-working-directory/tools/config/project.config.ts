@@ -88,6 +88,16 @@ export class ProjectConfig extends SeedConfig {
         main: 'angularfire2.js',
         defaultExtension: 'js'
       }
+    },
+
+    // Adding Angular-SortableJS
+    {
+      name: 'angular-sortablejs',
+      path: 'node_modules/angular-sortablejs/dist/',
+      packageMeta: {
+        main: 'index.js',
+        defaultExtension: 'js'
+      }
     }
     ];
     this.addPackagesBundles(additionalPackages);
@@ -105,6 +115,8 @@ export class ProjectConfig extends SeedConfig {
 
     /* Add to or override NPM module configurations: */
     // this.PLUGIN_CONFIGS['browser-sync'] = { ghostMode: false };
+
+    this.SYSTEM_CONFIG_DEV.paths['traceur'] = 'node_modules/traceur/bin/traceur.js';
   }
 
 }
