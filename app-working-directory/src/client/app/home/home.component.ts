@@ -11,7 +11,6 @@ export class CurrentList {
 
 //Array that contains the lists on homepage.
 const HOME_LISTS: CurrentList[] = [
-
   new CurrentList('Kevins Chow Cola'),
   new CurrentList('Birthday List')
 ];
