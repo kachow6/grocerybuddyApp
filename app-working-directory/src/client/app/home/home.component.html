@@ -1,10 +1,10 @@
-<div class="container-fluid add-list col-lg-12 col-md-12 col-sm-12 col-xs-12" style="position: fixed; z-index: 1">
-    <div class="row list-inline" >
+<div class="container-fluid add-list col-lg-12 col-md-12 col-sm-12 col-xs-12" style="position: fixed; z-index: 1; border: 0">
+    <div class="row col-lg-offset-2 col-md-offset-1 col-sm-offset-1 list-inline">
         <div class="input-group col-lg-6 col-md-6 col-sm-6 col-xs-6 pull-left" style="margin-left: 20px; margin-bottom: 15px">
-            <label for="new-list"><h2>New List: </h2></label>
+            <label for="new-list"><h2 class="title">New List: </h2></label>
             <input [(ngModel)] = "nameInput" type="text" class="form-control" id="new-list-form" >
         </div>
-        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 col-lg-offset-4 col-md-offset-4 col-sm-offset-3 col-xs-offset-2 push-right" style="margin-top: 35px">
+        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 col-lg-offset-2 col-md-offset-3 col-sm-offset-3 col-xs-offset-2 push-right" style="margin-top: 35px">
             <button (click)="addList()" class="btn btn-lg btn-success" type="button" data-toggle="dropdown">
                 <span class="glyphicon glyphicon-plus"></span>
             </button>
@@ -12,7 +12,7 @@
     </div>
 </div>
 
-<div class="container-fluid" style="padding-top: 125px">
+<div class="container col-lg-8 col-md-10 col-lg-offset-2 col-md-offset-1" style="top: 125px;">
 
     <div class="container-fluid list-element"
         *ngFor = "let item of myList"
@@ -35,30 +35,26 @@
 
 </div>
 
-<!-- Options Modal -->
-<div class="modal fade" id="listModal" tabindex="-1" role="dialog" bsModal #renameModal="bs-modal"
-        aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-                <div class="modal-content">
-                        <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" (click)="renameModal.hide()" aria-hidden="true"><span class="glyphicon glyphicon-remove"></span></button>
-                                <br>
-                                </div>
-                        <div class="modal-body">
-                            <br>
-                            <div class="row">
-                                <div class="col-sm-6 col-xs-6 pull-left">
-                                        <h2 class="media-heading">Rename: </h2>
-                                    </div>
-                    <div class="col-lg-5 col-md-5 col-sm-5 col-xs-4 pull-right">
-                        <input type="text" id="new-list-form"class="form-control input-lg">
-                    </div>
-                    <!--<div class="col-sm-1 col-xs-1 pull-right">
-                        <h4><strong><span class="text-muted">x</span></strong></h4>
-                    </div>-->
+<!-- Rename Modal -->
+<div class="modal fade" id="renameModal" tabindex="-1" role="dialog" bsModal #renameModal="bs-modal" aria-labelledby="rename" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" (click)="renameModal.hide()" aria-hidden="true"><span class="glyphicon glyphicon-remove"></span></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <form class="col-lg-11 col-md-11 col-sm-11 col-xs-11">
+                        <label for="rename-form"><h3 class="media-heading">Rename: </h3></label>
+                        <input type="text" class="form-control" id="rename-form">
+                    </form>
                 </div>
-                        </div>
-                        <hr>
+            </div>
+            <div class="modal-footer">
+                <div class="row" style="text-align: center;">
+                    <button class="btn btn-lg btn-success">Save Changes</button>
                 </div>
+            </div>
         </div>
+    </div>
 </div>
