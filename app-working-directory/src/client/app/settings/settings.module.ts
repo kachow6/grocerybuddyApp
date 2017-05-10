@@ -10,6 +10,8 @@ import { BsDropdownModule, AccordionModule, AlertModule, ButtonsModule,
          SortableModule, TabsModule, TimepickerModule, TooltipModule,
          TypeaheadModule }        from 'ngx-bootstrap';
 
+import { SwitchComponent } from 'angular2-bootstrap-switch/components';
+
 @NgModule({
   imports: [
     SettingsRoutingModule,
@@ -35,7 +37,8 @@ import { BsDropdownModule, AccordionModule, AlertModule, ButtonsModule,
     TypeaheadModule.forRoot(),
   ],
   declarations: [
-    SettingsComponent
+    SettingsComponent,
+    SwitchComponent,
   ],
   exports: [
     SettingsComponent
