@@ -98,6 +98,13 @@ ul.nav-tabs > li a:hover {
     background-color: #34E52E;
 }
 
+.page-top {
+    padding: 0;
+}
+.navbar-header {
+    margin-right: 0;
+}
+
 /* Home Page CSS */
 .list-element {
     background-color: #E5E5E5;
