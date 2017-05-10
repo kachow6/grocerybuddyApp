@@ -43,27 +43,4 @@ export class ListComponent {
         }
         console.log(this.myList[1]);
     }
-
-    shiftItem(dir: number, index: number): void {
-        let swapTarget: number = index;
-        let temp: ItemList;
-
-        switch (dir) {
-            // UP
-            case 8:
-                swapTarget -= 1;
-                break;
-
-            // DOWN
-            case 16:
-                swapTarget += 1;
-                break;
-        }
-
-        if (swapTarget >= 0 && swapTarget < this.myList.length) {
-            temp = this.myList[swapTarget];
-            this.myList[swapTarget] = this.myList[index];
-            this.myList[index] = temp;
-        }
-    }
 }
