@@ -35,8 +35,14 @@
 
   <div class="container-fluid list-element">
     <div class="row" style="text-align: center;">
-      <a href="#aboutModal" data-toggle="modal" data-target="#deleteModal" class="btn btn-lg btn-danger">Reset List</a>
-      <a href="#aboutModal" data-toggle="modal" data-target="#checkoutModal" class="btn btn-lg btn-success">Checkout</a>
+      <!--<a href="#aboutModal" data-toggle="modal" data-target="#deleteModal" class="btn btn-lg btn-danger">Reset List</a>-->
+      <button class="btn btn-lg btn-danger" (click)="resetModal.show()" data-toggle="modal" data-target="#listModal" style="margin: 10px 0 10px 0;">
+        <span>Reset List</span>
+      </button>
+      <!--<a href="#aboutModal" data-toggle="modal" data-target="#checkoutModal" class="btn btn-lg btn-success">Checkout</a>-->
+      <button class="btn btn-lg btn-success" (click)="checkoutModal.show()" data-toggle="modal" data-target="#listModal" style="margin: 10px 0 10px 0;">
+        <span>Checkout</span>
+      </button>
     </div>
   </div>
 
@@ -44,11 +50,12 @@
 </div>
 
 <!-- Delete Modal -->
-<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" bsModal #resetModal="bs-modal"
+     aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove"></span></button>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" (click)="resetModal.hide()"><span class="glyphicon glyphicon-remove"></span></button>
                 <br>
             </div>
             <div class="modal-body">
@@ -59,8 +66,8 @@
             </div>
             <div class="modal-footer">
                 <!-- <center> -->
-                <button type="button" class="btn btn-success btn-default" data-dismiss="modal">Yes - Uncheck all items</button>
-                <button type="button" class="btn btn-danger btn-default" data-dismiss="modal">No - I'm still using this list!</button>
+                <button type="button" class="btn btn-success btn-default" data-dismiss="modal" (click)="resetModal.hide()" aria-label="Close">Yes - Uncheck all items</button>
+                <button type="button" class="btn btn-danger btn-default" data-dismiss="modal" (click)="resetModal.hide()" aria-label="Close">No - I'm still using this list!</button>
                 <!-- </center> -->
             </div>
         </div>
@@ -68,11 +75,12 @@
 </div>
 
 <!-- Checkout Modal -->
-<div class="modal fade" id="checkoutModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="checkoutModal" tabindex="-1" role="dialog" bsModal #checkoutModal="bs-modal"
+     aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove"></span></button>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" (click)="checkoutModal.hide()"><span class="glyphicon glyphicon-remove"></span></button>
                 <br>
                 </div>
             <div class="modal-body">
@@ -83,8 +91,8 @@
             </div>
             <div class="modal-footer">
                 <!-- <center> -->
-                <button type="button" class="btn btn-success btn-default" data-dismiss="modal">Yes - Add items to my Fridge</button>
-                <button type="button" class="btn btn-danger btn-default" data-dismiss="modal">No - Keep Shopping</button>
+                <button type="button" class="btn btn-success btn-default" data-dismiss="modal" (click)="checkoutModal.hide()" aria-label="Close">Yes - Add items to my Fridge</button>
+                <button type="button" class="btn btn-danger btn-default" data-dismiss="modal" (click)="checkoutModal.hide()" aria-label="Close">No - Keep Shopping</button>
                 <!-- </center> -->
             </div>
         </div>
