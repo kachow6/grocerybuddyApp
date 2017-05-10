@@ -31,6 +31,7 @@ export class ListComponent {
         this.myList = userService.getCurrentList().contents;
     }
 
+    //Method for adding a new item by user input
     addItem(): void {
         if (this.nameInput.length > 0, this.numberInput > 0) {
             this.myList.push(new ShoppingItem(this.nameInput, this.numberInput, this.checkedInput));
@@ -40,6 +41,7 @@ export class ListComponent {
         // console.log(this.myList.contents[1]);
     }
 
+    //Method for changing the checked state of an item
     checkItem(): void {
         if(this.checkedInput == false) {
             this.checkedInput = true;
@@ -48,6 +50,7 @@ export class ListComponent {
         }
     }
 
+    //Method for resetting checked items to false
     resetList(): void {
         for(let i = 0; i < this.myList.length; i++) {
             this.myList[i].checked = false;
@@ -61,6 +64,7 @@ export class ListComponent {
     //     console.log(this.myList[2]);
     // }
 
+    //Method for transfering checked items to fridge array
     checkout(): void {
         for(let i = 0; i < this.myList.length; i++) {
             if (this.myList[i].checked == true) {

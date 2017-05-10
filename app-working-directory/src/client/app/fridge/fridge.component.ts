@@ -26,6 +26,7 @@ export class FridgeComponent {
     nameInput:      string = "";
     numberInput:    number;
     expiration:     number;
+    renameInput: string;
 
     //States for the progress bar
     stateDanger: string = "progress-bar-danger";
@@ -43,7 +44,7 @@ export class FridgeComponent {
             return this.stateDanger;
         } else if (expiration / max >= 0.66){
             return this.stateSuccess;
-        } else (expiration / max >= 0.33) {
+        } else if(expiration / max >= 0.33){
             return this.stateWarning;
         }
     }
@@ -55,8 +56,10 @@ export class FridgeComponent {
             this.nameInput = '';
             this.numberInput = null;
         }
-        // console.log(this.fridgeList[1]);
     }
-    
+
+    // itemRename():  void {
+    //   this.fridgeList[2].name = this.renameInput;
+    // }
 
 }
