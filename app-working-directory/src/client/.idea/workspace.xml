@@ -15,11 +15,19 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf>
+<<<<<<< HEAD
       <file leaf-file-name="settings.component.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/settings/settings.component.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="342">
               <caret line="31" column="0" lean-forward="true" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
+=======
+      <file leaf-file-name="settings.component.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/settings/settings.component.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="699">
+              <caret line="55" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="86" selection-end-column="6" />
+>>>>>>> register-functions
               <folding />
             </state>
           </provider>
@@ -28,8 +36,13 @@
       <file leaf-file-name="settings.component.ts" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/settings/settings.component.ts">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="187">
               <caret line="11" column="32" lean-forward="true" selection-start-line="11" selection-start-column="32" selection-end-line="11" selection-end-column="32" />
+=======
+            <state relative-caret-position="192">
+              <caret line="16" column="23" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="49" selection-end-column="1" />
+>>>>>>> register-functions
               <folding />
             </state>
           </provider>
@@ -45,11 +58,19 @@
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
       <file leaf-file-name="register.component.ts" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/auth/register.component.ts">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="171">
               <caret line="16" column="37" lean-forward="true" selection-start-line="16" selection-start-column="37" selection-end-line="16" selection-end-column="37" />
+=======
+      <file leaf-file-name="register.component.ts" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/auth/register.component.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="782">
+              <caret line="46" column="30" lean-forward="false" selection-start-line="46" selection-start-column="30" selection-end-line="46" selection-end-column="30" />
+>>>>>>> register-functions
               <folding>
                 <element signature="e#0#42#0" expanded="true" />
               </folding>
@@ -63,8 +84,13 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/app/auth/register.component.html" />
+<<<<<<< HEAD
         <option value="$PROJECT_DIR$/app/settings/settings.component.html" />
         <option value="$PROJECT_DIR$/app/settings/settings.component.ts" />
+=======
+        <option value="$PROJECT_DIR$/app/settings/settings.component.ts" />
+        <option value="$PROJECT_DIR$/app/settings/settings.component.html" />
+>>>>>>> register-functions
       </list>
     </option>
   </component>
@@ -252,12 +278,20 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1494439435598</updated>
+<<<<<<< HEAD
       <workItem from="1494439437269" duration="2579000" />
+=======
+      <workItem from="1494439437269" duration="2139000" />
+>>>>>>> register-functions
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
+<<<<<<< HEAD
     <option name="totallyTimeSpent" value="2579000" />
+=======
+    <option name="totallyTimeSpent" value="2139000" />
+>>>>>>> register-functions
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="0" width="974" height="1047" extended-state="0" />
@@ -293,6 +327,7 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/app/auth/register.component.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="171">
@@ -307,23 +342,54 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="442">
           <caret line="26" column="42" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="45" selection-end-column="6" />
+=======
+    <entry file="file://$PROJECT_DIR$/app/settings/settings.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="699">
+          <caret line="55" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="86" selection-end-column="6" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/settings/settings.component.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="32" lean-forward="true" selection-start-line="11" selection-start-column="32" selection-end-line="11" selection-end-column="32" />
+        <state relative-caret-position="192">
+          <caret line="16" column="23" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="49" selection-end-column="1" />
+>>>>>>> register-functions
           <folding />
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
+    <entry file="file://$PROJECT_DIR$/app/settings/settings.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="32" lean-forward="true" selection-start-line="11" selection-start-column="32" selection-end-line="11" selection-end-column="32" />
+=======
+    <entry file="file://$PROJECT_DIR$/app/auth/register.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="26" column="42" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="45" selection-end-column="6" />
+>>>>>>> register-functions
+          <folding />
+        </state>
+      </provider>
+    </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/app/settings/settings.component.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="342">
           <caret line="31" column="0" lean-forward="true" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
           <folding />
+=======
+    <entry file="file://$PROJECT_DIR$/app/auth/register.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="782">
+          <caret line="46" column="30" lean-forward="false" selection-start-line="46" selection-start-column="30" selection-end-line="46" selection-end-column="30" />
+          <folding>
+            <element signature="e#0#42#0" expanded="true" />
+          </folding>
+>>>>>>> register-functions
         </state>
       </provider>
     </entry>
