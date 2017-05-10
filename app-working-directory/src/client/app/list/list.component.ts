@@ -36,11 +36,29 @@ export class ListComponent {
   numberInput: number;
 
     addItem(): void {
-        if(this.nameInput.length > 0, this.numberInput > 0) {
+        if (this.nameInput.length > 0, this.numberInput > 0) {
             this.myList.push(new ItemList(this.nameInput, this.numberInput));
             this.nameInput = '';
             this.numberInput = null;
         }
         console.log(this.myList[1]);
+    }
+
+    shiftItem(dir: number, item: ItemList, index: number): void {
+        let swapTarget: number = index;
+        let temp: ItemList;
+
+        switch (dir) {
+            // UP
+            case 8:
+                item.name = "UP";
+                swapTarget += 1;
+                break;
+
+            // DOWN
+            case 16:
+                item.name = "DOWN";
+                break;
+        }
     }
 }

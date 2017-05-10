@@ -39,7 +39,9 @@ const FIREBASE_APP_CONFIG = {
 export class MyHammerConfig extends HammerGestureConfig  {
     overrides = <any>{
         // override hammerjs default configuration
-        'pan': {threshold: 5},
+        'pan': {
+            threshold: 5
+        },
         'swipe': {
             velocity: 0.4,
             threshold: 10,

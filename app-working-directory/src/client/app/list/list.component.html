@@ -20,12 +20,10 @@
     <!-- LIST ITEMS -->
     <div
         class="container-fluid list-element"
-        *ngFor = "let item of myList"
-        (swipeleft)="item.name = 'left'"
-        (swiperight)="item.name = 'right'"
-        (swipeup)="item.name = 'up'"
-        (swipedown)="item.name = 'down'"
-        (press)="item.name = 'press'"
+        *ngFor = "let item of myList; let i = index;"
+
+        (press)="shiftItem('pressNow', item)"
+        (swipe)="shiftItem($event.direction, item, i)"
         >
 
         <div class="row">
