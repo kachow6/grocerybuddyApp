@@ -7,6 +7,9 @@ import { RouterModule } from '@angular/router';
 import { NavbarComponent } from './navbar/navbar.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './header/footer.component';
+import { UserService }     from './user-service/user.service';
+import { User, FridgeList, ShoppingList,
+         FridgeItem, ShoppingItem }    from './user-service/user';
 
 import { NameListService } from './name-list/name-list.service';
 
@@ -55,14 +58,15 @@ import { BsDropdownModule, AccordionModule, AlertModule, ButtonsModule,
     NavbarComponent,
     CommonModule,
     FormsModule,
-    RouterModule
+    RouterModule,
+    UserService
   ]
 })
 export class SharedModule {
   static forRoot(): ModuleWithProviders {
     return {
       ngModule: SharedModule,
-      providers: [NameListService]
+      providers: [UserService]
     };
   }
 }
