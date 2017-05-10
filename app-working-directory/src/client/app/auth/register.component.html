@@ -24,15 +24,15 @@
         </div>
 
         <div class="form-group">
-            <label for="password_0">Password:</label>
-            <span id="passworderror" class="error"></span>
-            <input type="password" class="form-control" id="password_0" name="user_password" required>
+            <label for="password">Password:</label>
+            <p id="passworderror" class="error">{{passwordmessage}}</p>
+            <input type="password" class="form-control" id="password" name="user_password" #password (blur)="checkComplexity(password.value)" [(ngModel)]="userpassword" required>
         </div>
 
         <div class="form-group">
-            <label for="password_1">Confirm Password:</label>
-            <span id="confirmpassworderror"  class="error"></span>
-            <input type="password" class="form-control" id="password_1" name="user_confirmpassword" required>
+            <label for="confirmpassword">Confirm Password:</label>
+            <p id="confirmpassworderror" class="error">{{confirmpasswordmessage}}</p>
+            <input type="password" class="form-control" id="confirmpassword" name="user_confirmpassword" #confirmpassword (blur)="confirmPassword(password.value, confirmpassword.value, true)" [(ngModel)]="userconfirmpassword" required>
         </div>
 
 
