@@ -36,13 +36,72 @@
 				</div>
 			</div>
 		</div>
+		
+
+
+		<!-- Options Modal -->
+	<div class="modal fade" id="listModal" tabindex="-1" role="dialog" aria-labelledby="options" bsModal #itemModal="bs-modal"
+		tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true" aria-label="Close" (click)="itemModal.hide()">
+						<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="row">
+						<form class="col-lg-11 col-md-11 col-sm-11 col-xs-11">
+							<label for="rename-form"><h3 class="media-heading">Rename: </h3></label>
+							<input [(ngModel)]="item.name" [ngModelOptions]="{standalone: true}" type="text" class="form-control" id="rename-form">
+						</form>
+					</div>
+				</div>
+				<hr>
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7 pull-left">
+							<h3 class="media-heading">Quantity: </h3>
+						</div>
+						<div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+							<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 col-lg-offset-2 col-md-offset-2 col-sm-offset-2 col-xs-offset-2" style="padding-left: 0;">
+								<h4><strong><span class="text-muted">x</span></strong></h4>
+							</div>
+							<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7" style="padding-left: 0;">
+								<input [(ngModel)]="item.quantity" [ngModelOptions]="{standalone: true}" type="number" class="form-control input-lg" value="1" min="0">
+							</div>
+						</div>
+					</div>
+				</div>
+				<hr>
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7 pull-left">
+							<h3 class="media-heading">Expiration Date: </h3>
+						</div>
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-3 col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-0" style="padding-right: 0">
+							<input [(ngModel)]="item.expiration" [ngModelOptions]="{standalone: true}" type="number" class="form-control input-lg" value="1" min="0">
+						</div>
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+							<h4><strong><span class="text-muted">days</span></strong></h4>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<div class="row" style="text-align: center;">
+						<button class="btn btn-lg btn-success" (click)="itemModal.hide()">Save Changes</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 	</div>
 
 
 </div>
 
 <!-- Options Modal -->
-<div class="modal fade" id="listModal" tabindex="-1" role="dialog" aria-labelledby="options" bsModal #itemModal="bs-modal"
+<!--<div class="modal fade" id="listModal" tabindex="-1" role="dialog" aria-labelledby="options" bsModal #itemModal="bs-modal"
      tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -96,4 +155,4 @@
             </div>
         </div>
     </div>
-</div>
+</div>-->
