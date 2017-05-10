@@ -1,2 +1,37 @@
-<h1>Grocery Buddy Temp Header</h1>
-<div class="more"></div>
+<header>
+    <div id="mySidenav" [style.width]="push + 'px'" class="sidenav pull-left">
+        <div class="sideNavInner" [style.width]="extWidth + 'px'">
+            <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">&times;</a>
+            
+            <div class="buddy-station">
+                <img src="../../assets/imgs/carrot.png" alt="grocerybuddy" width="100" height="100" class="img-circle img-responsive center-block">
+            </div>
+
+            <div class="alert alert-dismissible alert-info col-lg-10 col-md-10 col-sm-10 col-xs-10 col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Hey there Buddy!</strong> Dont forget to eat your bananas today!
+            </div>
+            
+            <a href="#">MyBuddy</a>
+            <hr>
+            <a [routerLink]="['/settings']" (click)="closeNav()">Settings</a>
+            <hr>
+            <a [routerLink]="['/affiliates']" (click)="closeNav()">Affiliates</a>
+            <hr>
+            <a href="#">Logout</a>
+        </div>
+    </div>
+
+    <div class="page-cover"
+         [class.page-cover-darken]="push > 0"
+         [class.page-cover-regular]="push == 0"
+         (click)="closeNav()"
+         >
+    </div>
+
+    <div id="banner" class="navbar-header col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <span class="pull-left navbar-brand hamburger col-lg-1 col-md-1 col-sm-1 col-xs-1" (click)="openNav()">&#9776; </span>
+        <h2 class="col-lg-8 col-md-8 col-sm-8 col-xs-8 col-xs-offset-1 col-sm-offset-0">Landing Page</h2>
+        <button class="btn btn-danger pull-right" type="button" style="margin-top: 10px; margin-right: 10px;"><span class="badge">4</span></button>
+    </div>
+</header>

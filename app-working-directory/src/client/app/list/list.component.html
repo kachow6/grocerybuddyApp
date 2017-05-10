@@ -1,81 +1,55 @@
 <div class="container-fluid add-item col-lg-12 col-md-12 col-sm-12 col-xs-12" style="position: fixed; z-index: 1;">
-  <div class="row">
+  <div class="row ">
     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6" style="margin-bottom: 15px">
       <label for="new-list"><h2 class="title">New Item: </h2></label>
-      <input type="text" class="form-control" id="new-item-form">
+      <input [(ngModel)] = "nameInput" type="text" class="form-control" id="new-item-form">
     </div>
     <div class="col-lg-2 col-md-2 col-sm-2 col-xs-3" style="margin-bottom: 15px">
       <label for="new-list"><h2 class="title">Qty: </h2></label>
-      <input type="number" class="form-control" id="new-qty-form">
+      <input [(ngModel)] = "numberInput" type="number" class="form-control" id="new-qty-form">
     </div>
     <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 col-md-offset-4 col-sm-offset-4" style="margin-top: 35px">
-      <button class="btn btn-lg btn-success" type="button" data-toggle="dropdown"><span class="glyphicon glyphicon-plus"></span></button>
+      <button (click)="addItem()" class="btn btn-lg btn-success" type="button" data-toggle="dropdown"><span class="glyphicon glyphicon-plus"></span></button>
     </div>
   </div>
 </div>
 
 <div class="container col-lg-8 col-md-10 col-lg-offset-2 col-md-offset-1" style="padding-top: 125px;">
-  <div class="container-fluid list-element">
-    <div class="row">
-      <div class="col-lg-8 col-md-8 col-sm-7 col-xs-6">
-        <h3>Avocados</h3>
-      </div>
-      <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1" style="margin-top: 25px;padding-right: 0;">
-        <label>x</label>
-      </div>
-      <div class="list-inline col-lg-2 col-md-2 col-sm-2 col-xs-3" style="margin-top: 15px">
-        <input type="number" class="form-control" id="qty-form1">
-      </div>
-      <div class="col-lg-1 col-md-1 col-sm-2 col-xs-2" style="margin-top: 5px;">
-        <input type="checkbox" class="item-checkbox" value="">
-      </div>
-    </div>
-  </div>
 
-  <div class="container-fluid list-element">
+  <div class="container-fluid list-element" *ngFor = "let item of myList">
     <div class="row">
       <div class="col-lg-8 col-md-8 col-sm-7 col-xs-6">
-        <h3>Bananas</h3>
+        <h3>{{item.name}}</h3>
       </div>
       <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1" style="margin-top: 25px;padding-right: 0;">
         <label>x</label>
       </div>
       <div class="list-inline col-lg-2 col-md-2 col-sm-2 col-xs-3" style="margin-top: 15px">
-        <input type="number" class="form-control" id="qty-form2">
+        <input [(ngModel)] = "item.quantity" type="number" class="form-control" id="qty-form1">
       </div>
       <div class="col-lg-1 col-md-1 col-sm-2 col-xs-2" style="margin-top: 5px;">
-        <input type="checkbox" class="item-checkbox" value="">
-      </div>
-    </div>
-  </div>
-
-  <div class="container-fluid list-element">
-    <div class="row">
-      <div class="col-lg-8 col-md-8 col-sm-7 col-xs-6">
-        <h3>Cauliflower</h3>
-      </div>
-      <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1" style="margin-top: 25px;padding-right: 0;">
-        <label>x</label>
-      </div>
-      <div class="list-inline col-lg-2 col-md-2 col-sm-2 col-xs-3" style="margin-top: 15px">
-        <input type="number" class="form-control" id="qty-form3">
-      </div>
-      <div class="col-lg-1 col-md-1 col-sm-2 col-xs-2" style="margin-top: 5px;">
-        <input type="checkbox" class="item-checkbox" value="">
+        <input [(ngModel)] = "item.checked" (click)="checkItem()" type="checkbox" class="item-checkbox" value="">
       </div>
     </div>
   </div>
 
   <div class="container-fluid list-element">
     <div class="row" style="text-align: center;">
-      <a href="#aboutModal" data-toggle="modal" data-target="#deleteModal" class="btn btn-lg btn-danger">Reset List</a>
-      <a href="#aboutModal" data-toggle="modal" data-target="#checkoutModal" class="btn btn-lg btn-success">Checkout</a>
+      <button class="btn btn-lg btn-danger" (click)="resetModal.show()" data-toggle="modal" data-target="#listModal" style="margin: 10px 0 10px 0;">
+        <span>Reset List</span>
+      </button>
+      <button class="btn btn-lg btn-success" (click)="checkoutModal.show()" data-toggle="modal" data-target="#listModal" style="margin: 10px 0 10px 0;">
+        <span>Checkout</span>
+      </button>
     </div>
   </div>
+
+
 </div>
 
 <!-- Delete Modal -->
-<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" bsModal #resetModal="bs-modal"
+     aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -90,8 +64,8 @@
             </div>
             <div class="modal-footer">
                 <!-- <center> -->
-                <button type="button" class="btn btn-success btn-default" data-dismiss="modal">Yes - Uncheck all items</button>
-                <button type="button" class="btn btn-danger btn-default" data-dismiss="modal">No - I'm still using this list!</button>
+                <button type="button" class="btn btn-success btn-default" data-dismiss="modal" (click)="resetModal.hide()" aria-label="Close">Yes - Uncheck all items</button>
+                <button type="button" class="btn btn-danger btn-default" data-dismiss="modal" (click)="resetModal.hide()" aria-label="Close">No - I'm still using this list!</button>
                 <!-- </center> -->
             </div>
         </div>
@@ -99,7 +73,8 @@
 </div>
 
 <!-- Checkout Modal -->
-<div class="modal fade" id="checkoutModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="checkoutModal" tabindex="-1" role="dialog" bsModal #checkoutModal="bs-modal"
+     aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -114,8 +89,8 @@
             </div>
             <div class="modal-footer">
                 <!-- <center> -->
-                <button type="button" class="btn btn-success btn-default" data-dismiss="modal">Yes - Add items to my Fridge</button>
-                <button type="button" class="btn btn-danger btn-default" data-dismiss="modal">No - Keep Shopping</button>
+                <button type="button" class="btn btn-success btn-default" data-dismiss="modal" (click)="checkoutModal.hide(); checkout()" aria-label="Close">Yes - Add items to my Fridge</button>
+                <button type="button" class="btn btn-danger btn-default" data-dismiss="modal" (click)="checkoutModal.hide()" aria-label="Close">No - Keep Shopping</button>
                 <!-- </center> -->
             </div>
         </div>
