@@ -48,12 +48,19 @@ export class ListComponent {
         }
     }
 
+    resetList(): void {
+        for(let i = 0; i < this.myList.length; i++) {
+            this.myList[i].checked = false;
+        }
+    }
+
     //Method for testing item checked state
     // testStuff(): void {
-    //     console.log(LIST_ITEMS[0]);
-    //     console.log(LIST_ITEMS[1]);
-    //     console.log(LIST_ITEMS[2]);
+    //     console.log(this.myList[0]);
+    //     console.log(this.myList[1]);
+    //     console.log(this.myList[2]);
     // }
+
     checkout(): void {
         for(let i = 0; i < this.myList.length; i++) {
             if (this.myList[i].checked == true) {
