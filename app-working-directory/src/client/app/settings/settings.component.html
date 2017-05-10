@@ -45,30 +45,27 @@
                 </div>
                 <h2> Account Setting: </h2>
                 <div class="form-group">
-                    <label for="reminder">Username:</label>
-                    <input type="username" class="form-control" id="username">
+                    <label for="name">Name:</label>
+                    <input type="text" class="form-control" id="name" name="user_name" required>
                 </div>
 
                 <div class="form-group">
                     <label for="email">Email:</label>
-                    <input type="email" class="form-control" id="email">
+                    <input type="email" class="form-control" id="email" name="user_email" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="password_0">New Password:</label>
-                    <span id="passworderror" class="error"></span>
-                    <input type="password" class="form-control" id="password_0" name="user_password" onchange="warnPasswordInvalid('password_0')" required>
+                    <label for="password">Password:</label>
+                    <p id="passworderror" class="error">{{passwordmessage}}</p>
+                    <input type="password" class="form-control" id="password" name="user_password" #password (blur)="checkComplexity(password.value)" [(ngModel)]="userpassword" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="password_1">Confirm Password:</label>
-                    <span id="confirmpassworderror"  class="error"></span>
-                    <input type="password" class="form-control" id="password_1" name="user_confirmpassword" onchange="warnConfirmPasswordInvalid('password', true)" required>
+                    <label for="confirmpassword">Confirm Password:</label>
+                    <p id="confirmpassworderror" class="error">{{confirmpasswordmessage}}</p>
+                    <input type="password" class="form-control" id="confirmpassword" name="user_confirmpassword" #confirmpassword (blur)="confirmPassword(password.value, confirmpassword.value, true)" [(ngModel)]="userconfirmpassword" required>
                 </div>
 
-                <div class="checkbox">
-                    <label><input type="checkbox"> Remember me</label>
-                </div>
                 <button type="button" class="btn btn-success btn-block">Submit</button>
                 <button type="button" class="btn btn-warning btn-block">Clear</button>
 

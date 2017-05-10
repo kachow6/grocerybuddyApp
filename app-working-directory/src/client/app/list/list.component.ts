@@ -52,13 +52,16 @@ export class ListComponent {
             // UP
             case 8:
                 item.name = "UP";
-                swapTarget += 1;
+                swapTarget -= 1;
                 break;
 
             // DOWN
             case 16:
                 item.name = "DOWN";
+                swapTarget += 1;
                 break;
         }
+
+        this.myList[swapTarget].name = "blabhablabh";
     }
 }
