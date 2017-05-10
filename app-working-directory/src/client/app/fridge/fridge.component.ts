@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 //Class for Fridge item objects.
 export class ItemList {
@@ -36,7 +36,23 @@ export class FridgeComponent {
     nameInput: String = "";
     numberInput: number;
     expiration: number;
+    //States for the progress bar
+    stateDanger: String = "progress-bar-danger";
+    stateWarning: String = "progress-bar-warning";
+    stateSuccess: String = "progress-bar-success";
+    itemState: String = "";
 
+    // Method for calculating the expiration bar colour
+    calculateExp(max: number, expiration: number): String {
+        if(expiration / max < 0.33)
+          return this.stateDanger;
+        if(expiration / max >= 0.66)
+          return this.stateSuccess;
+        if(expiration / max >= 0.33)
+          return this.stateWarning;
+    }
+
+    // Method for adding a fridge item object to the array
     addItem(): void {
       if(this.nameInput.length > 0, this.numberInput > 0) {
         this.fridgeList.push(new ItemList(this.nameInput, this.numberInput, null));
@@ -45,4 +61,6 @@ export class FridgeComponent {
       }
       console.log(this.fridgeList[1]);
     }
+    
+
 }

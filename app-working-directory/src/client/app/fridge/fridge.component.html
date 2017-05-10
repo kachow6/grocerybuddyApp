@@ -32,7 +32,7 @@
 		</div>
 		<div class="row col-lg-11 col-md-11 col-sm-10 col-xs-10">
 			<div class="progress">
-				<div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="item.expiration" aria-valuemin="0" aria-valuemax="100" [style.width]="item.expiration + '%'">
+				<div class="progress-bar {{calculateExp(100, item.expiration)}}" role="progressbar" aria-valuenow="item.expiration" aria-valuemin="0" aria-valuemax="100" [style.width]="item.expiration + '%'">
 				</div>
 			</div>
 		</div>
