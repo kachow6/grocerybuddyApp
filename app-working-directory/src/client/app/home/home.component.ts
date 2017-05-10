@@ -28,11 +28,11 @@ export class HomeComponent {
 
   //Instantiating the array object.
   myList: CurrentList[] = HOME_LISTS;
-  nameInput: String = "";
+  nameInput: String = null;
   // new listName: String;
 
   addList():void {
-    if(this.nameInput.length > 0) {}
+    if(this.nameInput.length >= 1) {}
       this.myList.push(new CurrentList(this.nameInput));
       this.nameInput = '';
     }
