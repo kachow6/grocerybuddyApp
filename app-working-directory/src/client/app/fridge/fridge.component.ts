@@ -43,7 +43,7 @@ export class FridgeComponent {
             return this.stateDanger;
         } else if (expiration / max >= 0.66){
             return this.stateSuccess;
-        } else (expiration / max >= 0.33){
+        } else (expiration / max >= 0.33) {
             return this.stateWarning;
         }
     }
