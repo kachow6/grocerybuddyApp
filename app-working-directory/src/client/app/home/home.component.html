@@ -20,13 +20,13 @@
       <div class="col-lg-11 col-md-11 col-sm-10 col-xs-9">
         <h3>{{item.name}}</h3>
       </div>
-      <div class="dropdown col-lg-1 col-md-1 col-sm-2 col-xs-2" style="margin-top: 10px">
+      <div class="dropdown col-lg-1 col-md-1 col-sm-2 col-xs-2" style="margin-top: 10px" dropdown>
         <button dropdownToggle class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><span class="glyphicon glyphicon-option-vertical"></span></button>
         <ul *dropdownMenu role="menu" class="dropdown-menu" aria-labelledby="dropdownMenu1">
-          <li class="menu-item"><a href="#">Rename</a></li>
-          <li class="menu-item"><a href="#">Copy</a></li>
-          <li class="menu-item"><a href="#">Delete</a></li>
-          <li class="menu-item"><a href="#">Reset</a></li>
+          <li role="menuitem" class="menu-item"><a href="#">Rename</a></li>
+          <li role="menuitem" class="menu-item"><a href="#">Copy</a></li>
+          <li role="menuitem" class="menu-item"><a href="#">Delete</a></li>
+          <li role="menuitem" class="menu-item"><a href="#">Reset</a></li>
         </ul>
       </div>
     </div>
