@@ -44,7 +44,7 @@ export class MyHammerConfig extends HammerGestureConfig  {
         },
         'swipe': {
             velocity: 0.4,
-            threshold: 10,
+            threshold: 5,
             direction: 31 // /!\ ugly hack to allow swipe in all direction
         }
     }

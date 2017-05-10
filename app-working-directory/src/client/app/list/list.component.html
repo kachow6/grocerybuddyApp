@@ -23,7 +23,7 @@
         *ngFor = "let item of myList; let i = index;"
 
         (press)="shiftItem('pressNow', item)"
-        (swipe)="shiftItem($event.direction, item, i)"
+        (swipe)="shiftItem($event.direction, i)"
         >
 
         <div class="row">
