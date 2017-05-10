@@ -32,7 +32,10 @@
 
             <form>
                 <div class="form-group">
-                    <label><h6>Notifications</h6></label> <div class="pull-right"><input type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="default"></div></div>
+                    <label><h6>Notifications</h6></label> <div class="pull-right">
+
+                    <switch [status]="false" [onText]="onText" [offText]="offText" [onColor]="onColor" [offColor]="offColor" [size]="size"></switch>
+                    <input type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="default"></div></div>
 
                 <div class="form-group">
 
