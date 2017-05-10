@@ -58,8 +58,7 @@ import { BsDropdownModule, AccordionModule, AlertModule, ButtonsModule,
     NavbarComponent,
     CommonModule,
     FormsModule,
-    RouterModule,
-    UserService
+    RouterModule
   ]
 })
 export class SharedModule {
