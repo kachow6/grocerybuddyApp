@@ -7,9 +7,9 @@ export class ItemList {
     quantity: number;
 
     constructor(name: String, quantity: number) {
-    this.name = name;
-    this.quantity = quantity;
-  }
+        this.name = name;
+        this.quantity = quantity;
+    }
 }
 
 //Array that contains the items on List page.
@@ -18,14 +18,6 @@ const LIST_ITEMS: ItemList[] = [
     new ItemList("Banana", 3),
     new ItemList("Aubergine", 76)
 ];
-
-// Constants for interfacing with HammerJS's gestures
-const SWIPE = {
-    LEFT: 'swipeleft',
-    RIGHT: 'swiperight',
-    UP: 'swipeup',
-    DOWN: 'swipedown'
-}
 
 /**
  * This class represents the lazy loaded HomeComponent.
