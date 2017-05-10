@@ -27,7 +27,7 @@
 				<h3>x{{item.quantity}}</h3>
 			</div>
 			<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 push-right">
-				<button class="btn btn-default btn-md" (click)="staticModal.show()" data-toggle="modal" data-target="#listModal" style="margin-top: 15px;"><span class="glyphicon glyphicon-option-vertical"></span></button>
+				<button class="btn btn-default btn-md" (click)="itemModal.show()" data-toggle="modal" data-target="#listModal" style="margin-top: 15px;"><span class="glyphicon glyphicon-option-vertical"></span></button>
 			</div>
 		</div>
 		<div class="row col-lg-11 col-md-11 col-sm-10 col-xs-10">
@@ -42,12 +42,12 @@
 </div>
 
 <!-- Options Modal -->
-<div class="modal fade" id="listModal" tabindex="-1" role="dialog" aria-labelledby="options" bsModal #staticModal="bs-modal" [config]="{backdrop: 'static'}"
+<div class="modal fade" id="listModal" tabindex="-1" role="dialog" aria-labelledby="options" bsModal #itemModal="bs-modal"
      tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" aria-label="Close" (click)="staticModal.hide()">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" aria-label="Close" (click)="itemModal.hide()">
                     <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                 </button>
             </div>
@@ -91,7 +91,7 @@
             </div>
             <div class="modal-footer">
 				<div class="row" style="text-align: center;">
-					<button class="btn btn-lg btn-success">Save Changes</button>
+					<button class="btn btn-lg btn-success" (click)="itemModal.hide()">Save Changes</button>
 				</div>
             </div>
         </div>
