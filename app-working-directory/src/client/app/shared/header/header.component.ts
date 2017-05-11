@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { BUDDY_QUOTES } from  './header.menu.buddyquotes';
-import { BUDDY_PICS } from  './header.menu.buddypics';
+import { Component, OnInit }     from '@angular/core';
+import { BUDDY_QUOTES }          from  './header.menu.buddyquotes';
+import { BUDDY_PICS }            from  './header.menu.buddypics';
+
+import { Router,
+         NavigationEnd }         from '@angular/router';
 
 /**
  * This class represents the navigation bar component.
@@ -15,6 +18,8 @@ import { BUDDY_PICS } from  './header.menu.buddypics';
 export class HeaderComponent implements OnInit {
     readonly extWidth: number = 225;
 
+    pageTitle: string;
+
     push     : number;
     bodyBg   : string;
     extended : boolean;
@@ -24,6 +29,39 @@ export class HeaderComponent implements OnInit {
 
     picIndex: number = Math.floor((Math.random() * BUDDY_PICS.length));
     buddyPic: string = BUDDY_PICS[this.picIndex];
+
+    // CONSTRUCTOR.
+    // Set up the HeaderComponent class and inject all the necessary services.
+    constructor(private router: Router) {
+
+        // Updates this.pageTitle based on the URL.
+        router.events.subscribe((navEvent) => {
+            if (navEvent instanceof NavigationEnd) {
+
+                // Hacky workaround. Bruce Link would hate me.
+                // Will try to figure out how to move data through the router
+                // later
+                switch (navEvent.url) {
+                case '/fridge':
+                    this.pageTitle = 'Fridge';
+                    break;
+                case '/list':
+                    this.pageTitle = 'List';
+                    break;
+                case '/settings':
+                    this.pageTitle = 'Settings';
+                    break;
+                case '/affiliates':
+                    this.pageTitle = 'Affiliates';
+                    break;
+                default:
+                    this.pageTitle = 'Grocery Buddy'
+                }
+
+            }
+            console.log(navEvent);
+        });
+    }
 
     openNav(): void {
         this.push     = this.extWidth;
@@ -36,6 +74,7 @@ export class HeaderComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.pageTitle = 'Grocery Buddy';
         this.closeNav();
     }
 
