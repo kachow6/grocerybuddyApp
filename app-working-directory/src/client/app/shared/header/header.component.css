@@ -36,6 +36,7 @@
     transition: 0.5s;
     padding-top: 60px;
 }
+
 .sidenav a {
     font-family: Open Sans, Helvetica, Arial, sans-serif;
     text-transform: uppercase;
@@ -46,9 +47,11 @@
     text-align: center;
     transition: 0.3s;
 }
+
 .sidenav a:hover, .offcanvas a:focus {
     color: #02b3ff;
 }
+
 .sidenav .closebtn {
     position: absolute;
     top: 0;
@@ -56,6 +59,7 @@
     font-size: 36px;
     margin-left: 50px;
 }
+
 .hamburger {
     color: white;
     cursor:pointer;
@@ -63,23 +67,23 @@
     padding-top: 25px;
     text-shadow: 1px 1px #818181;
 }
+
 #banner {
     z-index: 3;
     transition: margin-left .5s;
-    background-color: #0DCC88;
+    background-color: #5CB85C;
 }
+
 #banner h2 {
     color: white;
     padding-bottom: 8px;
     text-shadow: 1px 1px #818181;
 }
+
 .badge {
     font-size: 1.8em;
 }
-@media screen and (max-height: 450px) {
-  .sidenav {padding-top: 15px;}
-  .sidenav a {font-size: 18px;}
-}
+
 .buddy-station {
     padding-bottom: 10px;
 }
@@ -97,17 +101,9 @@ ul.nav-tabs > li a {
 ul.nav-tabs > li a:hover {
     background-color: #34E52E;
 }
-
-/* Home Page CSS */
-.list-element {
-    background-color: #E5E5E5;
-    border: 3px solid white;
+.page-top {
+    padding: 0;
 }
-.add-list {
-    background-color: #0A8056;
-    border: 3px solid white;
-    color: white;
-}
-.title {
-    text-shadow: 2px 1px #818181;
+.navbar-header {
+    margin-right: 0;
 }
