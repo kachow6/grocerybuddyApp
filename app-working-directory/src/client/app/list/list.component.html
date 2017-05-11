@@ -13,8 +13,8 @@
 </div>
 
 <div class="container col-lg-8 col-md-10 col-lg-offset-2 col-md-offset-1" style="top: 80px; margin-bottom: 60px">
-    <div class="container-fluid list-element" *ngFor = "let item of myList">
-        <div class="row">
+    <div class="container-fluid list-element" *ngFor = "let item of myList; let i = index">
+        <div class="row" (swipeleft)="deleteItem(i)">
             <div class="col-lg-8 col-md-8 col-sm-7 col-xs-6" style="margin-top: 10px">
                 <h4>{{item.name}}</h4>
             </div>
