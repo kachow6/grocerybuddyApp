@@ -2,7 +2,7 @@
     <div class="well">
         <form>
             <div class="form-group">
-                <label><h2>Notifications</h2></label>
+                <h2>Notifications:</h2>
                 <div class="row col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <label><h4 style="margin-right: 30px">Enabled:</h4></label>
                     <input type="checkbox" style="height: 25px; width: 25px;" checked data-toggle="toggle" data-onstyle="success" data-offstyle="default">
@@ -10,30 +10,31 @@
             </div>
 
             <div class="form-group">
-                <label for="notifyuser">Nofify me at:</label>
+                <label for="notifyuser"><h4>Nofify me at:</h4></label>
                 <input type="time" class="form-control" id="notifyuser">
             </div>
             <div class="form-group">
-                <label for="reminder">Remind me again:</label>
+                <label for="reminder"><h4>Remind me again at:</h4></label>
                 <input type="time" class="form-control" id="reminder">
             </div>
 
-            <h2>Account Setting: </h2>
+            <br>
+            <h2>Account Settings:</h2>
             <div class="form-group">
-                <label for="name">Name:</label>
+                <label for="name"><h4>Name:</h4></label>
                 <input type="text" class="form-control" id="name" name="user_name" required>
             </div>
             <div class="form-group">
-                <label for="email">Email:</label>
+                <label for="email"><h4>Email:</h4></label>
                 <input type="email" class="form-control" id="email" name="user_email" required>
             </div>
             <div class="form-group">
-                <label for="password">Password:</label>
+                <label for="password"><h4>Password:</h4></label>
                 <p id="passworderror" class="error">{{passwordmessage}}</p>
                 <input type="password" class="form-control" id="password" name="user_password" #password (blur)="checkComplexity(password.value)" [(ngModel)]="userpassword" required>
             </div>
             <div class="form-group">
-                <label for="confirmpassword">Confirm Password:</label>
+                <label for="confirmpassword"><h4>Confirm Password:</h4></label>
                 <p id="confirmpassworderror" class="error">{{confirmpasswordmessage}}</p>
                 <input type="password" class="form-control" id="confirmpassword" name="user_confirmpassword" #confirmpassword (blur)="confirmPassword(password.value, confirmpassword.value, true)" [(ngModel)]="userconfirmpassword" required>
             </div>
