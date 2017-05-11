@@ -58,8 +58,9 @@ export class FridgeComponent {
         }
     }
 
-    // itemRename():  void {
-    //   this.fridgeList[2].name = this.renameInput;
-    // }
+    itemRename(item: FridgeItem):  void {
+      item.name = this.renameInput;
+      this.renameInput = ""; 
+    }
 
 }
