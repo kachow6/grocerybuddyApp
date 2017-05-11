@@ -2,11 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
     <list default="true" id="94248209-f4b9-4cc6-b4dd-8bfd560e418f" name="Default" comment="" />
 =======
 <<<<<<< HEAD
     <list default="true" id="010bdcb8-a973-4bf0-9970-fc66127a2c3b" name="Default" comment="" />
 =======
+>>>>>>> develop
 <<<<<<< HEAD
     <list default="true" id="010bdcb8-a973-4bf0-9970-fc66127a2c3b" name="Default" comment="" />
 =======
@@ -16,8 +19,11 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app-working-directory/src/client/app/settings/settings.component.html" afterPath="$PROJECT_DIR$/app-working-directory/src/client/app/settings/settings.component.html" />
     </list>
 >>>>>>> 73a22361819ab8e12a8f869cab17d1cf3ba7704a
+<<<<<<< HEAD
+=======
 >>>>>>> carlo-test
 >>>>>>> fe0b642c68bb2fd9befbbe513268076f91ee5828
+>>>>>>> develop
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -30,10 +36,13 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
 =======
+>>>>>>> develop
   <component name="FileEditorManager">
     <leaf>
 <<<<<<< HEAD
@@ -123,7 +132,10 @@
       </list>
     </option>
   </component>
+<<<<<<< HEAD
+=======
 >>>>>>> fe0b642c68bb2fd9befbbe513268076f91ee5828
+>>>>>>> develop
   <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
   <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
   <component name="JsGulpfileManager">
@@ -131,6 +143,8 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
+<<<<<<< HEAD
+=======
 <<<<<<< HEAD
     <option name="x" value="166" />
     <option name="y" value="187" />
@@ -145,13 +159,17 @@
     <option name="height" value="1056" />
   </component>
 =======
+>>>>>>> develop
     <option name="y" value="23" />
     <option name="width" value="1537" />
     <option name="height" value="757" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+<<<<<<< HEAD
+=======
 >>>>>>> carlo-test
 >>>>>>> fe0b642c68bb2fd9befbbe513268076f91ee5828
+>>>>>>> develop
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
       <flattenPackages />
@@ -168,8 +186,11 @@
     </navigator>
     <panes>
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
       <pane id="ProjectPane" />
 =======
+>>>>>>> develop
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -418,7 +439,10 @@
           </PATH>
         </subPane>
       </pane>
+<<<<<<< HEAD
+=======
 >>>>>>> fe0b642c68bb2fd9befbbe513268076f91ee5828
+>>>>>>> develop
       <pane id="Scratches" />
       <pane id="Scope" />
     </panes>
@@ -429,6 +453,9 @@
     <property name="HbShouldOpenHtmlAsHb" value="" />
 <<<<<<< HEAD
 =======
+<<<<<<< HEAD
+=======
+>>>>>>> develop
     <property name="nodejs_interpreter_path" value="C:/Program Files/nodejs/node" />
   </component>
   <component name="RecentsManager">
@@ -441,7 +468,10 @@
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Carlo\Documents\School\BCIT\COMP 2910\grocerybuddyApp\app-working-directory\src\client\css" />
     </key>
+<<<<<<< HEAD
+=======
 >>>>>>> fe0b642c68bb2fd9befbbe513268076f91ee5828
+>>>>>>> develop
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -457,6 +487,9 @@
   </component>
 <<<<<<< HEAD
 =======
+<<<<<<< HEAD
+=======
+>>>>>>> develop
   <component name="RunManager">
     <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
       <method />
@@ -528,12 +561,17 @@
       <method />
     </configuration>
   </component>
+<<<<<<< HEAD
+=======
 >>>>>>> fe0b642c68bb2fd9befbbe513268076f91ee5828
+>>>>>>> develop
   <component name="ShelveChangesManager" show_recycled="false">
     <option name="remove_strategy" value="false" />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
+<<<<<<< HEAD
+=======
 <<<<<<< HEAD
       <changelist id="94248209-f4b9-4cc6-b4dd-8bfd560e418f" name="Default" comment="" />
       <created>1494367771642</created>
@@ -542,6 +580,7 @@
       <updated>1494367771642</updated>
       <workItem from="1494367772899" duration="4000" />
 =======
+>>>>>>> develop
       <changelist id="010bdcb8-a973-4bf0-9970-fc66127a2c3b" name="Default" comment="" />
       <created>1494364436738</created>
       <option name="number" value="Default" />
@@ -551,12 +590,17 @@
       <workItem from="1494364441701" duration="2308000" />
 =======
       <workItem from="1494364441701" duration="3917000" />
+<<<<<<< HEAD
+=======
 >>>>>>> carlo-test
 >>>>>>> fe0b642c68bb2fd9befbbe513268076f91ee5828
+>>>>>>> develop
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
+<<<<<<< HEAD
+=======
 <<<<<<< HEAD
     <option name="totallyTimeSpent" value="4000" />
   </component>
@@ -601,6 +645,7 @@
 <<<<<<< HEAD
 =======
 =======
+>>>>>>> develop
 <<<<<<< HEAD
     <option name="totallyTimeSpent" value="3917000" />
 =======
@@ -637,8 +682,11 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+<<<<<<< HEAD
+=======
 >>>>>>> carlo-test
 >>>>>>> fe0b642c68bb2fd9befbbe513268076f91ee5828
+>>>>>>> develop
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -686,6 +734,9 @@
   </component>
 <<<<<<< HEAD
 =======
+<<<<<<< HEAD
+=======
+>>>>>>> develop
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/app-working-directory/src/client/app/shared/header/header.component.html">
       <provider selected="true" editor-type-id="text-editor">
@@ -842,5 +893,8 @@
       </provider>
     </entry>
   </component>
+<<<<<<< HEAD
+=======
 >>>>>>> fe0b642c68bb2fd9befbbe513268076f91ee5828
+>>>>>>> develop
 </project>
