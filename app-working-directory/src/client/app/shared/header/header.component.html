@@ -3,13 +3,13 @@
         <div class="sideNavInner" [style.width]="extWidth + 'px'">
             <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">&times;</a>
             
-            <div class="buddy-station">
-                <img src="../../assets/imgs/carrot.png" alt="grocerybuddy" width="100" height="100" class="img-circle img-responsive center-block">
+            <div class="buddy-station" (click)="changeBuddy()">
+                <img src="{{buddyPic}}" alt="grocerybuddy" width="100" height="100" class="img-circle img-responsive center-block">
             </div>
 
-            <div class="alert alert-dismissible alert-info col-lg-10 col-md-10 col-sm-10 col-xs-10 col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1">
+            <div class="alert alert-dismissible alert-info col-lg-10 col-md-10 col-sm-10 col-xs-10 col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1" (click)="changeQuote()">
                 <button type="button" class="close" data-dismiss="alert">&times;</button>
-                <strong>Hey there Buddy!</strong> Dont forget to eat your bananas today!
+                <strong>Hey there Buddy!<br></strong> {{buddyQuote}} 
             </div>
             
             <a href="#">MyBuddy</a>
