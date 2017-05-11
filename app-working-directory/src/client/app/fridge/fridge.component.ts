@@ -60,7 +60,7 @@ export class FridgeComponent {
 
     itemRename(item: FridgeItem):  void {
       item.name = this.renameInput;
-      this.renameInput = ""; 
+      this.renameInput = ''; 
     }
 
 }
