@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output } from '@angular/core';
 import { UserService } from '../shared/user-service/user.service';
-import { ShoppingList } from '../shared/user-service/user';
+import { ShoppingList, ShoppingItem } from '../shared/user-service/user';
 import { Router } from '@angular/router';
 
 
@@ -68,10 +68,20 @@ export class HomeComponent {
         // tempList.contents = tempArray.contents;
     }
 
+    copyList2(list: ShoppingList): void {
+        let tempList: ShoppingList = new ShoppingList(list.name);
+        let tempIndex: ShoppingItem[];
+        for(let i = 0; i < list.contents.length; i++) {
+            tempList.contents.push(new ShoppingItem(list.contents[i].name,
+                                                    list.contents[i].quantity,
+                                                    list.contents[i].checked))
+        }
+        this.myList.push(tempList);
+    }
+
     //Method for deleting a shopping list off home page.
     deleteList(list: ShoppingList): void {
         this.myList.splice(this.myList.indexOf(list),1);
-        this.myList = null;
     }
 
     //Method for testing item checked state

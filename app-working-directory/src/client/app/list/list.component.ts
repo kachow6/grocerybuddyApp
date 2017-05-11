@@ -1,14 +1,9 @@
 import { Component }        from '@angular/core';
 import { UserService }      from '../shared/user-service/user.service';
-import { ShoppingList, ShoppingItem, FridgeItem }     from '../shared/user-service/user';
-
-
-//Array that contains the items on List page.
-// const LIST_ITEMS: ItemList[] = [
-//     new ItemList("Avocados", 5, false),
-//     new ItemList("Banana", 3, false),
-//     new ItemList("Aubergine", 76, false)
-// ];
+import { ShoppingList,
+         ShoppingItem,
+         FridgeItem }       from '../shared/user-service/user';
+import { Router }           from '@angular/router';
 
 /**
  * This class represents the lazy loaded HomeComponent.
@@ -27,7 +22,8 @@ export class ListComponent {
     numberInput: number;
     checkedInput: boolean;
 
-    constructor(private userService: UserService) {
+    constructor(private userService: UserService,
+                private router: Router) {
         this.myList = userService.getCurrentList().contents;
     }
 
@@ -57,13 +53,6 @@ export class ListComponent {
         }
     }
 
-    //Method for testing item checked state
-    // testStuff(): void {
-    //     console.log(this.myList[0]);
-    //     console.log(this.myList[1]);
-    //     console.log(this.myList[2]);
-    // }
-
     //Method for transfering checked items to fridge array
     checkout(): void {
         for(let i = 0; i < this.myList.length; i++) {
@@ -72,5 +61,8 @@ export class ListComponent {
                 push(new FridgeItem(this.myList[i].name, this.myList[i].quantity, 50));
             }
         }
+
+        // MOVE TO FRIDGE HERE
+        this.router.navigateByUrl('/fridge');
     }
 }
