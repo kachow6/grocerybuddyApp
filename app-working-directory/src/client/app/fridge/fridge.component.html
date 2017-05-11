@@ -52,7 +52,7 @@
 					<div class="row">
 						<form class="col-lg-11 col-md-11 col-sm-11 col-xs-11">
 							<label for="rename-form"><h3 class="media-heading">Rename: </h3></label>
-							<input [(ngModel)]="item.name" [ngModelOptions]="{standalone: true}" type="text" class="form-control" id="rename-form">
+							<input [(ngModel)]="renameInput" [ngModelOptions]="{standalone: true}" type="text" class="form-control" id="rename-form">
 						</form>
 					</div>
 				</div>
@@ -88,7 +88,7 @@
 				</div>
 				<div class="modal-footer">
 					<div class="row" style="text-align: center;">
-						<button class="btn btn-lg btn-success" (click)="itemModal.hide()">Save Changes</button>
+						<button class="btn btn-lg btn-success" (click)="itemRename(item); itemModal.hide()">Save Changes</button>
 					</div>
 				</div>
 			</div>

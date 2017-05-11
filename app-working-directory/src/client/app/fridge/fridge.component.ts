@@ -4,9 +4,9 @@ import { FridgeItem }        from '../shared/user-service/user';
 
 // //Array that contains the items on List page.
 // const FRIDGE_ITEMS: ItemList[] = [
-//     new ItemList("Oranges", 6, 30),
-//     new ItemList("Mango", 12, 85),
-//     new ItemList("Durian", 3, 45)
+//     new ItemList('Oranges', 6, 30),
+//     new ItemList('Mango', 12, 85),
+//     new ItemList('Durian', 3, 45)
 // ];
 
 /**
@@ -23,16 +23,16 @@ export class FridgeComponent {
 
     fridgeList:     FridgeItem[];
 
-    nameInput:      string = "";
+    nameInput:      string = '';
     numberInput:    number;
     expiration:     number;
     renameInput: string;
 
     //States for the progress bar
-    stateDanger: string = "progress-bar-danger";
-    stateWarning: string = "progress-bar-warning";
-    stateSuccess: string = "progress-bar-success";
-    itemState: string = "";
+    stateDanger: string = 'progress-bar-danger';
+    stateWarning: string = 'progress-bar-warning';
+    stateSuccess: string = 'progress-bar-success';
+    itemState: string = '';
 
     constructor(private userService: UserService) {
         this.fridgeList = userService.getFridge();
@@ -44,7 +44,7 @@ export class FridgeComponent {
             return this.stateDanger;
         } else if (expiration / max >= 0.66){
             return this.stateSuccess;
-        } else if(expiration / max >= 0.33){
+        } else {
             return this.stateWarning;
         }
     }
@@ -58,8 +58,9 @@ export class FridgeComponent {
         }
     }
 
-    // itemRename():  void {
-    //   this.fridgeList[2].name = this.renameInput;
-    // }
+    itemRename(item: FridgeItem):  void {
+      item.name = this.renameInput;
+      this.renameInput = ''; 
+    }
 
 }

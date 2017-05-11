@@ -8,7 +8,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './header/footer.component';
 import { UserService }     from './user-service/user.service';
-import { User, FridgeList, ShoppingList,
+import { User, ShoppingList,
          FridgeItem, ShoppingItem }    from './user-service/user';
 
 import { NameListService } from './name-list/name-list.service';

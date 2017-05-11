@@ -21,7 +21,13 @@
       "./node_modules"
     ],
     "types": [
-      "node"
+      "node",
+      "jasmine",
+      "systemjs",
+      "core-js",
+      "express",
+      "protractor",
+      "angularfire2"
     ]
   },
   "files": [

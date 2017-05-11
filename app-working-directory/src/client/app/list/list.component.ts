@@ -23,7 +23,7 @@ import { ShoppingList, ShoppingItem, FridgeItem }     from '../shared/user-servi
 export class ListComponent {
     //Instantiating the array object.
     myList: ShoppingItem[];
-    nameInput: string = "";
+    nameInput: string = '';
     numberInput: number;
     checkedInput: boolean;
 
@@ -43,9 +43,9 @@ export class ListComponent {
 
     //Method for changing the checked state of an item
     checkItem(): void {
-        if(this.checkedInput == false) {
+        if(this.checkedInput === false) {
             this.checkedInput = true;
-        } else if (this.checkedInput == true){
+        } else if (this.checkedInput === true) {
             this.checkedInput = false;
         }
     }
@@ -67,7 +67,7 @@ export class ListComponent {
     //Method for transfering checked items to fridge array
     checkout(): void {
         for(let i = 0; i < this.myList.length; i++) {
-            if (this.myList[i].checked == true) {
+            if (this.myList[i].checked === true) {
                 UserService.user.fridgeList.
                 push(new FridgeItem(this.myList[i].name, this.myList[i].quantity, 50));
             }
