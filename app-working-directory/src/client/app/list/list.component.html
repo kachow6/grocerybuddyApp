@@ -6,7 +6,7 @@
         </div>
         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-3" style="margin-bottom: 15px">
             <label for="new-list"><h2 class="title">Qty: </h2></label>
-            <input [(ngModel)] = "numberInput" type="number" class="form-control" id="new-qty-form">
+            <input [(ngModel)] = "numberInput" type="number" min=0 class="form-control" id="new-qty-form">
         </div>
         <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 col-lg-offset-1 col-md-offset-3 col-sm-offset-3" style="margin-top: 35px">
             <button (click)="addItem()" class="btn btn-lg btn-success title" type="button" data-toggle="dropdown"><span class="glyphicon glyphicon-plus"></span></button>
@@ -67,7 +67,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove"></span></button>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" (click)="checkoutModal.hide()"><span class="glyphicon glyphicon-remove"></span></button>
                 <br>
                 </div>
             <div class="modal-body">
