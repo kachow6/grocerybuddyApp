@@ -4,8 +4,7 @@
             <input [(ngModel)] = "nameInput" type="text" class="form-control" id="new-item-form" placeholder="New Item">
         </div>
         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-3" style="padding: 20px 15px">
-            <label for="new-list"><h2 class="title">Qty: </h2></label>
-            <input [(ngModel)] = "numberInput" type="number" min=0 class="form-control" id="new-qty-form">
+            <input [(ngModel)] = "numberInput" type="number" min=0 class="form-control" id="new-qty-form" placeholder="Qty">
         </div>
         <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 col-lg-offset-1 col-md-offset-3 col-sm-offset-3" style="margin-top: 15px">
             <button (click)="addItem()" class="btn btn-lg btn-success title" type="button" data-toggle="dropdown"><span class="glyphicon glyphicon-plus"></span></button>
