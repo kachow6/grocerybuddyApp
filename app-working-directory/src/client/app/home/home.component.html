@@ -1,14 +1,18 @@
 <div class="container-fluid add-list col-lg-12 col-md-12 col-sm-12 col-xs-12" style="position: fixed; z-index: 1; border: 0">
-    <div class="row col-lg-offset-2 col-md-offset-1 col-sm-offset-1 list-inline">
-        <div class="input-group col-lg-6 col-md-6 col-sm-6 col-xs-6 pull-left" style="margin-left: 20px; margin-bottom: 15px">
+    <div class="row">
+
+        <!-- <div class="input-group col-lg-6 col-md-6 col-sm-6 col-xs-6 col-lg-offset-2 col-md-offset-1 col-sm-offset-1" style="margin-bottom: 15px"> -->
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 col-lg-offset-2 col-md-offset-1 col-sm-offset-1" style="margin-bottom: 15px">
             <label for="new-list"><h2 class="title">New List: </h2></label>
             <input [(ngModel)] = "nameInput" type="text" class="form-control" id="new-list-form" >
         </div>
-        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 col-lg-offset-2 col-md-offset-3 col-sm-offset-3 col-xs-offset-2 push-right" style="margin-top: 35px">
+        <!-- <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 col-lg-offset-2 col-md-offset-3 col-sm-offset-3 col-xs-offset-2 push-right" style="margin-top: 35px"> -->
+        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 col-lg-offset-1 col-md-offset-3 col-sm-offset-3 col-xs-offset-3 push-right" style="margin-top: 35px">
             <button (click)="addList()" class="btn btn-lg btn-success" type="button" data-toggle="dropdown">
                 <span class="glyphicon glyphicon-plus"></span>
             </button>
         </div>
+
     </div>
 </div>
 
