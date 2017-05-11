@@ -4,8 +4,8 @@ export class FridgeItem  {
     name:       string;
     quantity:   number;
     expiration: number;
-    maxAge:     number
-    
+    maxAge:     number;
+
     constructor(name: string, quantity: number, expiration: number) {
       this.name = name;
       this.quantity = quantity;

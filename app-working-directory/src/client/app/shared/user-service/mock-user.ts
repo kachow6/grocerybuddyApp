@@ -1,50 +1,50 @@
 import { User, ShoppingList, FridgeItem, ShoppingItem } from './user';
 
 let curList: ShoppingList = {
-    name: "Patrick's Party Supplies",
+    name: 'Patrick\'s Party Supplies',
     contents: [
         {
-            name: "Cane Sugar",
+            name: 'Cane Sugar',
             quantity: 3,
             checked: false
         },
         {
-            name: "Bubbles",
+            name: 'Bubbles',
             quantity: 37,
             checked: false
         },
         {
-            name: "Secret Sauce",
+            name: 'Secret Sauce',
             quantity: 3,
             checked: false
         }
     ]
-}
+};
 
 let fridge: FridgeItem[] = [
     {
-        name:          "Celery",
+        name:          'Celery',
         quantity:      2,
         expiration:    37,
         maxAge:        100
     },
     {
-        name:          "Peppers",
+        name:          'Peppers',
         quantity:      2,
         expiration:    70,
         maxAge:        100
     },
     {
-        name:          "Chicken",
+        name:          'Chicken',
         quantity:      4,
         expiration:    25,
         maxAge:        100
     }
-]
+];
 
 export const USER: User = {
-    username:    "Raly",
-    email:       "me@somewhere.com",
+    username:    'Raly',
+    email:       'me@somewhere.com',
 
     homeList: [
         curList
@@ -52,4 +52,4 @@ export const USER: User = {
     currentList: curList,
     fridgeList: fridge
 
-}
+};
