@@ -1,23 +1,14 @@
-import { Component } from '@angular/core';
+import { Component }        from '@angular/core';
+import { UserService }      from '../shared/user-service/user.service';
+import { ShoppingList, ShoppingItem, FridgeItem }     from '../shared/user-service/user';
 
-
-//Class for list item objects.
-export class ItemList {
-    name: String;
-    quantity: number;
-
-    constructor(name: String, quantity: number) {
-        this.name = name;
-        this.quantity = quantity;
-    }
-}
 
 //Array that contains the items on List page.
-const LIST_ITEMS: ItemList[] = [
-    new ItemList("Avocados", 5),
-    new ItemList("Banana", 3),
-    new ItemList("Aubergine", 76)
-];
+// const LIST_ITEMS: ItemList[] = [
+//     new ItemList("Avocados", 5, false),
+//     new ItemList("Banana", 3, false),
+//     new ItemList("Aubergine", 76, false)
+// ];
 
 /**
  * This class represents the lazy loaded HomeComponent.
@@ -30,17 +21,56 @@ const LIST_ITEMS: ItemList[] = [
 })
 
 export class ListComponent {
-  //Instantiating the array object.
-  myList: ItemList[] = LIST_ITEMS;
-  nameInput: String = "";
-  numberInput: number;
+    //Instantiating the array object.
+    myList: ShoppingItem[];
+    nameInput: string = "";
+    numberInput: number;
+    checkedInput: boolean;
 
+    constructor(private userService: UserService) {
+        this.myList = userService.getCurrentList().contents;
+    }
+
+    //Method for adding a new item by user input
     addItem(): void {
         if (this.nameInput.length > 0, this.numberInput > 0) {
-            this.myList.push(new ItemList(this.nameInput, this.numberInput));
+            this.myList.push(new ShoppingItem(this.nameInput, this.numberInput, this.checkedInput));
             this.nameInput = '';
             this.numberInput = null;
         }
-        console.log(this.myList[1]);
+        // console.log(this.myList.contents[1]);
+    }
+
+    //Method for changing the checked state of an item
+    checkItem(): void {
+        if(this.checkedInput == false) {
+            this.checkedInput = true;
+        } else if (this.checkedInput == true){
+            this.checkedInput = false;
+        }
+    }
+
+    //Method for resetting checked items to false
+    resetList(): void {
+        for(let i = 0; i < this.myList.length; i++) {
+            this.myList[i].checked = false;
+        }
+    }
+
+    //Method for testing item checked state
+    // testStuff(): void {
+    //     console.log(this.myList[0]);
+    //     console.log(this.myList[1]);
+    //     console.log(this.myList[2]);
+    // }
+
+    //Method for transfering checked items to fridge array
+    checkout(): void {
+        for(let i = 0; i < this.myList.length; i++) {
+            if (this.myList[i].checked == true) {
+                UserService.user.fridgeList.
+                push(new FridgeItem(this.myList[i].name, this.myList[i].quantity, 50));
+            }
+        }
     }
 }

@@ -1,4 +1,8 @@
-<header>
+<!-- PLEASE NOTE: The height set here is a hack. If this isn't here, the menu that's visible on the
+     individual pages sticks at the top of the page and overlaps stuff -->
+<header style="height: 71px">
+
+    <!-- FOLD-OUT SIDE NAVIGATION BAR. Triggered by clicking hamburger menu icon. -->
     <div id="mySidenav" [style.width]="push + 'px'" class="sidenav pull-left">
         <div class="sideNavInner" [style.width]="extWidth + 'px'">
             <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">&times;</a>
@@ -22,6 +26,8 @@
         </div>
     </div>
 
+    <!-- PAGE COVER. This is brought to the front when the side navigation is triggered,
+         and also has its background-color changed from white to slightly-opaque black. -->
     <div class="page-cover"
          [class.page-cover-darken]="push > 0"
          [class.page-cover-regular]="push == 0"
@@ -29,9 +35,12 @@
          >
     </div>
 
-    <div id="banner" class="navbar-header col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <span class="pull-left navbar-brand hamburger col-lg-1 col-md-1 col-sm-1 col-xs-1" (click)="openNav()">&#9776; </span>
-        <h2 class="col-lg-8 col-md-8 col-sm-8 col-xs-8 col-xs-offset-1 col-sm-offset-0">Landing Page</h2>
-        <button class="btn btn-danger pull-right" type="button" style="margin-top: 10px; margin-right: 10px;"><span class="badge">4</span></button>
+    <!-- HEADER BANNER. Self expalantory. -->
+    <div class="page-top container-fluid col-lg-12 col-md-12 col-sm-12 col-xs-12" style="position: fixed; z-index: 1;">
+        <div id="banner" class="navbar-header col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <span class="pull-left navbar-brand hamburger col-lg-1 col-md-1 col-sm-1 col-xs-1" (click)="openNav()">&#9776; </span>
+            <h2 class="col-lg-8 col-md-8 col-sm-8 col-xs-8 col-xs-offset-1 col-sm-offset-0">Landing Page</h2>
+            <button class="btn btn-danger pull-right" type="button" style="margin-top: 10px; margin-right: 10px;"><span class="badge">4</span></button>
+        </div>
     </div>
 </header>
