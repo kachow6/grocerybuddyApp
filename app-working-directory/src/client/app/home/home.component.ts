@@ -42,7 +42,7 @@ export class HomeComponent {
 
     //Method for renaming the shopping list.
     listRename(item: ShoppingList):  void {
-        if(this.renameInput.length > 2) {
+        if(this.renameInput.length > 2 && this.renameInput.length < 15) {
         item.name = this.renameInput;
         this.renameInput = ""; 
         }
@@ -57,7 +57,6 @@ export class HomeComponent {
     
     //Method for copying and adding a new shopping list on home page.
     copyList(list: ShoppingList): void {
-
         let tempList: ShoppingList;
         this.myList.push(tempList = new ShoppingList(list.name));
         tempList.contents = list.contents;
@@ -72,6 +71,7 @@ export class HomeComponent {
     //Method for deleting a shopping list off home page.
     deleteList(list: ShoppingList): void {
         this.myList.splice(this.myList.indexOf(list),1);
+        this.myList = null;
     }
 
     //Method for testing item checked state
