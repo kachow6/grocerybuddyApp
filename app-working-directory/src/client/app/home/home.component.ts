@@ -18,7 +18,8 @@ export class HomeComponent {
     //Instantiating the array object.
     myList: ShoppingList[];
     nameInput: string = null;
-    // new listName: String;
+    renameInput: String = "";
+    id: number;
 
     constructor(
         private userService: UserService,
@@ -37,5 +38,12 @@ export class HomeComponent {
     selectList(list: ShoppingList): void {
         this.userService.setCurrentList(list);
         this.router.navigateByUrl('/list');
+    }
+    // myArray = myArray.slice(0, i).concat(myArray.slice(i+1));
+
+
+    //Method for testing item checked state
+    testStuff(): void {
+        console.log(this.myList[0]);
     }
 }
