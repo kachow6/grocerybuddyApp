@@ -73,7 +73,7 @@ export class HeaderComponent implements OnInit {
                     this.pageTitle = 'Fridge';
                     break;
                 case '/list':
-                    this.pageTitle = 'List';
+                    this.pageTitle = userService.getCurrentList().name;
                     break;
                 case '/settings':
                     this.pageTitle = 'Settings';
