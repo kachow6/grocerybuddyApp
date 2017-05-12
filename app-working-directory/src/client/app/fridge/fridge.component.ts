@@ -65,4 +65,9 @@ export class FridgeComponent {
       }
     }
 
+    //Method for deleting a shopping list off home page.
+    deleteItem(list: FridgeItem): void {
+        this.fridgeList.splice(this.fridgeList.indexOf(list),1);
+    }
+
 }
