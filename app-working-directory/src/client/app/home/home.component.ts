@@ -69,13 +69,14 @@ export class HomeComponent {
     }
 
     //Method for deleting a shopping list off home page.
-    deleteList(list: ShoppingList): void {
-        this.myList.splice(this.myList.indexOf(list),1);
-        this.myList = null;
-    }
+    deleteList(  list: ShoppingList): void {
+        let firstHalf: ShoppingList[] = [];
+        let lastHalf : ShoppingList[] = [];
 
-    //Method for testing item checked state
-    // testStuff(): void {
-    //     console.log(this.myList[0]);
-    // }
+        firstHalf = this.myList.splice(0,this.myList.indexOf(list));
+        lastHalf  = this.myList.splice(this.myList.indexOf(list) + 1, this.myList.length);
+
+        this.userService.setHome(firstHalf.concat(lastHalf));
+        this.myList = this.userService.getHome();
+    }
 }
