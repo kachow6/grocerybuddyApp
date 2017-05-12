@@ -30,9 +30,11 @@ export class ListComponent {
     //Method for adding a new item by user input
     addItem(): void {
         if (this.nameInput.length > 0, this.numberInput > 0) {
-            this.myList.push(new ShoppingItem(this.nameInput, this.numberInput, this.checkedInput));
+            this.userService.getCurrentList().contents.push(new ShoppingItem(this.nameInput, this.numberInput, this.checkedInput));
             this.nameInput = '';
             this.numberInput = null;
+
+            this.myList = this.userService.getCurrentList().contents;
         }
         // console.log(this.myList.contents[1]);
     }
@@ -57,7 +59,8 @@ export class ListComponent {
             firstHalf = this.myList.splice(0,index);
             lastHalf  = this.myList.splice(index + 1, this.myList.length);
 
-            this.myList = firstHalf.concat(lastHalf);
+            this.userService.getCurrentList().contents = firstHalf.concat(lastHalf);
+            this.myList = this.userService.getCurrentList().contents;
         }
     }
 
