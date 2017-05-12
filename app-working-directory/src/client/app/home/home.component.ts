@@ -3,7 +3,6 @@ import { UserService } from '../shared/user-service/user.service';
 import { ShoppingList, ShoppingItem } from '../shared/user-service/user';
 import { Router } from '@angular/router';
 
-
 /**
  * This class represents the lazy loaded HomeComponent.
  */
