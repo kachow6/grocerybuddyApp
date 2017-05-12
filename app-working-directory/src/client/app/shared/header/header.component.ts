@@ -53,6 +53,12 @@ export class HeaderComponent implements OnInit {
         }
         return templist;
     }
+    //Pulls amount of expiring items in fridge
+    notificationAmount(list: FridgeItem[]): number {
+        let amount = 0;
+        amount = list.length;
+        return amount;
+    }
 
     // CONSTRUCTOR.
     // Set up the HeaderComponent class and inject all the necessary services.
@@ -146,7 +152,6 @@ export class HeaderComponent implements OnInit {
     moveToFridge(){
         this.router.navigateByUrl('/fridge')
     }
-
 }
 
 
