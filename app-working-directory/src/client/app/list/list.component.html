@@ -16,32 +16,50 @@
     <div class="container-fluid list-element" *ngFor = "let item of myList; let i = index">
         <div class="row"
             (swipeleft)="item.isQueuedForDelete=true"
-            *ngIf="!item.isQueuedForDelete"
             >
             <div class="col-lg-8 col-md-8 col-sm-7 col-xs-6" style="margin-top: 10px">
                 <h4>{{item.name}}</h4>
             </div>
-            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1" style="margin-top: 25px;padding-right: 0;">
+
+            <!-- These items are visible normally -->
+            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"
+                 style="margin-top: 25px;padding-right: 0;"
+                 *ngIf="!item.isQueuedForDelete">
                 <label>x</label>
             </div>
-            <div class="list-inline col-lg-2 col-md-2 col-sm-2 col-xs-3" style="margin-top: 15px">
+            <div class="list-inline col-lg-2 col-md-2 col-sm-2 col-xs-3"
+                 style="margin-top: 15px"
+                 *ngIf="!item.isQueuedForDelete">
                 <input [(ngModel)] = "item.quantity" type="number" class="form-control" id="qty-form1">
             </div>
-            <div class="col-lg-1 col-md-1 col-sm-2 col-xs-2" style="margin-top: 5px;">
+            <div class="col-lg-1 col-md-1 col-sm-2 col-xs-2"
+                 *ngIf="!item.isQueuedForDelete"
+                 style="margin-top: 5px;">
                 <input [(ngModel)] = "item.checked" (click)="checkItem()" type="checkbox" class="item-checkbox" value="">
             </div>
+
+            <!-- These items are visible if the user has swiped to delete -->
+            <div class="col-lg-4 col-md-4 col-sm-5 col-xs-1"
+                 style="padding: 6px 1em; text-align: right"
+                 *ngIf="item.isQueuedForDelete">
+                <button class="btn btn-md btn-danger"
+                        style="margin: 0 0.25em"
+                        (click)="deleteItem(i)">Delete</button>
+                <button class="btn btn-md btn-success"
+                        style="margin: 0 0.25em"
+                        (click)="item.isQueuedForDelete=null">Undo</button>
+            </div>
         </div>
-        <div class="row"
+ <!--        <div class="row"
              *ngIf="item.isQueuedForDelete">
-            <div class="col-lg-10 col-md-10 col-sm-10 col-xs-8">
+            <div class="col-lg-8 col-md-8 col-sm-7 col-xs-6" style="margin-top: 10px">
+                <h4>Delete this item?</h4>
             </div>
-            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="margin: 6px 0;">
-                <button class="btn btn-default dropdown-toggle"
-                        type="button"
-                        (click)="item.isQueuedForDelete=null">
-                        <span class="glyphicon glyphicon-repeat"></span> Undo</button>
+            <div class="col-lg-4 col-md-4 col-sm-5 col-xs-6" style="margin-top: 10px">
+                <button class="btn btn-md btn-danger">Delete</button>
+                <button class="btn btn-md btn-success" style="margin: 10px 0 10px 0;">Undo</button>
             </div>
-        </div>
+        </div> -->
     </div>
 
     <div class="container-fluid list-element">
