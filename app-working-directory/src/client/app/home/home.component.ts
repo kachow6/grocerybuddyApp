@@ -42,7 +42,7 @@ export class HomeComponent {
 
     //Method for renaming the shopping list.
     listRename(list: ShoppingList):  void {
-        if(this.renameInput.length > 2 && this.renameInput.length < 15) {
+        if(this.renameInput.length > 2) {
         list.name = this.renameInput;
         this.renameInput = ""; 
         }
