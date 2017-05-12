@@ -141,6 +141,11 @@ export class HeaderComponent implements OnInit {
         }
     }
 
+    //Link to move to fridge for notification modal
+    moveToFridge(){
+        this.router.navigateByUrl('/fridge')
+    }
+
 }
 
 
