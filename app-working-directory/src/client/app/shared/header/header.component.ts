@@ -2,8 +2,10 @@ import { Component, OnInit }     from '@angular/core';
 import { BUDDY_QUOTES }          from  './header.menu.buddyquotes';
 import { BUDDY_PICS }            from  './header.menu.buddypics';
 
+import { UserService }           from '../user-service/user.service';
 import { Router,
-         NavigationEnd }         from '@angular/router';
+         NavigationEnd,
+         NavigationStart }       from '@angular/router';
 
 /**
  * This class represents the navigation bar component.
@@ -32,7 +34,8 @@ export class HeaderComponent implements OnInit {
 
     // CONSTRUCTOR.
     // Set up the HeaderComponent class and inject all the necessary services.
-    constructor(private router: Router) {
+    constructor(private router: Router,
+                private userService: UserService) {
 
         // Updates this.pageTitle based on the URL.
         router.events.subscribe((navEvent) => {
@@ -60,6 +63,13 @@ export class HeaderComponent implements OnInit {
                     this.pageTitle = 'Grocery Buddy'
                 }
 
+            } else if (navEvent instanceof NavigationStart ) {
+
+                // Make sure currentList isn't null
+                if ((userService.getCurrentList() === null)
+                 && (navEvent.url === '/list')) {
+                    this.router.navigateByUrl('');
+                }
             }
         });
     }
