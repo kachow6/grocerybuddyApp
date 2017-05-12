@@ -38,6 +38,8 @@ export class HeaderComponent implements OnInit {
         router.events.subscribe((navEvent) => {
             if (navEvent instanceof NavigationEnd) {
 
+                console.log("Nav: " + navEvent.url)
+
                 // Hacky workaround. Bruce Link would hate me.
                 // Will try to figure out how to move data through the router
                 // later
@@ -59,7 +61,6 @@ export class HeaderComponent implements OnInit {
                 }
 
             }
-            console.log(navEvent);
         });
     }
 
