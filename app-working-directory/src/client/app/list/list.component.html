@@ -68,13 +68,13 @@
 <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="delete" aria-hidden="true" bsModal #resetModal="bs-modal">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header" style="padding: 10px">
                 <button type="button" class="close" (click)="resetModal.hide()" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove"></span></button>
                 <br>
             </div>
             <div class="modal-body">
                 <br>
-                <h3 style="text-align: center" class="media-heading">Are you sure you want to reset this list?</h3>
+                <h4 style="text-align: center" class="media-heading">Are you sure you want to reset this list?</h4>
             </div>
             <div class="modal-footer" style="text-align: center">
                 <button type="button" class="btn btn-success btn-sm btn-default" data-dismiss="modal" (click)="resetModal.hide(); resetList()" aria-label="Close">Yes - Uncheck all items</button>
@@ -88,13 +88,13 @@
 <div class="modal fade" id="checkoutModal" tabindex="-1" role="dialog" bsModal #checkoutModal="bs-modal" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header" style="padding: 10px">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true" (click)="checkoutModal.hide()"><span class="glyphicon glyphicon-remove"></span></button>
                 <br>
                 </div>
             <div class="modal-body">
                 <br>
-                <h3 style="text-align: center" class="media-heading">Are you ready to checkout?</h3>
+                <h4 style="text-align: center" class="media-heading">Are you ready to checkout?</h4>
             </div>
             <div class="modal-footer" style="text-align: center">
                 <button type="button" class="btn btn-success btn-sm btn-default" data-dismiss="modal" (click)="checkoutModal.hide(); checkout(); resetList()" aria-label="Close">Yes - Add items to my Fridge</button>
