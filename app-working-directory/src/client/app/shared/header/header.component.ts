@@ -1,8 +1,12 @@
+
 import { Component, OnInit } from '@angular/core';
 import { BUDDY_QUOTES } from  './header.menu.buddyquotes';
 import { BUDDY_PICS } from  './header.menu.buddypics';
 import { UserService }      from '../user-service/user.service';
 import { FridgeItem }     from '../user-service/user';
+import { Router,
+    NavigationEnd,
+    NavigationStart }       from '@angular/router';
 
 /**
  * This class represents the navigation bar component.
@@ -16,6 +20,8 @@ import { FridgeItem }     from '../user-service/user';
 })
 export class HeaderComponent implements OnInit {
     readonly extWidth: number = 225;
+
+    pageTitle: string;
 
     push     : number;
     bodyBg   : string;
@@ -35,20 +41,59 @@ export class HeaderComponent implements OnInit {
     picIndex: number = Math.floor((Math.random() * BUDDY_PICS.length));
     buddyPic: string = BUDDY_PICS[this.picIndex];
 
-    constructor(private userService: UserService) {
-        this.expiringItems = userService.getFridge();
-    }
-
-    pullExpiring(list: FridgeItem[]): FridgeItem[]{
+    pullExpiring(list: FridgeItem[]): FridgeItem[] {
         let templist: FridgeItem[] = [];
-        for(let fridgeItem of list){
-            let exp = fridgeItem.expiration/fridgeItem.maxAge;
+        for (let fridgeItem of list) {
+            let exp = fridgeItem.expiration / fridgeItem.maxAge;
 
-            if(exp < 0.33) {
+            if (exp < 0.33) {
                 templist.push(fridgeItem);
             }
         }
         return templist;
+    }
+
+    // CONSTRUCTOR.
+    // Set up the HeaderComponent class and inject all the necessary services.
+    constructor(private router: Router,
+                private userService: UserService) {
+            this.expiringItems = userService.getFridge();
+
+        // Updates this.pageTitle based on the URL.
+        router.events.subscribe((navEvent) => {
+            if (navEvent instanceof NavigationEnd) {
+
+                console.log("Nav: " + navEvent.url)
+
+                // Hacky workaround. Bruce Link would hate me.
+                // Will try to figure out how to move data through the router
+                // later
+                switch (navEvent.url) {
+                case '/fridge':
+                    this.pageTitle = 'Fridge';
+                    break;
+                case '/list':
+                    this.pageTitle = 'List';
+                    break;
+                case '/settings':
+                    this.pageTitle = 'Settings';
+                    break;
+                case '/affiliates':
+                    this.pageTitle = 'Affiliates';
+                    break;
+                default:
+                    this.pageTitle = 'Grocery Buddy'
+                }
+
+            } else if (navEvent instanceof NavigationStart ) {
+
+                // Make sure currentList isn't null
+                if ((userService.getCurrentList() === null)
+                 && (navEvent.url === '/list')) {
+                    this.router.navigateByUrl('');
+                }
+            }
+        });
     }
 
     openNav(): void {
@@ -62,6 +107,7 @@ export class HeaderComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.pageTitle = 'Grocery Buddy';
         this.closeNav();
     }
 

@@ -1,15 +1,17 @@
-img {
-
-    padding: 5px;}
-
-.row {
-   margin-top: 50px;
-
+.affiliate {
+	padding: 5px 20px;
 }
 
-
-.bottom-row { margin-bottom: 100px;
-
-
-
+.affiliate-name {
+	text-align: center;
 }
+
+.affiliate-img {
+	margin-bottom: 20px;
+}
+
+.affiliate-modal-img {
+	padding-left: 10px;
+	padding-right: 15px;
+}
+

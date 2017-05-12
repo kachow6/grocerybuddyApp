@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import { Component }    from '@angular/core';
+import { UserService }  from '../shared/user-service/user.service';
+import { User }         from '../shared/user-service/user';
+import { Router }       from '@angular/router';
 
 /**
  * This class represents the lazy loaded HomeComponent.
@@ -9,14 +12,40 @@ import { Component } from '@angular/core';
     templateUrl: 'settings.component.html',
     styleUrls: ['settings.component.css'],
 })
+
 export class SettingsComponent {
+
     passwordcomplex: boolean;
-    passwordconfirmed: boolean;
+    passwordconfirmed: boolean = false;
     passwordmessage: string;
     confirmpasswordmessage: string ='';
     userpassword: string;
     userconfirmpassword: string ='';
 
+    nameInput: string = "";
+
+    emailInput: string = "";
+    emailValid: boolean;
+    invalidEmailMsg: string = "";
+
+    //Constructor for implementing Router.
+    constructor(private router: Router){
+
+    }
+
+    //Method for checking if the email entered is proper email format
+    checkEmail() {
+        let emailFormat = /^.+@.+\..+/.test(this.emailInput);
+
+        if(emailFormat && this.emailInput.length > 1) {
+            this.emailValid = true;
+            this.invalidEmailMsg = "";
+        } else {
+            this.invalidEmailMsg = "Please enter a valid email address"
+        }
+    }
+
+    //Method for checking if the password is complex
     checkComplexity(userpass: string): void {
 
         let hasUpperCase = /[A-Z]/.test(userpass);
@@ -25,28 +54,53 @@ export class SettingsComponent {
         let hasNonalphas = /\W/.test(userpass);
 
         if (hasUpperCase && hasLowerCase && hasNumbers && hasNonalphas) {
-            this.passwordmessage = '';
             this.passwordcomplex = true;
         } else {
-            this.passwordmessage = 'Must contain at least one uppercase and '
-                                 + 'lower case letter as well as a number and '
-                                 + 'a special character (ie. $, #, !, %)';
             this.userpassword = null;
+            this.userconfirmpassword = null;
         }
     }
 
+    //Method for making sure both passwords are the same
     confirmPassword(pass1: string, pass2: string, ignoreblank: boolean): void {
 
         if(ignoreblank === true && pass2.length === 0) {
             this.confirmpasswordmessage = '';
         }
 
-        if(pass1 === pass2) {
+        if(pass1 === pass2 && pass1.length > 0) {
             this.confirmpasswordmessage = '';
             this.passwordconfirmed = true;
         } else {
             this.confirmpasswordmessage = 'This password must match the one above'
+            this.userpassword = null;
             this.userconfirmpassword = null;
         }
+    }
+
+    //Method for clearing the account fields.
+    clearFields(): void {
+        this.nameInput = "";
+        this.emailInput = "";
+        this.userpassword = "";
+        this.userconfirmpassword = "";
+    }
+
+    //A method for submitting the new account information
+    changeInfo(): void {
+        if(this.nameInput.length > 0 && this.emailValid
+            && this.passwordcomplex == true && this.passwordconfirmed == true) {
+
+                UserService.user.username = this.nameInput;
+                UserService.user.email = this.emailInput;
+                UserService.user.password = this.userpassword;
+
+                this.clearFields();
+                console.log('ACCOUNT OVERWRITE SUCCESS');
+                this.router.navigateByUrl('/');
+        } else {
+            console.log('ACCOUNT OVERWRITE FAILED');
+        }
+        console.log(UserService.user);
     }
 }

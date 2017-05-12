@@ -41,7 +41,8 @@ export class ShoppingList {
 export class User {
     username:    string;
     email:       string;
-
+    password:    string;
+    
     currentList: ShoppingList;
     homeList:    ShoppingList[];
     fridgeList:  FridgeItem[];

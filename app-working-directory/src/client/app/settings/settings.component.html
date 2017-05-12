@@ -2,44 +2,44 @@
     <div class="well">
         <form>
             <div class="form-group">
-                <h2>Notifications:</h2>
-                <div class="row col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <h3 style="margin-top: 0">Notifications:</h3>
+                <div class="row col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top: 5px">
                     <label><h4 style="margin-right: 30px">Enabled:</h4></label>
                     <input type="checkbox" style="height: 25px; width: 25px;" checked data-toggle="toggle" data-onstyle="success" data-offstyle="default">
                 </div>
             </div>
 
             <div class="form-group">
-                <label for="notifyuser"><h4>Nofify me at:</h4></label>
+                <label for="notifyuser"><h5>Notify me at:</h5></label>
                 <input type="time" class="form-control" id="notifyuser">
             </div>
             <div class="form-group">
-                <label for="reminder"><h4>Remind me again at:</h4></label>
+                <label for="reminder"><h5>Remind me again at:</h5></label>
                 <input type="time" class="form-control" id="reminder">
             </div>
 
-            <br>
-            <h2>Account Settings:</h2>
+            <h3>Account Settings:</h3>
             <div class="form-group">
-                <label for="name"><h4>Name:</h4></label>
-                <input type="text" class="form-control" id="name" name="user_name" required>
+                <label for="name"><h5 class="setting-option">Name:</h5></label>
+                <input [(ngModel)] = "nameInput" type="text" class="form-control" id="name" name="user_name" required>
             </div>
             <div class="form-group">
-                <label for="email"><h4>Email:</h4></label>
-                <input type="email" class="form-control" id="email" name="user_email" required>
+                <label for="email"><h5 class="setting-option">Email:</h5></label>
+                <h5 id="emailerror" class="Emailerror" style="color:tomato">{{invalidEmailMsg}}</h5>
+                <input [(ngModel)] = "emailInput" type="email" class="form-control" id="email" name="user_email" required>
             </div>
             <div class="form-group">
-                <label for="password"><h4>Password:</h4></label>
-                <p id="passworderror" class="error">{{passwordmessage}}</p>
-                <input type="password" class="form-control" id="password" name="user_password" #password (blur)="checkComplexity(password.value)" [(ngModel)]="userpassword" required>
+                <label for="password"><h5 class="setting-option">Password:</h5></label>
+                    <h5>Must contain at least one uppercase and lower case letter as well as a number and a special character (ie. $, #, !, %)</h5>
+                <input type="password" class="form-control" id="password" name="user_password" #password [(ngModel)]="userpassword" required>
             </div>
             <div class="form-group">
-                <label for="confirmpassword"><h4>Confirm Password:</h4></label>
-                <p id="confirmpassworderror" class="error">{{confirmpasswordmessage}}</p>
-                <input type="password" class="form-control" id="confirmpassword" name="user_confirmpassword" #confirmpassword (blur)="confirmPassword(password.value, confirmpassword.value, true)" [(ngModel)]="userconfirmpassword" required>
+                <label for="confirmpassword"><h5 class="setting-option"h5>Confirm Password:</h5></label>
+                <h5 id="confirmpassworderror" class="error" style="color:tomato">{{confirmpasswordmessage}}</h5>
+                <input type="password" class="form-control" id="confirmpassword" name="user_confirmpassword" #confirmpassword [(ngModel)]="userconfirmpassword" required>
             </div>
-            <button type="button" class="btn btn-success btn-lg">Submit</button>
-            <button type="button" class="btn btn-danger btn-lg">Clear</button>
+            <button type="button" class="btn btn-success btn-lg" (click)="checkEmail(); checkComplexity(password.value); confirmPassword(password.value, confirmpassword.value, true); changeInfo();">Submit</button>
+            <button type="button" class="btn btn-danger btn-lg" (click)="clearFields()">Clear</button>
 
         </form>
     </div>

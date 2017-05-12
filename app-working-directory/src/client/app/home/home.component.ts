@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output } from '@angular/core';
 import { UserService } from '../shared/user-service/user.service';
-import { ShoppingList } from '../shared/user-service/user';
+import { ShoppingList, ShoppingItem } from '../shared/user-service/user';
 import { Router } from '@angular/router';
 
 
@@ -41,9 +41,9 @@ export class HomeComponent {
     }
 
     //Method for renaming the shopping list.
-    listRename(item: ShoppingList):  void {
-        if(this.renameInput.length > 2 && this.renameInput.length < 15) {
-        item.name = this.renameInput;
+    listRename(list: ShoppingList):  void {
+        if(this.renameInput.length > 2) {
+        list.name = this.renameInput;
         this.renameInput = ""; 
         }
     }
@@ -54,28 +54,24 @@ export class HomeComponent {
             this.userService.getCurrentList().contents[i].checked = false;
       }
     }
-    
-    //Method for copying and adding a new shopping list on home page.
+
     copyList(list: ShoppingList): void {
-        let tempList: ShoppingList;
-        this.myList.push(tempList = new ShoppingList(list.name));
-        tempList.contents = list.contents;
-        // let tempList: ShoppingList;
-        // let tempName: string = this.userService.getCurrentList().name;
-        // let tempArray: ShoppingList;
-        // tempArray.contents = this.userService.getCurrentList().contents
-        // this.myList.push(tempList = new ShoppingList(tempName));
-        // tempList.contents = tempArray.contents;
+        let tempList: ShoppingList = new ShoppingList(list.name);
+        let tempIndex: ShoppingItem[];
+        for(let i = 0; i < list.contents.length; i++) {
+            tempList.contents.push(new ShoppingItem(list.contents[i].name,
+                                                    list.contents[i].quantity,
+                                                    list.contents[i].checked))
+        }
+        this.myList.push(tempList);
     }
 
     //Method for deleting a shopping list off home page.
     deleteList(list: ShoppingList): void {
         this.myList.splice(this.myList.indexOf(list),1);
-        this.myList = null;
-    }
 
-    //Method for testing item checked state
-    // testStuff(): void {
-    //     console.log(this.myList[0]);
-    // }
+        if (this.userService.getCurrentList() === list) {
+            this.userService.setCurrentList(null);
+        }
+    }
 }

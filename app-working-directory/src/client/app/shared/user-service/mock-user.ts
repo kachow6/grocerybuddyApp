@@ -45,6 +45,7 @@ let fridge: FridgeItem[] = [
 export const USER: User = {
     username:    'Raly',
     email:       'me@somewhere.com',
+    password:    'password123',
 
     homeList: [
         curList

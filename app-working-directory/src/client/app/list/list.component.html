@@ -3,9 +3,8 @@
         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6 col-lg-offset-2 col-md-offset-1 col-sm-offset-1" style="padding: 20px 15px">
             <input [(ngModel)] = "nameInput" type="text" class="form-control" id="new-item-form" placeholder="New Item">
         </div>
-        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-3" style="margin-bottom: 15px">
-            <label for="new-list"><h2 class="title">Qty: </h2></label>
-            <input [(ngModel)] = "numberInput" type="number" min=0 class="form-control" id="new-qty-form">
+        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-3" style="padding: 20px 15px">
+            <input [(ngModel)] = "numberInput" type="number" min=0 class="form-control" id="new-qty-form" placeholder="Qty">
         </div>
         <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 col-lg-offset-1 col-md-offset-3 col-sm-offset-3" style="margin-top: 15px">
             <button (click)="addItem()" class="btn btn-lg btn-success title" type="button" data-toggle="dropdown"><span class="glyphicon glyphicon-plus"></span></button>
@@ -13,21 +12,44 @@
     </div>
 </div>
 
-<div class="container col-lg-8 col-md-10 col-lg-offset-2 col-md-offset-1" style="top: 80px;">
-    <div class="container-fluid list-element" *ngFor = "let item of myList">
-        <div class="row">
+<div class="container col-lg-8 col-md-10 col-lg-offset-2 col-md-offset-1" style="top: 80px; margin-bottom: 60px">
+    <div class="container-fluid list-element" *ngFor = "let item of myList; let i = index">
+        <div class="row"
+            (swipeleft)="item.isQueuedForDelete=true"
+            >
             <div class="col-lg-8 col-md-8 col-sm-7 col-xs-6" style="margin-top: 10px">
                 <h4>{{item.name}}</h4>
             </div>
-            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1" style="margin-top: 25px;padding-right: 0;">
+
+            <!-- These items are visible normally -->
+            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"
+                 style="margin-top: 25px;padding-right: 0;"
+                 *ngIf="!item.isQueuedForDelete">
                 <label>x</label>
             </div>
-            <div class="list-inline col-lg-2 col-md-2 col-sm-2 col-xs-3" style="margin-top: 15px">
+            <div class="list-inline col-lg-2 col-md-2 col-sm-2 col-xs-3"
+                 style="margin-top: 15px"
+                 *ngIf="!item.isQueuedForDelete">
                 <input [(ngModel)] = "item.quantity" type="number" class="form-control" id="qty-form1">
             </div>
-            <div class="col-lg-1 col-md-1 col-sm-2 col-xs-2" style="margin-top: 5px;">
+            <div class="col-lg-1 col-md-1 col-sm-2 col-xs-2"
+                 *ngIf="!item.isQueuedForDelete"
+                 style="margin-top: 5px;">
                 <input [(ngModel)] = "item.checked" (click)="checkItem()" type="checkbox" class="item-checkbox" value="">
             </div>
+
+            <!-- These items are visible if the user has swiped to delete -->
+            <div class="col-lg-4 col-md-4 col-sm-5 col-xs-6"
+                 style="padding: 7px 1em; text-align: right"
+                 *ngIf="item.isQueuedForDelete">
+                <button class="btn btn-xs btn-danger"
+                        style="margin: 0 0.25em; padding-left: 1em; padding-right: 1em"
+                        (click)="deleteItem(i)">Delete</button>
+                <button class="btn btn-xs btn-success"
+                        style="margin: 0 0.25em; padding-left: 1em; padding-right: 1em"
+                        (click)="item.isQueuedForDelete=null">Undo</button>
+            </div>
+
         </div>
     </div>
 
