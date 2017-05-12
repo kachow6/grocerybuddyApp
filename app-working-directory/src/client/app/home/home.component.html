@@ -18,7 +18,8 @@
          *ngFor="let item of myList; let i = index">
         
         <div class="row list-inline"
-             (swipeleft)="item.isQueuedForDelete=true">
+             (swipeleft)="item.isQueuedForDelete=true"
+             (swiperight)="item.isQueuedForDelete=true">
             <div class="col-lg-8 col-md-8 col-sm-7 col-xs-6"
                  style="margin-top: 5px"
                  >
@@ -38,7 +39,7 @@
                 </ul>
             </div>
             <div class="dropdown col-lg-4 col-md-4 col-sm-5 col-xs-6"
-                 style="margin-top: 6px; margin-bottom: 6px; text-align: right;"
+                 style="margin: 5px 0; text-align: right;"
                  *ngIf="item.isQueuedForDelete">
                 <button class="btn btn-xs btn-danger"
                         style="margin: 0 0.25em; padding-left: 1em; padding-right: 1em"
