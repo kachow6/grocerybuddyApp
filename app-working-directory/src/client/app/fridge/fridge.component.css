@@ -10,3 +10,6 @@
 .title{
 	text-shadow: 2px 1px #818181;
 }
+.modal-body{
+	padding-bottom: 0;
+}
