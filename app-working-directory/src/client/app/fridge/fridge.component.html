@@ -17,6 +17,7 @@
 	<div class="container-fluid list-element" *ngFor = "let item of fridgeList; let i = index">
 		<div class="row list-inline" style="margin-top: 5px"
 			(swipeleft)="item.isQueuedForDelete=true"
+            (swiperight)="item.isQueuedForDelete=true"
 			>
 			<div class="col-lg-8 col-md-8 col-sm-7 col-xs-6">
 				<h4 style="margin-bottom: 0">{{item.name}}</h4>

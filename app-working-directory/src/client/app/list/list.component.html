@@ -16,6 +16,7 @@
     <div class="container-fluid list-element" *ngFor = "let item of myList; let i = index">
         <div class="row"
             (swipeleft)="item.isQueuedForDelete=true"
+            (swiperight)="item.isQueuedForDelete=true"
             >
             <div class="col-lg-8 col-md-8 col-sm-7 col-xs-6" style="margin-top: 10px">
                 <h4>{{item.name}}</h4>
@@ -40,7 +41,7 @@
 
             <!-- These items are visible if the user has swiped to delete -->
             <div class="col-lg-4 col-md-4 col-sm-5 col-xs-6"
-                 style="padding: 7px 1em; text-align: right"
+                 style="padding: 6px 1em; text-align: right"
                  *ngIf="item.isQueuedForDelete">
                 <button class="btn btn-xs btn-danger"
                         style="margin: 0 0.25em; padding-left: 1em; padding-right: 1em"
