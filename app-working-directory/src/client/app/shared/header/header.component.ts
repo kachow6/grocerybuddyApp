@@ -26,7 +26,7 @@ export class HeaderComponent implements OnInit {
     push     : number;
     bodyBg   : string;
     extended : boolean;
-
+    //placeholder for items that will be expiring soon
     expiringItems: FridgeItem[];
 
     //States for the progress bar
@@ -34,19 +34,20 @@ export class HeaderComponent implements OnInit {
     stateWarning: string = 'progress-bar-warning';
     stateSuccess: string = 'progress-bar-success';
     itemState: string = '';
-
+    //buddy quote index
     buddyQuote: string = BUDDY_QUOTES[0];
     quoteIndex: number = 0;
-
+    //index for buddy pics
     picIndex: number = Math.floor((Math.random() * BUDDY_PICS.length));
     buddyPic: string = BUDDY_PICS[this.picIndex];
 
+    //pulls expiring items out of user's fridge items
     pullExpiring(list: FridgeItem[]): FridgeItem[] {
         let templist: FridgeItem[] = [];
         for (let fridgeItem of list) {
             let exp = fridgeItem.expiration / fridgeItem.maxAge;
 
-            if (exp < 0.33) {
+            if (exp < 0.33 && exp > 0) {
                 templist.push(fridgeItem);
             }
         }
@@ -110,7 +111,7 @@ export class HeaderComponent implements OnInit {
         this.pageTitle = 'Grocery Buddy';
         this.closeNav();
     }
-
+    //changes buddy quotes based on incrementing index
     changeQuote(): void {
         this.buddyQuote = BUDDY_QUOTES[this.quoteIndex];
         this.quoteIndex++;
@@ -118,7 +119,7 @@ export class HeaderComponent implements OnInit {
             this.quoteIndex = 0;
         }
     }
-
+    //changes buddy pictures randomly on click
     changeBuddy(): void {
         let number1 = this.picIndex;
         this.buddyPic = BUDDY_PICS[number1];
