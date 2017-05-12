@@ -14,7 +14,6 @@ import {
 } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
-import { BstestComponent } from './bstest/bstest.component';
 import { AboutComponent } from './about/about.component';
 import { ToolbarComponent } from './shared/toolbar/toolbar.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
@@ -25,7 +24,6 @@ export function main() {
 
     let config: Route[] = [
       { path: '', component: HomeComponent },
-      { path: 'bstest', component: BstestComponent },
       { path: 'about', component: AboutComponent }
     ];
     beforeEach(() => {
@@ -33,7 +31,7 @@ export function main() {
         imports: [FormsModule, RouterTestingModule.withRoutes(config)],
         declarations: [TestComponent, ToolbarComponent,
           NavbarComponent, AppComponent,
-          HomeComponent, BstestComponent, AboutComponent],
+          HomeComponent, AboutComponent],
         providers: [
           { provide: APP_BASE_HREF, useValue: '/' }
         ]

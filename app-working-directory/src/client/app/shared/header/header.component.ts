@@ -65,42 +65,6 @@ export class HeaderComponent implements OnInit {
     constructor(private router: Router,
                 private userService: UserService) {
             this.expiringItems = userService.getFridge();
-
-        // Updates this.pageTitle based on the URL.
-        router.events.subscribe((navEvent) => {
-            if (navEvent instanceof NavigationEnd) {
-
-                // console.log("Nav: " + navEvent.url)
-
-                // Hacky workaround. Bruce Link would hate me.
-                // Will try to figure out how to move data through the router
-                // later
-                switch (navEvent.url) {
-                case '/fridge':
-                    this.pageTitle = 'Fridge';
-                    break;
-                case '/list':
-                    this.pageTitle = userService.getCurrentList().name;
-                    break;
-                case '/settings':
-                    this.pageTitle = 'Settings';
-                    break;
-                case '/affiliates':
-                    this.pageTitle = 'Affiliates';
-                    break;
-                default:
-                    this.pageTitle = 'Grocery Buddy'
-                }
-
-            } else if (navEvent instanceof NavigationStart ) {
-
-                // Make sure currentList isn't null
-                if ((userService.getCurrentList() === null)
-                 && (navEvent.url === '/list')) {
-                    this.router.navigateByUrl('');
-                }
-            }
-        });
     }
 
     openNav(): void {

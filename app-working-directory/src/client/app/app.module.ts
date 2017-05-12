@@ -16,6 +16,8 @@ import { SettingsModule }         from './settings/settings.module';
 import { AffiliatesModule }       from './affiliates/affiliates.module';
 import { AuthModule }             from './auth/auth.module';
 
+import { MainModule }             from './main/main.module';
+
 import { HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 
 import { BootstrapTestModule }    from './bootstrap-test/bootstrap-test.module';
@@ -68,6 +70,8 @@ export class MyHammerConfig extends HammerGestureConfig  {
         SettingsModule,
         AffiliatesModule,
         AuthModule,
+
+        MainModule,
     
         BootstrapTestModule,
     
