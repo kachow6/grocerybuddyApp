@@ -17,8 +17,8 @@ export class HomeComponent {
 
     //Instantiating the array object.
     myList: ShoppingList[];
-    nameInput: string = null;
-    renameInput: string;
+    nameInput: string = "";
+    renameInput: string = "";
 
     constructor(
         private userService: UserService,
@@ -42,7 +42,7 @@ export class HomeComponent {
 
     //Method for renaming the shopping list.
     listRename(list: ShoppingList):  void {
-        if(this.renameInput.length > 2) {
+        if(this.renameInput.length > 0) {
         list.name = this.renameInput;
         this.renameInput = ""; 
         }
