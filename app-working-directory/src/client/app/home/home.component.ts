@@ -88,4 +88,5 @@ export class HomeComponent {
     // testStuff(): void {
     //     console.log(this.myList[0]);
     // }
+
 }
