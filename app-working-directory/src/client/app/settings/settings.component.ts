@@ -9,6 +9,7 @@ import { Component } from '@angular/core';
     templateUrl: 'settings.component.html',
     styleUrls: ['settings.component.css'],
 })
+
 export class SettingsComponent {
     passwordcomplex: boolean;
     passwordconfirmed: boolean;
@@ -33,6 +34,7 @@ export class SettingsComponent {
                                  + 'a special character (ie. $, #, !, %)';
             this.userpassword = null;
         }
+        console.log('click');
     }
 
     confirmPassword(pass1: string, pass2: string, ignoreblank: boolean): void {
@@ -49,4 +51,5 @@ export class SettingsComponent {
             this.userconfirmpassword = null;
         }
     }
+
 }
