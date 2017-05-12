@@ -1,0 +1,25 @@
+{
+    "authors": "Joe Skeen <http://github.com/joeskeen>",
+    "definitionFilename": "index.d.ts",
+    "libraryDependencies": [
+        "node"
+    ],
+    "moduleDependencies": [],
+    "libraryMajorVersion": "0",
+    "libraryMinorVersion": "0",
+    "libraryName": "gulp-load-plugins",
+    "typingsPackageName": "gulp-load-plugins",
+    "projectName": "https://github.com/jackfranklin/gulp-load-plugins",
+    "sourceRepoURL": "https://www.github.com/DefinitelyTyped/DefinitelyTyped",
+    "sourceBranch": "types-2.0",
+    "kind": "OldUMD",
+    "globals": [],
+    "declaredModules": [
+        "gulp-load-plugins"
+    ],
+    "files": [
+        "index.d.ts"
+    ],
+    "hasPackageJson": false,
+    "contentHash": "8cdb07dcc1baa419cc17961861aa86ed1ef2a4d13e283260045c48a8079a1bc9"
+}

@@ -17,8 +17,8 @@ export class HomeComponent {
 
     //Instantiating the array object.
     myList: ShoppingList[];
-    nameInput: string = null;
-    renameInput: string;
+    nameInput: string = "";
+    renameInput: string = "";
 
     constructor(
         private userService: UserService,
@@ -41,9 +41,9 @@ export class HomeComponent {
     }
 
     //Method for renaming the shopping list.
-    listRename(item: ShoppingList):  void {
-        if(this.renameInput.length > 2 && this.renameInput.length < 15) {
-        item.name = this.renameInput;
+    listRename(list: ShoppingList):  void {
+        if(this.renameInput.length > 0) {
+        list.name = this.renameInput;
         this.renameInput = ""; 
         }
     }
@@ -54,21 +54,8 @@ export class HomeComponent {
             this.userService.getCurrentList().contents[i].checked = false;
       }
     }
-    
-    //Method for copying and adding a new shopping list on home page.
-    copyList(list: ShoppingList): void {
-        let tempList: ShoppingList;
-        this.myList.push(tempList = new ShoppingList(list.name));
-        tempList.contents = list.contents;
-        // let tempList: ShoppingList;
-        // let tempName: string = this.userService.getCurrentList().name;
-        // let tempArray: ShoppingList;
-        // tempArray.contents = this.userService.getCurrentList().contents
-        // this.myList.push(tempList = new ShoppingList(tempName));
-        // tempList.contents = tempArray.contents;
-    }
 
-    copyList2(list: ShoppingList): void {
+    copyList(list: ShoppingList): void {
         let tempList: ShoppingList = new ShoppingList(list.name);
         let tempIndex: ShoppingItem[];
         for(let i = 0; i < list.contents.length; i++) {
@@ -82,10 +69,9 @@ export class HomeComponent {
     //Method for deleting a shopping list off home page.
     deleteList(list: ShoppingList): void {
         this.myList.splice(this.myList.indexOf(list),1);
-    }
 
-    //Method for testing item checked state
-    // testStuff(): void {
-    //     console.log(this.myList[0]);
-    // }
+        if (this.userService.getCurrentList() === list) {
+            this.userService.setCurrentList(null);
+        }
+    }
 }

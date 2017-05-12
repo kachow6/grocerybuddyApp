@@ -1,0 +1,29 @@
+{
+    "authors": "Keita Kagurazaka <https://github.com/k-kagurazaka>",
+    "definitionFilename": "index.d.ts",
+    "libraryDependencies": [
+        "node"
+    ],
+    "moduleDependencies": [
+        "gulp"
+    ],
+    "libraryMajorVersion": "0",
+    "libraryMinorVersion": "0",
+    "libraryName": "run-sequence",
+    "typingsPackageName": "run-sequence",
+    "projectName": "https://github.com/OverZealous/run-sequence",
+    "sourceRepoURL": "https://www.github.com/DefinitelyTyped/DefinitelyTyped",
+    "sourceBranch": "types-2.0",
+    "kind": "ProperModule",
+    "globals": [
+        "_tmp"
+    ],
+    "declaredModules": [
+        "run-sequence"
+    ],
+    "files": [
+        "index.d.ts"
+    ],
+    "hasPackageJson": false,
+    "contentHash": "4630e9be60a2d43ef2412dc31964d4ca7885c1287505e2e6027ba9fdc54fc75c"
+}

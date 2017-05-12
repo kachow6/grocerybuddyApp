@@ -1,0 +1,12 @@
+.list-element{
+	background-color: #E5E5E5;
+	border: 3px solid white;
+}
+.add-list{
+	background-color: #0A8056;
+	border: 3px solid white;
+	color: white;
+}
+.title{
+	text-shadow: 2px 1px #818181;
+}

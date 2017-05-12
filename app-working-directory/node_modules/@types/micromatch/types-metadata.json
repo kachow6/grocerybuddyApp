@@ -1,0 +1,27 @@
+{
+    "authors": "glen-84 <https://github.com/glen-84>",
+    "definitionFilename": "index.d.ts",
+    "libraryDependencies": [],
+    "moduleDependencies": [
+        "parse-glob"
+    ],
+    "libraryMajorVersion": "2",
+    "libraryMinorVersion": "3",
+    "libraryName": "micromatch 2.3.7",
+    "typingsPackageName": "micromatch",
+    "projectName": "https://github.com/jonschlinkert/micromatch",
+    "sourceRepoURL": "https://www.github.com/DefinitelyTyped/DefinitelyTyped",
+    "sourceBranch": "types-2.0",
+    "kind": "ProperModule",
+    "globals": [
+        "micromatch"
+    ],
+    "declaredModules": [
+        "micromatch"
+    ],
+    "files": [
+        "index.d.ts"
+    ],
+    "hasPackageJson": false,
+    "contentHash": "2aa729713172aff71a81a21a9b1504ea759bf4de1b25dda4cf8b6a102c8a8342"
+}

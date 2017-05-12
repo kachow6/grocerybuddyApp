@@ -1,0 +1,33 @@
+{
+    "authors": "Asana <https://asana.com>, Joe Skeen <http://github.com/joeskeen>",
+    "definitionFilename": "index.d.ts",
+    "libraryDependencies": [
+        "chokidar",
+        "node"
+    ],
+    "moduleDependencies": [
+        "chokidar",
+        "fs",
+        "http",
+        "micromatch"
+    ],
+    "libraryMajorVersion": "0",
+    "libraryMinorVersion": "0",
+    "libraryName": "browser-sync",
+    "typingsPackageName": "browser-sync",
+    "projectName": "http://www.browsersync.io/",
+    "sourceRepoURL": "https://www.github.com/DefinitelyTyped/DefinitelyTyped",
+    "sourceBranch": "types-2.0",
+    "kind": "ProperModule",
+    "globals": [
+        "browserSync"
+    ],
+    "declaredModules": [
+        "browser-sync"
+    ],
+    "files": [
+        "index.d.ts"
+    ],
+    "hasPackageJson": false,
+    "contentHash": "b8d4287b164d8295cda3d5537470c2fe1b5afa248a5785a3a8d12033ea9980dc"
+}

@@ -1,0 +1,52 @@
+<ol class="breadcrumb">
+  <li>Injectables</li>
+  <li>{{name}}</li>
+</ol>
+
+{{#unless disableSourceCode}}
+<ul class="nav nav-tabs" role="tablist">
+    <li class="active">
+        <a href="#infos" id="infos-tab" role="tab" data-toggle="tab">Infos</a>
+    </li>
+    <li>
+        <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+    </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="infos">
+        {{/unless}}
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>{{injectable.file}}</code>
+        </p>
+
+        {{#if injectable.description}}
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                {{{parseDescription injectable.description depth}}}
+            </p>
+        {{/if}}
+
+        {{#if injectable.constructorObj}}
+            {{> block-constructor constructor=injectable.constructorObj file=injectable.file }}
+        {{/if}}
+
+        {{#if injectable.methods}}
+            {{> block-method methods=injectable.methods file=injectable.file }}
+        {{/if}}
+
+        {{#if injectable.properties}}
+            {{> block-property properties=injectable.properties file=injectable.file }}
+        {{/if}}
+    {{#unless disableSourceCode}}
+    </div>
+    <div class="tab-pane fade tab-source-code" id="source">
+        <pre class="line-numbers"><code class="language-typescript">{{injectable.sourceCode}}</code></pre>
+    </div>
+</div>
+{{/unless}}

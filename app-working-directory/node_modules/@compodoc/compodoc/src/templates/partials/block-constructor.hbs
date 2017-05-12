@@ -1,0 +1,59 @@
+<section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <code>{{{functionSignature constructor}}}</code>
+                    </td>
+                </tr>
+                {{#if constructor.line}}
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="{{{constructor.line}}}" class="link-to-prism">{{file}}:{{{constructor.line}}}</a></div>
+                        </td>
+                    </tr>
+                {{/if}}
+
+                {{#or constructor.description constructor.jsdoctags}}
+                <tr>
+                    <td class="col-md-4">
+                        {{#if constructor.description}}
+                            <div class="io-description">{{{parseDescription constructor.description ../depth}}}</div>
+                        {{/if}}
+                        {{#if constructor.jsdoctags}}
+                            <div class="io-description">
+                                {{#jsdoc-params constructor.jsdoctags}}
+                                    <b>Parameters :</b>
+                                    <ul class="jsdoc-params">
+                                        {{#each tags}}
+                                            <li>
+                                                <div>
+                                                    <b>{{name}}</b>
+                                                    {{#if type}}
+                                                        : {{> link-type type=type }}
+                                                    {{/if}}
+                                                </div>
+                                                <div>
+                                                    {{{comment}}}
+                                                </div>
+                                            </li>
+                                        {{/each}}
+                                    </ul>
+                                {{/jsdoc-params}}
+                                {{#jsdoc-example constructor.jsdoctags}}
+                                    <b>Example :</b>
+                                    {{#each tags}}
+                                        <div>
+                                            {{{comment}}}
+                                        </div>
+                                    {{/each}}
+                                {{/jsdoc-example}}
+                            </div>
+                        {{/if}}
+                    </td>
+                </tr>
+                {{/or}}
+            </tbody>
+        </table>
+</section>

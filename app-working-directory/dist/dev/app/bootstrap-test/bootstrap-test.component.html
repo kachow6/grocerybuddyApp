@@ -1,0 +1,37 @@
+<h1>Bootstrap Test</h1>
+
+
+
+<hr>
+
+<accordion>
+  <accordion-group heading="Static Header, initially expanded">
+    This content is straight in the template.
+  </accordion-group>
+  <accordion-group #group>
+    <div accordion-heading>
+      I can have markup, too!
+      <i class="pull-right float-xs-right glyphicon"
+         [ngClass]="{'glyphicon-chevron-down': group?.isOpen, 'glyphicon-chevron-right': !group?.isOpen}"></i>
+    </div>
+    This is just some content to illustrate fancy headings.
+  </accordion-group>
+  <accordion-group heading="Content 1">
+    <p>Content 1</p>
+  </accordion-group>
+  <accordion-group heading="Content 2">
+    <p>Content 2</p>
+  </accordion-group>
+</accordion>
+
+
+
+
+<hr>
+
+<div *ngFor="let alert of alerts">
+  <alert [type]="alert.type" dismissible="true">{{ alert.msg }}</alert>
+</div>
+<button type="button" class="btn btn-primary" (click)="reset()">Reset</button>
+
+<hr>

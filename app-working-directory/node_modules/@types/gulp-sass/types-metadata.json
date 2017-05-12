@@ -1,0 +1,27 @@
+{
+    "authors": "Asana <https://asana.com>",
+    "definitionFilename": "index.d.ts",
+    "libraryDependencies": [
+        "node"
+    ],
+    "moduleDependencies": [],
+    "libraryMajorVersion": "0",
+    "libraryMinorVersion": "0",
+    "libraryName": "gulp-sass",
+    "typingsPackageName": "gulp-sass",
+    "projectName": "https://github.com/dlmanning/gulp-sass",
+    "sourceRepoURL": "https://www.github.com/DefinitelyTyped/DefinitelyTyped",
+    "sourceBranch": "types-2.0",
+    "kind": "ProperModule",
+    "globals": [
+        "_tmp"
+    ],
+    "declaredModules": [
+        "gulp-sass"
+    ],
+    "files": [
+        "index.d.ts"
+    ],
+    "hasPackageJson": false,
+    "contentHash": "1b1b9d638281bd7c9d6958765336564c94c43003dcb7c113901d327ecccd3c90"
+}

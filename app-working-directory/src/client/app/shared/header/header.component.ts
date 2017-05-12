@@ -1,9 +1,12 @@
-import { Component, OnInit }     from '@angular/core';
-import { BUDDY_QUOTES }          from  './header.menu.buddyquotes';
-import { BUDDY_PICS }            from  './header.menu.buddypics';
 
+import { Component, OnInit } from '@angular/core';
+import { BUDDY_QUOTES } from  './header.menu.buddyquotes';
+import { BUDDY_PICS } from  './header.menu.buddypics';
+import { UserService }      from '../user-service/user.service';
+import { FridgeItem }     from '../user-service/user';
 import { Router,
-         NavigationEnd }         from '@angular/router';
+    NavigationEnd,
+    NavigationStart }       from '@angular/router';
 
 /**
  * This class represents the navigation bar component.
@@ -24,19 +27,43 @@ export class HeaderComponent implements OnInit {
     bodyBg   : string;
     extended : boolean;
 
-    buddyQuote: string;
+    expiringItems: FridgeItem[];
+
+    //States for the progress bar
+    stateDanger: string = 'progress-bar-danger';
+    stateWarning: string = 'progress-bar-warning';
+    stateSuccess: string = 'progress-bar-success';
+    itemState: string = '';
+
+    buddyQuote: string = BUDDY_QUOTES[0];
     quoteIndex: number = 0;
 
     picIndex: number = Math.floor((Math.random() * BUDDY_PICS.length));
     buddyPic: string = BUDDY_PICS[this.picIndex];
 
+    pullExpiring(list: FridgeItem[]): FridgeItem[] {
+        let templist: FridgeItem[] = [];
+        for (let fridgeItem of list) {
+            let exp = fridgeItem.expiration / fridgeItem.maxAge;
+
+            if (exp < 0.33) {
+                templist.push(fridgeItem);
+            }
+        }
+        return templist;
+    }
+
     // CONSTRUCTOR.
     // Set up the HeaderComponent class and inject all the necessary services.
-    constructor(private router: Router) {
+    constructor(private router: Router,
+                private userService: UserService) {
+            this.expiringItems = userService.getFridge();
 
         // Updates this.pageTitle based on the URL.
         router.events.subscribe((navEvent) => {
             if (navEvent instanceof NavigationEnd) {
+
+                // console.log("Nav: " + navEvent.url)
 
                 // Hacky workaround. Bruce Link would hate me.
                 // Will try to figure out how to move data through the router
@@ -46,7 +73,7 @@ export class HeaderComponent implements OnInit {
                     this.pageTitle = 'Fridge';
                     break;
                 case '/list':
-                    this.pageTitle = 'List';
+                    this.pageTitle = userService.getCurrentList().name;
                     break;
                 case '/settings':
                     this.pageTitle = 'Settings';
@@ -58,8 +85,14 @@ export class HeaderComponent implements OnInit {
                     this.pageTitle = 'Grocery Buddy'
                 }
 
+            } else if (navEvent instanceof NavigationStart ) {
+
+                // Make sure currentList isn't null
+                if ((userService.getCurrentList() === null)
+                 && (navEvent.url === '/list')) {
+                    this.router.navigateByUrl('');
+                }
             }
-            console.log(navEvent);
         });
     }
 
@@ -96,4 +129,23 @@ export class HeaderComponent implements OnInit {
         }
         this.picIndex = number2;
     }
+
+    // Method for calculating the expiration bar colour
+    calculateExp(max: number, expiration: number): string {
+        if (expiration / max < 0.33){
+            return this.stateDanger;
+        } else if (expiration / max >= 0.66){
+            return this.stateSuccess;
+        } else {
+            return this.stateWarning;
+        }
+    }
+
+    //Link to move to fridge for notification modal
+    moveToFridge(){
+        this.router.navigateByUrl('/fridge')
+    }
+
 }
+
+
