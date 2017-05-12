@@ -12,6 +12,14 @@ export class UserService {
     getFridge():      FridgeItem[]     { return UserService.user.fridgeList; }
     getCurrentList(): ShoppingList     { return UserService.user.currentList; }
 
+    setHome(list: ShoppingList[]): void {
+        UserService.user.homeList = list;
+    }
+
+    setFridge(list: FridgeItem[]): void {
+        UserService.user.fridgeList = list;
+    }
+    
     setCurrentList(list: ShoppingList) {
         UserService.user.currentList = list;
     }

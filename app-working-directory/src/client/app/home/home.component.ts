@@ -82,11 +82,9 @@ export class HomeComponent {
     //Method for deleting a shopping list off home page.
     deleteList(list: ShoppingList): void {
         this.myList.splice(this.myList.indexOf(list),1);
+
+        if (this.userService.getCurrentList() === list) {
+            this.userService.setCurrentList(null);
+        }
     }
-
-    //Method for testing item checked state
-    // testStuff(): void {
-    //     console.log(this.myList[0]);
-    // }
-
 }

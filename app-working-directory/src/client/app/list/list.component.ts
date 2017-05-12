@@ -46,6 +46,21 @@ export class ListComponent {
         }
     }
 
+    // Delete Item.
+    deleteItem(index: number): void {
+        console.log("Delete!");
+
+        if (index >= 0 && index < this.myList.length) {
+            let firstHalf: ShoppingItem[] = [];
+            let lastHalf : ShoppingItem[] = [];
+
+            firstHalf = this.myList.splice(0,index);
+            lastHalf  = this.myList.splice(index + 1, this.myList.length);
+
+            this.myList = firstHalf.concat(lastHalf);
+        }
+    }
+
     //Method for resetting checked items to false
     resetList(): void {
         for(let i = 0; i < this.myList.length; i++) {
@@ -62,7 +77,7 @@ export class ListComponent {
             }
         }
 
-        // MOVE TO FRIDGE HERE
+        // Navigates to the fridge page.
         this.router.navigateByUrl('/fridge');
     }
 }

@@ -13,12 +13,22 @@
 
 <div class="container col-lg-8 col-md-10 col-lg-offset-2 col-md-offset-1" style="top: 80px; margin-bottom: 60px">
 
-    <div class="container-fluid list-element" *ngFor = "let item of myList">
-        <div class="row list-inline">
-            <div class="col-lg-11 col-md-11 col-sm-10 col-xs-9" style="margin-top: 5px" (click)= "selectList(item)">
-                <h4>{{item.name}}</h4>
+    <!-- HTML for individual items in the main list -->
+    <div class="container-fluid list-element"
+         *ngFor="let item of myList; let i = index">
+        
+        <div class="row list-inline"
+             (swipeleft)="item.isQueuedForDelete=true">
+            <div class="col-lg-8 col-md-8 col-sm-7 col-xs-6"
+                 style="margin-top: 5px"
+                 >
+                <h4 (click)="selectList(item)">{{item.name}}</h4>
             </div>
-            <div class="dropdown col-lg-1 col-md-1 col-sm-2 col-xs-2" style="margin-top: 5px; margin-bottom: 5px" dropdown>
+
+            <div class="dropdown col-lg-4 col-md-4 col-sm-5 col-xs-6"
+                 style="margin-top: 5px; margin-bottom: 5px; text-align: right;"
+                 dropdown
+                 *ngIf="!item.isQueuedForDelete">
                 <button dropdownToggle class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><span class="glyphicon glyphicon-option-vertical"></span></button>
                 <ul *dropdownMenu role="menu" class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
                     <li role="menuitem" class="menu-item"><a href="#" (click)="renameModal.show()" data-toggle="modal">Rename</a></li>
@@ -26,6 +36,16 @@
                     <li role="menuitem" class="menu-item"><a href="#" (click)="deleteList(item)">Delete</a></li>
                     <li role="menuitem" class="menu-item"><a href="#" (click)="resetList(item)">Reset</a></li>
                 </ul>
+            </div>
+            <div class="dropdown col-lg-4 col-md-4 col-sm-5 col-xs-6"
+                 style="margin-top: 6px; margin-bottom: 6px; text-align: right;"
+                 *ngIf="item.isQueuedForDelete">
+                <button class="btn btn-xs btn-danger"
+                        style="margin: 0 0.25em; padding-left: 1em; padding-right: 1em"
+                        (click)="deleteList(item)">Delete</button>
+                <button class="btn btn-xs btn-success"
+                        style="margin: 0 0.25em; padding-left: 1em; padding-right: 1em"
+                        (click)="item.isQueuedForDelete=null">Undo</button>
             </div>
         </div>
     </div>
