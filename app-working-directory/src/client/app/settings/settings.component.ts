@@ -14,17 +14,35 @@ import { Router }       from '@angular/router';
 })
 
 export class SettingsComponent {
+
     passwordcomplex: boolean;
     passwordconfirmed: boolean = false;
     passwordmessage: string;
     confirmpasswordmessage: string ='';
     userpassword: string;
     userconfirmpassword: string ='';
-    nameInput: string = "";
-    emailInput: string = "";
 
+    nameInput: string = "";
+
+    emailInput: string = "";
+    emailValid: boolean;
+    invalidEmailMsg: string = "";
+
+    //Constructor for implementing Router.
     constructor(private router: Router){
 
+    }
+
+    //Method for checking if the email entered is proper email format
+    checkEmail() {
+        let emailFormat = /^.+@.+\..+/.test(this.emailInput);
+
+        if(emailFormat && this.emailInput.length > 1) {
+            this.emailValid = true;
+            this.invalidEmailMsg = "";
+        } else {
+            this.invalidEmailMsg = "Please enter a valid email address"
+        }
     }
 
     //Method for checking if the password is complex
@@ -39,6 +57,7 @@ export class SettingsComponent {
             this.passwordcomplex = true;
         } else {
             this.userpassword = null;
+            this.userconfirmpassword = null;
         }
     }
 
@@ -49,11 +68,12 @@ export class SettingsComponent {
             this.confirmpasswordmessage = '';
         }
 
-        if(pass1 === pass2) {
+        if(pass1 === pass2 && pass1.length > 0) {
             this.confirmpasswordmessage = '';
             this.passwordconfirmed = true;
         } else {
             this.confirmpasswordmessage = 'This password must match the one above'
+            this.userpassword = null;
             this.userconfirmpassword = null;
         }
     }
@@ -68,7 +88,7 @@ export class SettingsComponent {
 
     //A method for submitting the new account information
     changeInfo(): void {
-        if(this.nameInput.length > 0 && this.emailInput.length > 0
+        if(this.nameInput.length > 0 && this.emailValid
             && this.passwordcomplex == true && this.passwordconfirmed == true) {
 
                 UserService.user.username = this.nameInput;
