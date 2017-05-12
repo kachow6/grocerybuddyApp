@@ -1,242 +1,149 @@
-<h1>Affiliates Page</h1>
-
-<div class="container fluid col-lg-6 col-md-10 col-sm-12 col-xs-12 col-lg-offset-3 col-md-offset-1 col-sm-0 col-xs-offset-0">
-
-
-
-        <a href="#"><button type="button" class="btn btn-default btn-block">
-            <span class="glyphicon glyphicon-chevron-left"></span>
-        </button></a>
-        <h1>Affliated Apps</h1>
-    <a href="#"><button type="button" class="btn btn-default btn-block">
-        <span class="glyphicon glyphicon-chevron-left"></span>
-    </button></a>
-    <h1>Affliated Apps</h1>
-
+<div class="container col-lg-8 col-md-8 col-sm-8 col-xs-10 col-lg-offset-2 col-md-offset-2 col-sm-offset-2 col-xs-offset-1" style="top: 30px; margin-bottom: 50px">
     <div class="well">
-
-
-        <div class="row text-center">
-            <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6 col-lg-offset-2 col-md-offset-2 col-sm-offset-2 col-xs-offset-0">
-                <button (click)="app1.show()" data-toggle="modal" data-target="#app1"> <img class="img-circle img-responsive" src="https://image.flaticon.com/teams/new/1-freepik.jpg" height="250" width="250" >
-                    <div class="desc">RaceToZero</div>
-                </button>
-
-            </div>
-            <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6 col-lg-offset-2 col-md-offset-2 col-sm-offset-2 col-xs-offset-0">
-
-                <button (click)="app2.show()" data-toggle="modal" data-target="#app2"> <img class="img-circle img-responsive" src="https://image.flaticon.com/teams/new/1-freepik.jpg" height="250" width="250" >
-                    <div class="desc">Take2</div>
-                </button>
-
-            <div class="row text-center">
-                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6 col-lg-offset-2 col-md-offset-2 col-sm-offset-2 col-xs-offset-0">
-                    <button (click)="app1.show()" data-toggle="modal" data-target="#app1"> <img class="img-circle img-responsive" src="https://image.flaticon.com/teams/new/1-freepik.jpg" height="250" width="250" >
-                        <div class="desc">RaceToZero</div>
-                    </button>
-
+        <div class="row">
+            <!-- Take 2 -->
+            <div class="affiliate col-lg-5 col-md-5 col-sm-5 col-xs-12 col-lg-offset-1" (click)="take2Modal.show()" data-toggle="modal" data-target="#take2Modal">
+                <h2 class="affiliate-name"><strong>Take 2</strong></h2>
+                <div class="affiliate-img col-lg-6 col-md-8 col-sm-10 col-xs-6 col-lg-offset-3 col-md-offset-3 col-sm-offset-1 col-xs-offset-3">
+                    <img src="../assets/imgs/take2-logo.png" alt="Take 2" class="img-responsive">
                 </div>
-                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6 col-lg-offset-2 col-md-offset-2 col-sm-offset-2 col-xs-offset-0">
-
-                    <button (click)="app2.show()" data-toggle="modal" data-target="#app2"> <img class="img-circle img-responsive" src="https://image.flaticon.com/teams/new/1-freepik.jpg" height="250" width="250" >
-                        <div class="desc">Take2</div>
-                    </button>
-                </div>
-
             </div>
-
-            <div class="row text-center">
-
-                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6 col-lg-offset-2 col-md-offset-2 col-sm-offset-2 col-xs-offset-0">
-
-                    <button (click)="app3.show()" data-toggle="modal" data-target="#app3">  <img class="img-circle img-responsive" src="https://image.flaticon.com/teams/new/1-freepik.jpg" height="250" width="250" >
-                        <div class="desc">Phoenix Recipe</div>
-                    </button>
+            <!-- Race to Zero -->
+            <div class="affiliate col-lg-5 col-md-5 col-sm-5 col-xs-12 col-lg-offset-0 col-md-offset-1 col-sm-offset-1" (click)="raceToZeroModal.show()" data-toggle="modal" data-target="#raceToZeroModal">
+                <h2 class="affiliate-name"><strong>Race to Zero</strong></h2>
+                <div class="affiliate-img col-lg-6 col-md-8 col-sm-10 col-xs-6 col-lg-offset-3 col-md-offset-3 col-sm-offset-1 col-xs-offset-3">
+                    <img src="../assets/imgs/racetozero-logo.png" alt="Race to Zero" class="img-responsive">
                 </div>
-                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6 col-lg-offset-2 col-md-offset-2 col-sm-offset-2 col-xs-offset-0">
-
-                    <button (click)="app4.show()" data-toggle="modal" data-target="#app4">   <img class="img-circle img-responsive" src="https://image.flaticon.com/teams/new/1-freepik.jpg" height="250" width="250" >
-                        <div class="desc">FridgeMate</div>
-                    </button>
-                </div>
-
-            </div>
-
-        </div>
-
-        <div class="row text-center">
-
-
-            <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6 col-lg-offset-2 col-md-offset-2 col-sm-offset-2 col-xs-offset-0">
-
-            <!-- App1 Modal starts here -->
-            <div id="app1" bsModal #app1="bs-modal" class="modal fade" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <!-- Modal content starts below -->
-
-
-                <button (click)="app3.show()" data-toggle="modal" data-target="#app3">  <img class="img-circle img-responsive" src="https://image.flaticon.com/teams/new/1-freepik.jpg" height="250" width="250" >
-                    <div class="desc">Phoenix Recipe</div>
-                </button>
-            </div>
-            <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6 col-lg-offset-2 col-md-offset-2 col-sm-offset-2 col-xs-offset-0">
-
-                <button (click)="app4.show()" data-toggle="modal" data-target="#app4">   <img class="img-circle img-responsive" src="https://image.flaticon.com/teams/new/1-freepik.jpg" height="250" width="250" >
-                    <div class="desc">FridgeMate</div>
-                </button>
             </div>
         </div>
-
-
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis a mattis urna. Quisque eget nisl eros. Maecenas orci eros, aliquam vitae nulla non, semper luctus nisi. Praesent dui nibh, faucibus at tortor sit amet, porta suscipit leo. Quisque neque tellus, accumsan vitae tempor in, vestibulum vel sem. Sed id lorem at ipsum elementum venenatis. Sed ultrices arcu in augue malesuada, vitae mollis libero maximus. Praesent non neque ipsum. Nulla porttitor ligula nec fermentum pellentesque. Curabitur ut justo mollis erat mattis lacinia. Aliquam facilisis quam enim, sit amet eleifend enim vestibulum vel. Nunc sed risus at libero vulputate elementum. Duis interdum, velit in volutpat commodo, est orci ornare ante, ut tincidunt est lorem in arcu. Cras accumsan nisl et iaculis maximus. Aliquam nibh justo, porta non tincidunt non, facilisis a ipsum. Morbi a metus id tellus elementum volutpat consequat at dui.</p>
-                        </div>
-                        <div class="modal-footer">
-                            <button (click)="app1.hide()" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-
-
-        <!-- App1 Modal starts here -->
-        <div id="app1" bsModal #app1="bs-modal" class="modal fade" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <!-- Modal content starts below -->
-
-
-            <!-- App2 Modal starts here -->
-            <div id="app2" bsModal #app2="bs-modal" class="modal fade" role="dialog">
-                <div class="modal-dialog">
-                    <!-- Modal content starts below -->
-
-
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Race to Zero</h4>
-                    </div>
-                    <div class="modal-body">
-                        <p>Description about App1 <br>
-
-                            <img src="http://mylolface.com/assets/faces/troll-troll-face.jpg" class="pull-right" height="200" width="200">
-
-
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis a mattis urna. Quisque eget nisl eros. Maecenas orci eros, aliquam vitae nulla non, semper luctus nisi. Praesent dui nibh, faucibus at tortor sit amet, porta suscipit leo. Quisque neque tellus, accumsan vitae tempor in, vestibulum vel sem. Sed id lorem at ipsum elementum venenatis. Sed ultrices arcu in augue malesuada, vitae mollis libero maximus. Praesent non neque ipsum. Nulla porttitor ligula nec fermentum pellentesque. Curabitur ut justo mollis erat mattis lacinia. Aliquam facilisis quam enim, sit amet eleifend enim vestibulum vel. Nunc sed risus at libero vulputate elementum. Duis interdum, velit in volutpat commodo, est orci ornare ante, ut tincidunt est lorem in arcu. Cras accumsan nisl et iaculis maximus. Aliquam nibh justo, porta non tincidunt non, facilisis a ipsum. Morbi a metus id tellus elementum volutpat consequat at dui.</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button (click)="app1.hide()" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-
-                    </div></div> </div> </div>
-
-                                <img src="http://mylolface.com/assets/faces/troll-troll-face.jpg" class="pull-right" height="200" width="200">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis a mattis urna. Quisque eget nisl eros. Maecenas orci eros, aliquam vitae nulla non, semper luctus nisi. Praesent dui nibh, faucibus at tortor sit amet, porta suscipit leo. Quisque neque tellus, accumsan vitae tempor in, vestibulum vel sem. Sed id lorem at ipsum elementum venenatis. Sed ultrices arcu in augue malesuada, vitae mollis libero maximus. Praesent non neque ipsum. Nulla porttitor ligula nec fermentum pellentesque. Curabitur ut justo mollis erat mattis lacinia. Aliquam facilisis quam enim, sit amet eleifend enim vestibulum vel. Nunc sed risus at libero vulputate elementum. Duis interdum, velit in volutpat commodo, est orci ornare ante, ut tincidunt est lorem in arcu. Cras accumsan nisl et iaculis maximus. Aliquam nibh justo, porta non tincidunt non, facilisis a ipsum. Morbi a metus id tellus elementum volutpat consequat at dui.</p>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" (click)="app2.hide()" data-dismiss="modal">Close</button>
-
-                        </div> </div></div></div>
-            <!-- closing tag for App2 Modal above-->
-
-
-
-            <!-- App3 Modal starts here -->
-            <div id="app3" bsModal #app3="bs-modal" class="modal fade" role="dialog">
-                <div class="modal-dialog">
-                    <!-- Modal content starts below -->
-
-
-        <!-- App2 Modal starts here -->
-        <div id="app2" bsModal #app2="bs-modal" class="modal fade" role="dialog">
-            <div class="modal-dialog">
-                <!-- Modal content starts below -->
-
-
-
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Take2</h4>
-                    </div>
-                    <div class="modal-body">
-                        <p>Description about App2 <br>
-
-                                <img src="http://mylolface.com/assets/faces/troll-troll-face.jpg" class="pull-right" height="200" width="200">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis a mattis urna. Quisque eget nisl eros. Maecenas orci eros, aliquam vitae nulla non, semper luctus nisi. Praesent dui nibh, faucibus at tortor sit amet, porta suscipit leo. Quisque neque tellus, accumsan vitae tempor in, vestibulum vel sem. Sed id lorem at ipsum elementum venenatis. Sed ultrices arcu in augue malesuada, vitae mollis libero maximus. Praesent non neque ipsum. Nulla porttitor ligula nec fermentum pellentesque. Curabitur ut justo mollis erat mattis lacinia. Aliquam facilisis quam enim, sit amet eleifend enim vestibulum vel. Nunc sed risus at libero vulputate elementum. Duis interdum, velit in volutpat commodo, est orci ornare ante, ut tincidunt est lorem in arcu. Cras accumsan nisl et iaculis maximus. Aliquam nibh justo, porta non tincidunt non, facilisis a ipsum. Morbi a metus id tellus elementum volutpat consequat at dui.</p>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" (click)="app3.hide()" data-dismiss="modal">Close</button>
-
-
-                            <img src="http://mylolface.com/assets/faces/troll-troll-face.jpg" class="pull-right" height="200" width="200">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis a mattis urna. Quisque eget nisl eros. Maecenas orci eros, aliquam vitae nulla non, semper luctus nisi. Praesent dui nibh, faucibus at tortor sit amet, porta suscipit leo. Quisque neque tellus, accumsan vitae tempor in, vestibulum vel sem. Sed id lorem at ipsum elementum venenatis. Sed ultrices arcu in augue malesuada, vitae mollis libero maximus. Praesent non neque ipsum. Nulla porttitor ligula nec fermentum pellentesque. Curabitur ut justo mollis erat mattis lacinia. Aliquam facilisis quam enim, sit amet eleifend enim vestibulum vel. Nunc sed risus at libero vulputate elementum. Duis interdum, velit in volutpat commodo, est orci ornare ante, ut tincidunt est lorem in arcu. Cras accumsan nisl et iaculis maximus. Aliquam nibh justo, porta non tincidunt non, facilisis a ipsum. Morbi a metus id tellus elementum volutpat consequat at dui.</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" (click)="app2.hide()" data-dismiss="modal">Close</button>
-
-                    </div> </div></div></div>
-        <!-- closing tag for App2 Modal above-->
-<!-- App4 Modal starts here -->
-            <div id="app4" bsModal #app4="bs-modal" class="modal fade" role="dialog">
-                <div class="modal-dialog">
-                    <!-- Modal content starts below -->
-
-
-
-        <!-- App3 Modal starts here -->
-        <div id="app3" bsModal #app3="bs-modal" class="modal fade" role="dialog">
-            <div class="modal-dialog">
-                <!-- Modal content starts below -->
-
-                                <img src="http://mylolface.com/assets/faces/troll-troll-face.jpg" class="pull-right" height="200" width="200">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis a mattis urna. Quisque eget nisl eros. Maecenas orci eros, aliquam vitae nulla non, semper luctus nisi. Praesent dui nibh, faucibus at tortor sit amet, porta suscipit leo. Quisque neque tellus, accumsan vitae tempor in, vestibulum vel sem. Sed id lorem at ipsum elementum venenatis. Sed ultrices arcu in augue malesuada, vitae mollis libero maximus. Praesent non neque ipsum. Nulla porttitor ligula nec fermentum pellentesque. Curabitur ut justo mollis erat mattis lacinia. Aliquam facilisis quam enim, sit amet eleifend enim vestibulum vel. Nunc sed risus at libero vulputate elementum. Duis interdum, velit in volutpat commodo, est orci ornare ante, ut tincidunt est lorem in arcu. Cras accumsan nisl et iaculis maximus. Aliquam nibh justo, porta non tincidunt non, facilisis a ipsum. Morbi a metus id tellus elementum volutpat consequat at dui.</p>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" (click)="app4.hide()" data-dismiss="modal">Close</button>
-
-
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Phoenix Recipes</h4>
-                    </div>
-                    <div class="modal-body">
-                        <p>Description about App3 <br>
-             <img src="http://mylolface.com/assets/faces/troll-troll-face.jpg" class="pull-right" height="200" width="200">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis a mattis urna. Quisque eget nisl eros. Maecenas orci eros, aliquam vitae nulla non, semper luctus nisi. Praesent dui nibh, faucibus at tortor sit amet, porta suscipit leo. Quisque neque tellus, accumsan vitae tempor in, vestibulum vel sem. Sed id lorem at ipsum elementum venenatis. Sed ultrices arcu in augue malesuada, vitae mollis libero maximus. Praesent non neque ipsum. Nulla porttitor ligula nec fermentum pellentesque. Curabitur ut justo mollis erat mattis lacinia. Aliquam facilisis quam enim, sit amet eleifend enim vestibulum vel. Nunc sed risus at libero vulputate elementum. Duis interdum, velit in volutpat commodo, est orci ornare ante, ut tincidunt est lorem in arcu. Cras accumsan nisl et iaculis maximus. Aliquam nibh justo, porta non tincidunt non, facilisis a ipsum. Morbi a metus id tellus elementum volutpat consequat at dui.</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" (click)="app3.hide()" data-dismiss="modal">Close</button>
-
-                    </div></div></div></div>
-        <!-- closing tag for App3 Modal above-->
-
-
-        <!-- App4 Modal starts here -->
-        <div id="app4" bsModal #app4="bs-modal" class="modal fade" role="dialog">
-            <div class="modal-dialog">
-                <!-- Modal content starts below -->
-
-
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">FridgeMates</h4>
-                    </div>
-                    <div class="modal-body">
-                        <p>Description about App4 <br>
-
-                            <img src="http://mylolface.com/assets/faces/troll-troll-face.jpg" class="pull-right" height="200" width="200">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis a mattis urna. Quisque eget nisl eros. Maecenas orci eros, aliquam vitae nulla non, semper luctus nisi. Praesent dui nibh, faucibus at tortor sit amet, porta suscipit leo. Quisque neque tellus, accumsan vitae tempor in, vestibulum vel sem. Sed id lorem at ipsum elementum venenatis. Sed ultrices arcu in augue malesuada, vitae mollis libero maximus. Praesent non neque ipsum. Nulla porttitor ligula nec fermentum pellentesque. Curabitur ut justo mollis erat mattis lacinia. Aliquam facilisis quam enim, sit amet eleifend enim vestibulum vel. Nunc sed risus at libero vulputate elementum. Duis interdum, velit in volutpat commodo, est orci ornare ante, ut tincidunt est lorem in arcu. Cras accumsan nisl et iaculis maximus. Aliquam nibh justo, porta non tincidunt non, facilisis a ipsum. Morbi a metus id tellus elementum volutpat consequat at dui.</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" (click)="app4.hide()" data-dismiss="modal">Close</button>
-
-                    </div> </div></div></div>
-        <!-- closing tag for App4 Modal above-->
-
-
-
-
+        <div class="row">
+            <!-- Phoenix Leftovers -->
+            <div class="affiliate col-lg-5 col-md-5 col-sm-5 col-xs-12 col-lg-offset-1" (click)="phoenixRecipesModal.show()" data-toggle="modal" data-target="#phoenixLeftoversModal">
+                <h2 class="affiliate-name"><strong>Phoenix Recipes</strong></h2>
+                <div class="affiliate-img col-lg-6 col-md-8 col-sm-10 col-xs-6 col-lg-offset-3 col-md-offset-3 col-sm-offset-1 col-xs-offset-3">
+                    <img src="../assets/imgs/phoenixleftovers-logo.png" alt="Phoenix Leftovers" class="img-responsive">
+                </div>
+            </div>
+            <!-- My Foodlist -->
+            <div class="affiliate col-lg-5 col-md-5 col-sm-5 col-xs-12 col-lg-offset-0 col-md-offset-1 col-sm-offset-1" (click)="myFoodListModal.show()" data-toggle="modal" data-target="#iPickyModal">
+                <h2 class="affiliate-name"><strong>iPicky</strong></h2>
+                <div class="col-lg-6 col-md-8 col-sm-10 col-xs-6 col-lg-offset-3 col-md-offset-3 col-sm-offset-1 col-xs-offset-3">
+                    <img src="../assets/imgs/phoenixleftovers-logo.png" alt="Phoenix Leftovers" class="img-responsive">
+                </div>
+            </div>
+        </div>
     </div>
+</div>
 
-
-
-
+<!-- Take 2 Modal -->
+<div class="modal fade" id="take2Modal" tabindex="-1" role="dialog" bsModal #take2Modal="bs-modal" aria-labelledby="Take2" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" aria-label="Close" (click)="take2Modal.hide()">
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                </button>
+                <h2 class="modal-title">Take 2</h2>
             </div>
+            <div class="modal-body">
+                <img src="../assets/imgs/take2-logo.png" class="affiliate-modal-img pull-right" height="140" width="160">
+                <p>
+                Take2 is a web application that helps users figure out what they should do with their leftover ingredients. It suggests a list of recipes for a combination of two ingredients!
+                <br><br>
+                <a href="http://students.bcitdev.com/A01003060/COMP2910/test/">
+                    <button class="btn btn-md btn-primary">Check out them out!</button>
+                </a>
+                </p>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
 
+
+
+<!-- Race to Zero Modal -->
+<div class="modal fade" id="raceToZeroModal" tabindex="-1" role="dialog" bsModal #raceToZeroModal="bs-modal" aria-labelledby="Race to Zero" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" aria-label="Close" (click)="raceToZeroModal.hide()">
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                </button>
+                <h2 class="modal-title">Race to Zero</h2>
+            </div>
+            <div class="modal-body">
+                <img src="../assets/imgs/racetozero-logo.png" class="affiliate-modal-img pull-right" height="120" width="270" style="margin-left: 5px;">
+                <p>
+                Race To Zero is an interactive game designed to inform players about the issue of food waste.
+                <br><br>
+                Race through the levels to get the fastest times, all while learning about this important issue!
+                <br><br>
+                <a href="#">
+                    <button class="btn btn-md btn-primary">Check out them out!</button>
+                </a>
+                <br>
+                </p>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Phoenix Leftovers -->
+<div class="modal fade" id="phoenixRecipesModal" tabindex="-1" role="dialog" bsModal #phoenixRecipesModal="bs-modal" aria-labelledby="Phoenix Recipes" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" aria-label="Close" (click)="phoenixRecipesModal.hide()">
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                </button>
+                <h2 class="modal-title">Phoenix Recipes</h2>
+            </div>
+            <div class="modal-body">
+                <img src="../assets/imgs/phoenixleftovers-logo.png" class="affiliate-modal-img pull-left" height="120" width="120">
+                <p>
+                A user friendly mobile cookbook that helps you discover new and delicious ways to use your leftovers, Phoenix Recipes is a great way to track your food waste habits.
+                <br><br>
+                <a href="#">
+                    <button class="btn btn-md btn-primary pull-right">Check out them out!</button>
+                </a>
+                <br>
+                </p>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Phoenix Leftovers -->
+<div class="modal fade" id="iPickyModal" tabindex="-1" role="dialog" bsModal #myFoodListModal="bs-modal" aria-labelledby="iPicky" aria-hidden="true">
+<div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" aria-label="Close" (click)="myFoodListModal.hide()">
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                </button>
+                <h2 class="modal-title">iPicky</h2>
+            </div>
+            <div class="modal-body">
+                <img src="../assets/imgs/non-buddies/gblogo.png" class="affiliate-modal-img pull-left" height="180" width="180">
+                <p>
+                An application that allows users to add foods that they like, dislike or allergic to on a list!
+                <br><br>
+                With the ability to merge groups of users' lists together, you can have complete list for your group of friends.
+                <br><br>
+                <a href="#">
+                    <button class="btn btn-md btn-primary pull-right">Check out them out!</button>
+                </a>
+                <br>
+                </p>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
