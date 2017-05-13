@@ -1,10 +1,9 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { HomeComponent } from './home.component';
-import { HomeRoutingModule } from './home-routing.module';
-import { SharedModule } from '../shared/shared.module';
-import { NameListService } from '../shared/name-list/name-list.service';
-import { FormsModule } from '@angular/forms';
+import { NgModule }               from '@angular/core';
+import { CommonModule }           from '@angular/common';
+
+import { HomeComponent }          from './home.component';
+import { SharedModule }           from '../shared/shared.module';
+import { FormsModule }            from '@angular/forms';
 
 import { BsDropdownModule, AccordionModule, AlertModule, ButtonsModule,
          CarouselModule, CollapseModule, DatepickerModule, ModalModule,
@@ -14,7 +13,6 @@ import { BsDropdownModule, AccordionModule, AlertModule, ButtonsModule,
 
 @NgModule({
   imports: [
-    HomeRoutingModule,
     SharedModule,
     FormsModule,
 
@@ -39,6 +37,6 @@ import { BsDropdownModule, AccordionModule, AlertModule, ButtonsModule,
   ],
   declarations: [HomeComponent],
   exports: [HomeComponent],
-  providers: [NameListService]
+  providers: []
 })
 export class HomeModule { }
