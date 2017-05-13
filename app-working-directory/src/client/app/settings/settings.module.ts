@@ -1,44 +1,22 @@
-import { NgModule }               from '@angular/core';
-import { CommonModule }           from '@angular/common';
-import { SettingsComponent }      from './settings.component';
-import { SharedModule }           from '../shared/shared.module';
+import { NgModule }                from '@angular/core';
+import { CommonModule }            from '@angular/common';
+import { SettingsComponent }       from './settings.component';
+import { SharedModule }            from '../shared/shared.module';
 
-import { BsDropdownModule, AccordionModule, AlertModule, ButtonsModule,
-         CarouselModule, CollapseModule, DatepickerModule, ModalModule,
-         PaginationModule, PopoverModule, ProgressbarModule, RatingModule,
-         SortableModule, TabsModule, TimepickerModule, TooltipModule,
-         TypeaheadModule }        from 'ngx-bootstrap';
+import { BsRootModule }            from 'ngx-bootstrap';
 
 @NgModule({
-  imports: [
-    SharedModule,
-
-    // BOOTSTRAP IMPORTS
-    BsDropdownModule.forRoot(),
-    AccordionModule.forRoot(),
-    AlertModule.forRoot(),
-    ButtonsModule.forRoot(),
-    CarouselModule.forRoot(),
-    CollapseModule.forRoot(),
-    DatepickerModule.forRoot(),
-    ModalModule.forRoot(),
-    PaginationModule.forRoot(),
-    PopoverModule.forRoot(),
-    ProgressbarModule.forRoot(),
-    RatingModule.forRoot(),
-    SortableModule.forRoot(),
-    TabsModule.forRoot(),
-    TimepickerModule.forRoot(),
-    TooltipModule.forRoot(),
-    TypeaheadModule.forRoot(),
-  ],
-  declarations: [
-    SettingsComponent
-  ],
-  exports: [
-    SettingsComponent
-  ],
-  providers: [
-  ]
+    imports: [
+        SharedModule,
+        BsRootModule
+    ],
+    declarations: [
+        SettingsComponent
+    ],
+    exports: [
+        SettingsComponent
+    ],
+    providers: [
+    ]
 })
 export class SettingsModule { }

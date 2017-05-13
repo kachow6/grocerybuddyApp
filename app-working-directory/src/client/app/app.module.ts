@@ -22,11 +22,7 @@ import { HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-br
 
 import { BootstrapTestModule }    from './bootstrap-test/bootstrap-test.module';
 
-import { BsDropdownModule, AccordionModule, AlertModule, ButtonsModule,
-         CarouselModule, CollapseModule, DatepickerModule, ModalModule,
-         PaginationModule, PopoverModule, ProgressbarModule, RatingModule,
-         SortableModule, TabsModule, TimepickerModule, TooltipModule,
-         TypeaheadModule }        from 'ngx-bootstrap';
+import { BsRootModule }            from 'ngx-bootstrap';
 
 const FIREBASE_APP_CONFIG = {
     apiKey: '<->',
@@ -74,25 +70,7 @@ export class MyHammerConfig extends HammerGestureConfig  {
         MainModule,
     
         BootstrapTestModule,
-    
-        // BOOTSTRAP IMPORTS
-        BsDropdownModule.forRoot(),
-        AccordionModule.forRoot(),
-        AlertModule.forRoot(),
-        ButtonsModule.forRoot(),
-        CarouselModule.forRoot(),
-        CollapseModule.forRoot(),
-        DatepickerModule.forRoot(),
-        ModalModule.forRoot(),
-        PaginationModule.forRoot(),
-        PopoverModule.forRoot(),
-        ProgressbarModule.forRoot(),
-        RatingModule.forRoot(),
-        SortableModule.forRoot(),
-        TabsModule.forRoot(),
-        TimepickerModule.forRoot(),
-        TooltipModule.forRoot(),
-        TypeaheadModule.forRoot(),
+        BsRootModule
     ],
     declarations: [
         AppComponent
