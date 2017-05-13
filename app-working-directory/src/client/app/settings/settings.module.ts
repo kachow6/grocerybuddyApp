@@ -1,8 +1,7 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { SettingsComponent } from './settings.component';
-import { SettingsRoutingModule } from './settings-routing.module';
-import { SharedModule } from '../shared/shared.module';
+import { NgModule }               from '@angular/core';
+import { CommonModule }           from '@angular/common';
+import { SettingsComponent }      from './settings.component';
+import { SharedModule }           from '../shared/shared.module';
 
 import { BsDropdownModule, AccordionModule, AlertModule, ButtonsModule,
          CarouselModule, CollapseModule, DatepickerModule, ModalModule,
@@ -12,7 +11,6 @@ import { BsDropdownModule, AccordionModule, AlertModule, ButtonsModule,
 
 @NgModule({
   imports: [
-    SettingsRoutingModule,
     SharedModule,
 
     // BOOTSTRAP IMPORTS
