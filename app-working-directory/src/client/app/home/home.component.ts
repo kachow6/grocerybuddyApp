@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output } from '@angular/core';
-import { UserService } from '../shared/user-service/user.service';
-import { ShoppingList, ShoppingItem } from '../shared/user-service/user';
-import { Router } from '@angular/router';
+import { UserService }                      from '../shared/user-service/user.service';
+import { ShoppingList, ShoppingItem }       from '../shared/user-service/user';
+import { Router }                           from '@angular/router';
 
 
 /**
@@ -35,6 +35,7 @@ export class HomeComponent {
         }
     }
 
+    //Method for moving into the user selected list
     selectList(list: ShoppingList): void {
         this.userService.setCurrentList(list);
         this.router.navigateByUrl('/list');
@@ -55,6 +56,7 @@ export class HomeComponent {
       }
     }
 
+    //Method for copying a list object on home page.
     copyList(list: ShoppingList): void {
         let tempList: ShoppingList = new ShoppingList(list.name);
         let tempIndex: ShoppingItem[];

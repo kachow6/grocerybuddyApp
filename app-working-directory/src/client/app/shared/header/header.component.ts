@@ -35,8 +35,8 @@ export class HeaderComponent implements OnInit {
     stateSuccess: string = 'progress-bar-success';
     itemState: string = '';
     //buddy quote index
-    buddyQuote: string = BUDDY_QUOTES[0];
-    quoteIndex: number = 0;
+    quoteIndex: number = Math.floor((Math.random() * BUDDY_QUOTES.length));
+    buddyQuote: string = BUDDY_QUOTES[this.quoteIndex];
     //index for buddy pics
     picIndex: number = Math.floor((Math.random() * BUDDY_PICS.length));
     buddyPic: string = BUDDY_PICS[this.picIndex];
@@ -83,11 +83,14 @@ export class HeaderComponent implements OnInit {
     }
     //changes buddy quotes based on incrementing index
     changeQuote(): void {
-        this.buddyQuote = BUDDY_QUOTES[this.quoteIndex];
-        this.quoteIndex++;
-        if (this.quoteIndex === BUDDY_QUOTES.length) {
-            this.quoteIndex = 0;
+        let number1 = this.quoteIndex;
+        this.buddyQuote = BUDDY_QUOTES[number1];
+        this.quoteIndex = Math.floor((Math.random() * BUDDY_QUOTES.length));
+        let number2= this.quoteIndex;
+        while (number1 === number2) {
+            number2=Math.floor((Math.random() * BUDDY_QUOTES.length));
         }
+        this.quoteIndex = number2;
     }
     //changes buddy pictures randomly on click
     changeBuddy(): void {
