@@ -6,11 +6,14 @@ import { FormsModule }             from '@angular/forms';
 
 import { BsRootModule }            from 'ngx-bootstrap';
 
+import { SortablejsModule }         from 'angular-sortablejs';
+
 @NgModule({
     imports: [
         SharedModule,
         FormsModule,
-        BsRootModule
+        BsRootModule,
+        SortablejsModule
     ],
     declarations: [
         ListComponent

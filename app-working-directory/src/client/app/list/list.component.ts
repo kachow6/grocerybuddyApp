@@ -5,6 +5,8 @@ import { ShoppingList,
          FridgeItem }       from '../shared/user-service/user';
 import { Router }           from '@angular/router';
 
+import { SortablejsDirective } from 'angular-sortablejs';
+
 /**
  * This class represents the lazy loaded HomeComponent.
  */

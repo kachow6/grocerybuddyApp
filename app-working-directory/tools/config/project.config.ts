@@ -100,8 +100,12 @@ export class ProjectConfig extends SeedConfig {
       }
     },
     {
-      name: 'sortablejs/Sortable.min',
-      path: 'node_modules/sortablejs/Sortable.min.js'
+      name: 'sortablejs',
+      path: 'node_modules/sortablejs',
+      packageMeta: {
+        main: 'Sortable.min.js',
+        defaultExtension: 'js'
+      }
     }
     ];
     this.addPackagesBundles(additionalPackages);
