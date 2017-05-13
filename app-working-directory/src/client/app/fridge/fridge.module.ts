@@ -1,9 +1,8 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FridgeComponent } from './fridge.component';
-import { FridgeRoutingModule } from './fridge-routing.module';
-import { SharedModule } from '../shared/shared.module';
-import { FormsModule } from '@angular/forms';
+import { NgModule }                from '@angular/core';
+import { CommonModule }            from '@angular/common';
+import { FridgeComponent }         from './fridge.component';
+import { SharedModule }            from '../shared/shared.module';
+import { FormsModule }             from '@angular/forms';
 
 import { BsDropdownModule, AccordionModule, AlertModule, ButtonsModule,
          CarouselModule, CollapseModule, DatepickerModule, ModalModule,
@@ -13,7 +12,6 @@ import { BsDropdownModule, AccordionModule, AlertModule, ButtonsModule,
 
 @NgModule({
   imports: [
-    FridgeRoutingModule,
     SharedModule,
     FormsModule,
 

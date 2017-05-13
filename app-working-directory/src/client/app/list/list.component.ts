@@ -81,6 +81,6 @@ export class ListComponent {
         }
 
         // Navigates to the fridge page.
-        this.router.navigateByUrl('/fridge');
+        this.router.navigateByUrl('/main/fridge');
     }
 }
