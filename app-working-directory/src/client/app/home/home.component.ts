@@ -38,7 +38,7 @@ export class HomeComponent {
     //Method for moving into the user selected list
     selectList(list: ShoppingList): void {
         this.userService.setCurrentList(list);
-        this.router.navigateByUrl('/list');
+        this.router.navigateByUrl('/main/list');
     }
 
     //Method for renaming the shopping list.
