@@ -4,10 +4,10 @@ import { ListComponent } from './list.component';
 
 @NgModule({
   imports: [
-    RouterModule.forChild([
-      { path: 'list', component: ListComponent }
-    ])
+    // RouterModule.forChild([
+    //   { path: 'list', component: ListComponent }
+    // ])
   ],
-  exports: [RouterModule]
+  exports: []
 })
 export class ListRoutingModule { }

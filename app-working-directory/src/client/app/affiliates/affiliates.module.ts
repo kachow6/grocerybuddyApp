@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AffiliatesComponent } from './affiliates.component';
-import { AffiliatesRoutingModule } from './affiliates-routing.module';
+// import { AffiliatesRoutingModule } from './affiliates-routing.module';
 import { SharedModule } from '../shared/shared.module';
 
 import { BsDropdownModule, AccordionModule, AlertModule, ButtonsModule,
@@ -12,7 +12,7 @@ import { BsDropdownModule, AccordionModule, AlertModule, ButtonsModule,
 
 @NgModule({
   imports: [
-    AffiliatesRoutingModule,
+    // AffiliatesRoutingModule,
     SharedModule,
 
     // BOOTSTRAP IMPORTS

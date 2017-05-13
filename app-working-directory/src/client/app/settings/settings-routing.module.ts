@@ -4,10 +4,7 @@ import { SettingsComponent } from './settings.component';
 
 @NgModule({
   imports: [
-    RouterModule.forChild([
-      { path: 'settings', component: SettingsComponent }
-    ])
   ],
-  exports: [RouterModule]
+  exports: []
 })
 export class SettingsRoutingModule { }

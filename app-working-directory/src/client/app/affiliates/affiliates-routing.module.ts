@@ -4,10 +4,7 @@ import { AffiliatesComponent } from './affiliates.component';
 
 @NgModule({
   imports: [
-    RouterModule.forChild([
-      { path: 'affiliates', component: AffiliatesComponent }
-    ])
   ],
-  exports: [RouterModule]
+  exports: []
 })
 export class AffiliatesRoutingModule { }

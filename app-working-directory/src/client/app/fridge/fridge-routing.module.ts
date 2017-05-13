@@ -4,10 +4,7 @@ import { FridgeComponent } from './fridge.component';
 
 @NgModule({
   imports: [
-    RouterModule.forChild([
-      { path: 'fridge', component: FridgeComponent }
-    ])
   ],
-  exports: [RouterModule]
+  exports: []
 })
 export class FridgeRoutingModule { }

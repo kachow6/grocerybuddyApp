@@ -1,12 +1,12 @@
-import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { NgModule }                 from '@angular/core';
+import { RouterModule }             from '@angular/router';
 
-import { MainComponent } from './main.component';
-import { AffiliatesComponent } from '../affiliates/affiliates.component';
-import { FridgeComponent } from '../fridge/fridge.component';
-import { HomeComponent } from '../home/home.component';
-import { ListComponent } from '../list/list.component';
-import { SettingsComponent } from '../settings/settings.component';
+import { MainComponent }            from './main.component';
+import { AffiliatesComponent }      from '../affiliates/affiliates.component';
+import { FridgeComponent }          from '../fridge/fridge.component';
+import { HomeComponent }            from '../home/home.component';
+import { ListComponent }            from '../list/list.component';
+import { SettingsComponent }        from '../settings/settings.component';
 
 
 @NgModule({
