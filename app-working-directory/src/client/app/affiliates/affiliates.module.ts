@@ -1,8 +1,8 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { AffiliatesComponent } from './affiliates.component';
-// import { AffiliatesRoutingModule } from './affiliates-routing.module';
-import { SharedModule } from '../shared/shared.module';
+import { NgModule }               from '@angular/core';
+import { CommonModule }           from '@angular/common';
+
+import { AffiliatesComponent }    from './affiliates.component';
+import { SharedModule }           from '../shared/shared.module';
 
 import { BsDropdownModule, AccordionModule, AlertModule, ButtonsModule,
          CarouselModule, CollapseModule, DatepickerModule, ModalModule,
@@ -12,7 +12,6 @@ import { BsDropdownModule, AccordionModule, AlertModule, ButtonsModule,
 
 @NgModule({
   imports: [
-    // AffiliatesRoutingModule,
     SharedModule,
 
     // BOOTSTRAP IMPORTS
