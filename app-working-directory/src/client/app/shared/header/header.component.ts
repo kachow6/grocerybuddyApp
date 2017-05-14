@@ -31,7 +31,7 @@ export class HeaderComponent implements OnInit {
     bodyBg   : string;  // Color of div that covers page when nav bar pops out.
     extended : boolean; // Whether or not the nav bar is extended.
 
-    //placeholder for items that will be expiring soon
+    // List of soon-to-expire items. Data-bound to the notifications UI element.
     expiringItems: FridgeItem[];
 
     //buddy quote index
@@ -43,17 +43,16 @@ export class HeaderComponent implements OnInit {
     buddyPic: string = BUDDY_PICS[this.picIndex];
 
 
-    // CONSTRUCTOR.
-    // Set up the HeaderComponent class and inject all the necessary services.
+    // CONSTRUCTOR & INITIALIZATION.
+    // Used to inject all the necessary services and perform basic wiring.
     constructor(private router: Router,
-                private userService: UserService) {
-        this.expiringItems = userService.getFridge();
-    }
+                private userService: UserService) {}
 
     // OnInit method. Angular's recommended place to perform initialization.
     ngOnInit() {
         this.pageTitle = 'Grocery Buddy';
         this.closeNav();
+        this.expiringItems = this.userService.getFridge();
     }
 
     // EXPIRY NOTIFICATION METHODS
@@ -100,7 +99,7 @@ export class HeaderComponent implements OnInit {
         }
         this.quoteIndex = number2;
     }
-    
+
     //changes buddy pictures randomly on click
     changeBuddy(): void {
         let number1 = this.picIndex;
