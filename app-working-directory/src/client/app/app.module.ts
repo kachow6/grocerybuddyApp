@@ -17,18 +17,20 @@ import { AffiliatesModule }       from './affiliates/affiliates.module';
 import { AuthModule }             from './auth/auth.module';
 
 import { MainModule }             from './main/main.module';
-
 import { HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
-
 import { BootstrapTestModule }    from './bootstrap-test/bootstrap-test.module';
-
 import { BsRootModule }            from 'ngx-bootstrap';
 
+
+
+
 const FIREBASE_APP_CONFIG = {
-    apiKey: '<->',
-    authDomain: '<->',
-    databaseURL: '<->',
-    storageBucket: '<->',
+    apiKey: "AIzaSyBpLETTqVsUSQswaIKAigSfF0Ry4TQjymM",
+    authDomain: "learnfirebase01-27d30.firebaseapp.com",
+    databaseURL: "https://learnfirebase01-27d30.firebaseio.com",
+    projectId: "learnfirebase01-27d30",
+    storageBucket: "learnfirebase01-27d30.appspot.com",
+    messagingSenderId: "472845719986"
 };
 
 

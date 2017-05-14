@@ -1,12 +1,12 @@
 
-import { Component, OnInit } from '@angular/core';
-import { BUDDY_QUOTES } from  './header.menu.buddyquotes';
-import { BUDDY_PICS } from  './header.menu.buddypics';
-import { UserService }      from '../user-service/user.service';
-import { FridgeItem }     from '../user-service/user';
+import { Component, OnInit }     from '@angular/core';
+import { BUDDY_QUOTES }          from  './header.menu.buddyquotes';
+import { BUDDY_PICS }            from  './header.menu.buddypics';
+import { UserService }           from '../user-service/user.service';
+import { FridgeItem }            from '../user-service/user';
 import { Router,
     NavigationEnd,
-    NavigationStart }       from '@angular/router';
+    NavigationStart }            from '@angular/router';
 
 /**
  * This class represents the navigation bar component.
@@ -19,27 +19,38 @@ import { Router,
   styleUrls: ['header.component.css'],
 })
 export class HeaderComponent implements OnInit {
-    readonly extWidth: number = 225;
 
-    pageTitle: string;
+    // Page Display Variables
+    pageTitle: string;  // Tracks the title of the current page.
+    push     : number;  // Used to push the extending nav bar out from the side.
+    bodyBg   : string;  // Color of div that covers page when nav bar pops out.
+    extended : boolean; // Whether or not the nav bar is extended.
 
-    push     : number;
-    bodyBg   : string;
-    extended : boolean;
     //placeholder for items that will be expiring soon
     expiringItems: FridgeItem[];
 
     //States for the progress bar
-    stateDanger: string = 'progress-bar-danger';
-    stateWarning: string = 'progress-bar-warning';
-    stateSuccess: string = 'progress-bar-success';
-    itemState: string = '';
+    stateDanger  : string = 'progress-bar-danger';
+    stateWarning : string = 'progress-bar-warning';
+    stateSuccess : string = 'progress-bar-success';
+    itemState    : string = '';
+
     //buddy quote index
     quoteIndex: number = Math.floor((Math.random() * BUDDY_QUOTES.length));
     buddyQuote: string = BUDDY_QUOTES[this.quoteIndex];
+
     //index for buddy pics
     picIndex: number = Math.floor((Math.random() * BUDDY_PICS.length));
     buddyPic: string = BUDDY_PICS[this.picIndex];
+
+
+    // CONSTRUCTOR.
+    // Set up the HeaderComponent class and inject all the necessary services.
+    constructor(private router: Router,
+                private userService: UserService) {
+            this.expiringItems = userService.getFridge();
+    }
+
 
     //pulls expiring items out of user's fridge items
     pullExpiring(list: FridgeItem[]): FridgeItem[] {
@@ -60,20 +71,13 @@ export class HeaderComponent implements OnInit {
         return amount;
     }
 
-    // CONSTRUCTOR.
-    // Set up the HeaderComponent class and inject all the necessary services.
-    constructor(private router: Router,
-                private userService: UserService) {
-            this.expiringItems = userService.getFridge();
-    }
-
     openNav(): void {
-        this.push     = this.extWidth;
+        this.push    = 255;
         this.bodyBg  = 'rgba(0, 0, 0, 0.8)';
     }
 
     closeNav(): void {
-        this.push     = 0;
+        this.push    = 0;
         this.bodyBg  = 'white';
     }
 
