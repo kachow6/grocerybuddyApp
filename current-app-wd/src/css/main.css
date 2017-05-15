@@ -77,3 +77,8 @@ a {
 a:hover {
   color: #4B4B4B;
 }
+
+.new-object-input {
+  padding: 20px;
+  padding-left: 30px
+}
