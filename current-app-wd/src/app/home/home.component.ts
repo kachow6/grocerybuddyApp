@@ -71,9 +71,9 @@ export class HomeComponent {
     // ====== ITEM DELETE ====== //
     // Starts timer to delete items.
     startItemDeleteTimer(item: ShoppingList): any {
-        // return setTimeout(
-        //         () => {this.deleteList(item); }, 3000
-        //     );
+        return setTimeout(
+                () => {this.deleteList(item); }, 3000
+            );
     }
 
     // Cancel timer that deletes items.
