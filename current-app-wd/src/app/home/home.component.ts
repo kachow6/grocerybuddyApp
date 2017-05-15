@@ -68,6 +68,20 @@ export class HomeComponent {
         this.myList.push(tempList);
     }
 
+    // ====== ITEM DELETE ====== //
+    // Starts timer to delete items.
+    startItemDeleteTimer(item: ShoppingList): any {
+        // return setTimeout(
+        //         () => {this.deleteList(item); }, 3000
+        //     );
+    }
+
+    // Cancel timer that deletes items.
+    clearItemDeleteTimer(timer: any): null {
+        timer = clearTimeout(timer);
+        return null;
+    }
+
     //Method for deleting a shopping list off home page.
     deleteList(list: ShoppingList): void {
         this.myList.splice(this.myList.indexOf(list),1);

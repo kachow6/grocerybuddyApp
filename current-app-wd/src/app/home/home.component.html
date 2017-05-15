@@ -14,42 +14,44 @@
 <div class="container col-lg-8 col-md-10 col-lg-offset-2 col-md-offset-1" style="top: 80px; margin-bottom: 60px">
 
     <!-- HTML for individual items in the main list -->
-    <div class="container-fluid list-element"
-         *ngFor="let item of myList; let i = index">
-        
-        <div class="row list-inline"
-             (swipeleft)="item.isQueuedForDelete=true"
-             (swiperight)="item.isQueuedForDelete=true">
+    <div class="container-fluid list-element" *ngFor="let item of myList; let i = index">
+
+       <div class="list-item-swipe-display swipe-left"
+            [class.swipe-display]="item.isQueuedForDelete && item.deleteQueueRight"
+            [class.swipe-hide]="!(item.isQueuedForDelete && item.deleteQueueRight)"
+            (swiperight)="item.isQueuedForDelete=false; item.deleteTimer=clearItemDeleteTimer(item.deleteTimer)"
+            #swipeLeft><span>Undo Left</span></div>
+
+        <div class="list-item-swipe-display swipe-right"
+            [class.swipe-display]="item.isQueuedForDelete && !item.deleteQueueRight"
+            [class.swipe-hide]="!(item.isQueuedForDelete && !item.deleteQueueRight)"
+            (swipeleft)="item.isQueuedForDelete=false; item.deleteTimer=clearItemDeleteTimer(item.deleteTimer)"
+            #swipeRight><span>Undo Right</span></div>
+
+        <div class="row"
+                (swipe)="item.isQueuedForDelete=true; item.deleteTimer=startItemDeleteTimer(item)"
+                (swipeleft)="item.deleteQueueRight=true"
+                (swiperight)="item.deleteQueueRight=false">
+
             <div class="col-lg-8 col-md-8 col-sm-7 col-xs-6"
-                 style="margin-top: 5px"
-                 >
-                <h4 (click)="selectList(item)">{{item.name}}</h4>
+                 style="margin-top: 10px">
+                <h4 (tap)="selectList(item)">{{item.name}}</h4>
             </div>
 
             <div class="dropdown"
                  style="margin-top: 8px; margin-right: 10px; text-align: right; font-size: 20px"
-                 dropdown
-                 *ngIf="!item.isQueuedForDelete">
+                 dropdown>
                 
                 <a DATA-TOGGLE="#" dropdownToggle class="dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><span class="glyphicon glyphicon-option-vertical"></span></a>
 
                 <ul *dropdownMenu role="menu" class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
                     <li role="menuitem" class="menu-item"><a DATA-TOGGLE="#" (click)="renameModal.show()" data-toggle="modal">Rename</a></li>
                     <li role="menuitem" class="menu-item"><a DATA-TOGGLE="#" (click)="copyList(item)">Copy</a></li>
-                    <li role="menuitem" class="menu-item"><a DATA-TOGGLE="#" (click)="item.isQueuedForDelete=true">Delete</a></li>
+                    <li role="menuitem" class="menu-item"><a DATA-TOGGLE="#" (click)="item.isQueuedForDelete=true; item.deleteTimer=startItemDeleteTimer(item)">Delete</a></li>
                     <li role="menuitem" class="menu-item"><a DATA-TOGGLE="#" (click)="resetList(item)">Reset</a></li>
                 </ul>
             </div>
-            <div class="dropdown col-lg-4 col-md-4 col-sm-5 col-xs-6"
-                 style="margin: 5px 0; text-align: right;"
-                 *ngIf="item.isQueuedForDelete">
-                <button class="btn btn-xs btn-danger"
-                        style="margin: 0 0.25em; padding-left: 1em; padding-right: 1em"
-                        (click)="deleteList(item)">Delete</button>
-                <button class="btn btn-xs btn-success"
-                        style="margin: 0 0.25em; padding-left: 1em; padding-right: 1em"
-                        (click)="item.isQueuedForDelete=null">Undo</button>
-            </div>
+
         </div>
             <!-- Rename Modal -->
             <div class="modal fade" id="renameModal" tabindex="-1" role="dialog" bsModal #renameModal="bs-modal" aria-labelledby="rename" aria-hidden="true">
