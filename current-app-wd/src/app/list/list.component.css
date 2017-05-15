@@ -21,3 +21,47 @@
 .item-regular {
     position: absolute;
 }
+
+/* SWIPE ANIMATION ELEMENTS */
+.list-item-swipe-display {
+    position: absolute;
+    height: 100%;
+    background-color: red;
+    z-index: 10;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    overflow: hidden;
+    word-wrap: none;
+    color: white;
+    white-space: nowrap;
+}
+
+.swipe-right {
+    left: 0px;
+}
+
+.swipe-left {
+    right: 0;
+}
+
+.swipe-display {
+    width: 100%;
+    padding-left: 1em;
+    padding-right: 1em;
+
+    transition-property: padding width;
+    transition-duration: 0.35s;
+}
+
+.swipe-hide {
+    width: 0%;
+    padding-left: 0em;
+    padding-right: 0em;
+
+    transition-property: padding width;
+    transition-duration: 0.35s;
+}
+
+.list-item-element-shrink {
+    height: 10%;
+}

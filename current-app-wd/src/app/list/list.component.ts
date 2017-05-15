@@ -48,10 +48,28 @@ export class ListComponent {
         }
     }
 
+    // ===== ITEM DELETE ====== //
+    // Starts timer to delete items.
+    startItemDeleteTimer(item: ShoppingItem): any {
+        return setTimeout(
+                // () => {this.deleteItem(this.myList.indexOf(item)); }, 3000
+                () => {this.deleteItemAnimation(item); }, 3000
+            );
+    }
+
+    // Cancel timer that deletes items.
+    clearItemDeleteTimer(timer: any): null {
+        timer = clearTimeout(timer);
+        return null;
+    }
+
+    // Delete Animation
+    deleteItemAnimation(item: ShoppingItem): void {
+        item = null;
+    }
+
     // Delete Item.
     deleteItem(index: number): void {
-        console.log("Delete!");
-
         if (index >= 0 && index < this.myList.length) {
             let firstHalf: ShoppingItem[] = [];
             let lastHalf : ShoppingItem[] = [];
