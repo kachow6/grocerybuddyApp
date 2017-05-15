@@ -25,8 +25,8 @@
 			<div class="col-lg-3 col-md-3 col-sm-3 col-xs-4" *ngIf="!item.isQueuedForDelete" style="text-align: right">
 				<h4>x{{item.quantity}}</h4>
 			</div>
-			<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 push-right" style="margin-top: 5px" *ngIf="!item.isQueuedForDelete">
-				<button class="btn btn-default btn-sm" (click)="itemModal.show()" data-toggle="modal" data-target="#listModal"><span class="glyphicon glyphicon-option-vertical"></span></button>
+			<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 push-right" style="margin-top: 3px; margin-right: 10px; text-align: right; font-size: 20px; right: -16px" *ngIf="!item.isQueuedForDelete">
+				<a DATA-TOGGLE="#" (click)="itemModal.show()" data-toggle="modal" data-target="#listModal"><span class="glyphicon glyphicon-option-vertical"></span></a>
 			</div>
 
 			<div class="col-lg-4 col-md-4 col-sm-5 col-xs-6"
@@ -42,7 +42,7 @@
 		</div>
 		<div class="row col-lg-11 col-md-11 col-sm-10 col-xs-10" style="padding: 0 0 0 10px;">
 			<div class="progress" style="margin-bottom: 8px; height: 13px">
-				<div class="progress-bar {{calculateExp(100, item.expiration)}}" role="progressbar" aria-valuenow="item.expiration" aria-valuemin="0" aria-valuemax="100" style="height: 7px" [style.width]="item.expiration + '%'">
+				<div class="progress-bar {{calculateExp(100, item.expiration)}}" role="progressbar" aria-valuenow="item.expiration" aria-valuemin="0" aria-valuemax="100" style="height: 9px; margin-top: 2.5px;" [style.width]="item.expiration + '%'">
 				</div>
 			</div>
 		</div>
