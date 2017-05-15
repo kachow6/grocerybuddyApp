@@ -62,6 +62,6 @@
     transition-duration: 0.35s;
 }
 
-.list-item-element-shrink {
-    height: 10%;
+.item-delete-animation {
+    font-weight: bold;
 }

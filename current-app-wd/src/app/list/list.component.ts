@@ -48,12 +48,11 @@ export class ListComponent {
         }
     }
 
-    // ===== ITEM DELETE ====== //
+    // ====== ITEM DELETE ====== //
     // Starts timer to delete items.
     startItemDeleteTimer(item: ShoppingItem): any {
         return setTimeout(
-                // () => {this.deleteItem(this.myList.indexOf(item)); }, 3000
-                () => {this.deleteItemAnimation(item); }, 3000
+                () => {this.deleteItem(this.myList.indexOf(item)); }, 3000
             );
     }
 
@@ -62,12 +61,6 @@ export class ListComponent {
         timer = clearTimeout(timer);
         return null;
     }
-
-    // Delete Animation
-    deleteItemAnimation(item: ShoppingItem): void {
-        item = null;
-    }
-
     // Delete Item.
     deleteItem(index: number): void {
         if (index >= 0 && index < this.myList.length) {
