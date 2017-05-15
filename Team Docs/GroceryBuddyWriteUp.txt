@@ -1,0 +1,10 @@
+Grocery Buddy
+*************
+
+Your new best friend for planning what food to buy and making sure you use it.
+
+Plan your shopping trips by creating, organizing, and saving grocery lists.
+Store information about what you buy in a virtual fridge with tracking bars to show how fresh your food is.
+Worried about your food going bad? Grocery Buddy will send you notifications if anything in your virtual fridge is nearing its expiry date.
+
+Make the most out of the food you buy!
