@@ -69,3 +69,11 @@ button {
 button:hover {
   background-color: #28739e;
 }
+
+a {
+  color: #646464;
+}
+
+a:hover {
+  color: #4B4B4B;
+}
