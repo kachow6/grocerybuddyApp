@@ -121,3 +121,10 @@ a:hover {
 .item-delete-animation {
     font-weight: bold;
 }
+/* ===== END OF SWIPE-TO-DELETE CSS ===== */
+
+.new-object-input {
+  padding: 20px;
+  padding-left: 30px
+}
+
