@@ -4,7 +4,7 @@
             <input [(ngModel)] = "nameInput" type="text" class="form-control" id="new-list-form" placeholder="New List" >
         </div>
         <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 col-lg-offset-1 col-md-offset-3 col-xs-offset-1" style="margin-top: 15px">
-            <button (click)="addList()" class="btn btn-lg btn-success" type="button" data-toggle="dropdown">
+            <button (click)="addList()" class="btn btn-lg btn-success title" type="button" data-toggle="dropdown">
                 <span class="glyphicon glyphicon-plus"></span>
             </button>
         </div>
@@ -26,16 +26,18 @@
                 <h4 (click)="selectList(item)">{{item.name}}</h4>
             </div>
 
-            <div class="dropdown col-lg-4 col-md-4 col-sm-5 col-xs-6"
-                 style="margin-top: 5px; margin-bottom: 5px; text-align: right;"
+            <div class="dropdown"
+                 style="margin-top: 8px; margin-right: 10px; text-align: right; font-size: 20px"
                  dropdown
                  *ngIf="!item.isQueuedForDelete">
-                <button dropdownToggle class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><span class="glyphicon glyphicon-option-vertical"></span></button>
+                
+                <a DATA-TOGGLE="#" dropdownToggle class="dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><span class="glyphicon glyphicon-option-vertical"></span></a>
+
                 <ul *dropdownMenu role="menu" class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
-                    <li role="menuitem" class="menu-item"><a href="#" (click)="renameModal.show()" data-toggle="modal">Rename</a></li>
-                    <li role="menuitem" class="menu-item"><a href="#" (click)="copyList(item)">Copy</a></li>
-                    <li role="menuitem" class="menu-item"><a href="#" (click)="item.isQueuedForDelete=true">Delete</a></li>
-                    <li role="menuitem" class="menu-item"><a href="#" (click)="resetList(item)">Reset</a></li>
+                    <li role="menuitem" class="menu-item"><a DATA-TOGGLE="#" (click)="renameModal.show()" data-toggle="modal">Rename</a></li>
+                    <li role="menuitem" class="menu-item"><a DATA-TOGGLE="#" (click)="copyList(item)">Copy</a></li>
+                    <li role="menuitem" class="menu-item"><a DATA-TOGGLE="#" (click)="item.isQueuedForDelete=true">Delete</a></li>
+                    <li role="menuitem" class="menu-item"><a DATA-TOGGLE="#" (click)="resetList(item)">Reset</a></li>
                 </ul>
             </div>
             <div class="dropdown col-lg-4 col-md-4 col-sm-5 col-xs-6"
