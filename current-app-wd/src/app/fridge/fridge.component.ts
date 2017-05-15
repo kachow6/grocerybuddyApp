@@ -65,9 +65,23 @@ export class FridgeComponent {
       }
     }
 
+    // ====== ITEM DELETE ====== //
+    // Starts timer to delete items.
+    startItemDeleteTimer(item: FridgeItem): any {
+        return setTimeout(
+                () => {this.deleteItem(item); }, 3000
+            );
+    }
+
+    // Cancel timer that deletes items.
+    clearItemDeleteTimer(timer: any): null {
+        timer = clearTimeout(timer);
+        return null;
+    }
+
     //Method for deleting a shopping list off home page.
-    deleteItem(list: FridgeItem): void {
-        this.fridgeList.splice(this.fridgeList.indexOf(list),1);
+    deleteItem(item: FridgeItem): void {
+        this.fridgeList.splice(this.fridgeList.indexOf(item),1);
     }
 
 }

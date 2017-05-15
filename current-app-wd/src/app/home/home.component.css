@@ -1,6 +1,7 @@
 .list-element{
 	background-color: #E5E5E5;
 	border: 3px solid white;
+    position: relative;
 }
 .add-list{
 	background-color: #0A8056;
