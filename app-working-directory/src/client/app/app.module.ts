@@ -4,7 +4,6 @@ import { APP_BASE_HREF }          from '@angular/common';
 import { HttpModule }             from '@angular/http';
 import { AppComponent }           from './app.component';
 import { AppRoutingModule }       from './app-routing.module';
-import { AngularFireModule }      from 'angularfire2';
 
 import { SharedModule }           from './shared/shared.module';
 import { AboutModule }            from './about/about.module';
@@ -19,20 +18,20 @@ import { AuthModule }             from './auth/auth.module';
 import { MainModule }             from './main/main.module';
 import { HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 import { BootstrapTestModule }    from './bootstrap-test/bootstrap-test.module';
-import { BsRootModule }            from 'ngx-bootstrap';
+import { BsRootModule }           from 'ngx-bootstrap';
+
+import { AngularFireModule, FirebaseAppConfig }      from 'angularfire2';
+import { AngularFireAuthModule }  from 'angularfire2/auth';
 
 
-
-
-const FIREBASE_APP_CONFIG = {
-    apiKey: "AIzaSyBpLETTqVsUSQswaIKAigSfF0Ry4TQjymM",
-    authDomain: "learnfirebase01-27d30.firebaseapp.com",
-    databaseURL: "https://learnfirebase01-27d30.firebaseio.com",
-    projectId: "learnfirebase01-27d30",
-    storageBucket: "learnfirebase01-27d30.appspot.com",
-    messagingSenderId: "472845719986"
-};
-
+export class FirebaseConfig implements FirebaseAppConfig {
+    apiKey: "AIzaSyBpLETTqVsUSQswaIKAigSfF0Ry4TQjymM";
+    authDomain: "learnfirebase01-27d30.firebaseapp.com";
+    databaseURL: "https://learnfirebase01-27d30.firebaseio.com";
+    projectId: "learnfirebase01-27d30";
+    storageBucket: "learnfirebase01-27d30.appspot.com";
+    messagingSenderId: "472845719986";
+}
 
 
 
@@ -58,7 +57,6 @@ export class MyHammerConfig extends HammerGestureConfig  {
         HttpModule,
         AppRoutingModule,
         SharedModule.forRoot(),
-        AngularFireModule.initializeApp(FIREBASE_APP_CONFIG),
     
         HomeModule,
         AboutModule,
@@ -72,7 +70,10 @@ export class MyHammerConfig extends HammerGestureConfig  {
         MainModule,
     
         BootstrapTestModule,
-        BsRootModule
+        BsRootModule,
+
+        AngularFireModule.initializeApp(FirebaseConfig),
+        AngularFireAuthModule
     ],
     declarations: [
         AppComponent

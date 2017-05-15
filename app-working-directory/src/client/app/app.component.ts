@@ -6,6 +6,10 @@ import { UserService }      from './shared/user-service/user.service';
 import { Router,
          NavigationStart }  from '@angular/router';
 
+import { Observable }       from 'rxjs/Observable';
+import { AngularFireAuth }  from 'angularfire2/auth';
+import * as firebase        from 'firebase/app';
+
 /**
  * This class represents the main application component.
  */
@@ -18,7 +22,8 @@ import { Router,
 export class AppComponent {
     
     constructor(private router: Router,
-                private userService: UserService) {
+                private userService: UserService,
+                afAuth: AngularFireAuth) {
         console.log('Environment config', Config);
 
         // Updates this.pageTitle based on the URL.
