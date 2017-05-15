@@ -1,0 +1,23 @@
+.list-element{
+	background-color: #E5E5E5;
+	border: 3px solid white;
+    position: relative;
+}
+.add-item{
+	background-color: #0A8056;
+	border: 3px solid white;
+	color: white;
+}
+.title{
+	text-shadow: 2px 1px #818181;
+}
+.item-checkbox{
+	height: 40px;
+	width: 40px;
+}
+.item-fly-off {
+    opacity: 0.4;
+}
+.item-regular {
+    position: absolute;
+}

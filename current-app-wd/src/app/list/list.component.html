@@ -1,0 +1,131 @@
+<div class="container-fluid add-item col-lg-12 col-md-12 col-sm-12 col-xs-12" style="position: fixed; z-index: 1; border: 0">
+    <div class="row ">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6 col-lg-offset-2 col-md-offset-1 col-sm-offset-1" style="padding: 20px 15px">
+            <input [(ngModel)] = "nameInput" type="text" class="form-control" id="new-item-form" placeholder="New Item">
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-3" style="padding: 20px 15px">
+            <input [(ngModel)] = "numberInput" type="number" min=0 class="form-control" id="new-qty-form" placeholder="Qty.">
+        </div>
+        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 col-lg-offset-1 col-md-offset-3 col-sm-offset-3" style="margin-top: 15px">
+            <button (click)="addItem()" class="btn btn-lg btn-success title" type="button" data-toggle="dropdown"><span class="glyphicon glyphicon-plus"></span></button>
+        </div>
+    </div>
+</div>
+
+<div class="container col-lg-8 col-md-10 col-lg-offset-2 col-md-offset-1" style="top: 80px; margin-bottom: 60px">
+    <div class="container-fluid list-element" *ngFor = "let item of myList; let i = index">
+        <div class="row"
+            (swipeleft)="item.isQueuedForDelete=true"
+            (swiperight)="item.isQueuedForDelete=true"
+            >
+            <div class="col-lg-8 col-md-8 col-sm-7 col-xs-6" style="margin-top: 10px">
+                <h4 (click)="renameModal.show()" data-toggle="modal">{{item.name}}</h4>
+            </div>
+
+            <!-- These items are visible normally -->
+            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"
+                 style="margin-top: 25px;padding-right: 0;"
+                 *ngIf="!item.isQueuedForDelete">
+                <label>x</label>
+            </div>
+            <div class="list-inline col-lg-2 col-md-2 col-sm-2 col-xs-3"
+                 style="margin-top: 15px"
+                 *ngIf="!item.isQueuedForDelete">
+                <input [(ngModel)] = "item.quantity" type="number" class="form-control" id="qty-form1">
+            </div>
+            <div class="col-lg-1 col-md-1 col-sm-2 col-xs-2"
+                 *ngIf="!item.isQueuedForDelete"
+                 style="margin-top: 5px;">
+                <input [(ngModel)] = "item.checked" (click)="checkItem()" type="checkbox" class="item-checkbox" value="">
+            </div>
+
+            <!-- These items are visible if the user has swiped to delete -->
+            <div class="col-lg-4 col-md-4 col-sm-5 col-xs-6"
+                 style="padding: 6px 1em; text-align: right"
+                 *ngIf="item.isQueuedForDelete">
+                <button class="btn btn-xs btn-danger"
+                        style="margin: 0 0.25em; padding-left: 1em; padding-right: 1em"
+                        (click)="deleteItem(i)">Delete</button>
+                <button class="btn btn-xs btn-success"
+                        style="margin: 0 0.25em; padding-left: 1em; padding-right: 1em"
+                        (click)="item.isQueuedForDelete=null">Undo</button>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="container-fluid list-element">
+        <div class="row" style="text-align: center;">
+            <button class="btn btn-md btn-danger" (click)="resetModal.show()" data-toggle="modal" data-target="#listModal" style="margin: 10px 0 10px 0;">Reset List</button>
+            <button class="btn btn-md btn-success" (click)="checkoutModal.show()" data-toggle="modal" data-target="#listModal" style="margin: 10px 0 10px 0;">Checkout</button>
+        </div>
+    </div>
+
+
+</div>
+
+<!-- Delete Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="delete" aria-hidden="true" bsModal #resetModal="bs-modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" style="padding: 10px">
+                <button type="button" class="close" (click)="resetModal.hide()" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove"></span></button>
+                <br>
+            </div>
+            <div class="modal-body">
+                <br>
+                <h4 style="text-align: center" class="media-heading">Are you sure you want to reset this list?</h4>
+            </div>
+            <div class="modal-footer" style="text-align: center">
+                <button type="button" class="btn btn-success btn-sm btn-default" data-dismiss="modal" (click)="resetModal.hide(); resetList()" aria-label="Close">Yes - Uncheck all items</button>
+                <button type="button" class="btn btn-danger btn-sm btn-default" data-dismiss="modal" (click)="resetModal.hide()" aria-label="Close">No - I'm still using this list!</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Checkout Modal -->
+<div class="modal fade" id="checkoutModal" tabindex="-1" role="dialog" bsModal #checkoutModal="bs-modal" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" style="padding: 10px">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" (click)="checkoutModal.hide()"><span class="glyphicon glyphicon-remove"></span></button>
+                <br>
+                </div>
+            <div class="modal-body">
+                <br>
+                <h4 style="text-align: center" class="media-heading">Are you ready to checkout?</h4>
+            </div>
+            <div class="modal-footer" style="text-align: center">
+                <button type="button" class="btn btn-success btn-sm btn-default" data-dismiss="modal" (click)="checkoutModal.hide(); checkout(); resetList()" aria-label="Close">Yes - Add items to my Fridge</button>
+                <button type="button" class="btn btn-danger btn-sm btn-default" data-dismiss="modal" (click)="checkoutModal.hide()" aria-label="Close">No - Keep Shopping</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Rename Modal -->
+            <div class="modal fade" id="renameModal" tabindex="-1" role="dialog" bsModal #renameModal="bs-modal" aria-labelledby="rename" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" (click)="renameModal.hide()" aria-hidden="true"><span class="glyphicon glyphicon-remove"></span></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <form class="col-lg-11 col-md-11 col-sm-11 col-xs-11">
+                                    <label for="rename-form"><h3 class="media-heading">Item Rename: </h3></label>
+                                    <input [(ngModel)]="renameInput" [ngModelOptions]="{standalone: true}" type="text" class="form-control" id="rename-form">
+                                </form>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <div class="row" style="text-align: center;">
+                                <button class="btn btn-md btn-danger" (click)=" renameModal.hide(); listRename(item)" >Undo Changes</button>
+                                <button class="btn btn-md btn-success" (click)=" renameModal.hide(); listRename(item)" >Save Changes</button>                          
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+

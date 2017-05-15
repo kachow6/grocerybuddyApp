@@ -1,0 +1,77 @@
+<div class="container-fluid add-list col-lg-12 col-md-12 col-sm-12 col-xs-12" style="position: fixed; z-index: 1; border: 0">
+    <div class="row list-inline">
+        <div class="col-lg-6 col-md-6 col-sm-7 col-xs-8 col-lg-offset-2 col-sm-offset-1" style="padding: 20px 15px">
+            <input [(ngModel)] = "nameInput" type="text" class="form-control" id="new-list-form" placeholder="New List" >
+        </div>
+        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 col-lg-offset-1 col-md-offset-3 col-xs-offset-1" style="margin-top: 15px">
+            <button (click)="addList()" class="btn btn-lg btn-success" type="button" data-toggle="dropdown">
+                <span class="glyphicon glyphicon-plus"></span>
+            </button>
+        </div>
+    </div>
+</div>
+
+<div class="container col-lg-8 col-md-10 col-lg-offset-2 col-md-offset-1" style="top: 80px; margin-bottom: 60px">
+
+    <!-- HTML for individual items in the main list -->
+    <div class="container-fluid list-element"
+         *ngFor="let item of myList; let i = index">
+        
+        <div class="row list-inline"
+             (swipeleft)="item.isQueuedForDelete=true"
+             (swiperight)="item.isQueuedForDelete=true">
+            <div class="col-lg-8 col-md-8 col-sm-7 col-xs-6"
+                 style="margin-top: 5px"
+                 >
+                <h4 (click)="selectList(item)">{{item.name}}</h4>
+            </div>
+
+            <div class="dropdown col-lg-4 col-md-4 col-sm-5 col-xs-6"
+                 style="margin-top: 5px; margin-bottom: 5px; text-align: right;"
+                 dropdown
+                 *ngIf="!item.isQueuedForDelete">
+                <button dropdownToggle class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><span class="glyphicon glyphicon-option-vertical"></span></button>
+                <ul *dropdownMenu role="menu" class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
+                    <li role="menuitem" class="menu-item"><a href="#" (click)="renameModal.show()" data-toggle="modal">Rename</a></li>
+                    <li role="menuitem" class="menu-item"><a href="#" (click)="copyList(item)">Copy</a></li>
+                    <li role="menuitem" class="menu-item"><a href="#" (click)="item.isQueuedForDelete=true">Delete</a></li>
+                    <li role="menuitem" class="menu-item"><a href="#" (click)="resetList(item)">Reset</a></li>
+                </ul>
+            </div>
+            <div class="dropdown col-lg-4 col-md-4 col-sm-5 col-xs-6"
+                 style="margin: 5px 0; text-align: right;"
+                 *ngIf="item.isQueuedForDelete">
+                <button class="btn btn-xs btn-danger"
+                        style="margin: 0 0.25em; padding-left: 1em; padding-right: 1em"
+                        (click)="deleteList(item)">Delete</button>
+                <button class="btn btn-xs btn-success"
+                        style="margin: 0 0.25em; padding-left: 1em; padding-right: 1em"
+                        (click)="item.isQueuedForDelete=null">Undo</button>
+            </div>
+        </div>
+            <!-- Rename Modal -->
+            <div class="modal fade" id="renameModal" tabindex="-1" role="dialog" bsModal #renameModal="bs-modal" aria-labelledby="rename" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" (click)="renameModal.hide()" aria-hidden="true"><span class="glyphicon glyphicon-remove"></span></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <form class="col-lg-11 col-md-11 col-sm-11 col-xs-11">
+                                    <label for="rename-form"><h3 class="media-heading">Rename: </h3></label>
+                                    <input [(ngModel)]="renameInput" [ngModelOptions]="{standalone: true}" type="text" class="form-control" id="rename-form">
+                                </form>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <div class="row" style="text-align: center;">
+                                <button class="btn btn-lg btn-success" (click)=" renameModal.hide(); listRename(item)" >Save Changes</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+    </div>
+</div>

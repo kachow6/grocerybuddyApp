@@ -1,0 +1,109 @@
+/* Navigation CSS */
+.page-cover {
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.page-cover-regular {
+    z-index: 0;
+    background-color: rgba(0,0,0,0);
+    transition: background-color z-index 1s;
+}
+
+.page-cover-darken {
+    z-index: 2999;
+    background-color: rgba(0,0,0,0.4);
+    transition: background-color z-index 1s;
+}
+
+.sideNavInner {
+    width: 0;
+    height: 100%;
+}
+
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 3000;
+    top: 0;
+    left: 0;
+    background-color: white;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+.sidenav a {
+    font-family: Open Sans, Helvetica, Arial, sans-serif;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-size: 1.3em;
+    color: #818181;
+    display: block;
+    text-align: center;
+    transition: 0.3s;
+}
+
+.sidenav a:hover, .offcanvas a:focus {
+    color: #02b3ff;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+.hamburger {
+    color: white;
+    cursor:pointer;
+    font-size:35px;
+    padding-top: 25px;
+    text-shadow: 1px 1px #818181;
+}
+
+#banner {
+    z-index: 3;
+    transition: margin-left .5s;
+    background-color: #5CB85C;
+}
+
+#banner h2 {
+    color: white;
+    padding-bottom: 8px;
+    text-shadow: 1px 1px #818181;
+}
+
+.badge {
+    font-size: 1.3em;
+}
+
+.buddy-station {
+    padding-bottom: 10px;
+}
+ul.nav-tabs > li {
+    background-color: #2CBF26;
+    width: 33.33%;
+    text-align: center;
+}
+ul.nav-tabs > li a {
+    color: white;
+    background-color: rgba(0,0,0,0.0);
+    border: none;
+    font-size: 1.4em;
+}
+ul.nav-tabs > li a:hover {
+    background-color: #34E52E;
+}
+.page-top {
+    padding: 0;
+}
+.navbar-header {
+    margin-right: 0;
+}
