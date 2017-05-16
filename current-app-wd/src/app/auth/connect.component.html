@@ -4,12 +4,25 @@
         <div class="container col-lg-4 col-md-6 col-sm-6 col-xs-10 col-lg-offset-4 col-md-offset-3 col-sm-offset-3 col-xs-offset-1" style="margin-top: 10px">
             <img src="../../assets/imgs/GroceryBuddyLogin.png" alt="Grocery Buddy" class="img-responsive buddyLogo">
         </div>
-        
+
         <div class="container col-lg-12 col-md-12 col-sm-12 col-xs-12 col-lg-offset-0 col-md-offset-0 col-sm-offset-0 col-xs-offset-0 login-container">
 
             <div class="container col-lg-6 col-md-8 col-sm-8 col-xs-12 col-lg-offset-3 col-md-offset-2 col-sm-offset-2 col-xs-offset-0 login-form">
                 <div class="row">
                     <form>
+
+                        <!-- In the callback, you would hide the gSignInWrapper element on a successful sign in -->
+
+                        <div id="gSignInWrapper btn-block">
+                            <div id="customBtn" class="g-signin2" data-scope="https://www.googleapis.com/auth/userinfo.email"
+                                 data-onsuccess="onSignin" data-width="container-fluid" data-height="40" data-longtitle="true">
+                                <span class="icon"></span>
+                                <span class="buttonText">Sign in with Google</span>
+                            </div>
+                        </div>
+                        <div id="name"></div>
+                        <!-- Connect Through Google -->
+
 
                         <a [routerLink]="['../register']">
                             <button type="button" class="btn btn-danger btn-block form-element">
@@ -18,10 +31,6 @@
                             </button>
                         </a>
 
-                        <!-- In the callback, you would hide the gSignInWrapper element on a successful sign in -->
-                        <div class="g-signin2" data-onsuccess="onSignIn" data-width="container-fluid" data-height="40" data-longtitle="true"></div>
-                        <!-- Connect Through Google -->
-                        
                         <h4 class="title">Login: </h4>
                         <div class="form-group form-element">
                             <input type="email" class="form-control" id="email" placeholder="Email">
@@ -33,7 +42,7 @@
                             <label><input type="checkbox" style="top: -12px; color: #4B4B4B;"><small>Remember me</small></label>
                             <a class="pull-right" href="#"><small>Forgot Password?</small></a>
                         </div>
-                        
+
                         <button type="button" class="btn btn-primary btn-block form-element">Submit</button>
                     </form>
                 </div>
@@ -43,25 +52,3 @@
 
     </div>
 </div>
-
-<script>
-function onSuccess(googleUser) {
-  console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
-}
-function onFailure(error) {
-  console.log(error);
-}
-function renderButton() {
-  gapi.signin2.render('my-signin2', {
-    'scope': 'profile email',
-    'width': 240,
-    'height': 50,
-    'longtitle': true,
-    'theme': 'dark',
-    'onsuccess': onSuccess,
-    'onfailure': onFailure
-  });
-}
-</script>
-
-<script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
