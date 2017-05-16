@@ -16,14 +16,44 @@
 
 .login-container {
 	background-color: #5CB85C;
-	padding-bottom: 5px;
 }
 
 .form-element {
 	padding: 0;
-	margin: 15px 0;
+	margin: 14px 0;
 }
 
 a {
 	text-decoration: none;
+}
+
+/* GOOGLE SIGN-IN BUTTON CSS */
+#customBtn {
+	background: white;
+	color: #444;
+	border-radius: 5px;
+	margin-top: 10px;
+	white-space: nowrap;
+	text-align: center;
+}
+#customBtn:hover {
+  cursor: pointer;
+}
+span.label {
+  font-family: serif;
+  font-weight: normal;
+}
+span.icon {
+  background: url('../../assets/imgs/google-logo1.png') transparent 5px 50% no-repeat;
+  display: inline-block;
+  vertical-align: middle;
+  width: 42px;
+  height: 42px;
+}
+span.buttonText {
+  vertical-align: middle;
+  font-size: 15px;
+  font-weight: bold;
+  /* Use the Roboto font that is loaded in the <head> */
+  font-family: 'Roboto', sans-serif;
 }
