@@ -1,33 +1,36 @@
-<div class="container-fluid col-lg-4 col-md-4 col-sm-4 col-xs-10 col-lg-offset-4 col-md-offset-4 col-sm-offset-4 col-xs-offset-1" style="top: 30px; margin-bottom: 50px">
+<div class="container-fluid">
+    <div class="row">
 
-<div class="well">
-    <h1 class="text-center">GroceryBuddy</h1>
-    <div class="container-fluid img-responsive img-cricle"><img src="../../assets/imgs/pepper.png" alt="grocerybuddy" class="center-block"></div>
-    <h1 class="text-center">Welcome</h1>
-    <form>
+        <div class="container col-lg-4 col-md-6 col-sm-6 col-xs-10 col-lg-offset-4 col-md-offset-3 col-sm-offset-3 col-xs-offset-1" style="margin-top: 10px">
+            <img src="../../assets/imgs/GroceryBuddyLogin.png" alt="Grocery Buddy" class="img-responsive buddyLogo">
+        </div>
+        
+        <div class="container col-lg-12 col-md-12 col-sm-12 col-xs-12 col-lg-offset-0 col-md-offset-0 col-sm-offset-0 col-xs-offset-0 login-container">
 
-            <button type="button" class="btn btn-danger btn-block">Connect Through Google</button>
+            <div class="container col-lg-6 col-md-8 col-sm-8 col-xs-12 col-lg-offset-3 col-md-offset-2 col-sm-offset-2 col-xs-offset-0 login-form">
+                <div class="row">
+                    <form>
+                        <button type="button" class="btn btn-danger btn-block form-element">Connect Through Google</button>
+                        <button type="button" class="btn btn-info btn-block form-element">Sign-up Through Email</button>
+                        
+                        <h4 class="title">Login: </h4>
+                        <div class="form-group form-element">
+                            <input type="email" class="form-control" id="email" placeholder="Email">
+                        </div>
+                        <div class="form-group form-element">
+                            <input type="password" class="form-control" id="password" placeholder="Password">
+                        </div>
+                        <div class="checkbox row form-element">
+                            <label><input type="checkbox" style="top: -12px; color: #4B4B4B;"><small>Remember me</small></label>
+                            <a class="pull-right" href="#"><small>Forgot Password?</small></a>
+                        </div>
+                        
+                        <button type="button" class="btn btn-primary btn-block form-element">Submit</button>
+                    </form>
+                </div>
+            </div>
 
-      <button type="button" class="btn btn-info btn-block">Connect Through Email</button>
-
-        <div class="form-group">
-            <label for="email">Email:</label>
-            <input type="email" class="form-control" id="email">
         </div>
 
-        <div class="form-group">
-            <label for="email">Password:</label>
-            <input type="password" class="form-control" id="password">
-        </div>
-
-        <div class="checkbox">
-            <label><input type="checkbox"> Remember me</label> <a class="pull-right" href="#">Forgot Password?</a>
-        </div>
-
-        <button type="button" class="btn btn-success btn-block">Submit</button>
-
-
-    </form>
-
-</div>
+    </div>
 </div>

@@ -24,7 +24,11 @@ export class ListComponent {
 
     constructor(private userService: UserService,
                 private router: Router) {
-        this.myList = userService.getCurrentList().contents;
+        if (userService.getCurrentList()) {
+            this.myList = userService.getCurrentList().contents;
+        } else {
+            this.router.navigateByUrl('/main');
+        }
     }
 
     //Method for adding a new item by user input
