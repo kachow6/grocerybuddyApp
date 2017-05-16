@@ -52,6 +52,7 @@
 		<!-- Options Modal -->
 	<div class="modal fade" id="listModal" tabindex="-1" role="dialog" aria-labelledby="options" bsModal #itemModal="bs-modal"
 		tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"aria-hidden="true">
+		<div *ngIf="showEasterEgg" style="text-align: center; position: absolute; z-index: 1; height: 100%; width: 100%"><img src="../../assets/imgs/non-buddies/eastergg.png"></div>
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header" style="padding: 10px">
@@ -93,7 +94,7 @@
 							<h4 class="media-heading">Expiration Date: </h4>
 						</div>
 						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-3" style="padding-right: 0; top: -12px">
-							<input [(ngModel)]="item.expiration" [ngModelOptions]="{standalone: true}" type="number" class="form-control input-sm" value="1" min="0">
+							<input [(ngModel)]="item.expiration" [ngModelOptions]="{standalone: true}" type="number" class="form-control input-sm" value="1" min="0" (keyup)="activateEasterEgg(item.expiration)">
 						</div>
 						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="top:-12px">
 							<h5><strong><span class="text-muted">days</span></strong></h5>
@@ -107,8 +108,9 @@
 				</div>
 			</div>
 		</div>
-	</div>
+		<!--<div *ngIf="item.expiration > 9000"><img src="../../assets/imgs/non-buddies/eastergg.png"></div>-->
 	</div>
 
+	</div>
 
 </div>

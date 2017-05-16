@@ -26,7 +26,8 @@ export class FridgeComponent {
     nameInput:      string = '';
     numberInput:    number;
     expiration:     number;
-    renameInput: string;
+    renameInput:    string;
+    showEasterEgg = false;
 
     //States for the progress bar
     stateDanger: string = 'progress-bar-danger';
@@ -68,6 +69,13 @@ export class FridgeComponent {
     //Method for deleting a shopping list off home page.
     deleteItem(list: FridgeItem): void {
         this.fridgeList.splice(this.fridgeList.indexOf(list),1);
+    }
+
+    activateEasterEgg(expiration: number): void {
+        if (expiration > 9000) {
+            this.showEasterEgg = true;
+            setTimeout(function(){ this.showEasterEgg = false; }, 1);
+        }
     }
 
 }
