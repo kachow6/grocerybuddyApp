@@ -7,14 +7,14 @@
             <input [(ngModel)] = "numberInput" type="number" class="form-control" id="new-qty-form" placeholder="Qty.">
         </div>
         <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 col-lg-offset-1 col-md-offset-3 col-sm-offset-3" style="margin-top: 15px">
-            <button (click)="addItem()" class="btn btn-lg btn-success title" type="button" data-toggle="dropdown"><span class="glyphicon glyphicon-plus"></span></button>
+            <button (click)=" addItemToFridgeList(nameInput, numberInput)" class="btn btn-lg btn-success title" type="button" data-toggle="dropdown"><span class="glyphicon glyphicon-plus"></span></button>
         </div>
     </div>
 </div>
 
 <div class="container col-lg-8 col-md-10 col-lg-offset-2 col-md-offset-1" style="top: 80px; margin-bottom: 60px">
 
-	<div class="container-fluid list-element" *ngFor = "let item of fridgeList; let i = index">
+	<div class="container-fluid list-element" *ngFor = "let item of fridgeList$ | async; let i = index">
 
 		<div class="list-item-swipe-display swipe-left"
             [class.swipe-display]="item.isQueuedForDelete && item.deleteQueueRight"
@@ -39,7 +39,7 @@
 				<h4 style="margin-bottom: 0; margin-top: 15px;">{{item.name}}</h4>
 			</div>
 			<div class="col-lg-3 col-md-3 col-sm-3 col-xs-4" style="text-align: right; margin-top: 3px">
-				<h4>x{{item.quantity}}</h4>
+				<h4>x{{item.qty}}</h4>
 			</div>
 			<div style="margin-top: 8px; right: 10px; font-size: 20px; position: absolute;">
 				<a DATA-TOGGLE="#" (click)="itemModal.show()" data-toggle="modal" data-target="#listModal"><span class="glyphicon glyphicon-option-vertical"></span></a>
@@ -88,7 +88,7 @@
 							<strong><span class="text-muted">x</span></strong>
 						</div>
 						<div class="col-lg-2 col-md-2 col-sm-3 col-xs-3" style="top: -7px">
-							<input [(ngModel)]="item.quantity" [ngModelOptions]="{standalone: true}" type="number" class="form-control input-sm" value="1" min="0">
+							<input [(ngModel)]="numberInput" [ngModelOptions]="{standalone: true}" type="number" class="form-control input-sm" value="1" min="0">
 						</div>
 					</div>
 				</div>
@@ -108,7 +108,7 @@
 				</div>
 				<div class="modal-footer">
 					<div class="row" style="text-align: center;">
-						<button class="btn btn-md btn-success" (click)="itemModal.hide(); itemRename(item);">Save Changes</button>
+						<button class="btn btn-md btn-success" (click)="itemModal.hide(); itemRename(item.$key); editQty(item.$key)">Save Changes</button>
 					</div>
 				</div>
 			</div>
