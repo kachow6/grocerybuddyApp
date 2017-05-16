@@ -32,8 +32,6 @@ export class HomeComponent implements OnInit {
 
     userAuth$:    Observable<firebase.User>;
     homeList:    FirebaseListObservable<any[]>;
-    fridge$:      FirebaseListObservable<any[]>;
-    currentList$: FirebaseListObservable<any[]>;
 
     // Constructor. Inject all necessary dependencies.
     constructor(
@@ -131,7 +129,13 @@ export class HomeComponent implements OnInit {
     // Starts timer to delete items.getCurrentList
     startItemDeleteTimer(key: string): any {
         return setTimeout(
-                () => {this.deleteList(key); }, 3000
+                () => {
+                    // Delete Shopping List
+                    this.db.object('/shoppingList/' + key).remove();
+                    // Delete Reference in Home List
+                    this.db.object('/homeList/'
+                                   + this.userId + '/' + key).remove();
+                }, 3000
             );
     }
 
@@ -148,14 +152,5 @@ export class HomeComponent implements OnInit {
         if (this.userService.getCurrentList() === list) {
             this.userService.setCurrentList(null);
         }
-    }
-
-    // ANGULARFIRE2 Delete Method.
-    deleteList(key: string): void {
-        // TODO: Delete Shopping List
-        this.db.object('/shoppingList/' + key).remove();
-
-        // TODO: Delete Reference in Home List
-        this.db.object('/homeList/' + this.userId + '/' + key).remove();
     }
 }

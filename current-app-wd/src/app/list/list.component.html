@@ -15,7 +15,7 @@
 <div class="container col-lg-8 col-md-10 col-lg-offset-2 col-md-offset-1" style="top: 80px; margin-bottom: 60px">
 
 
-    <div class="container-fluid list-element" *ngFor = "let item of myList; let i = index">
+    <div class="container-fluid list-element" *ngFor = "let item of currentList$ | async; let i = index">
 
         <div class="list-item-swipe-display swipe-left"
             [class.swipe-display]="item.isQueuedForDelete && item.deleteQueueRight"
@@ -32,7 +32,7 @@
             #swipeRight><span>Undo</span></div>
 
         <div class="row"
-                (swipe)="item.isQueuedForDelete=true; item.deleteTimer=startItemDeleteTimer(item)"
+                (swipe)="item.isQueuedForDelete=true; item.deleteTimer=startItemDeleteTimer(item.$key)"
                 (swipeleft)="item.deleteQueueRight=true"
                 (swiperight)="item.deleteQueueRight=false">
 
