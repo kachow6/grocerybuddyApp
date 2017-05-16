@@ -27,7 +27,6 @@ export class HomeComponent implements OnInit {
     renameInput: string = "";
 
     // Database & Auth Variables.
-    currentListId: string;
     userId: string;
 
     userAuth$:    Observable<firebase.User>;
@@ -55,7 +54,6 @@ export class HomeComponent implements OnInit {
         // callback via variable "userSnap."
         */
         this.userAuth$.subscribe(userSnap => {
-            console.log(userSnap.toJSON());
             if (!userSnap) {
                 // If there is no user, clean out all the other local data.
                 this.homeList = null;
@@ -82,8 +80,8 @@ export class HomeComponent implements OnInit {
     }
 
     //Method for moving into the user selected list
-    selectList(list: ShoppingList): void {
-        this.userService.setCurrentList(list);
+    selectList(key: string): void {
+        this.userService.setCurrentList(key);
         this.router.navigateByUrl('/main/list');
     }
 
@@ -108,21 +106,21 @@ export class HomeComponent implements OnInit {
 
     //Method for resetting items checked in the list.
     resetList(list: ShoppingList): void {
-        for(let i = 0; i < this.userService.getCurrentList().contents.length; i++) {
-            this.userService.getCurrentList().contents[i].checked = false;
-      }
+      //   for(let i = 0; i < this.userService.getCurrentList().contents.length; i++) {
+      //       this.userService.getCurrentList().contents[i].checked = false;
+      // }
     }
 
     //Method for copying a list object on home page.
     copyList(list: ShoppingList): void {
-        let tempList: ShoppingList = new ShoppingList(list.name);
-        let tempIndex: ShoppingItem[];
-        for(let i = 0; i < list.contents.length; i++) {
-            tempList.contents.push(new ShoppingItem(list.contents[i].name,
-                                                    list.contents[i].quantity,
-                                                    list.contents[i].checked))
-        }
-        this.myList.push(tempList);
+        // let tempList: ShoppingList = new ShoppingList(list.name);
+        // let tempIndex: ShoppingItem[];
+        // for(let i = 0; i < list.contents.length; i++) {
+        //     tempList.contents.push(new ShoppingItem(list.contents[i].name,
+        //                                             list.contents[i].quantity,
+        //                                             list.contents[i].checked))
+        // }
+        // this.myList.push(tempList);
     }
 
     // ====== ITEM DELETE ====== //
@@ -143,14 +141,5 @@ export class HomeComponent implements OnInit {
     clearItemDeleteTimer(timer: any): null {
         timer = clearTimeout(timer);
         return null;
-    }
-
-    //Method for deleting a shopping list off home page. DEPRECATED
-    deleteListOld(list: ShoppingList): void {
-        this.myList.splice(this.myList.indexOf(list),1);
-
-        if (this.userService.getCurrentList() === list) {
-            this.userService.setCurrentList(null);
-        }
     }
 }

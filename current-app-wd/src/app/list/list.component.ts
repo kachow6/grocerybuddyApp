@@ -43,12 +43,12 @@ export class ListComponent {
 
     ngOnInit() {
 
-        // Set up user service. Old Code.
-        // if (this.userService.getCurrentList()) {
-        //     this.myList = this.userService.getCurrentList().contents;
-        // } else {
-        //     this.router.navigateByUrl('/main');
-        // }
+        console.log(this.userService.getCurrentList());
+
+        // Make sure a list is selected
+        if (!this.userService.getCurrentList()) {
+            this.router.navigateByUrl('/main');
+        }
 
         // Firebase Objects Setup
         this.userAuth$ = this.afAuth.authState;
@@ -60,16 +60,13 @@ export class ListComponent {
         // callback via variable "userSnap."
         */
         this.userAuth$.subscribe(userSnap => {
-            console.log(userSnap.toJSON());
             if (!userSnap) {
                 // If there is no user, clean out all the other local data.
                 this.currentList$ = null;
 
             } else {
                 // If there is a user...
-                this.userId = userSnap.uid;
-
-                this.userService.setCurrentList("myList1");
+                // this.userId = userSnap.uid;
 
                 // Set the homeList observer to track the right field in the db
                 this.currentList$ = this.db.list('/shoppingList/'
