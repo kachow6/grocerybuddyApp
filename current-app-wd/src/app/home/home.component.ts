@@ -15,7 +15,7 @@ import { Router }                           from '@angular/router';
 })
 export class HomeComponent {
 
-    //Instantiating the array object.
+    // Instantiating the array object.
     myList: ShoppingList[];
     nameInput: string = "";
     renameInput: string = "";
@@ -27,7 +27,7 @@ export class HomeComponent {
         this.myList = userService.getHome();
     }
 
-    //Method for adding a new Shopping list object on homepage.
+    // Method for adding a new Shopping list object on homepage.
     addList():void {
         if(this.nameInput.length >= 1) {
             this.myList.push(new ShoppingList(this.nameInput));
@@ -35,13 +35,13 @@ export class HomeComponent {
         }
     }
 
-    //Method for moving into the user selected list
+    // Method for moving into the user selected list
     selectList(list: ShoppingList): void {
         this.userService.setCurrentList(list);
         this.router.navigateByUrl('/main/list');
     }
 
-    //Method for renaming the shopping list.
+    // Method for renaming the shopping list.
     listRename(list: ShoppingList):  void {
         if(this.renameInput.length > 0) {
         list.name = this.renameInput;
@@ -49,14 +49,14 @@ export class HomeComponent {
         }
     }
     
-    //Method for resetting items checked in the list.
+    // Method for resetting items checked in the list.
     resetList(list: ShoppingList): void {
         for(let i = 0; i < this.userService.getCurrentList().contents.length; i++) {
             this.userService.getCurrentList().contents[i].checked = false;
       }
     }
 
-    //Method for copying a list object on home page.
+    // Method for copying a list object on home page.
     copyList(list: ShoppingList): void {
         let tempList: ShoppingList = new ShoppingList(list.name);
         let tempIndex: ShoppingItem[];
@@ -82,7 +82,7 @@ export class HomeComponent {
         return null;
     }
 
-    //Method for deleting a shopping list off home page.
+    // Method for deleting a shopping list off home page.
     deleteList(list: ShoppingList): void {
         this.myList.splice(this.myList.indexOf(list),1);
 
