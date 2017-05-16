@@ -14,7 +14,7 @@
 <div class="container col-lg-8 col-md-10 col-lg-offset-2 col-md-offset-1" style="top: 80px; margin-bottom: 60px">
 
     <!-- HTML for individual items in the main list -->
-    <div class="container-fluid list-element" *ngFor="let item of myList; let i = index">
+    <div class="container-fluid list-element" *ngFor="let item of homeList | async; let i = index">
 
        <div class="list-item-swipe-display swipe-left"
             [class.swipe-display]="item.isQueuedForDelete && item.deleteQueueRight"
@@ -31,13 +31,13 @@
             #swipeRight><span>Undo</span></div>
 
         <div class="row"
-                (swipe)="item.isQueuedForDelete=true; item.deleteTimer=startItemDeleteTimer(item)"
+                (swipe)="item.isQueuedForDelete=true; item.deleteTimer=startItemDeleteTimer(item.$key)"
                 (swipeleft)="item.deleteQueueRight=true"
                 (swiperight)="item.deleteQueueRight=false">
 
             <div class="col-lg-8 col-md-8 col-sm-7 col-xs-6"
                  style="margin-top: 3px">
-                <h4 (tap)="selectList(item)">{{item.name}}</h4>
+                <h4 (tap)="selectList(item.$key)">{{item.$value + ' : ' + item.$key}}</h4>
             </div>
 
             <div class="dropdown"
@@ -49,7 +49,7 @@
                 <ul *dropdownMenu role="menu" class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1" style="z-index: 9001">
                     <li role="menuitem" class="menu-item"><a DATA-TOGGLE="#" (click)="renameModal.show()" data-toggle="modal">Rename</a></li>
                     <li role="menuitem" class="menu-item"><a DATA-TOGGLE="#" (click)="copyList(item)">Copy</a></li>
-                    <li role="menuitem" class="menu-item"><a DATA-TOGGLE="#" (click)="item.isQueuedForDelete=true; item.deleteTimer=startItemDeleteTimer(item)">Delete</a></li>
+                    <li role="menuitem" class="menu-item"><a DATA-TOGGLE="#" (click)="item.isQueuedForDelete=true; item.deleteTimer=startItemDeleteTimer(item.$key)">Delete</a></li>
                     <li role="menuitem" class="menu-item"><a DATA-TOGGLE="#" (click)="resetList(item)">Reset</a></li>
                 </ul>
             </div>
@@ -72,7 +72,7 @@
                         </div>
                         <div class="modal-footer">
                             <div class="row" style="text-align: center;">
-                                <button class="btn btn-lg btn-success" (click)=" renameModal.hide(); listRename(item)" >Save Changes</button>
+                                <button class="btn btn-lg btn-success" (click)=" renameList(item.$key); renameModal.hide()" >Save Changes</button>
                             </div>
                         </div>
                     </div>

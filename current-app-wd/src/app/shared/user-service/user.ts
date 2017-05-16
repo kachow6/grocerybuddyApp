@@ -43,7 +43,7 @@ export class User {
     email:       string;
     password:    string;
     
-    currentList: ShoppingList;
+    currentList: string;
     homeList:    ShoppingList[];
     fridgeList:  FridgeItem[];
 }
