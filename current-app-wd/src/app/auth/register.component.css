@@ -1,0 +1,28 @@
+.btn {
+	padding: 2px 0;
+}
+
+.checkbox {
+	padding: 2px 14px;
+}
+
+.login-form {
+	background-color: #5CB85C;
+}
+
+.sign-in {
+	bottom: 20px;
+}
+
+.login-container {
+	background-color: #5CB85C;
+}
+
+.form-element {
+	padding: 0;
+	margin: 14px 0;
+}
+
+a {
+	text-decoration: none;
+}
