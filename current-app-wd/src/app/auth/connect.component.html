@@ -19,8 +19,13 @@
                         </div>
                         <div id="name"></div>
                         <script>startApp();</script>
-                        <!-- <button type="button" class="btn btn-danger btn-block form-element">Connect Through Google</button> -->
-                        <button type="button" class="btn btn-danger btn-block form-element"><span class="glyphicon glyphicon-envelope" style="padding-right: 15px; font-size: 22px; vertical-align: middle"></span><span style="vertical-align: middle">Sign-up Through Email</span></button>
+                        <!-- Connect Through Google -->
+                        <a [routerLink]="['../register']">
+                            <button type="button" class="btn btn-danger btn-block form-element">
+                                <span class="glyphicon glyphicon-envelope" style="padding-right: 15px; font-size: 22px; vertical-align: middle"></span>
+                                <span style="vertical-align: middle; color: white">Sign-up Through Email</span>
+                            </button>
+                        </a>
                         
                         <h4 class="title">Login: </h4>
                         <div class="form-group form-element">
