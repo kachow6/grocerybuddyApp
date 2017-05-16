@@ -29,7 +29,6 @@ export class ListComponent {
         } else {
             this.router.navigateByUrl('/main');
         }
-        
     }
 
     //Method for adding a new item by user input
