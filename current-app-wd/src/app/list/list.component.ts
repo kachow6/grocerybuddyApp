@@ -17,7 +17,7 @@ import { Router }           from '@angular/router';
 
 export class ListComponent {
     //Instantiating the array object.
-    myList: ShoppingItem[];
+    myList: ShoppingItem[] = [];
     nameInput: string = '';
     numberInput: number;
     checkedInput: boolean;

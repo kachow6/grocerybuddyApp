@@ -1,7 +1,14 @@
-import { Injectable }                   from '@angular/core';
+import { Injectable                 }   from '@angular/core';
 import { User, FridgeItem,
-         ShoppingItem, ShoppingList }   from './user';
-import { USER }                         from './mock-user';
+         ShoppingItem, 
+         ShoppingList               }   from './user';
+import { USER                       }   from './mock-user';
+import { AngularFireDatabase,
+         FirebaseListObservable,
+         FirebaseObjectObservable   }   from 'angularfire2/database';
+import { Observable                 }   from 'rxjs/Observable';
+import { AngularFireAuth            }   from 'angularfire2/auth';
+import * as firebase                    from 'firebase/app';
 
 @Injectable()
 export class UserService {
