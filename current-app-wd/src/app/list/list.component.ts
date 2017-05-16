@@ -17,14 +17,19 @@ import { Router }           from '@angular/router';
 
 export class ListComponent {
     //Instantiating the array object.
-    myList: ShoppingItem[];
+    myList: ShoppingItem[] = [];
     nameInput: string = '';
     numberInput: number;
     checkedInput: boolean;
 
     constructor(private userService: UserService,
                 private router: Router) {
-        this.myList = userService.getCurrentList().contents;
+        if (userService.getCurrentList()) {
+            this.myList = userService.getCurrentList().contents;
+        } else {
+            this.router.navigateByUrl('/main');
+        }
+        
     }
 
     //Method for adding a new item by user input
