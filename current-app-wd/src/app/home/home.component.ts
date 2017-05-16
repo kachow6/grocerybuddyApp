@@ -21,7 +21,7 @@ import * as firebase                           from 'firebase/app';
 })
 export class HomeComponent implements OnInit {
 
-    //Instantiating the array object.
+    // Instantiating the array object.
     myList: ShoppingList[];
     nameInput: string = "";
     renameInput: string = "";
@@ -72,7 +72,7 @@ export class HomeComponent implements OnInit {
         // });
     }
 
-    //Method for adding a new Shopping list object on homepage.
+    // Method for adding a new Shopping list object on homepage.
     addList():void {
         // AngularFire DB Integration Code
         if (this.nameInput.length >= 1) {
@@ -107,15 +107,15 @@ export class HomeComponent implements OnInit {
 
         this.renameInput = '';
     }
-
-    //Method for resetting items checked in the list.
+    
+    // Method for resetting items checked in the list.
     resetList(list: ShoppingList): void {
       //   for(let i = 0; i < this.userService.getCurrentList().contents.length; i++) {
       //       this.userService.getCurrentList().contents[i].checked = false;
       // }
     }
 
-    //Method for copying a list object on home page.
+    // Method for copying a list object on home page.
     copyList(list: ShoppingList): void {
         // let tempList: ShoppingList = new ShoppingList(list.name);
         // let tempIndex: ShoppingItem[];
