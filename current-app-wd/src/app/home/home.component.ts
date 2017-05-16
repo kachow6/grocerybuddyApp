@@ -27,10 +27,10 @@ export class HomeComponent implements OnInit {
     renameInput: string = "";
 
     // Database & Auth Variables.
-    userId: string;
+    userId: string = 'user-1';
 
     userAuth$:    Observable<firebase.User>;
-    homeList:    FirebaseListObservable<any[]>;
+    homeList$:    FirebaseListObservable<any[]>;
 
     // Constructor. Inject all necessary dependencies.
     constructor(
@@ -42,6 +42,10 @@ export class HomeComponent implements OnInit {
 
     // Init. Initialize anything more complicated than basic wiring.
     ngOnInit() {
+        this.userAuth$ = this.afAuth.authState;
+        this.homeList$ = this.db.list('/homeList/' + this.userId);
+        // console.log(this.fridgeList$.$ref.toJSON());
+
         this.myList = this.userService.getHome();
 
         // Firebase Objects Setup
@@ -53,19 +57,19 @@ export class HomeComponent implements OnInit {
         // is updated. The new data snapshot that is returned is passed into the
         // callback via variable "userSnap."
         */
-        this.userAuth$.subscribe(userSnap => {
-            if (!userSnap) {
-                // If there is no user, clean out all the other local data.
-                this.homeList = null;
+        // this.userAuth$.subscribe(userSnap => {
+        //     if (!userSnap) {
+        //         // If there is no user, clean out all the other local data.
+        //         this.homeList$ = null;
 
-            } else {
-                // If there is a user...
-                this.userId = userSnap.uid;
+        //     } else {
+        //         // If there is a user...
+        //         this.userId = userSnap.uid;
 
-                // Set the homeList observer to track the right field in the db
-                this.homeList = this.db.list('/homeList/' + this.userId);
-            } 
-        });
+        //         // Set the homeList$ observer to track the right field in the db
+        //         this.homeList$ = this.db.list('/homeList/' + this.userId);
+        //     } 
+        // });
     }
 
     //Method for adding a new Shopping list object on homepage.
@@ -73,8 +77,8 @@ export class HomeComponent implements OnInit {
         // AngularFire DB Integration Code
         if (this.nameInput.length >= 1) {
 
-            // Add new list to homeList.
-            let newListKey = this.homeList.push(this.nameInput).key;
+            // Add new list to homeList$.
+            let newListKey = this.homeList$.push(this.nameInput).key;
             this.nameInput = '';
         }
     }

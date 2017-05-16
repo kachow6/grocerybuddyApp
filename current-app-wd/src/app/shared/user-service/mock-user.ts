@@ -50,7 +50,7 @@ export const USER: User = {
     homeList: [
         curList
     ],
-    currentList: curList,
+    currentList: null,
     fridgeList: fridge
 
 };

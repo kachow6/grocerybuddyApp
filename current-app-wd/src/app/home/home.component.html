@@ -14,7 +14,7 @@
 <div class="container col-lg-8 col-md-10 col-lg-offset-2 col-md-offset-1" style="top: 80px; margin-bottom: 60px">
 
     <!-- HTML for individual items in the main list -->
-    <div class="container-fluid list-element" *ngFor="let item of homeList | async; let i = index">
+    <div class="container-fluid list-element" *ngFor="let item of homeList$ | async; let i = index">
 
        <div class="list-item-swipe-display swipe-left"
             [class.swipe-display]="item.isQueuedForDelete && item.deleteQueueRight"
@@ -37,7 +37,7 @@
 
             <div class="col-lg-8 col-md-8 col-sm-7 col-xs-6"
                  style="margin-top: 3px">
-                <h4 (tap)="selectList(item.$key)">{{item.$value + ' : ' + item.$key}}</h4>
+                <h4 (tap)="selectList(item.$key)">{{item.$value}}</h4>
             </div>
 
             <div class="dropdown"

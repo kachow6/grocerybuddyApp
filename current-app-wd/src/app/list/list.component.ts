@@ -43,15 +43,16 @@ export class ListComponent {
 
     ngOnInit() {
 
-        console.log(this.userService.getCurrentList());
-
         // Make sure a list is selected
         if (!this.userService.getCurrentList()) {
             this.router.navigateByUrl('/main');
         }
 
+
         // Firebase Objects Setup
         this.userAuth$ = this.afAuth.authState;
+        this.currentList$ = this.db.list('/shoppingList/'
+                          + this.userService.getCurrentList());
 
         /* ====== SUBSCRIPTIONS ====== */
         /* userAuth$ subscription */
@@ -59,20 +60,20 @@ export class ListComponent {
         // is updated. The new data snapshot that is returned is passed into the
         // callback via variable "userSnap."
         */
-        this.userAuth$.subscribe(userSnap => {
-            if (!userSnap) {
-                // If there is no user, clean out all the other local data.
-                this.currentList$ = null;
+        // this.userAuth$.subscribe(userSnap => {
+        //     if (!userSnap) {
+        //         // If there is no user, clean out all the other local data.
+        //         this.currentList$ = null;
 
-            } else {
-                // If there is a user...
-                // this.userId = userSnap.uid;
+        //     } else {
+        //         // If there is a user...
+        //         // this.userId = userSnap.uid;
 
-                // Set the homeList observer to track the right field in the db
-                this.currentList$ = this.db.list('/shoppingList/'
-                                  + this.userService.getCurrentList());
-            } 
-        });
+        //         // Set the homeList observer to track the right field in the db
+        //         this.currentList$ = this.db.list('/shoppingList/'
+        //                           + this.userService.getCurrentList());
+        //     } 
+        // });
     }
 
     //Method for adding a new item by user input
