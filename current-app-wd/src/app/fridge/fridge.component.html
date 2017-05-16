@@ -20,7 +20,7 @@
             (swiperight)="item.isQueuedForDelete=true"
 			>
 			<div class="col-lg-8 col-md-8 col-sm-7 col-xs-6">
-				<h4 style="margin-bottom: 0">{{item.name}}</h4>
+				<h4 style="margin-bottom: 0; margin-top: 15px;">{{item.name}}</h4>
 			</div>
 			<div class="col-lg-3 col-md-3 col-sm-3 col-xs-4" *ngIf="!item.isQueuedForDelete" style="text-align: right">
 				<h4>x{{item.quantity}}</h4>
