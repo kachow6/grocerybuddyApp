@@ -10,22 +10,17 @@
             <div class="container col-lg-6 col-md-8 col-sm-8 col-xs-12 col-lg-offset-3 col-md-offset-2 col-sm-offset-2 col-xs-offset-0 login-form">
                 <div class="row">
                     <form>
-                        <!-- In the callback, you would hide the gSignInWrapper element on a successful sign in -->
-                        <div id="gSignInWrapper btn-block">
-                            <div id="customBtn" class="customGPlusSignIn">
-                                <span class="icon"></span>
-                                <span class="buttonText">Sign in with Google</span>
-                            </div>
-                        </div>
-                        <div id="name"></div>
-                        <script>startApp();</script>
-                        <!-- Connect Through Google -->
+
                         <a [routerLink]="['../register']">
                             <button type="button" class="btn btn-danger btn-block form-element">
                                 <span class="glyphicon glyphicon-envelope" style="padding-right: 15px; font-size: 22px; vertical-align: middle"></span>
                                 <span style="vertical-align: middle; color: white">Sign-up Through Email</span>
                             </button>
                         </a>
+
+                        <!-- In the callback, you would hide the gSignInWrapper element on a successful sign in -->
+                        <div class="g-signin2" data-onsuccess="onSignIn" data-width="container-fluid" data-height="40" data-longtitle="true"></div>
+                        <!-- Connect Through Google -->
                         
                         <h4 class="title">Login: </h4>
                         <div class="form-group form-element">
