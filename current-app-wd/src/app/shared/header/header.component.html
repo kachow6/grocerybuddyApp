@@ -43,7 +43,7 @@
         <div id="banner" class="navbar-header container-fluid col-sm-12">
             <span class="pull-left navbar-brand hamburger col-lg-1 col-md-1 col-sm-1 col-xs-1" (click)="openNav()">&#9776; </span>
             <h2 class="col-lg-8 col-md-8 col-sm-8 col-xs-8 col-xs-offset-1 col-sm-offset-0">{{pageTitle}}</h2>
-            <button class="btn btn-danger btn-sm pull-right" type="button" (click)="notifyModal.show();" data-toggle="modal" data-target="#notifyModal" style="margin-top: 13px; right: 16px; position: absolute;"><span class="badge">{{notificationAmount(pullExpiring(expiringItems))}}</span></button>
+            <button class="btn btn-danger btn-sm pull-right" type="button" (click)="notifyModal.show();" data-toggle="modal" data-target="#notifyModal" style="margin-top: 13px; right: 16px; position: fixed;"><span class="badge">{{notificationAmount(pullExpiring(expiringItems))}}</span></button>
         </div>
     </div>
 </header>
