@@ -1,6 +1,12 @@
-import { Component, OnInit }   from '@angular/core';
-import { UserService }         from '../shared/user-service/user.service';
-import { FridgeItem }        from '../shared/user-service/user';
+import { Component, OnInit        } from '@angular/core';
+import { UserService              } from '../shared/user-service/user.service';
+import { FridgeItem               } from '../shared/user-service/user';
+import { AngularFireDatabase,
+         FirebaseListObservable,
+         FirebaseObjectObservable } from 'angularfire2/database';
+import { Observable               } from 'rxjs/observable';
+import { AngularFireAuth          } from 'angularfire2/auth';
+import * as firebase                from 'firebase/app';
 
 // //Array that contains the items on List page.
 // const FRIDGE_ITEMS: ItemList[] = [
@@ -19,14 +25,26 @@ import { FridgeItem }        from '../shared/user-service/user';
   styleUrls: ['fridge.component.css'],
 })
 
-export class FridgeComponent {
+export class FridgeComponent implements OnInit {
+
+    // Local access variables to keep track of user name, etc.
+    userId: string = 'user-1';
+    currentItemName: string;
+
+    // User Auth Object
+    userAuth$: Observable<firebase.User>;
+
+    // List observer Objects
+    user$: FirebaseObjectObservable<any>;
+    fridgeList$: FirebaseListObservable<any[]>;
+    currentItem$: FirebaseListObservable<any[]>;
 
     fridgeList:     FridgeItem[];
 
     nameInput:      string = '';
     numberInput:    number;
     expiration:     number;
-    renameInput: string;
+    renameInput: string = '';
     showEasterEgg = false;
 
     //States for the progress bar
@@ -35,8 +53,31 @@ export class FridgeComponent {
     stateSuccess: string = 'progress-bar-success';
     itemState: string = '';
 
-    constructor(private userService: UserService) {
+    constructor(private userService: UserService,
+                public afAuth: AngularFireAuth,
+                public db: AngularFireDatabase) {
         this.fridgeList = userService.getFridge();
+    }
+
+    ngOnInit() {
+        //Initializes User Settings
+        this.userAuth$ = this.afAuth.authState;
+        this.fridgeList$ = this.db.list('/fridgeList/' + this.userId);
+        console.log(this.fridgeList$.$ref.toJSON());
+    }
+
+    // Adds a new item to the user's fridge list
+    addItemToFridgeList(itemName: string, itemQty: number) {
+        let fridgeItem = {name: itemName,
+                         qty: itemQty,
+                         autofillId: ''};
+                         console.log(fridgeItem);
+        this.fridgeList$.push({
+            name: itemName,
+            qty: itemQty,
+            datePurch: '',
+            autofillId: ''
+        }); 
     }
 
     // Method for calculating the expiration bar colour
@@ -50,22 +91,28 @@ export class FridgeComponent {
         }
     }
 
-    // Method for adding a fridge item object to the array
-    addItem(): void {
-        if(this.nameInput.length > 0, this.numberInput > 0) {
-            this.fridgeList.push(new FridgeItem(this.nameInput, this.numberInput, null));
-            this.nameInput = '';
-            this.numberInput = null;
+    // Method for renaming an item in the user's fridge list.
+    itemRename(key: string) {
+        this.currentItem$ = this.db.list('/fridgeList/' + key);
+        console.log(key);
+
+        let newName = this.renameInput;
+        console.log(this.renameInput);
+        if (this.renameInput.length > 2) {
+        let itemNameGetter = this.db.object('/fridgeList/' + this.userId + '/' + key ).update({'name': newName});
         }
     }
 
-    itemRename(item: FridgeItem):  void {
-      if(this.renameInput.length > 2) {
-      item.name = this.renameInput; 
-      this.renameInput = "";
-      }
+    // Method for editing the quantity of an item in the user's fridge list
+    editQty(key: string) {
+        this.currentItem$ = this.db.list('/fridgeList' + key);
+        console.log(key);
+
+        let newQty = this.numberInput;
+        let itemQtyGetter = this.db.object('/fridgeList/' + this.userId + '/' + key).update({'qty': newQty});
     }
 
+    
     // ====== ITEM DELETE ====== //
     // Starts timer to delete items.
     startItemDeleteTimer(item: FridgeItem): any {
