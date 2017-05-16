@@ -13,8 +13,10 @@
                         <!-- In the callback, you would hide the gSignInWrapper element on a successful sign in -->
 
                         <div id="gSignInWrapper btn-block">
-                            <div id="customBtn" class="g-signin2" data-scope="https://www.googleapis.com/auth/userinfo.email"
-                                 data-onsuccess="onSignin" data-width="container-fluid" data-height="40" data-longtitle="true">
+                            <!-- <div id="customBtn" class="g-signin2" data-scope="https://www.googleapis.com/auth/userinfo.email"
+                                 data-onsuccess="onSignin" data-width="container-fluid" data-height="40" data-longtitle="true"> -->
+
+                             <div id="customBtn" class="g-signin2" (click)="login()" data-width="container-fluid" data-height="40" data-longtitle="true">
                                 <span class="icon"></span>
                                 <span class="buttonText">Sign in with Google</span>
                             </div>
