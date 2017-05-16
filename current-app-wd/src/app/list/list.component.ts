@@ -80,25 +80,18 @@ export class ListComponent {
 
     //Method for adding a new item by user input
     addItem(): void {
-        // if (this.nameInput.length > 0, this.numberInput > 0) {
-        //     this.userService.getCurrentList().contents.push(new ShoppingItem(this.nameInput, this.numberInput, this.checkedInput));
-        //     this.nameInput = '';
-        //     this.numberInput = null;
-
-        //     this.myList = this.userService.getCurrentList().contents;
-        // }
-        // console.log(this.myList.contents[1]);
-
         if (this.nameInput.length > 0, this.numberInput > 0) {
+
+            // Build the new item to put in the shopping list
             let newItem = {
                 'name': this.nameInput,
                 'qty': this.numberInput,
                 'autofillId': ''
             };
 
+            // Push the item to the currentList$.
             this.currentList$.push(newItem);
         }
-        // console.log(this.myList.contents[1]);
     }
 
     //Method for changing the checked state of an item
@@ -112,9 +105,14 @@ export class ListComponent {
 
     // ====== ITEM DELETE ====== //
     // Starts timer to delete items.
-    startItemDeleteTimer(item: ShoppingItem): any {
+    startItemDeleteTimer(key: string): any {
         return setTimeout(
-                () => {this.deleteItem(this.myList.indexOf(item)); }, 3000
+                () => {
+                    // Perform Delete Query
+                    this.db.object('/shoppingList/'
+                       + this.userService.getCurrentList() + '/'
+                       + key).remove();
+                }, 3000
             );
     }
 
@@ -122,19 +120,6 @@ export class ListComponent {
     clearItemDeleteTimer(timer: any): null {
         timer = clearTimeout(timer);
         return null;
-    }
-    // Delete Item.
-    deleteItem(index: number): void {
-    //     if (index >= 0 && index < this.myList.length) {
-    //         let firstHalf: ShoppingItem[] = [];
-    //         let lastHalf : ShoppingItem[] = [];
-
-    //         firstHalf = this.myList.splice(0,index);
-    //         lastHalf  = this.myList.splice(index + 1, this.myList.length);
-
-    //         this.userService.getCurrentList().contents = firstHalf.concat(lastHalf);
-    //         this.myList = this.userService.getCurrentList().contents;
-    //     }
     }
 
     //Method for resetting checked items to false
