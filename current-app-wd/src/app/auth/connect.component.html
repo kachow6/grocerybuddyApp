@@ -10,8 +10,17 @@
             <div class="container col-lg-6 col-md-8 col-sm-8 col-xs-12 col-lg-offset-3 col-md-offset-2 col-sm-offset-2 col-xs-offset-0 login-form">
                 <div class="row">
                     <form>
-                        <button type="button" class="btn btn-danger btn-block form-element">Connect Through Google</button>
-                        <button type="button" class="btn btn-info btn-block form-element">Sign-up Through Email</button>
+                        <!-- In the callback, you would hide the gSignInWrapper element on a successful sign in -->
+                        <div id="gSignInWrapper btn-block">
+                            <div id="customBtn" class="customGPlusSignIn">
+                                <span class="icon"></span>
+                                <span class="buttonText">Sign in with Google</span>
+                            </div>
+                        </div>
+                        <div id="name"></div>
+                        <script>startApp();</script>
+                        <!-- <button type="button" class="btn btn-danger btn-block form-element">Connect Through Google</button> -->
+                        <button type="button" class="btn btn-danger btn-block form-element"><span class="glyphicon glyphicon-envelope" style="padding-right: 15px; font-size: 22px; vertical-align: middle"></span><span style="vertical-align: middle">Sign-up Through Email</span></button>
                         
                         <h4 class="title">Login: </h4>
                         <div class="form-group form-element">
@@ -34,3 +43,25 @@
 
     </div>
 </div>
+
+<script>
+function onSuccess(googleUser) {
+  console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
+}
+function onFailure(error) {
+  console.log(error);
+}
+function renderButton() {
+  gapi.signin2.render('my-signin2', {
+    'scope': 'profile email',
+    'width': 240,
+    'height': 50,
+    'longtitle': true,
+    'theme': 'dark',
+    'onsuccess': onSuccess,
+    'onfailure': onFailure
+  });
+}
+</script>
+
+<script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
