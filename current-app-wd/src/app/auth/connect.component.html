@@ -1,6 +1,35 @@
-<h1> Hello</h1>
+<div class="col-xs-12 col-sm-4">
+</div>
 
-<button class="btn btn-primary" (click)="login()">Connect With Google</button>
-<button class="btn btn-secondary" (click)="logout()">Log Out</button><br>
+<div class="col-xs-12 col-sm-4">
+    <h1 class="text-center">GroceryBuddy</h1>
+    <img src="../../assets/imgs/pepper.png" alt="grocerybuddy" class="img-responsive img-circle center-block">
+    <h1 class="text-center">Welcome</h1>
+    <form>
 
-<p>{{ (( user | async ) | json) }}</p>
+            <button type="button" class="btn btn-danger btn-block">Connect Through Google</button>
+
+        <a href="yetiregister.html"><button type="button" class="btn btn-info btn-block">Connect Through Email</button></a>
+
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" class="form-control" id="email">
+        </div>
+
+        <div class="form-group">
+            <label for="email">Password:</label>
+            <input type="password" class="form-control" id="password">
+        </div>
+
+        <div class="checkbox">
+            <label><input type="checkbox"> Remember me</label> <a class="pull-right" href="#">Forgot Password?</a>
+        </div>
+
+        <button type="button" class="btn btn-success btn-block">Submit</button>
+
+
+    </form>
+</div>
+
+<div class="col-xs-12 col-sm-4">
+</div>
