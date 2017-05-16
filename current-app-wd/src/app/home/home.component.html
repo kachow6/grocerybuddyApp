@@ -20,13 +20,15 @@
             [class.swipe-display]="item.isQueuedForDelete && item.deleteQueueRight"
             [class.swipe-hide]="!(item.isQueuedForDelete && item.deleteQueueRight)"
             (swiperight)="item.isQueuedForDelete=false; item.deleteTimer=clearItemDeleteTimer(item.deleteTimer)"
-            #swipeLeft><span>Undo Left</span></div>
+            (tap)="item.isQueuedForDelete=false; item.deleteTimer=clearItemDeleteTimer(item.deleteTimer)"
+            #swipeLeft><span>Undo</span></div>
 
         <div class="list-item-swipe-display swipe-right"
             [class.swipe-display]="item.isQueuedForDelete && !item.deleteQueueRight"
             [class.swipe-hide]="!(item.isQueuedForDelete && !item.deleteQueueRight)"
             (swipeleft)="item.isQueuedForDelete=false; item.deleteTimer=clearItemDeleteTimer(item.deleteTimer)"
-            #swipeRight><span>Undo Right</span></div>
+            (tap)="item.isQueuedForDelete=false; item.deleteTimer=clearItemDeleteTimer(item.deleteTimer)"
+            #swipeRight><span>Undo</span></div>
 
         <div class="row"
                 (swipe)="item.isQueuedForDelete=true; item.deleteTimer=startItemDeleteTimer(item)"
