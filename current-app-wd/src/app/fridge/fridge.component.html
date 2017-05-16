@@ -31,7 +31,7 @@
             #swipeRight><span>Undo</span></div>
 
         <div class="row"
-                (swipe)="item.isQueuedForDelete=true; item.deleteTimer=startItemDeleteTimer(item)"
+                (swipe)="item.isQueuedForDelete=true; item.deleteTimer=startItemDeleteTimer(item.$key)"
                 (swipeleft)="item.deleteQueueRight=true"
                 (swiperight)="item.deleteQueueRight=false">
 

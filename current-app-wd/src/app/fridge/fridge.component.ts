@@ -8,13 +8,6 @@ import { Observable               } from 'rxjs/observable';
 import { AngularFireAuth          } from 'angularfire2/auth';
 import * as firebase                from 'firebase/app';
 
-// //Array that contains the items on List page.
-// const FRIDGE_ITEMS: ItemList[] = [
-//     new ItemList('Oranges', 6, 30),
-//     new ItemList('Mango', 12, 85),
-//     new ItemList('Durian', 3, 45)
-// ];
-
 /**
  * This class represents the lazy loaded HomeComponent.
  */
@@ -39,11 +32,9 @@ export class FridgeComponent implements OnInit {
     fridgeList$: FirebaseListObservable<any[]>;
     currentItem$: FirebaseListObservable<any[]>;
 
-    fridgeList:     FridgeItem[];
-
-    nameInput:      string = '';
-    numberInput:    number;
-    expiration:     number;
+    nameInput:   string = '';
+    numberInput: number;
+    expiration:  number;
     renameInput: string = '';
     showEasterEgg = false;
 
@@ -56,7 +47,6 @@ export class FridgeComponent implements OnInit {
     constructor(private userService: UserService,
                 public afAuth: AngularFireAuth,
                 public db: AngularFireDatabase) {
-        this.fridgeList = userService.getFridge();
     }
 
     ngOnInit() {
@@ -72,12 +62,16 @@ export class FridgeComponent implements OnInit {
                          qty: itemQty,
                          autofillId: ''};
                          console.log(fridgeItem);
+        if (itemName.length > 2 || itemQty > 0) {
         this.fridgeList$.push({
             name: itemName,
             qty: itemQty,
             datePurch: '',
             autofillId: ''
         }); 
+        }
+        this.nameInput = '';
+        this.numberInput = null;
     }
 
     // Method for calculating the expiration bar colour
@@ -109,15 +103,17 @@ export class FridgeComponent implements OnInit {
         console.log(key);
 
         let newQty = this.numberInput;
+        if (newQty > 0) {
         let itemQtyGetter = this.db.object('/fridgeList/' + this.userId + '/' + key).update({'qty': newQty});
+        }
     }
 
     
     // ====== ITEM DELETE ====== //
     // Starts timer to delete items.
-    startItemDeleteTimer(item: FridgeItem): any {
+    startItemDeleteTimer(key: string): any {
         return setTimeout(
-                () => {this.deleteItem(item); }, 3000
+                () => {this.db.object('/fridgeList/' + this.userId + '/' + key).remove(); }, 3000
             );
     }
 
@@ -127,10 +123,6 @@ export class FridgeComponent implements OnInit {
         return null;
     }
 
-    // Method for deleting a shopping list off home page.
-    deleteItem(item: FridgeItem): void {
-        this.fridgeList.splice(this.fridgeList.indexOf(item),1);
-    }
     // Displays easteregg img if expiration is set to over 9000.
     activateEasterEgg(expiration: number): void {
         if (expiration > 9000) {
