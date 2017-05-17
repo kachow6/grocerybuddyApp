@@ -15,6 +15,13 @@
     "lib": [
       "es2016",
       "dom"
+    ],
+    "types": [
+      "jasmine",
+      "firebase",
+      "node"
+
+
     ]
   }
 }

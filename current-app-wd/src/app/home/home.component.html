@@ -16,13 +16,15 @@
     <!-- HTML for individual items in the main list -->
     <div class="container-fluid list-element" *ngFor="let item of homeList$ | async; let i = index">
 
+        <!-- Swipe left delete interface -->
        <div class="list-item-swipe-display swipe-left"
             [class.swipe-display]="item.isQueuedForDelete && item.deleteQueueRight"
             [class.swipe-hide]="!(item.isQueuedForDelete && item.deleteQueueRight)"
             (swiperight)="item.isQueuedForDelete=false; item.deleteTimer=clearItemDeleteTimer(item.deleteTimer)"
             (tap)="item.isQueuedForDelete=false; item.deleteTimer=clearItemDeleteTimer(item.deleteTimer)"
             #swipeLeft><span>Undo</span></div>
-
+        
+        <!-- Swipe right delete interface -->
         <div class="list-item-swipe-display swipe-right"
             [class.swipe-display]="item.isQueuedForDelete && !item.deleteQueueRight"
             [class.swipe-hide]="!(item.isQueuedForDelete && !item.deleteQueueRight)"
@@ -30,16 +32,19 @@
             (tap)="item.isQueuedForDelete=false; item.deleteTimer=clearItemDeleteTimer(item.deleteTimer)"
             #swipeRight><span>Undo</span></div>
 
+        <!-- Time interval tracker for swipe delete feature -->
         <div class="row"
                 (swipe)="item.isQueuedForDelete=true; item.deleteTimer=startItemDeleteTimer(item.$key)"
                 (swipeleft)="item.deleteQueueRight=true"
                 (swiperight)="item.deleteQueueRight=false">
 
+            <!-- List container -->
             <div class="col-lg-8 col-md-8 col-sm-7 col-xs-6"
                  style="margin-top: 3px">
                 <h4 (tap)="selectList(item.$key)">{{item.$value}}</h4>
             </div>
-
+            
+            <!-- Dropdown menu and options -->
             <div class="dropdown"
                  style="margin-top: 8px; right: 10px; font-size: 20px; position: absolute;"
                  dropdown>
@@ -55,6 +60,7 @@
             </div>
 
         </div>
+        
             <!-- Rename Modal -->
             <div class="modal fade" id="renameModal" tabindex="-1" role="dialog" bsModal #renameModal="bs-modal" aria-labelledby="rename" aria-hidden="true">
                 <div class="modal-dialog">
