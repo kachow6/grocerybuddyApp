@@ -51,7 +51,7 @@
 				<h4>x{{item.qty}}</h4>
 			</div>
 			<div style="margin-top: 8px; right: 10px; font-size: 20px; position: absolute;">
-				<a DATA-TOGGLE="#" (click)="itemModal.show(); renameInput = item.name; item.quantity = item.qty" data-toggle="modal" data-target="#listModal"><span class="glyphicon glyphicon-option-vertical"></span></a>
+				<a DATA-TOGGLE="#" (click)="itemModal.show(); renameInput = item.name; reQtyInput = item.qty; reShelfLifeInput = item.shelfLife" data-toggle="modal" data-target="#listModal"><span class="glyphicon glyphicon-option-vertical"></span></a>
 			</div>
 		</div>
 		<!-- Expiration Bar -->
