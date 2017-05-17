@@ -20,7 +20,8 @@
 
                             <!-- Connect Through Google  -->
                             <div id="customBtn" class="customGPlusSignIn" data-scope="https://www.googleapis.com/auth/userinfo.email"
-                                 data-onsuccess="onSignin" data-width="container-fluid" data-height="40" data-longtitle="true" (click)="login()">
+                                 data-onsuccess="onSignin" data-width="container-fluid" data-height="40" data-longtitle="true" (click)="loginWithGoogle()">
+
                                 <span class="icon"></span>
                                 <span class="buttonText">Sign in with Google</span>
                             </div>
@@ -40,12 +41,12 @@
 
                         <!-- Email Input -->
                         <div class="form-group form-element">
-                            <input type="email" class="form-control" id="email" placeholder="Email">
+                            <input #email type="email" class="form-control" id="email" placeholder="Email">
                         </div>
 
                         <!-- Password Input -->
                         <div class="form-group form-element">
-                            <input type="password" class="form-control" id="password" placeholder="Password">
+                            <input #password type="password" class="form-control" id="password" placeholder="Password">
                         </div>
 
                         <!-- Remember Me and Forgot Password -->
@@ -54,8 +55,7 @@
                             <a class="pull-right" href="#"><small>Forgot Password?</small></a>
                         </div>
 
-                        <!-- Submit Button -->
-                        <button type="button" class="btn btn-primary btn-block form-element">Submit</button>
+                        <button type="button" class="btn btn-primary btn-block form-element" (click)="loginWithEmail(email.value,password.value)">Submit</button>
                     </form>
                 </div>
             </div>
