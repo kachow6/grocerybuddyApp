@@ -58,9 +58,6 @@ export class ListComponent {
         // console.log( Date.parse( '2017-05-18T00:36:47.337Z' ) / this.msPerDay);
 
         // Make sure a list is selected
-        if (!this.userService.getCurrentList()) {
-            this.router.navigateByUrl('/main');
-        }
 
 
         // Firebase Objects Setup
