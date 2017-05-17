@@ -140,14 +140,11 @@ export class ListComponent {
     }
 
     // Method for renaming an item in the user's fridge list.
-    itemRename(key: string) {
-        this.currentItem = this.db.list('/shoppingList/' + key);
-        // console.log(key);
-
+    itemRename(key: string): void {
+        let currentObj = this.db.object('/shoppingList/' + this.userService.getCurrentList() + '/' + key);
         let newName = this.renameInput;
-        // console.log(this.renameInput);
-        if (this.renameInput.length > 2) {
-            this.db.object('/shoppingList/' + this.userId + '/' + key ).update({'name': newName});
+        if (newName.length > 2) {
+        currentObj.update({'name': newName});
         }
     }
 
