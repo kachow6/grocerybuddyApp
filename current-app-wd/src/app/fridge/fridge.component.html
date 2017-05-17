@@ -54,7 +54,7 @@
 		
 
 
-		<!-- Options Modal -->
+	<!-- Options Modal -->
 	<div class="modal fade" id="listModal" tabindex="-1" role="dialog" aria-labelledby="options" bsModal #itemModal="bs-modal"
 		tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"aria-hidden="true">
 		<div class="modal-dialog">
@@ -69,10 +69,10 @@
 				</div>
 				<div class="modal-body" style="padding-top: 20px">
 					<div class="row">
-						<form class="col-lg-3 col-md-2 col-sm-2 col-xs-3" style="top: 5px">
+						<form class="col-lg-2 col-md-2 col-sm-2 col-xs-3" style="top: 5px">
 							<label for="rename-form"><h4 class="media-heading">Rename: </h4></label>
 						</form>
-						<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">	
+						<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 col-xs-offset-2">	
 							<input [(ngModel)]="renameInput" [ngModelOptions]="{standalone: true}" type="text" class="form-control input-sm" id="rename-form">
 						</div>
 					</div>
@@ -80,13 +80,13 @@
 				<hr>
 				<div class="modal-body" style="padding-top: 8px">
 					<div class="row">
-						<form class="col-lg-2 col-md-2 col-sm-2 col-xs-4">
+						<form class="col-lg-2 col-md-2 col-sm-2 col-xs-3">
 							<label for="quantity-form"><h4 class="media-heading">Quantity: </h4></label>
 						</form>
 						<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 col-xs-offset-1">
 							<strong><span class="text-muted">x</span></strong>
 						</div>
-						<div class="col-lg-2 col-md-2 col-sm-3 col-xs-3" style="top: -7px">
+						<div class="col-lg-3 col-md-3 col-sm-3 col-xs-4" style="top: -7px">
 							<input [(ngModel)]="item.quantity" [ngModelOptions]="{standalone: true}" type="number" class="form-control input-sm" value="1" min="0">
 						</div>
 					</div>
@@ -94,7 +94,7 @@
 				<hr>
 				<div class="modal-body">
 					<div class="row" style="padding-bottom: 10px">
-						<div class="col-lg-5 col-md-4 col-sm-4 col-xs-6 pull-left" style="top: -4px">
+						<div class="col-lg-4 col-md-4 col-sm-4 col-xs-5 pull-left" style="top: -4px">
 							<h4 class="media-heading">Expiration Date: </h4>
 						</div>
 						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-3" style="padding-right: 0; top: -12px">
