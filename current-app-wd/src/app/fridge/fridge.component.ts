@@ -102,7 +102,7 @@ export class FridgeComponent implements OnInit {
         let newName = this.renameInput;
         // console.log(this.renameInput);
         if (this.renameInput.length > 2) {
-        let itemNameGetter = this.db.object('/fridgeList/' + this.userId + '/' + key ).update({'name': newName});
+        this.db.object('/fridgeList/' + this.userId + '/' + key ).update({'name': newName});
         }
     }
 
@@ -113,17 +113,19 @@ export class FridgeComponent implements OnInit {
 
         let newQty = this.reQtyInput;
         if (newQty > 0) {
-        let itemQtyGetter = this.db.object('/fridgeList/' + this.userId + '/' + key).update({'qty': newQty});
+        this.db.object('/fridgeList/' + this.userId + '/' + key).update({'qty': newQty});
         }
     }
 
-    editShelfLife(key: string) {
+    editShelfLife(item: any) {
+        let key = item.$key;
         this.currentItem$ = this.db.list('/fridgeList' + key);
         // console.log(key);
 
         let newShelfLife = this.reShelfLifeInput;
         if (newShelfLife > 0) {
-        let itemQtyGetter = this.db.object('/fridgeList/' + this.userId + '/' + key).update({'shelfLife': newShelfLife});
+            this.db.object('/fridgeList/' + this.userId + '/' + key).update({'shelfLife': newShelfLife});
+            item.expiration = 1 - ((this.today - item.datePurchased) / item.shelfLife);
         }
     }
 
