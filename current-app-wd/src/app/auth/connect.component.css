@@ -20,7 +20,7 @@
 
 .form-element {
 	padding: 0;
-	margin: 14px 0;
+	margin: 22px 0;
 }
 
 a {
@@ -32,7 +32,7 @@ a {
 	background: white;
 	color: #444;
 	border-radius: 5px;
-	margin-top: 10px;
+	margin-top: 15px;
 	white-space: nowrap;
 	text-align: center;
 }

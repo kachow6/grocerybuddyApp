@@ -1,8 +1,14 @@
+<!-- HOME PAGE HTML -->
+<!-- NEW LIST BANNER -->
 <div class="container-fluid add-list col-lg-12 col-md-12 col-sm-12 col-xs-12" style="">
     <div class="row list-inline">
+
+        <!-- New List Name Input -->
         <div class="col-lg-6 col-md-6 col-sm-7 col-xs-8 col-lg-offset-2 col-sm-offset-1 new-object-input">
             <input [(ngModel)] = "nameInput" (keyup.enter)="addListButton.click()" type="text" class="form-control" id="new-list-form" placeholder="New List" >
         </div>
+
+        <!-- New List Submit Button -->
         <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 col-lg-offset-1 col-md-offset-3 col-xs-offset-1" style="margin-top: 15px">
             <button #addListButton (click)="addList()" class="btn btn-lg btn-success title" type="button" data-toggle="dropdown">
                 <span class="glyphicon glyphicon-plus"></span>
@@ -11,6 +17,7 @@
     </div>
 </div>
 
+<!-- Main Page Content -->
 <div class="container col-lg-8 col-md-10 col-lg-offset-2 col-md-offset-1" style="top: 80px; margin-bottom: 60px">
 
     <!-- HTML for individual items in the main list -->
@@ -61,29 +68,32 @@
 
         </div>
         
-            <!-- Rename Modal -->
-            <div class="modal fade" id="renameModal" tabindex="-1" role="dialog" style="z-index: 6000" bsModal #renameModal="bs-modal" aria-labelledby="rename" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" (click)="renameModal.hide()" aria-hidden="true"><span class="glyphicon glyphicon-remove"></span></button>
+        <!-- Rename Modal -->
+        <div class="modal fade" id="renameModal" tabindex="-1" role="dialog" style="z-index: 6000" bsModal #renameModal="bs-modal" aria-labelledby="rename" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" (click)="renameModal.hide()" aria-hidden="true"><span class="glyphicon glyphicon-remove"></span></button>
+                    </div>
+
+                    <div class="modal-body">
+                        <div class="row">
+                            <form class="col-lg-11 col-md-11 col-sm-11 col-xs-11">
+                                <label for="rename-form"><h3 class="media-heading">Rename: </h3></label>
+                                <input [(ngModel)]="renameInput" [ngModelOptions]="{standalone: true}" type="text" class="form-control" id="rename-form">
+                            </form>
                         </div>
-                        <div class="modal-body">
-                            <div class="row">
-                                <form class="col-lg-11 col-md-11 col-sm-11 col-xs-11">
-                                    <label for="rename-form"><h3 class="media-heading">Rename: </h3></label>
-                                    <input [(ngModel)]="renameInput" [ngModelOptions]="{standalone: true}" type="text" class="form-control" id="rename-form">
-                                </form>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <div class="row" style="text-align: center;">
-                                <button class="btn btn-lg btn-success" (click)=" renameList(item.$key); renameModal.hide()" >Save Changes</button>
-                            </div>
+                    </div>
+                    
+                    <div class="modal-footer">
+                        <div class="row" style="text-align: center;">
+                            <button class="btn btn-lg btn-success" (click)=" renameList(item.$key); renameModal.hide()" >Save Changes</button>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
 
     </div>
 </div>

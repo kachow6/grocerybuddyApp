@@ -1,12 +1,19 @@
-<!-- New Item Banner -->
+<!-- FRIDGE PAGE HTML -->
+<!-- Add New Item Banner -->
 <div class="container-fluid add-item col-lg-12 col-md-12 col-sm-12 col-xs-12">
     <div class="row ">
+
+		<!-- New Item Name Input -->
         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6 col-lg-offset-2 col-md-offset-1 col-sm-offset-1 new-object-input">
             <input #name [(ngModel)] = "nameInput" type="text" class="form-control" id="new-item-form" placeholder="New Item" (keyup.enter)="number.focus()">
         </div>
+
+		<!-- New Item Qty Input -->
         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-3" style="padding: 20px 15px">
             <input #number [(ngModel)] = "numberInput" type="number" class="form-control" id="new-qty-form" placeholder="Qty." (keyup.enter)="addToFridgeButton.click()">
         </div>
+
+		<!-- New Item Submit Button -->
         <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 col-lg-offset-1 col-md-offset-3 col-sm-offset-3" style="margin-top: 15px">
             <button #addToFridgeButton (click)=" addItemToFridgeList(nameInput, numberInput)" class="btn btn-lg btn-success title" type="button" data-toggle="dropdown"><span class="glyphicon glyphicon-plus"></span></button>
         </div>
@@ -24,7 +31,8 @@
             [class.swipe-hide]="!(item.isQueuedForDelete && item.deleteQueueRight)"
             (swiperight)="item.isQueuedForDelete=false; item.deleteTimer=clearItemDeleteTimer(item.deleteTimer)"
             (tap)="item.isQueuedForDelete=false; item.deleteTimer=clearItemDeleteTimer(item.deleteTimer)"
-            #swipeLeft><span>Undo</span></div>
+            #swipeLeft><span>Undo</span>
+        </div>
 	
 		<!-- Swipe Right Undo -->
         <div class="list-item-swipe-display swipe-right"
@@ -32,7 +40,8 @@
             [class.swipe-hide]="!(item.isQueuedForDelete && !item.deleteQueueRight)"
             (swipeleft)="item.isQueuedForDelete=false; item.deleteTimer=clearItemDeleteTimer(item.deleteTimer)"
             (tap)="item.isQueuedForDelete=false; item.deleteTimer=clearItemDeleteTimer(item.deleteTimer)"
-            #swipeRight><span>Undo</span></div>
+            #swipeRight><span>Undo</span>
+        </div>
 
 		<!-- Undo Time Interval -->
         <div class="row"
@@ -40,17 +49,20 @@
                 (swipeleft)="item.deleteQueueRight=true"
                 (swiperight)="item.deleteQueueRight=false">
 
-			<!-- Fridge Item Element -->
+			<!-- Fridge Item Name -->
 			<div class="col-lg-8 col-md-8 col-sm-7 col-xs-6">
 				<h4 class="item-name" style="margin-bottom: 0; margin-top: 15px;">{{item.name}}</h4>
 			</div>
+
+			<!-- Fridge Item Qty -->
 			<div class="col-lg-3 col-md-3 col-sm-3 col-xs-4" style="text-align: right; margin-top: 3px">
 				<h4>x{{item.qty}}</h4>
 			</div>
 			<div style="margin-top: 8px; right: 10px; font-size: 20px; position: absolute;">
-				<a DATA-TOGGLE="#" (click)="itemModal.show(); renameInput = item.name; item.quantity = item.qty" data-toggle="modal" data-target="#listModal"><span class="glyphicon glyphicon-option-vertical"></span></a>
+				<a DATA-TOGGLE="#" (click)="itemModal.show(); renameInput = item.name; reQtyInput = item.qty" data-toggle="modal" data-target="#listModal"><span class="glyphicon glyphicon-option-vertical"></span></a>
 			</div>
 		</div>
+
 		<!-- Expiration Bar -->
 		<div class="row col-lg-11 col-md-11 col-sm-10 col-xs-10" style="padding: 0 0 0 10px;">
 			<div class="progress" style="margin-bottom: 8px; height: 13px">
@@ -59,70 +71,81 @@
 			</div>
 		</div>
 		
-	<!-- Options Modal -->
-	<div class="modal fade" id="listModal" tabindex="-1" role="dialog" aria-labelledby="options" bsModal #itemModal="bs-modal"
-		tabindex="-1" role="dialog" style="z-index: 6000" aria-labelledby="mySmallModalLabel"aria-hidden="true">
+		<!-- Options Modal -->
+		<div class="modal fade" id="listModal" tabindex="-1" role="dialog" aria-labelledby="options" bsModal #itemModal="bs-modal"
+			tabindex="-1" role="dialog" style="z-index: 6000" aria-labelledby="mySmallModalLabel"aria-hidden="true">
 
-		<!-- Easter Egg Appearance -->
-		<div *ngIf="showEasterEgg" class="shake-slow shake-constant" style="text-align: center; position: absolute; z-index: 1; width: 100%"><img src="../../assets/imgs/non-buddies/easteregg.png" height="400" width="400"></div>
-		<div class="modal-dialog">
-			<div class="modal-content">
+			<!-- Easter Egg Appearance -->
+			<div *ngIf="showEasterEgg" class="shake-slow shake-constant" style="text-align: center; position: absolute; z-index: 1; width: 100%"><img src="../../assets/imgs/non-buddies/easteregg.png" height="400" width="400"></div>
+			<div class="modal-dialog">
+				<div class="modal-content">
 
-				<!-- Options Modal Starts Here -->
-				<div class="modal-header" style="padding: 10px">
-					<div class="pull-left" style="padding-left: 5px">
-						<h3><strong>{{item.name}}</strong></h3>
-					</div>
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true" aria-label="Close" (click)="itemModal.hide()">
-						<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-					</button>
-				</div>
-				<div class="modal-body" style="padding-top: 20px">
-					<div class="row">
-						<form class="col-lg-2 col-md-2 col-sm-2 col-xs-3" style="top: 5px">
-							<label for="rename-form"><h4 class="media-heading">Rename: </h4></label>
-						</form>
-						<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 col-xs-offset-2">	
-							<input #rename [(ngModel)]="renameInput" [ngModelOptions]="{standalone: true}" type="text" class="form-control input-sm" id="rename-form" (keyup.enter)="requantity.focus()">
+					<!-- Options Modal Starts Here -->
+					<div class="modal-header" style="padding: 10px">
+						<div class="pull-left" style="padding-left: 5px">
+							<h3><strong>{{item.name}}</strong></h3>
 						</div>
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true" aria-label="Close" (click)="itemModal.hide()">
+							<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+						</button>
 					</div>
-				</div>
-				<hr>
-				<div class="modal-body" style="padding-top: 8px">
-					<div class="row">
-						<form class="col-lg-2 col-md-2 col-sm-2 col-xs-3">
-							<label for="quantity-form"><h4 class="media-heading">Quantity: </h4></label>
-						</form>
-						<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 col-xs-offset-1">
-							<strong><span class="text-muted">x</span></strong>
-						</div>
-						<div class="col-lg-3 col-md-3 col-sm-3 col-xs-4" style="top: -7px">
-							<input #requantity [(ngModel)]="item.quantity" [ngModelOptions]="{standalone: true}" type="number" class="form-control input-sm" value="1" min="0" (keyup.enter)="reexpiry.focus()">
+
+					<!-- Rename Option -->
+					<div class="modal-body" style="padding-top: 20px">
+						<div class="row">
+							<form class="col-lg-2 col-md-2 col-sm-2 col-xs-3" style="top: 5px">
+								<label for="rename-form"><h4 class="media-heading">Rename: </h4></label>
+							</form>
+							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 col-xs-offset-2">	
+								<input #rename [(ngModel)]="renameInput" [ngModelOptions]="{standalone: true}" type="text" class="form-control input-sm" id="rename-form" (keyup.enter)="requantity.focus()">
+							</div>
 						</div>
 					</div>
-				</div>
-				<hr>
-				<div class="modal-body">
-					<div class="row" style="padding-bottom: 10px">
-						<div class="col-lg-4 col-md-4 col-sm-4 col-xs-5 pull-left" style="top: -4px">
-							<h4 class="media-heading">Expiration Date: </h4>
-						</div>
-						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-3" style="padding-right: 0; top: -12px">
-							<input #reexpiry [(ngModel)]="item.expiration" [ngModelOptions]="{standalone: true}" type="number" class="form-control input-sm" value="1" min="0" (keyup)="activateEasterEgg(item.expiration)" (keyup.enter)="saveButton.click()">
-						</div>
-						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="top:-12px">
-							<h5><strong><span class="text-muted">days</span></strong></h5>
+
+					<hr>
+
+					<!-- Quantity Option -->
+					<div class="modal-body" style="padding-top: 8px">
+						<div class="row">
+							<form class="col-lg-2 col-md-2 col-sm-2 col-xs-3">
+								<label for="quantity-form"><h4 class="media-heading">Quantity: </h4></label>
+							</form>
+							<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 col-xs-offset-1">
+								<strong><span class="text-muted">x</span></strong>
+							</div>
+							<div class="col-lg-3 col-md-3 col-sm-3 col-xs-4" style="top: -7px">
+								<input #requantity [(ngModel)]="reQtyInput" [ngModelOptions]="{standalone: true}" type="number" class="form-control input-sm" value="1" min="0" (keyup.enter)="reexpiry.focus()">
+							</div>
 						</div>
 					</div>
-				</div>
-				<div class="modal-footer">
-					<div class="row" style="text-align: center;">
-						<button #saveButton class="btn btn-md btn-success" (click)="itemModal.hide(); itemRename(item.$key); editQty(item.$key)">Save Changes</button>
+
+					<hr>
+
+					<!-- Expiration Date Option -->
+					<div class="modal-body">
+						<div class="row" style="padding-bottom: 10px">
+							<div class="col-lg-4 col-md-4 col-sm-4 col-xs-5 pull-left" style="top: -4px">
+								<h4 class="media-heading">Expiration Date: </h4>
+							</div>
+							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-3" style="padding-right: 0; top: -12px">
+								<input #reexpiry [(ngModel)]="reShelfLifeInput" [ngModelOptions]="{standalone: true}" type="number" class="form-control input-sm" value="1" min="0" (keyup)="activateEasterEgg(item.expiration)" (keyup.enter)="saveButton.click()">
+							</div>
+							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="top:-12px">
+								<h5><strong><span class="text-muted">days</span></strong></h5>
+							</div>
+						</div>
 					</div>
+
+					<!-- Save Changes Button -->
+					<div class="modal-footer">
+						<div class="row" style="text-align: center;">
+							<button #saveButton class="btn btn-md btn-success" (click)="itemModal.hide(); itemRename(item.$key); editQty(item.$key); editShelfLife(item)">Save Changes</button>
+						</div>
+					</div>
+					
 				</div>
 			</div>
 		</div>
-	</div>
-	</div>
 
+	</div>
 </div>

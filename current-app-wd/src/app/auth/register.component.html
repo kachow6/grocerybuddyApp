@@ -1,45 +1,60 @@
+<!-- REGISTER PAGE HTML -->
 <div class="container-fluid">
     <div class="row">
 
+        <!-- Grocery Buddy Logo -->
         <div class="container col-lg-4 col-md-6 col-sm-6 col-xs-10 col-lg-offset-4 col-md-offset-3 col-sm-offset-3 col-xs-offset-1" style="margin-top: 10px">
             <img src="../../assets/imgs/GroceryBuddyLogin.png" alt="Grocery Buddy" class="img-responsive buddyLogo">
         </div>
         
+        <!-- Main Form Container -->
         <div class="container col-lg-12 col-md-12 col-sm-12 col-xs-12 col-lg-offset-0 col-md-offset-0 col-sm-offset-0 col-xs-offset-0 login-container">
 
             <div class="container col-lg-6 col-md-8 col-sm-8 col-xs-12 col-lg-offset-3 col-md-offset-2 col-sm-offset-2 col-xs-offset-0 login-form">
                 <div class="row">
+
+                    <!-- Form Begins Here -->
                     <form method="post" id="registerform" action="http://webdevbasics.net/scripts/demo.php">
                         <a [routerLink]="['../login']">
+
+                            <!-- Back to Login Page -->
                             <button type="button" class="btn btn-info btn-block form-element">
                                 <span style="vertical-align: middle; color: white">Back to Login</span>
                             </button>
                         </a>
                         
+                        <!-- Sign-up Form -->
                         <h4 class="title">Sign Up: </h4>
+
+                        <!-- User Name -->
                         <div class="form-group form-element">
                             <input type="name" class="form-control" id="name" placeholder="Name" name="user_name" required>
                         </div>
 
+                        <!-- User Email -->
                         <div class="form-group form-element">
                             <input type="email" class="form-control" id="email" placeholder="Email" name="user_email" required>
                         </div>
 
+                        <!-- User Password -->
                         <div class="form-group form-element">
                             <p id="passworderror" class="error">{{passwordmessage}}</p>
                             <input type="password" class="form-control" id="password" placeholder="Password" name="user_password" #password (blur)="checkComplexity(password.value)" [(ngModel)]="userpassword" required>
                         </div>
 
+                        <!-- User Confirm Password -->
                         <div class="form-group form-element">
                             <p id="confirmpassworderror" class="error">{{confirmpasswordmessage}}</p>
                             <input type="password" class="form-control" id="confirmpassword" placeholder="Confirm Password" name="user_confirmpassword" #confirmpassword (blur)="confirmPassword(password.value, confirmpassword.value, true)" [(ngModel)]="userconfirmpassword" required>
                         </div>
 
+                        <!-- Remember Me and Forgot Password Options -->
                         <div class="checkbox row form-element">
                             <label><input type="checkbox" style="top: -12px; color: #4B4B4B;"><small>Remember me</small></label>
                             <a class="pull-right" href="#"><small>Forgot Password?</small></a>
                         </div>
                         
+                        <!-- Submit Button -->
                         <button type="button" class="btn btn-primary btn-block form-element">Submit</button>
                     </form>
                 </div>
