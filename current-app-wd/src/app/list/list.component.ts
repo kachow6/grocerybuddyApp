@@ -91,6 +91,8 @@ export class ListComponent {
 
             // Push the item to the currentList$.
             this.currentList$.push(newItem);
+            this.nameInput = '';
+            this.numberInput = null;
         }
     }
 
@@ -123,29 +125,35 @@ export class ListComponent {
         return null;
     }
 
-    //Method for resetting checked items to false
-    resetList(): void {
-        for(let i = 0; i < this.myList.length; i++) {
-            this.myList[i].checked = false;
-        }
-    }
-
-    //Method for transfering checked items to fridge array
-    checkout(): void {
-        for(let i = 0; i < this.myList.length; i++) {
-            if (this.myList[i].checked === true) {
-                UserService.user.fridgeList.
-                push(new FridgeItem(this.myList[i].name, this.myList[i].quantity, 50));
+    // Reset All Items method 
+    resetAllItems(): void {
+        let mySub = this.db.list('/shoppingList/' + this.userService.getCurrentList()).subscribe(datasnap => {
+            let temp: string[];
+                for(let i of datasnap){
+                    let query = this.db.object('/shoppingList/' + this.userService.getCurrentList() + '/' + i.$key);
+                    query.update({'checked': false});
             }
-        }
-        // Navigates to the fridge page.
-        this.router.navigateByUrl('/main/fridge');
+        });
     }
 
+    //  Old Method for transfering checked items to fridge array
+    // checkout(): void {
+    //     for(let i = 0; i < this.myList.length; i++) {
+    //         if (this.myList[i].checked === true) {
+    //             UserService.user.fridgeList.
+    //             push(new FridgeItem(this.myList[i].name, this.myList[i].quantity, 50));
+    //         }
+    //     }
+    //     // Navigates to the fridge page.
+    //     this.router.navigateByUrl('/main/fridge');
+    // }
+
+    // Method for checking out all items into the user's fridge
     getAllCheckoutItems(): void {
         let mySub = this.db.list('/shoppingList/' + this.userService.getCurrentList()).subscribe(datasnap => {
             let filteredArray:any[];
             for(let i of datasnap){
+                console.log(i);
                 if (i.checked) {
                     // filteredArray.push(i);
                     this.db.list('fridgeList/' + this.userId).push({
@@ -154,9 +162,11 @@ export class ListComponent {
                         datePurch: '',
                         maxAge: ''
                     });
+                    let query = this.db.object('/shoppingList/' + this.userService.getCurrentList() + '/' + i.$key);
+                    query.update({'checked': false});
                 }
             }
-            // mySub.unsubscribe();
         });
+         this.router.navigateByUrl('/main/fridge');
     }
 }
