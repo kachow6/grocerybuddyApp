@@ -29,8 +29,11 @@ export class ListComponent {
     //Instantiating the array object.
     myList: ShoppingItem[] = [];
     nameInput: string = '';
+    renameInput: string = '';
     numberInput: number;
     checkedInput: boolean;
+    currentItem: any;
+
 
     // Database & Auth Variables.
     userId: string = 'user-1';
@@ -136,6 +139,19 @@ export class ListComponent {
         timer = clearTimeout(timer);
         return null;
     }
+
+    // Method for renaming an item in the user's fridge list.
+    itemRename(key: string) {
+        this.currentItem = this.db.list('/shoppingList/' + key);
+        // console.log(key);
+
+        let newName = this.renameInput;
+        // console.log(this.renameInput);
+        if (this.renameInput.length > 2) {
+            this.db.object('/shoppingList/' + this.userId + '/' + key ).update({'name': newName});
+        }
+    }
+
 
     //Method for resetting checked items to false
     resetList(): void {

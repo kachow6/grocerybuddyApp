@@ -126,7 +126,7 @@
             <div class="modal-footer">
                 <div class="row" style="text-align: center;">
                     <button class="btn btn-md btn-danger" (click)=" renameModal.hide(); listRename(item)" >Undo Changes</button>
-                    <button #saveButton class="btn btn-md btn-success" (click)=" renameModal.hide(); listRename(item)" >Save Changes</button>
+                    <button #saveButton class="btn btn-md btn-success" (click)="renameModal.hide(); renameInput = item.name; itemRename(item.$key);" >Save Changes</button>
                 </div>
             </div>
         </div>
