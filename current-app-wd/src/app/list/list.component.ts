@@ -6,6 +6,7 @@ import { ShoppingList,
 import { Router }                              from '@angular/router';
 import { FormsModule                         } from '@angular/forms';
 
+import 'rxjs/add/operator/take';
 import { AngularFireDatabase,
                  FirebaseListObservable,
                  FirebaseObjectObservable }    from 'angularfire2/database';
@@ -170,34 +171,28 @@ export class ListComponent {
 
     // Reset All Items method 
     resetAllItems(): void {
-        let mySub = this.db.list('/shoppingList/' + this.userService.getCurrentList()).subscribe(datasnap => {
-                for(let i of datasnap){
-                    let query = this.db.object('/shoppingList/' + this.userService.getCurrentList() + '/' + i.$key);
-                    query.update({'checked': false});
+        
+        let mySub = this.db.list('/shoppingList/' + this.userService.getCurrentList())
+                           .take(1)
+                           .subscribe(datasnap => {
+
+            for(let i of datasnap){
+                
+                let query = this.db.object('/shoppingList/' + this.userService.getCurrentList() + '/' + i.$key);
+                query.update({'checked': false});
+
             }
-            mySub.unsubscribe();
         });
     }
 
-    //  Old Method for transfering checked items to fridge array
-    // checkout(): void {
-    //     for(let i = 0; i < this.myList.length; i++) {
-    //         if (this.myList[i].checked === true) {
-    //             UserService.user.fridgeList.
-    //             push(new FridgeItem(this.myList[i].name, this.myList[i].quantity, 50));
-    //         }
-    //     }
-    //     // Navigates to the fridge page.
-    //     this.router.navigateByUrl('/main/fridge');
-    // }
-
     // Method for checking out all items into the user's fridge
     getAllCheckoutItems(): void {
-        let mySub = this.db.list('/shoppingList/' + this.userService.getCurrentList()).subscribe(datasnap => {
+        let mySub = this.db.list('/shoppingList/' + this.userService.getCurrentList())
+                           .take(1)
+                           .subscribe(datasnap => {
+                               
             for(let i of datasnap){
-                // console.log(i);
                 if (i.checked) {
-                    // filteredArray.push(i);
                     this.db.list('fridgeList/' + this.userId).push(
                        new FridgeItem(i.name, i.qty, 10));
 
@@ -205,8 +200,9 @@ export class ListComponent {
                     query.update({'checked': false});
                 }
             }
+
+            this.router.navigateByUrl('/main/fridge');
         });
-         this.router.navigateByUrl('/main/fridge');
     }
 
     // Method to check if a item name is greater than 14 characters
