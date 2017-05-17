@@ -25,6 +25,31 @@
   <!--link for shake.css-->
   <link rel="stylesheet" type="text/css" href="http://csshake.surge.sh/csshake.min.css">
 
+  <style>
+    /* default .loading styles, .loading should be invisible, opacity: 0, z-index: -1 */
+    .loading {
+      opacity: 0;
+      transition: opacity .8s ease-in-out;
+      position: fixed;
+      height: 100%;
+      width: 100%;
+      top: 150px;
+      left: 0;
+      background: white;
+      z-index: -1;
+      text-align: center;
+    }
+    /* .loading screen is visible when app is not bootstraped yet, .my-app is empty */
+    sd-app:empty + .loading {
+      opacity: 1;
+      z-index: 100;
+    }
+    #loadingText {
+      font-family: chewy;
+      color: green;
+    }
+  </style>
+
 
 </head>
 <body>
@@ -32,7 +57,12 @@
   <!-- <script src="./lib/hammer.min.js"></script>
   <script src="./lib/hammer-time.min.js"></script> -->
 
-  <sd-app>Loading...</sd-app>
+  <sd-app></sd-app>
+
+  <div class="loading">
+    <img src="assets/imgs/GroceryBuddy.png" alt="Grocery Buddy" height=300" width=300">
+    <h1 id="loadingText">loading...</h1>
+  </div>
 
   <!-- HAMMER JS, which handles gesture support -->
 
