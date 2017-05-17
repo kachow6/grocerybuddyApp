@@ -83,6 +83,13 @@ export class HomeComponent implements OnInit {
         }
     }
 
+    //Method for adding a new Shopping list object on homepage using enter key.
+    addListEnter(event: any):void {
+        if (event.keyCode == 13) {
+            this.addList();
+        }
+    }
+
     //Method for moving into the user selected list
     selectList(key: string): void {
         this.userService.setCurrentList(key);
