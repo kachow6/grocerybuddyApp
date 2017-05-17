@@ -38,8 +38,8 @@
                 <h5 id="confirmpassworderror" class="error" style="color:tomato">{{confirmpasswordmessage}}</h5>
                 <input type="password" class="form-control" id="confirmpassword" name="user_confirmpassword" #confirmpassword [(ngModel)]="userconfirmpassword" required>
             </div>
-            <button type="button" class="btn btn-success btn-lg" (click)="checkEmail(); checkComplexity(password.value); confirmPassword(password.value, confirmpassword.value, true); changeInfo();">Submit</button>
-            <button type="button" class="btn btn-danger btn-lg" (click)="clearFields()">Clear</button>
+            <button type="button" class="btn btn-success btn-block" (click)="checkEmail(); checkComplexity(password.value); confirmPassword(password.value, confirmpassword.value, true); changeInfo();">Submit</button>
+            <button type="button" class="btn btn-danger btn-block" (click)="clearFields()">Clear</button>
 
         </form>
     </div>
