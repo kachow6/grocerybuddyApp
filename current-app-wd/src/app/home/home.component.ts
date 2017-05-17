@@ -100,13 +100,6 @@ export class HomeComponent implements OnInit {
 
         this.renameInput = '';
     }
-    
-    // Method for resetting items checked in the list.
-    // resetList(list: ShoppingList): void {
-      //   for(let i = 0; i < this.userService.getCurrentList().contents.length; i++) {
-      //       this.userService.getCurrentList().contents[i].checked = false;
-      // }
-    // }
 
     resetList(key: string): void {
         let mySub = this.db.list('/shoppingList/' + key).subscribe(datasnap => {

@@ -5,12 +5,12 @@ import { BUDDY_PICS }            from  './header.menu.buddypics';
 import { UserService }           from '../user-service/user.service';
 import { FridgeItem, DateTools } from '../user-service/user';
 import { Router,
-    NavigationEnd,
-    NavigationStart }            from '@angular/router';
+         NavigationEnd,
+         NavigationStart }       from '@angular/router';
 
 import { AngularFireDatabase,
-                 FirebaseListObservable,
-                 FirebaseObjectObservable }    from 'angularfire2/database';
+         FirebaseListObservable,
+         FirebaseObjectObservable }    from 'angularfire2/database';
 import { Observable } from 'rxjs/Observable';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
@@ -67,7 +67,31 @@ export class HeaderComponent implements OnInit {
     // OnInit method. Angular's recommended place to perform initialization.
     ngOnInit() {
         this.closeNav();                     // Closes the nav bar
-        this.pageTitle = 'Grocery Buddy';    // Default page title
+        this.router.events.subscribe((snap: any) => {
+            let currentPage = snap.urlAfterRedirects;
+            // If User is on homepage
+            if (currentPage ===  '/main') {
+                this.pageTitle = 'Grocery Buddy';
+            // IF the user is on fridge page
+            } else if (currentPage === '/main/fridge') {
+                this.pageTitle = 'Fridge';
+            // If the user is in a list
+            } else if (currentPage === '/main/list') {
+                let listKey = this.userService.getCurrentList();
+                              this.db.object('/homeList/' + 
+                              this.userId + '/' +
+                              listKey).take(1).subscribe(snap => {
+                              this.pageTitle = snap.$value;
+                            });
+            // If the user is on settings page
+            } else if (currentPage === '/main/settings') {
+                this.pageTitle = 'Settings';
+            // If the user is on affiliates page
+            } else if (currentPage === '/main/affiliates') {
+                this.pageTitle = 'Affiliates';
+            }
+        });
+            // Default page title
 
         // Set up Firebase variables
         this.user = this.afAuth.authState;
@@ -80,6 +104,9 @@ export class HeaderComponent implements OnInit {
         }); 
     }
 
+    getListName(): void {
+
+    }
     // EXPIRY NOTIFICATION METHODS
     // Pulls expiring items out of user's fridge items.
     // pullExpiringDep(list: FridgeItem[]): FridgeItem[] {
