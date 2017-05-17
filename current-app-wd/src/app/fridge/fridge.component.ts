@@ -73,10 +73,12 @@ export class FridgeComponent implements OnInit {
         let fridgeItem = {name: itemName,
                          qty: itemQty,
                          autofillId: ''};
-                         // console.log(fridgeItem);
-        if (itemName.length > 2 && itemQty > 0) {
+
+        // console.log(fridgeItem);
+        if (itemName.length >= 1 && itemQty > 0) {
         this.fridgeList$.push(new FridgeItem(itemName, itemQty, 10)); 
         }
+
         this.nameInput = '';
         this.numberInput = null;
     }

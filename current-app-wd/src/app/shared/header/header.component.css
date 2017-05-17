@@ -103,6 +103,9 @@ ul.nav-tabs > li a:hover {
 }
 .page-top {
     padding: 0;
+    position: fixed;
+    z-index: 5000;
+    min-width: 400px;
 }
 .navbar-header {
     margin-right: 0;

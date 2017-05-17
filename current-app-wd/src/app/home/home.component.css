@@ -5,6 +5,8 @@
 }
 .add-list{
 	background-color: #0A8056;
-	border: 3px solid white;
+	border: 0;
 	color: white;
+	position: fixed;
+	z-index: 5000;
 }
