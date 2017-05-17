@@ -67,6 +67,7 @@ export class HeaderComponent implements OnInit {
     // OnInit method. Angular's recommended place to perform initialization.
     ngOnInit() {
         this.closeNav();                     // Closes the nav bar
+        
         this.router.events.subscribe((snap: any) => {
             let currentPage = snap.urlAfterRedirects;
             // If User is on homepage
@@ -76,13 +77,17 @@ export class HeaderComponent implements OnInit {
             } else if (currentPage === '/main/fridge') {
                 this.pageTitle = 'Fridge';
             // If the user is in a list
-            } else if (currentPage === '/main/list') {
-                let listKey = this.userService.getCurrentList();
-                              this.db.object('/homeList/' + 
-                              this.userId + '/' +
-                              listKey).take(1).subscribe(snap => {
-                              this.pageTitle = snap.$value;
-                            });
+        } else if (currentPage === '/main/list') {
+              if (!this.userService.getCurrentList()) {
+                  this.router.navigateByUrl('/main');
+                  } else {
+                      let listKey = this.userService.getCurrentList();
+                                    this.db.object('/homeList/' + 
+                                    this.userId + '/' +
+                                    listKey).take(1).subscribe(snap => {
+                                    this.pageTitle = snap.$value;
+                                    });
+                    }
             // If the user is on settings page
             } else if (currentPage === '/main/settings') {
                 this.pageTitle = 'Settings';
@@ -91,7 +96,6 @@ export class HeaderComponent implements OnInit {
                 this.pageTitle = 'Affiliates';
             }
         });
-            // Default page title
 
         // Set up Firebase variables
         this.user = this.afAuth.authState;
@@ -104,9 +108,6 @@ export class HeaderComponent implements OnInit {
         }); 
     }
 
-    getListName(): void {
-
-    }
     // EXPIRY NOTIFICATION METHODS
     // Pulls expiring items out of user's fridge items.
     // pullExpiringDep(list: FridgeItem[]): FridgeItem[] {
