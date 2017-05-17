@@ -1,5 +1,4 @@
-<!-- PLEASE NOTE: The height set here is a hack. If this isn't here, the menu that's visible on the
-     individual pages sticks at the top of the page and overlaps stuff -->
+<!-- PLEASE NOTE: The height set here is a hack. If this isn't here, the menu that's visible on the individual pages sticks at the top of the page and overlaps stuff -->
 <header style="height: 71px">
 
     <!-- FOLD-OUT SIDE NAVIGATION BAR. Triggered by clicking hamburger menu icon. -->
@@ -29,8 +28,7 @@
         </div>
     </div>
 
-    <!-- PAGE COVER. This is brought to the front when the side navigation is triggered,
-         and also has its background-color changed from white to slightly-opaque black. -->
+    <!-- PAGE COVER. This is brought to the front when the side navigation is triggered, and also has its background-color changed from white to slightly-opaque black. -->
     <div class="page-cover"
          [class.page-cover-darken]="push > 0"
          [class.page-cover-regular]="push == 0"
@@ -61,8 +59,7 @@
                 <br>
             </div>
 
-            <!-- This block represents individual items that get iterated
-                 into the modal that displays items close to expiration -->
+            <!-- This block represents individual items that get iterated into the modal that displays items close to expiration -->
             <div class="modal-body expiring-element"
                  style="height: 100px"
                  *ngFor="let expiringitem of expiringItems">
