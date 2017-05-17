@@ -116,7 +116,7 @@ export class HomeComponent implements OnInit {
     }
 
     // Method for copying a list object on home page.
-    copyList(list: ShoppingList): void {
+    // copyList(list: ShoppingList): void {
         // let tempList: ShoppingList = new ShoppingList(list.name);
         // let tempIndex: ShoppingItem[];
         // for(let i = 0; i < list.contents.length; i++) {
@@ -125,6 +125,25 @@ export class HomeComponent implements OnInit {
         //                                             list.contents[i].checked))
         // }
         // this.myList.push(tempList);
+    // }
+
+    // Method for copying a new instance of a user's shopping list
+    copyList(key: string, name: string): void {
+        //    console.log(key);
+        //    console.log(name);
+           let copyListKey = this.homeList$.push(name).key;
+        //    console.log(copyListKey);
+           let mySub = this.db.list('/shoppingList/' + key).subscribe(datasnap => {
+           for(let i of datasnap){
+                console.log(i);
+                this.db.list('/shoppingList/' + copyListKey).push({
+                        'name': i.name,
+                        'qty': i.qty,
+                        'checked': false,
+                        'autofillId': ''
+                    });
+            }
+        });
     }
 
     // ====== ITEM DELETE ====== //
