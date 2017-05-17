@@ -89,11 +89,6 @@ export class ListComponent {
                 'autofillId': ''
             };
 
-            // Truncates item name if larger than 14 characters
-            if (this.nameInput.length > 14) {
-                newItem.name = this.nameInput.substring(0,15) + '...';
-            }
-
             // Push the item to the currentList$.
             this.currentList$.push(newItem);
             this.nameInput = '';
@@ -173,5 +168,13 @@ export class ListComponent {
             }
         });
          this.router.navigateByUrl('/main/fridge');
+    }
+
+    // Method to check if a item name is greater than 14 characters
+    checkName(name: string): string {
+        if (name.length > 15) {
+            name = name.slice(0,15) + '...';
+        }
+        return name;
     }
 }

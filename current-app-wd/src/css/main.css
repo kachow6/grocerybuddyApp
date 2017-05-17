@@ -132,3 +132,9 @@ a:hover {
   color: white;
   text-shadow: 2px 1px #818181;
 }
+
+.item-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
