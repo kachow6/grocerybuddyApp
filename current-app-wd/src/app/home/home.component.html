@@ -56,7 +56,7 @@
                     <li role="menuitem" class="menu-item"><a DATA-TOGGLE="#" (click)="copyList(item.$key, item.$value)">Copy</a></li>
 
                     <li role="menuitem" class="menu-item"><a DATA-TOGGLE="#" (click)="item.isQueuedForDelete=true; item.deleteTimer=startItemDeleteTimer(item.$key)">Delete</a></li>
-                    <li role="menuitem" class="menu-item"><a DATA-TOGGLE="#" (click)="resetList(item)">Reset</a></li>
+                    <li role="menuitem" class="menu-item"><a DATA-TOGGLE="#" (click)="resetList(item.$key)">Reset</a></li>
                 </ul>
             </div>
 

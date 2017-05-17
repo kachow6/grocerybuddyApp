@@ -96,6 +96,7 @@ export class ListComponent {
         }
     }
 
+    // Method for a user to mark an item they have put in their basket
     checkItem(checked: boolean, key: string): void {
         let query = this.db.object('/shoppingList/' + this.userService.getCurrentList() + '/' + key);
         console.log(query.$ref);
@@ -125,14 +126,14 @@ export class ListComponent {
         return null;
     }
 
-    // Reset All Items method 
+    // Method for resetting the checked state of all items in a list *Unsubscribe error*
     resetAllItems(): void {
         let mySub = this.db.list('/shoppingList/' + this.userService.getCurrentList()).subscribe(datasnap => {
-            let temp: string[];
                 for(let i of datasnap){
                     let query = this.db.object('/shoppingList/' + this.userService.getCurrentList() + '/' + i.$key);
                     query.update({'checked': false});
             }
+            mySub.unsubscribe();
         });
     }
 

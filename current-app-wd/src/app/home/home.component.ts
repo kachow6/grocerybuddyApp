@@ -89,13 +89,6 @@ export class HomeComponent implements OnInit {
         this.router.navigateByUrl('/main/list');
     }
 
-    //Method for renaming the shopping list. // DEPRECATED
-    // listRename(list: ShoppingList):  void {
-    //     if(this.renameInput.length > 0) {
-    //     list.name = this.renameInput;
-    //     this.renameInput = ""; 
-    //     }
-    // }
     
     // Rename List
     renameList(key: string): void {
@@ -109,23 +102,21 @@ export class HomeComponent implements OnInit {
     }
     
     // Method for resetting items checked in the list.
-    resetList(list: ShoppingList): void {
+    // resetList(list: ShoppingList): void {
       //   for(let i = 0; i < this.userService.getCurrentList().contents.length; i++) {
       //       this.userService.getCurrentList().contents[i].checked = false;
       // }
-    }
-
-    // Method for copying a list object on home page.
-    // copyList(list: ShoppingList): void {
-        // let tempList: ShoppingList = new ShoppingList(list.name);
-        // let tempIndex: ShoppingItem[];
-        // for(let i = 0; i < list.contents.length; i++) {
-        //     tempList.contents.push(new ShoppingItem(list.contents[i].name,
-        //                                             list.contents[i].quantity,
-        //                                             list.contents[i].checked))
-        // }
-        // this.myList.push(tempList);
     // }
+
+    resetList(key: string): void {
+        let mySub = this.db.list('/shoppingList/' + key).subscribe(datasnap => {
+            for(let i of datasnap) {
+                let query = this.db.object('/shoppingList/' + this.userService.getCurrentList() + '/' + i.$key);
+                query.update({'checked': false});
+            }
+            mySub.unsubscribe();
+        });
+    }
 
     // Method for copying a new instance of a user's shopping list
     copyList(key: string, name: string): void {
@@ -143,6 +134,7 @@ export class HomeComponent implements OnInit {
                         'autofillId': ''
                     });
             }
+            mySub.unsubscribe();
         });
     }
 
