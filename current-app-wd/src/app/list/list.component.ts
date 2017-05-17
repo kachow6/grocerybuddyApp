@@ -23,6 +23,8 @@ import * as firebase                           from 'firebase/app';
 })
 
 export class ListComponent {
+    readonly msPerDay: number = 86400000;
+
     //Instantiating the array object.
     myList: ShoppingItem[] = [];
     nameInput: string = '';
@@ -43,6 +45,13 @@ export class ListComponent {
 
     ngOnInit() {
 
+        let myDate: Date = new Date();
+
+        console.log ( myDate.toJSON() );
+
+        console.log( Date.parse(myDate.toJSON()) / this.msPerDay );
+        console.log( Date.parse( '2017-05-18T00:36:47.337Z' ) / this.msPerDay);
+
         // Make sure a list is selected
         if (!this.userService.getCurrentList()) {
             this.router.navigateByUrl('/main');
@@ -50,7 +59,7 @@ export class ListComponent {
 
 
         // Firebase Objects Setup
-        this.userAuth$ = this.afAuth.authState;
+        this.userAuth$    = this.afAuth.authState;
         this.currentList$ = this.db.list('/shoppingList/'
                           + this.userService.getCurrentList());
 
@@ -132,7 +141,7 @@ export class ListComponent {
         for(let i = 0; i < this.myList.length; i++) {
             if (this.myList[i].checked === true) {
                 UserService.user.fridgeList.
-                push(new FridgeItem(this.myList[i].name, this.myList[i].quantity, 50));
+                push(new FridgeItem(this.myList[i].name, this.myList[i].quantity, 10));
             }
         }
 

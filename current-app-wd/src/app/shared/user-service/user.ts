@@ -1,16 +1,26 @@
+export class DateService {
+    static readonly msPerDay: number = 86400000;
+
+    // Return the number of days
+    static getDays(date: Date): number {
+        return Date.parse( date.toJSON() ) / this.msPerDay;
+    }
+}
+
+
 // LISTS
 // This section contains classes for all the different types of lists.
 export class FridgeItem  {
-    name:       string;
-    quantity:   number;
-    expiration: number;
-    maxAge:     number;
+    name:           string;
+    qty:            number;
+    datePurchased:  number;
+    shelfLife:      number;
 
-    constructor(name: string, quantity: number, expiration: number) {
+    constructor(name: string, qty: number, shelfLife: number) {
       this.name = name;
-      this.quantity = quantity;
-      this.expiration = expiration;
-      this.maxAge = 100;
+      this.qty = qty;
+      this.datePurchased = DateService.getDays( new Date() );
+      this.shelfLife = shelfLife;
     }
 
 }
