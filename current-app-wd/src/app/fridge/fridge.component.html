@@ -45,7 +45,7 @@
 
 			<!-- Fridge Item Element -->
 			<div class="col-lg-8 col-md-8 col-sm-7 col-xs-6">
-				<h4 style="margin-bottom: 0; margin-top: 15px;">{{item.name}}</h4>
+				<h4 class="item-name" style="margin-bottom: 0; margin-top: 15px;">{{item.name}}</h4>
 			</div>
 			<div class="col-lg-3 col-md-3 col-sm-3 col-xs-4" style="text-align: right; margin-top: 3px">
 				<h4>x{{item.qty}}</h4>
@@ -106,7 +106,7 @@
 							<strong><span class="text-muted">x</span></strong>
 						</div>
 						<div class="col-lg-3 col-md-3 col-sm-3 col-xs-4" style="top: -7px">
-							<input #requantity [(ngModel)]="item.quantity" [ngModelOptions]="{standalone: true}" type="number" class="form-control input-sm" value="1" min="0" (keyup.enter)="reexpiry.focus()">
+							<input #requantity [(ngModel)]="reQtyInput" [ngModelOptions]="{standalone: true}" type="number" class="form-control input-sm" value="1" min="0" (keyup.enter)="reexpiry.focus()">
 						</div>
 					</div>
 				</div>
@@ -117,7 +117,7 @@
 							<h4 class="media-heading">Expiration Date: </h4>
 						</div>
 						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-3" style="padding-right: 0; top: -12px">
-							<input #reexpiry [(ngModel)]="item.expiration" [ngModelOptions]="{standalone: true}" type="number" class="form-control input-sm" value="1" min="0" (keyup)="activateEasterEgg(item.expiration)" (keyup.enter)="saveButton.click()">
+							<input #reexpiry [(ngModel)]="reShelfLifeInput" [ngModelOptions]="{standalone: true}" type="number" class="form-control input-sm" value="1" min="0" (keyup)="activateEasterEgg(item.expiration)" (keyup.enter)="saveButton.click()">
 						</div>
 						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="top:-12px">
 							<h5><strong><span class="text-muted">days</span></strong></h5>
@@ -126,7 +126,7 @@
 				</div>
 				<div class="modal-footer">
 					<div class="row" style="text-align: center;">
-						<button #saveButton class="btn btn-md btn-success" (click)="itemModal.hide(); itemRename(item.$key); editQty(item.$key)">Save Changes</button>
+						<button #saveButton class="btn btn-md btn-success" (click)="itemModal.hide(); itemRename(item.$key); editQty(item.$key); editShelfLife(item.$key)">Save Changes</button>
 					</div>
 				</div>
 			</div>

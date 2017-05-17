@@ -38,7 +38,7 @@
 
             <div class="col-lg-8 col-md-8 col-sm-7 col-xs-6" style="margin-top: 10px">
                 <!-- <h4 (click)="renameModal.show()" data-toggle="modal">{{item.name}}</h4> -->
-                <h4 data-toggle="modal" (tap)="renameModal.show()">{{ item.name }}</h4>
+                <h4 class="item-name" data-toggle="modal" (tap)="renameModal.show()">{{ item.name }}</h4>
             </div>
 
             <!-- These items are visible normally -->
@@ -81,7 +81,7 @@
                 <h4 style="text-align: center" class="media-heading">Are you sure you want to reset this list?</h4>
             </div>
             <div class="modal-footer" style="text-align: center">
-                <button type="button" class="btn btn-success btn-sm btn-default" data-dismiss="modal" (click)="resetModal.hide(); resetList()" aria-label="Close">Yes - Uncheck all items</button>
+                <button type="button" class="btn btn-success btn-sm btn-default" data-dismiss="modal" (click)="resetModal.hide();  resetAllItems()" aria-label="Close">Yes - Uncheck all items</button>
                 <button type="button" class="btn btn-danger btn-sm btn-default" data-dismiss="modal" (click)="resetModal.hide()" aria-label="Close">No - I'm still using this list!</button>
             </div>
         </div>
@@ -101,7 +101,7 @@
                 <h4 style="text-align: center" class="media-heading">Are you ready to checkout?</h4>
             </div>
             <div class="modal-footer" style="text-align: center">
-                <button type="button" class="btn btn-success btn-sm btn-default" data-dismiss="modal" (click)="checkoutModal.hide();  getAllCheckoutItems(); resetList()" aria-label="Close">Yes - Add items to my Fridge</button>
+                <button type="button" class="btn btn-success btn-sm btn-default" data-dismiss="modal" (click)="checkoutModal.hide();  getAllCheckoutItems(); resetAllItems()" aria-label="Close">Yes - Add items to my Fridge</button>
                 <button type="button" class="btn btn-danger btn-sm btn-default" data-dismiss="modal" (click)="checkoutModal.hide()" aria-label="Close">No - Keep Shopping</button>
             </div>
         </div>

@@ -48,10 +48,10 @@ export class ListComponent {
 
         let myDate: Date = new Date();
 
-        console.log ( myDate.toJSON() );
+        // console.log ( myDate.toJSON() );
 
-        console.log( Date.parse(myDate.toJSON()) / this.msPerDay );
-        console.log( Date.parse( '2017-05-18T00:36:47.337Z' ) / this.msPerDay);
+        // console.log( Date.parse(myDate.toJSON()) / this.msPerDay );
+        // console.log( Date.parse( '2017-05-18T00:36:47.337Z' ) / this.msPerDay);
 
         // Make sure a list is selected
         if (!this.userService.getCurrentList()) {
@@ -102,12 +102,14 @@ export class ListComponent {
 
             // Push the item to the currentList$.
             this.currentList$.push(newItem);
+            this.nameInput = '';
+            this.numberInput = null;
         }
     }
 
     checkItem(checked: boolean, key: string): void {
         let query = this.db.object('/shoppingList/' + this.userService.getCurrentList() + '/' + key);
-        console.log(query.$ref);
+        // console.log(query.$ref);
         if (checked == true) {
             query.update({'checked': false});
         } else if (checked == false) {
@@ -149,21 +151,54 @@ export class ListComponent {
                 push(new FridgeItem(this.myList[i].name, this.myList[i].quantity, 10));
             }
         }
-        // Navigates to the fridge page.
-        this.router.navigateByUrl('/main/fridge');
     }
 
+    // Reset All Items method 
+    resetAllItems(): void {
+        let mySub = this.db.list('/shoppingList/' + this.userService.getCurrentList()).subscribe(datasnap => {
+            let temp: string[];
+                for(let i of datasnap){
+                    let query = this.db.object('/shoppingList/' + this.userService.getCurrentList() + '/' + i.$key);
+                    query.update({'checked': false});
+            }
+        });
+    }
+
+    //  Old Method for transfering checked items to fridge array
+    // checkout(): void {
+    //     for(let i = 0; i < this.myList.length; i++) {
+    //         if (this.myList[i].checked === true) {
+    //             UserService.user.fridgeList.
+    //             push(new FridgeItem(this.myList[i].name, this.myList[i].quantity, 50));
+    //         }
+    //     }
+    //     // Navigates to the fridge page.
+    //     this.router.navigateByUrl('/main/fridge');
+    // }
+
+    // Method for checking out all items into the user's fridge
     getAllCheckoutItems(): void {
         let mySub = this.db.list('/shoppingList/' + this.userService.getCurrentList()).subscribe(datasnap => {
-            let filteredArray:any[];
             for(let i of datasnap){
+                // console.log(i);
                 if (i.checked) {
                     // filteredArray.push(i);
                     this.db.list('fridgeList/' + this.userId).push(
                        new FridgeItem(i.name, i.qty, 10));
+
+                    let query = this.db.object('/shoppingList/' + this.userService.getCurrentList() + '/' + i.$key);
+                    query.update({'checked': false});
                 }
             }
-            // mySub.unsubscribe();
         });
+         this.router.navigateByUrl('/main/fridge');
+    }
+
+    // Method to check if a item name is greater than 14 characters
+    checkName(name: string): string {
+        if (name.length > 15) {
+            name = name.slice(0,15) + '...';
+        }
+        return name;
     }
 }

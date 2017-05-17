@@ -35,10 +35,12 @@ export class FridgeComponent implements OnInit {
     currentItem$: FirebaseListObservable<any[]>;
     fridgeList: any[] = [];
 
-    nameInput:   string = '';
-    numberInput: number;
-    expiration:  number;
-    renameInput: string = '';
+    nameInput:        string = '';
+    numberInput:      number;
+    expiration:       number;
+    renameInput:      string = '';
+    reQtyInput:       number;
+    reShelfLifeInput: number;
     showEasterEgg = false;
 
     //States for the progress bar
@@ -109,9 +111,19 @@ export class FridgeComponent implements OnInit {
         this.currentItem$ = this.db.list('/fridgeList' + key);
         // console.log(key);
 
-        let newQty = this.numberInput;
+        let newQty = this.reQtyInput;
         if (newQty > 0) {
         let itemQtyGetter = this.db.object('/fridgeList/' + this.userId + '/' + key).update({'qty': newQty});
+        }
+    }
+
+    editShelfLife(key: string) {
+        this.currentItem$ = this.db.list('/fridgeList' + key);
+        // console.log(key);
+
+        let newShelfLife = this.reShelfLifeInput;
+        if (newShelfLife > 0) {
+        let itemQtyGetter = this.db.object('/fridgeList/' + this.userId + '/' + key).update({'shelfLife': newShelfLife});
         }
     }
 
