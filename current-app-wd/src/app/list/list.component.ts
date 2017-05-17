@@ -86,6 +86,8 @@ export class ListComponent {
         // });
     }
 
+    
+
     //Method for adding a new item by user input
     addItem(): void {
         if (this.nameInput.length > 0, this.numberInput > 0) {
@@ -157,12 +159,8 @@ export class ListComponent {
             for(let i of datasnap){
                 if (i.checked) {
                     // filteredArray.push(i);
-                    this.db.list('fridgeList/' + this.userId).push({
-                        name: i.name,
-                        qty: i.qty,
-                        datePurch: '',
-                        maxAge: ''
-                    });
+                    this.db.list('fridgeList/' + this.userId).push(
+                       new FridgeItem(i.name, i.qty, 10));
                 }
             }
             // mySub.unsubscribe();

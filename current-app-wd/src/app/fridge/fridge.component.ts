@@ -1,6 +1,6 @@
 import { Component, OnInit        } from '@angular/core';
 import { UserService              } from '../shared/user-service/user.service';
-import { FridgeItem               } from '../shared/user-service/user';
+import { FridgeItem, DateTools    } from '../shared/user-service/user';
 import { AngularFireDatabase,
          FirebaseListObservable,
          FirebaseObjectObservable } from 'angularfire2/database';
@@ -20,6 +20,8 @@ import * as firebase                from 'firebase/app';
 
 export class FridgeComponent implements OnInit {
 
+    readonly today        : number = DateTools.getDays(new Date());
+
     // Local access variables to keep track of user name, etc.
     userId: string = 'user-1';
     currentItemName: string;
@@ -31,6 +33,7 @@ export class FridgeComponent implements OnInit {
     user$: FirebaseObjectObservable<any>;
     fridgeList$: FirebaseListObservable<any[]>;
     currentItem$: FirebaseListObservable<any[]>;
+    fridgeList: any[] = [];
 
     nameInput:   string = '';
     numberInput: number;
@@ -53,7 +56,14 @@ export class FridgeComponent implements OnInit {
         //Initializes User Settings
         this.userAuth$ = this.afAuth.authState;
         this.fridgeList$ = this.db.list('/fridgeList/' + this.userId);
-        console.log(this.fridgeList$.$ref.toJSON());
+        // console.log(this.fridgeList$.$ref.toJSON());
+
+        this.fridgeList$.subscribe(snap => {
+            for (let item of snap) {
+                item.expiration = 1 - ((this.today - item.datePurchased) / item.shelfLife);
+                // console.log(item);
+            }
+        });
     }
 
     // Adds a new item to the user's fridge list
@@ -61,7 +71,7 @@ export class FridgeComponent implements OnInit {
         let fridgeItem = {name: itemName,
                          qty: itemQty,
                          autofillId: ''};
-                         console.log(fridgeItem);
+                         // console.log(fridgeItem);
         if (itemName.length > 2 && itemQty > 0) {
         this.fridgeList$.push({
             name: itemName,
@@ -75,10 +85,12 @@ export class FridgeComponent implements OnInit {
     }
 
     // Method for calculating the expiration bar colour
-    calculateExp(max: number, expiration: number): string {
-        if (expiration / max < 0.33){
+    calculateExp(expiration: number): string {
+        // console.log(expiration);
+
+        if (expiration < 0.33){
             return this.stateDanger;
-        } else if (expiration / max >= 0.66){
+        } else if (expiration >= 0.66){
             return this.stateSuccess;
         } else {
             return this.stateWarning;
@@ -88,10 +100,10 @@ export class FridgeComponent implements OnInit {
     // Method for renaming an item in the user's fridge list.
     itemRename(key: string) {
         this.currentItem$ = this.db.list('/fridgeList/' + key);
-        console.log(key);
+        // console.log(key);
 
         let newName = this.renameInput;
-        console.log(this.renameInput);
+        // console.log(this.renameInput);
         if (this.renameInput.length > 2) {
         let itemNameGetter = this.db.object('/fridgeList/' + this.userId + '/' + key ).update({'name': newName});
         }
@@ -100,7 +112,7 @@ export class FridgeComponent implements OnInit {
     // Method for editing the quantity of an item in the user's fridge list
     editQty(key: string) {
         this.currentItem$ = this.db.list('/fridgeList' + key);
-        console.log(key);
+        // console.log(key);
 
         let newQty = this.numberInput;
         if (newQty > 0) {

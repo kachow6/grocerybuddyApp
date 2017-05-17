@@ -16,7 +16,10 @@
 <!-- Main Content Body -->
 <div class="container col-lg-8 col-md-10 col-lg-offset-2 col-md-offset-1" style="top: 80px; margin-bottom: 60px">
 
-	<div class="container-fluid list-element" *ngFor = "let item of fridgeList$ | async; let i = index">
+    <!-- Individual Items Element. A new version of this is created for each
+         item in the list. -->
+	<div class="container-fluid list-element"
+         *ngFor="let item of fridgeList$ | async; let i = index">
 
 		<!-- Swipe Left Undo -->
 		<div class="list-item-swipe-display swipe-left"
@@ -54,7 +57,13 @@
 		<!-- Expiration Bar -->
 		<div class="row col-lg-11 col-md-11 col-sm-10 col-xs-10" style="padding: 0 0 0 10px;">
 			<div class="progress" style="margin-bottom: 8px; height: 13px">
-				<div class="progress-bar {{calculateExp(100, item.expiration)}}" role="progressbar" aria-valuenow="item.expiration" aria-valuemin="0" aria-valuemax="100" style="height: 9px; margin-top: 2.5px;" [style.width]="item.expiration + '%'">
+				<div class="progress-bar {{calculateExp((1 - (today - item.datePurchased) / item.shelfLife))}}"
+                     role="progressbar"
+                     aria-valuenow="item.expiration * 100"
+                     aria-valuemin="0"
+                     aria-valuemax="100"
+                     style="height: 9px; margin-top: 2.5px;"
+                     [style.width]="(1 - (today - item.datePurchased) / item.shelfLife) * 100 + '%'">
 				</div>
 			</div>
 		</div>

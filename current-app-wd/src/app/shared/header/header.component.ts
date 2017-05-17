@@ -74,7 +74,7 @@ export class HeaderComponent implements OnInit {
         this.fridgeList$ = this.db.list('/fridgeList/' + this.userId);
 
         this.fridgeList$.subscribe(snap => {
-            console.log(snap);
+            // console.log(snap);
             this.expiringItems = this.pullExpiring(snap);  
             this.numExpiring   = this.notificationAmount(this.expiringItems);  
         }); 
