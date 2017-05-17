@@ -2,13 +2,13 @@
 <div class="container-fluid add-item col-lg-12 col-md-12 col-sm-12 col-xs-12" style="position: fixed; z-index: 1; border: 0">
     <div class="row ">
         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6 col-lg-offset-2 col-md-offset-1 col-sm-offset-1 new-object-input">
-            <input [(ngModel)] = "nameInput" type="text" class="form-control" id="new-item-form" placeholder="New Item">
+            <input #name [(ngModel)] = "nameInput" type="text" class="form-control" id="new-item-form" placeholder="New Item" (keyup.enter)="number.focus()">
         </div>
         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-3" style="padding: 20px 15px">
-            <input [(ngModel)] = "numberInput" type="number" class="form-control" id="new-qty-form" placeholder="Qty.">
+            <input #number [(ngModel)] = "numberInput" type="number" class="form-control" id="new-qty-form" placeholder="Qty." (keyup.enter)="addToFridgeButton.click()">
         </div>
         <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 col-lg-offset-1 col-md-offset-3 col-sm-offset-3" style="margin-top: 15px">
-            <button (click)=" addItemToFridgeList(nameInput, numberInput)" class="btn btn-lg btn-success title" type="button" data-toggle="dropdown"><span class="glyphicon glyphicon-plus"></span></button>
+            <button #addToFridgeButton (click)=" addItemToFridgeList(nameInput, numberInput)" class="btn btn-lg btn-success title" type="button" data-toggle="dropdown"><span class="glyphicon glyphicon-plus"></span></button>
         </div>
     </div>
 </div>
@@ -83,7 +83,7 @@
 							<label for="rename-form"><h4 class="media-heading">Rename: </h4></label>
 						</form>
 						<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 col-xs-offset-2">	
-							<input [(ngModel)]="renameInput" [ngModelOptions]="{standalone: true}" type="text" class="form-control input-sm" id="rename-form">
+							<input #rename [(ngModel)]="renameInput" [ngModelOptions]="{standalone: true}" type="text" class="form-control input-sm" id="rename-form" (keyup.enter)="requantity.focus()">
 						</div>
 					</div>
 				</div>
@@ -97,7 +97,7 @@
 							<strong><span class="text-muted">x</span></strong>
 						</div>
 						<div class="col-lg-3 col-md-3 col-sm-3 col-xs-4" style="top: -7px">
-							<input [(ngModel)]="item.quantity" [ngModelOptions]="{standalone: true}" type="number" class="form-control input-sm" value="1" min="0">
+							<input #requantity [(ngModel)]="item.quantity" [ngModelOptions]="{standalone: true}" type="number" class="form-control input-sm" value="1" min="0" (keyup.enter)="reexpiry.focus()">
 						</div>
 					</div>
 				</div>
@@ -108,7 +108,7 @@
 							<h4 class="media-heading">Expiration Date: </h4>
 						</div>
 						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-3" style="padding-right: 0; top: -12px">
-							<input [(ngModel)]="item.expiration" [ngModelOptions]="{standalone: true}" type="number" class="form-control input-sm" value="1" min="0" (keyup)="activateEasterEgg(item.expiration)">
+							<input #reexpiry [(ngModel)]="item.expiration" [ngModelOptions]="{standalone: true}" type="number" class="form-control input-sm" value="1" min="0" (keyup)="activateEasterEgg(item.expiration)" (keyup.enter)="saveButton.click()">
 						</div>
 						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="top:-12px">
 							<h5><strong><span class="text-muted">days</span></strong></h5>
@@ -117,7 +117,7 @@
 				</div>
 				<div class="modal-footer">
 					<div class="row" style="text-align: center;">
-						<button class="btn btn-md btn-success" (click)="itemModal.hide(); itemRename(item.$key); editQty(item.$key)">Save Changes</button>
+						<button #saveButton class="btn btn-md btn-success" (click)="itemModal.hide(); itemRename(item.$key); editQty(item.$key)">Save Changes</button>
 					</div>
 				</div>
 			</div>
