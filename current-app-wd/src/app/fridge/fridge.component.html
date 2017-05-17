@@ -48,7 +48,7 @@
 				<h4>x{{item.qty}}</h4>
 			</div>
 			<div style="margin-top: 8px; right: 10px; font-size: 20px; position: absolute;">
-				<a DATA-TOGGLE="#" (click)="itemModal.show()" data-toggle="modal" data-target="#listModal"><span class="glyphicon glyphicon-option-vertical"></span></a>
+				<a DATA-TOGGLE="#" (click)="itemModal.show(); renameInput = item.name; item.quantity = item.qty" data-toggle="modal" data-target="#listModal"><span class="glyphicon glyphicon-option-vertical"></span></a>
 			</div>
 		</div>
 		<!-- Expiration Bar -->
@@ -68,7 +68,7 @@
 		<div class="modal-dialog">
 			<div class="modal-content">
 
-				<!-- Modal Starts Here -->
+				<!-- Options Modal Starts Here -->
 				<div class="modal-header" style="padding: 10px">
 					<div class="pull-left" style="padding-left: 5px">
 						<h3><strong>{{item.name}}</strong></h3>
