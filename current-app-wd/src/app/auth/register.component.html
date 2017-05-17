@@ -9,7 +9,7 @@
 
             <div class="container col-lg-6 col-md-8 col-sm-8 col-xs-12 col-lg-offset-3 col-md-offset-2 col-sm-offset-2 col-xs-offset-0 login-form">
                 <div class="row">
-                    <form method="post" id="registerform" action="http://webdevbasics.net/scripts/demo.php">
+                    <form method="post" id="registerform" action="">
                         <a [routerLink]="['../login']">
                             <button type="button" class="btn btn-info btn-block form-element">
                                 <span style="vertical-align: middle; color: white">Back to Login</span>
@@ -18,21 +18,31 @@
                         
                         <h4 class="title">Sign Up: </h4>
                         <div class="form-group form-element">
-                            <input type="name" class="form-control" id="name" placeholder="Name" name="user_name" required>
+                            <input #name type="name" class="form-control" id="name" placeholder="Name" name="user_name" required>
                         </div>
 
                         <div class="form-group form-element">
-                            <input type="email" class="form-control" id="email" placeholder="Email" name="user_email" required>
+                            <input #email type="email" class="form-control" id="email" placeholder="Email" name="user_email" required>
                         </div>
 
                         <div class="form-group form-element">
                             <p id="passworderror" class="error">{{passwordmessage}}</p>
-                            <input type="password" class="form-control" id="password" placeholder="Password" name="user_password" #password (blur)="checkComplexity(password.value)" [(ngModel)]="userpassword" required>
+
+                            <input #password type="password" class="form-control" id="password" placeholder="Password" name="user_password" (blur)="checkComplexity(password.value)" [(ngModel)]="userpassword" required>
                         </div>
 
                         <div class="form-group form-element">
                             <p id="confirmpassworderror" class="error">{{confirmpasswordmessage}}</p>
-                            <input type="password" class="form-control" id="confirmpassword" placeholder="Confirm Password" name="user_confirmpassword" #confirmpassword (blur)="confirmPassword(password.value, confirmpassword.value, true)" [(ngModel)]="userconfirmpassword" required>
+
+                            <input #confirmpassword
+                                   type="password"
+                                   class="form-control"
+                                   id="confirmpassword"
+                                   placeholder="Confirm Password"
+                                   name="user_confirmpassword"
+                                   (blur)="confirmPassword(password.value, confirmpassword.value, true)"
+                                   [(ngModel)]="userconfirmpassword"
+                                   required>
                         </div>
 
                         <div class="checkbox row form-element">
@@ -40,7 +50,8 @@
                             <a class="pull-right" href="#"><small>Forgot Password?</small></a>
                         </div>
                         
-                        <button type="button" class="btn btn-primary btn-block form-element">Submit</button>
+                        <button type="button" class="btn btn-primary btn-block form-element"
+                                (click)="signUpWithEmail(name.value, email.value, password.value, confirmpassword.value)">Submit</button>
                     </form>
                 </div>
             </div>

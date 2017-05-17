@@ -17,11 +17,18 @@ export class ConnectComponent {
     this.user = afAuth.authState;
   }
 
-  login() {
-    this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
+  loginWithEmail(email: string, password: string) {
+    this.afAuth.auth.signInWithEmailAndPassword(email, password)
+        .catch(e => { console.log(e.message) });
+  }
+
+  loginWithGoogle() {
+    this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider())
+        .catch(e => { console.log(e.message) });
   }
 
   logout() {
-    this.afAuth.auth.signOut();
+    this.afAuth.auth.signOut()
+        .catch(e => { console.log(e.message) });
   }
 }
