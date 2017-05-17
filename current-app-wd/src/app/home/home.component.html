@@ -52,8 +52,9 @@
                 <a DATA-TOGGLE="#" dropdownToggle class="dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><span class="glyphicon glyphicon-option-vertical"></span></a>
 
                 <ul *dropdownMenu role="menu" class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1" style="z-index: 9001">
-                    <li role="menuitem" class="menu-item"><a DATA-TOGGLE="#" (click)="renameModal.show()" data-toggle="modal">Rename</a></li>
+                    <li role="menuitem" class="menu-item"><a DATA-TOGGLE="#" (click)="renameModal.show(); renameInput = item.$value" data-toggle="modal">Rename</a></li>
                     <li role="menuitem" class="menu-item"><a DATA-TOGGLE="#" (click)="copyList(item.$key, item.$value)">Copy</a></li>
+
                     <li role="menuitem" class="menu-item"><a DATA-TOGGLE="#" (click)="item.isQueuedForDelete=true; item.deleteTimer=startItemDeleteTimer(item.$key)">Delete</a></li>
                     <li role="menuitem" class="menu-item"><a DATA-TOGGLE="#" (click)="resetList(item)">Reset</a></li>
                 </ul>
