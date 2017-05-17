@@ -4,6 +4,7 @@ import { ShoppingList,
          ShoppingItem,
          FridgeItem }                          from '../shared/user-service/user';
 import { Router }                              from '@angular/router';
+import { FormsModule                         } from '@angular/forms';
 
 import { AngularFireDatabase,
                  FirebaseListObservable,
@@ -32,7 +33,7 @@ export class ListComponent {
     checkedInput: boolean;
 
     // Database & Auth Variables.
-    userId: string;
+    userId: string = 'user-1';
 
     userAuth$:    Observable<firebase.User>;
     currentList$: FirebaseListObservable<any[]>;
@@ -93,6 +94,7 @@ export class ListComponent {
             let newItem = {
                 'name': this.nameInput,
                 'qty': this.numberInput,
+                'checked': false,
                 'autofillId': ''
             };
 
@@ -101,12 +103,13 @@ export class ListComponent {
         }
     }
 
-    //Method for changing the checked state of an item
-    checkItem(): void {
-        if(this.checkedInput === false) {
-            this.checkedInput = true;
-        } else if (this.checkedInput === true) {
-            this.checkedInput = false;
+    checkItem(checked: boolean, key: string): void {
+        let query = this.db.object('/shoppingList/' + this.userService.getCurrentList() + '/' + key);
+        console.log(query.$ref);
+        if (checked == true) {
+            query.update({'checked': false});
+        } else if (checked == false) {
+            query.update({'checked': true});
         }
     }
 
@@ -144,8 +147,25 @@ export class ListComponent {
                 push(new FridgeItem(this.myList[i].name, this.myList[i].quantity, 10));
             }
         }
-
         // Navigates to the fridge page.
         this.router.navigateByUrl('/main/fridge');
+    }
+
+    getAllCheckoutItems(): void {
+        let mySub = this.db.list('/shoppingList/' + this.userService.getCurrentList()).subscribe(datasnap => {
+            let filteredArray:any[];
+            for(let i of datasnap){
+                if (i.checked) {
+                    // filteredArray.push(i);
+                    this.db.list('fridgeList/' + this.userId).push({
+                        name: i.name,
+                        qty: i.qty,
+                        datePurch: '',
+                        maxAge: ''
+                    });
+                }
+            }
+            // mySub.unsubscribe();
+        });
     }
 }

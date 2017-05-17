@@ -1,13 +1,13 @@
 <div class="container-fluid add-item col-lg-12 col-md-12 col-sm-12 col-xs-12" style="position: fixed; z-index: 1; border: 0">
     <div class="row ">
         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6 col-lg-offset-2 col-md-offset-1 col-sm-offset-1 new-object-input">
-            <input [(ngModel)] = "nameInput" type="text" class="form-control" id="new-item-form" placeholder="New Item">
+            <input #item [(ngModel)] = "nameInput" (keyup.enter) = "quantity.focus()" type="text" class="form-control" id="new-item-form" placeholder="New Item">
         </div>
         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-3" style="padding: 20px 15px">
-            <input [(ngModel)] = "numberInput" type="number" min=0 class="form-control" id="new-qty-form" placeholder="Qty.">
+            <input #quantity [(ngModel)] = "numberInput" (keyup.enter) = "addItemButton.click()" type="number" min=0 class="form-control" id="new-qty-form" placeholder="Qty.">
         </div>
         <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 col-lg-offset-1 col-md-offset-3 col-sm-offset-3" style="margin-top: 15px">
-            <button (click)="addItem()" class="btn btn-lg btn-success title" type="button" data-toggle="dropdown"><span class="glyphicon glyphicon-plus"></span></button>
+            <button #addItemButton (click)="addItem()" class="btn btn-lg btn-success title" type="button" data-toggle="dropdown"><span class="glyphicon glyphicon-plus"></span></button>
         </div>
     </div>
 </div>
@@ -38,7 +38,7 @@
 
             <div class="col-lg-8 col-md-8 col-sm-7 col-xs-6" style="margin-top: 10px">
                 <!-- <h4 (click)="renameModal.show()" data-toggle="modal">{{item.name}}</h4> -->
-                <h4 data-toggle="modal" (tap)="renameModal.show()">{{item.name}}</h4>
+                <h4 data-toggle="modal" (tap)="renameModal.show()">{{ item.name }}</h4>
             </div>
 
             <!-- These items are visible normally -->
@@ -48,11 +48,11 @@
             </div>
             <div class="list-inline col-lg-2 col-md-2 col-sm-2 col-xs-3"
                  style="margin-top: 15px">
-                <input [(ngModel)] = "item.quantity" type="number" class="form-control" id="qty-form1">
+                <input [(ngModel)] = "item.qty" type="number" class="form-control" id="qty-form1">
             </div>
             <div class="col-lg-1 col-md-1 col-sm-2 col-xs-2"
                  style="margin-top: 5px;">
-                <input [(ngModel)] = "item.checked" (click)="checkItem()" type="checkbox" class="item-checkbox" value="">
+                <input [(ngModel)] = 'item.checked' (click)="checkItem(item.checked, item.$key)" type="checkbox" class="item-checkbox" value="">
             </div>
 
         </div>
@@ -101,7 +101,7 @@
                 <h4 style="text-align: center" class="media-heading">Are you ready to checkout?</h4>
             </div>
             <div class="modal-footer" style="text-align: center">
-                <button type="button" class="btn btn-success btn-sm btn-default" data-dismiss="modal" (click)="checkoutModal.hide(); checkout(); resetList()" aria-label="Close">Yes - Add items to my Fridge</button>
+                <button type="button" class="btn btn-success btn-sm btn-default" data-dismiss="modal" (click)="checkoutModal.hide();  getAllCheckoutItems(); resetList()" aria-label="Close">Yes - Add items to my Fridge</button>
                 <button type="button" class="btn btn-danger btn-sm btn-default" data-dismiss="modal" (click)="checkoutModal.hide()" aria-label="Close">No - Keep Shopping</button>
             </div>
         </div>
@@ -118,14 +118,14 @@
                             <div class="row">
                                 <form class="col-lg-11 col-md-11 col-sm-11 col-xs-11">
                                     <label for="rename-form"><h3 class="media-heading">Item Rename: </h3></label>
-                                    <input [(ngModel)]="renameInput" [ngModelOptions]="{standalone: true}" type="text" class="form-control" id="rename-form">
+                                    <input [(ngModel)]="renameInput" [ngModelOptions]="{standalone: true}" type="text" class="form-control" id="rename-form" (keyup.enter)="saveButton.click()">
                                 </form>
                             </div>
                         </div>
                         <div class="modal-footer">
                             <div class="row" style="text-align: center;">
                                 <button class="btn btn-md btn-danger" (click)=" renameModal.hide(); listRename(item)" >Undo Changes</button>
-                                <button class="btn btn-md btn-success" (click)=" renameModal.hide(); listRename(item)" >Save Changes</button>                          
+                                <button #saveButton class="btn btn-md btn-success" (click)=" renameModal.hide(); listRename(item)" >Save Changes</button>
                             </div>
                         </div>
                     </div>
