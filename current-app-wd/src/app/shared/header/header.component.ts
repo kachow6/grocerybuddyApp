@@ -8,6 +8,10 @@ import { Router,
     NavigationEnd,
     NavigationStart }            from '@angular/router';
 
+import { Observable } from 'rxjs/Observable';
+import { AngularFireAuth } from 'angularfire2/auth';
+import * as firebase from 'firebase/app';
+
 /**
  * This class represents the navigation bar component.
  */
@@ -42,14 +46,18 @@ export class HeaderComponent implements OnInit {
     picIndex: number = Math.floor((Math.random() * BUDDY_PICS.length));
     buddyPic: string = BUDDY_PICS[this.picIndex];
 
+    user: Observable<firebase.User>;
 
     // CONSTRUCTOR & INITIALIZATION.
     // Used to inject all the necessary services and perform basic wiring.
     constructor(private router: Router,
-                private userService: UserService) {}
+                private userService: UserService,
+                public afAuth: AngularFireAuth) {}
 
     // OnInit method. Angular's recommended place to perform initialization.
     ngOnInit() {
+        this.user = this.afAuth.authState;
+
         this.pageTitle = 'Grocery Buddy';
         this.closeNav();
         this.expiringItems = this.userService.getFridge();
@@ -128,5 +136,9 @@ export class HeaderComponent implements OnInit {
     closeNav(): void {
         this.push    = 0;
         this.bodyBg  = 'white';
+    }
+
+    logout() {
+        this.afAuth.auth.signOut();
     }
 }
