@@ -77,9 +77,9 @@ export class ListComponent {
         // });
     }
 
-    //Method for adding a new item by user input
+    // Method for adding a new item by user input
     addItem(): void {
-        if (this.nameInput.length > 0, this.numberInput > 0) {
+        if (this.nameInput.length > 0 && this.numberInput > 0) {
 
             // Build the new item to put in the shopping list
             let newItem = {
