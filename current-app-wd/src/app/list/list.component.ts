@@ -94,26 +94,7 @@ export class ListComponent {
         }
     }
 
-    //Method for changing the checked state of an item
-    // checkItem(): void {
-    //     if(this.checkedInput === false) {
-    //         this.checkedInput = true;
-    //     } else if (this.checkedInput === true) {
-    //         this.checkedInput = false;
-    //     }
-    // }
-
-    checkItem(checked: string): void {
-        let temp = this.db.object('/shoppingList/' + this.currentList$);
-        console.log(temp);
-        console.log(checked);
-    }
-
-    checkitem3(item: any): void {
-        console.log(item);
-    }
-
-    checkItem2(checked: boolean, key: string): void {
+    checkItem(checked: boolean, key: string): void {
         let query = this.db.object('/shoppingList/' + this.userService.getCurrentList() + '/' + key);
         console.log(query.$ref);
         if (checked == true) {
@@ -157,8 +138,25 @@ export class ListComponent {
                 push(new FridgeItem(this.myList[i].name, this.myList[i].quantity, 50));
             }
         }
-
         // Navigates to the fridge page.
         this.router.navigateByUrl('/main/fridge');
+    }
+
+    getAllCheckoutItems(): void {
+        let mySub = this.db.list('/shoppingList/' + this.userService.getCurrentList()).subscribe(datasnap => {
+            let filteredArray:any[];
+            for(let i of datasnap){
+                if (i.checked) {
+                    // filteredArray.push(i);
+                    this.db.list('fridgeList/' + this.userId).push({
+                        name: i.name,
+                        qty: i.qty,
+                        datePurch: '',
+                        maxAge: ''
+                    });
+                }
+            }
+            // mySub.unsubscribe();
+        });
     }
 }
