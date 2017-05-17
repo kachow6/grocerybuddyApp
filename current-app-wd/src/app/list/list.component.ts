@@ -151,7 +151,6 @@ export class ListComponent {
     // Method for checking out all items into the user's fridge
     getAllCheckoutItems(): void {
         let mySub = this.db.list('/shoppingList/' + this.userService.getCurrentList()).subscribe(datasnap => {
-            let filteredArray:any[];
             for(let i of datasnap){
                 console.log(i);
                 if (i.checked) {
