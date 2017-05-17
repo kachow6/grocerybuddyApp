@@ -3,11 +3,14 @@ import { Component, OnInit }     from '@angular/core';
 import { BUDDY_QUOTES }          from  './header.menu.buddyquotes';
 import { BUDDY_PICS }            from  './header.menu.buddypics';
 import { UserService }           from '../user-service/user.service';
-import { FridgeItem }            from '../user-service/user';
+import { FridgeItem, DateTools } from '../user-service/user';
 import { Router,
     NavigationEnd,
     NavigationStart }            from '@angular/router';
 
+import { AngularFireDatabase,
+                 FirebaseListObservable,
+                 FirebaseObjectObservable }    from 'angularfire2/database';
 import { Observable } from 'rxjs/Observable';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
@@ -29,6 +32,8 @@ export class HeaderComponent implements OnInit {
     readonly stateWarning : string = 'progress-bar-warning';
     readonly stateSuccess : string = 'progress-bar-success';
 
+    readonly today        : number = DateTools.getDays(new Date());
+
     // Page Display Variables
     pageTitle: string;  // Tracks the title of the current page.
     push     : number;  // Used to push the extending nav bar out from the side.
@@ -36,7 +41,8 @@ export class HeaderComponent implements OnInit {
     extended : boolean; // Whether or not the nav bar is extended.
 
     // List of soon-to-expire items. Data-bound to the notifications UI element.
-    expiringItems: FridgeItem[];
+    expiringItems: any[] = [];
+    numExpiring  : number = 0;
 
     //buddy quote index
     quoteIndex: number = Math.floor((Math.random() * BUDDY_QUOTES.length));
@@ -46,49 +52,75 @@ export class HeaderComponent implements OnInit {
     picIndex: number = Math.floor((Math.random() * BUDDY_PICS.length));
     buddyPic: string = BUDDY_PICS[this.picIndex];
 
-    user: Observable<firebase.User>;
+    // User ID and Firebase variables
+    userId      : string = 'user-1';
+    user        : Observable<firebase.User>;
+    fridgeList$ : FirebaseListObservable<any[]>; 
 
     // CONSTRUCTOR & INITIALIZATION.
     // Used to inject all the necessary services and perform basic wiring.
     constructor(private router: Router,
                 private userService: UserService,
-                public afAuth: AngularFireAuth) {}
+                public afAuth: AngularFireAuth,
+                public db: AngularFireDatabase) {}
 
     // OnInit method. Angular's recommended place to perform initialization.
     ngOnInit() {
-        this.user = this.afAuth.authState;
+        this.closeNav();                     // Closes the nav bar
+        this.pageTitle = 'Grocery Buddy';    // Default page title
 
-        this.pageTitle = 'Grocery Buddy';
-        this.closeNav();
-        this.expiringItems = this.userService.getFridge();
+        // Set up Firebase variables
+        this.user = this.afAuth.authState;
+        this.fridgeList$ = this.db.list('/fridgeList/' + this.userId);
+
+        this.fridgeList$.subscribe(snap => {
+            console.log(snap);
+            this.expiringItems = this.pullExpiring(snap);  
+            this.numExpiring   = this.notificationAmount(this.expiringItems);  
+        }); 
     }
 
     // EXPIRY NOTIFICATION METHODS
     // Pulls expiring items out of user's fridge items.
-    pullExpiring(list: FridgeItem[]): FridgeItem[] {
-        let templist: FridgeItem[] = [];
-        for (let fridgeItem of list) {
-            let exp = fridgeItem.expiration / fridgeItem.maxAge;
+    // pullExpiringDep(list: FridgeItem[]): FridgeItem[] {
+    //     let templist: FridgeItem[] = [];
+    //     for (let fridgeItem of list) {
+    //         let exp = fridgeItem.expiration / fridgeItem.maxAge;
+
+    //         if (exp < 0.33 && exp > 0) {
+    //             templist.push(fridgeItem);
+    //         }
+    //     }
+    //     return templist;
+    // }
+
+    pullExpiring(list: any[]): any[] {
+        let tempList: any[] = [];
+
+        for (let item of list) {
+            let exp = 1 - ((this.today - item.datePurchased) / item.shelfLife);
 
             if (exp < 0.33 && exp > 0) {
-                templist.push(fridgeItem);
+                item.expiration = exp;
+                tempList.push(item);
             }
         }
-        return templist;
+
+        return tempList;
     }
 
     // Pulls amount of expiring items in fridge.
-    notificationAmount(list: FridgeItem[]): number {
+    notificationAmount(list: any[]): number {
         let amount = 0;
         amount = list.length;
         return amount;
     }
 
     // Method for calculating the expiration bar colour
-    calculateExp(max: number, expiration: number): string {
-        if (expiration / max < 0.33){
+    calculateExp(expiration: number): string {
+        if (expiration < 0.33){
             return this.stateDanger;
-        } else if (expiration / max >= 0.66){
+        } else if (expiration >= 0.66){
             return this.stateSuccess;
         } else {
             return this.stateWarning;

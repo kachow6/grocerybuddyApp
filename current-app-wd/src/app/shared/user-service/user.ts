@@ -1,9 +1,9 @@
-export class DateService {
+export class DateTools {
     static readonly msPerDay: number = 86400000;
 
     // Return the number of days
     static getDays(date: Date): number {
-        return Date.parse( date.toJSON() ) / this.msPerDay;
+        return Math.round(Date.parse( date.toJSON() ) / this.msPerDay);
     }
 }
 
@@ -19,7 +19,7 @@ export class FridgeItem  {
     constructor(name: string, qty: number, shelfLife: number) {
       this.name = name;
       this.qty = qty;
-      this.datePurchased = DateService.getDays( new Date() );
+      this.datePurchased = DateTools.getDays( new Date() );
       this.shelfLife = shelfLife;
     }
 

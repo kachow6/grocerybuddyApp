@@ -22,24 +22,6 @@ let curList: ShoppingList = {
 };
 
 let fridge: FridgeItem[] = [
-    {
-        name:          'Celery',
-        quantity:      2,
-        expiration:    37,
-        maxAge:        100
-    },
-    {
-        name:          'Peppers',
-        quantity:      2,
-        expiration:    70,
-        maxAge:        100
-    },
-    {
-        name:          'Chicken',
-        quantity:      4,
-        expiration:    25,
-        maxAge:        100
-    }
 ];
 
 export const USER: User = {
