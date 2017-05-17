@@ -5,8 +5,10 @@
 }
 .add-item{
 	background-color: #0A8056;
-	border: 3px solid white;
+	border: 0;
 	color: white;
+	z-index: 5000;
+	position: fixed;
 }
 .title{
 	text-shadow: 2px 1px #818181;
