@@ -138,3 +138,8 @@ a:hover {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+.page-title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
