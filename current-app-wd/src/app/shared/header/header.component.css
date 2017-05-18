@@ -100,6 +100,12 @@
     animation: none;
 }
 
+.ecoders-logo {
+    margin-bottom: 5px;
+    margin-top: 50px;
+    text-align: center;
+}
+
 /* Header CSS */
 .hamburger {
     color: white;
