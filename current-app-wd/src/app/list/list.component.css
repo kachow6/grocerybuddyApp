@@ -45,3 +45,7 @@
 .checkout-modal-body {
 	text-align: center;
 }
+
+.checkout-modal-footer {
+	padding: 8px;
+}
