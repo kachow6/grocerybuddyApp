@@ -94,8 +94,9 @@ export class ListComponent {
                 'name': this.nameInput,
                 'qty': this.numberInput,
                 'checked': false,
-                'autofillId': ''
+                'autofillId': this.nameInput
             };
+
             // Push the item to the currentList$.
             this.currentList$.push(newItem);
             this.nameInput = '';
@@ -136,19 +137,39 @@ export class ListComponent {
         });
     }
 
-    // Method for checking out all items into the user's fridge
+    // CHECKOUT FUNCTION
+    // Checks out all selected items and creates new FridgeItems in the fridge.
     getAllCheckoutItems(): void {
-        let mySub = this.db.list('/shoppingList/' + this.userService.getCurrentList())
-                           .take(1)
-                           .subscribe(datasnap => {
-            // Iterates through all items in the list via datasnap         
+
+        // Query the current shopping list and retrieve all items as a list.
+        this.db.list('/shoppingList/' + this.userService.getCurrentList())
+               .take(1).subscribe(datasnap => {
+
+            // Loop through all items in the list. For each one that is checked,
+            // create a new appropriate item in the fridge.
+
+            // TODO: Replace this with one of the Firebase query methods that filters
+            // the original query by the value of the "checked" property.
             for(let i of datasnap){
+
                 if (i.checked) {
-                    this.db.list('fridgeList/' + this.userId).push(
-                            new FridgeItem(i.name, i.qty, 10));
-                    // Changes checked state of the items as they are added to the fridge
-                    let query = this.db.object('/shoppingList/' + this.userService.getCurrentList() + '/' + i.$key);
-                    query.update({'checked': false});
+                    // Push a new appropriate FridgeItem to the user's fridge.
+                    let fridgeItemRef = this.db.list('fridgeList/' + this.userId)
+                                        .push(new FridgeItem(i.name, i.qty, 0));
+
+                    // Pull expiry info from the expiryEstimate reference in the
+                    // DB, based on the "autofillId" property in the checked
+                    // item.
+                    this.db.object('expiryEstimate/' + i.autofillId)
+                           .take(1).subscribe(expItem => {
+                               if (expItem.$value) {
+                                   fridgeItemRef.update({shelfLife: expItem.$value});
+                               }
+                           });
+
+                    // Unchecks items as they are added to the fridge.
+                    this.db.object('/shoppingList/' + this.userService.getCurrentList() + '/' + i.$key)
+                           .update({'checked': false});
                 }
             }
             // Moves the user to the fridge page after checking out
@@ -200,6 +221,5 @@ export class ListComponent {
 
         // Scroll
         src.scrollBy(0, scrollDistance);
-        
     }
 }
