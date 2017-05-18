@@ -25,7 +25,7 @@
     <!-- HTML for individual items in the main list -->
     <div *ngFor="let item of homeList$ | async; let i = index"
          [class.item-delete-animation]="item.deleteFinalized"
-         class="container-fluid list-element item-delete-container shoppingListItem" [class.selected]="item.$key == selectedList">
+         class="container-fluid list-element item-delete-container listItem" [class.selected]="item.$key == selectedList">
 
         <!-- Swipe left delete interface -->
        <div class="list-item-swipe-display swipe-left"

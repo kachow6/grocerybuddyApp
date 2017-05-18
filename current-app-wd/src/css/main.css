@@ -187,6 +187,10 @@ div.item-delete-container {
     position: relative;
 }
 
+.list-element:hover:not(#buttonHolder) {
+  opacity: 0.5;
+}
+
 /* Modals */
 .modal {
   z-index: 6000;
