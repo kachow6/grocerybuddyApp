@@ -137,7 +137,7 @@
 								<h4 class="media-heading">Expiration Date: </h4>
 							</div>
 							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-3" style="padding-right: 0; top: -12px">
-								<input #reexpiry [(ngModel)]="newShelfLifeInput" [ngModelOptions]="{standalone: true}" type="number" class="form-control input-sm" value="1" min="0" (keyup)="activateEasterEgg(item.expiration)" (keyup.enter)="saveButton.click()">
+								<input #reexpiry [(ngModel)]="newShelfLifeInput" [ngModelOptions]="{standalone: true}" type="number" class="form-control input-sm" value="1" min="0" (keyup)="activateEasterEgg(this.newShelfLifeInput)" (keyup.enter)="saveButton.click()">
 							</div>
 							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="top:-12px">
 								<h5><strong><span class="text-muted">days</span></strong></h5>
