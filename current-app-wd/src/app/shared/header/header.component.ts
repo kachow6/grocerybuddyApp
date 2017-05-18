@@ -213,5 +213,6 @@ export class HeaderComponent implements OnInit {
 
     logout() {
         this.afAuth.auth.signOut();
+        this.router.navigateByUrl('login');
     }
 }

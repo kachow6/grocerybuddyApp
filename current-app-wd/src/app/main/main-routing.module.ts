@@ -8,6 +8,7 @@ import { HomeComponent }            from '../home/home.component';
 import { ListComponent }            from '../list/list.component';
 import { SettingsComponent }        from '../settings/settings.component';
 
+import { LoggedInGuard } from '../shared/user-service/logged-in-guard.service';
 
 @NgModule({
     imports: [
@@ -15,6 +16,7 @@ import { SettingsComponent }        from '../settings/settings.component';
         {
             path: 'main',
             component: MainComponent,
+            canActivate: [ LoggedInGuard ],
             children: [
                 { path: 'affiliates', component: AffiliatesComponent },
                 { path: 'fridge', component: FridgeComponent },
@@ -26,6 +28,7 @@ import { SettingsComponent }        from '../settings/settings.component';
         }
         ])
     ],
-    exports: [ RouterModule ]
+    exports: [ RouterModule ],
+    providers: [ LoggedInGuard ]
 })
 export class MainRoutingModule { }
