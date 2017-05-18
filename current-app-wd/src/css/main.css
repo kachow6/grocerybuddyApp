@@ -124,8 +124,8 @@ html body div.item-delete-animation {
   max-height: 0px;
   transform: scale(0.5);
   transition-property: max-height transform opacity margin;
-  transition-duration: 0.4s;
-  transition-timing-function: ease-in;
+  transition-duration: 0.5s;
+  transition-timing-function: ease-in-out;
   overflow: hidden;
 }
 
