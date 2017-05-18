@@ -35,35 +35,36 @@ export class FridgeComponent implements OnInit {
     currentItem$: FirebaseListObservable<any[]>;
     fridgeList: any[] = [];
 
-    nameInput:        string = '';
-    numberInput:      number;
-    expiration:       number;
-    renameInput:      string = '';
-    reQtyInput:       number;
-    reShelfLifeInput: number;
-    showEasterEgg = false;
+    // Input Variables
+    nameInput:         string = '';
+    numberInput:       number;
+    expiration:        number;
+    renameInput:       string = '';
+    newQtyInput:       number;
+    newShelfLifeInput: number;
+    showEasterEgg      = false;
 
     //States for the progress bar
-    stateDanger: string = 'progress-bar-danger';
+    stateDanger:  string = 'progress-bar-danger';
     stateWarning: string = 'progress-bar-warning';
     stateSuccess: string = 'progress-bar-success';
-    itemState: string = '';
+    itemState:    string = '';
 
+    // CONSTRUCTOR AND INITIALIZATION.
+    // Used to inject all the necessary services and performr basic wiring.
     constructor(private userService: UserService,
                 public afAuth: AngularFireAuth,
-                public db: AngularFireDatabase) {
-    }
+                public db: AngularFireDatabase) {}
 
+    // OnInit method. Angular's recommended place to perform initialization.
     ngOnInit() {
         //Initializes User Settings
         this.userAuth$ = this.afAuth.authState;
         this.fridgeList$ = this.db.list('/fridgeList/' + this.userId);
-        // console.log(this.fridgeList$.$ref.toJSON());
 
         this.fridgeList$.subscribe(snap => {
             for (let item of snap) {
                 item.expiration = 1 - ((this.today - item.datePurchased) / item.shelfLife);
-                // console.log(item);
             }
         });
     }
@@ -73,20 +74,16 @@ export class FridgeComponent implements OnInit {
         let fridgeItem = {name: itemName,
                          qty: itemQty,
                          autofillId: ''};
-
-        // console.log(fridgeItem);
         if (itemName.length >= 1 && itemQty > 0) {
-        this.fridgeList$.push(new FridgeItem(itemName, itemQty, 10)); 
+            this.fridgeList$.push(new FridgeItem(itemName, itemQty, 10)); 
         }
-
+        // Reset the form fields
         this.nameInput = '';
         this.numberInput = null;
     }
 
-    // Method for calculating the expiration bar colour
-    calculateExp(expiration: number): string {
-        // console.log(expiration);
-
+    // Method for calculating the expiration bar's colour
+    freshnessBarColour(expiration: number): string {
         if (expiration < 0.33){
             return this.stateDanger;
         } else if (expiration >= 0.66){
@@ -99,51 +96,28 @@ export class FridgeComponent implements OnInit {
     // Method for renaming an item in the user's fridge list.
     itemRename(key: string) {
         this.currentItem$ = this.db.list('/fridgeList/' + key);
-        // console.log(key);
-
         let newName = this.renameInput;
-        // console.log(this.renameInput);
         if (this.renameInput.length > 2) {
-        this.db.object('/fridgeList/' + this.userId + '/' + key ).update({'name': newName});
+            this.db.object('/fridgeList/' + this.userId + '/' + key ).update({'name': newName});
         }
     }
 
     // Method for editing the quantity of an item in the user's fridge list
     editQty(key: string) {
-        this.currentItem$ = this.db.list('/fridgeList' + key);
-        // console.log(key);
-
-        let newQty = this.reQtyInput;
+        let newQty = this.newQtyInput;
         if (newQty > 0) {
-        this.db.object('/fridgeList/' + this.userId + '/' + key).update({'qty': newQty});
+            this.db.object('/fridgeList/' + this.userId + '/' + key).update({'qty': newQty});
         }
     }
 
+    // Method for editing the max shelf-life of an item in the user's fridge
     editShelfLife(item: any) {
         let key = item.$key;
-        this.currentItem$ = this.db.list('/fridgeList' + key);
-        // console.log(key);
-
-        let newShelfLife = this.reShelfLifeInput;
+        let newShelfLife = this.newShelfLifeInput;
         if (newShelfLife > 0) {
             this.db.object('/fridgeList/' + this.userId + '/' + key).update({'shelfLife': newShelfLife});
             item.expiration = 1 - ((this.today - item.datePurchased) / item.shelfLife);
         }
-    }
-
-    
-    // ====== ITEM DELETE ====== //
-    // Starts timer to delete items.
-    startItemDeleteTimer(key: string): any {
-        return setTimeout(
-                () => {this.db.object('/fridgeList/' + this.userId + '/' + key).remove(); }, 3000
-            );
-    }
-
-    // Cancel timer that deletes items.
-    clearItemDeleteTimer(timer: any): null {
-        timer = clearTimeout(timer);
-        return null;
     }
 
     // Displays easteregg img if expiration is set to over 9000.
@@ -157,4 +131,17 @@ export class FridgeComponent implements OnInit {
         }
     }
 
+    // ====== ITEM DELETE ====== //
+    // Starts timer to delete items.
+    startItemDeleteTimer(key: string): any {
+        return setTimeout(
+                () => {this.db.object('/fridgeList/' + this.userId + '/' + key).remove(); }, 3000
+            );
+    }
+
+    // Cancel timer that deletes items.
+    clearItemDeleteTimer(timer: any): null {
+        timer = clearTimeout(timer);
+        return null;
+    }
 }
