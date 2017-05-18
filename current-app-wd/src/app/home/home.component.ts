@@ -1,13 +1,13 @@
-import { Component, OnInit, Input, Output }    from '@angular/core';
-import { UserService }                         from '../shared/user-service/user.service';
-import { ShoppingList, ShoppingItem }          from '../shared/user-service/user';
-import { Router }                              from '@angular/router';
+import { Component, OnInit, Input, Output    } from '@angular/core';
+import { UserService                         } from '../shared/user-service/user.service';
+import { ShoppingList, ShoppingItem          } from '../shared/user-service/user';
+import { Router                              } from '@angular/router';
 
 import { AngularFireDatabase,
-                 FirebaseListObservable,
-                 FirebaseObjectObservable }    from 'angularfire2/database';
-import { Observable }                          from 'rxjs/observable';
-import { AngularFireAuth }                     from 'angularfire2/auth';
+         FirebaseListObservable,
+         FirebaseObjectObservable            } from 'angularfire2/database';
+import { Observable                          } from 'rxjs/observable';
+import { AngularFireAuth                     } from 'angularfire2/auth';
 import * as firebase                           from 'firebase/app';
 
 /**
@@ -28,23 +28,20 @@ export class HomeComponent implements OnInit {
 
     // Database & Auth Variables.
     userId: string = 'user-1';
-
     userAuth$:    Observable<firebase.User>;
     homeList$:    FirebaseListObservable<any[]>;
 
+    // CONSTRUCTOR & INITIALIZATION.
     // Constructor. Inject all necessary dependencies.
-    constructor(
-        public userService: UserService,
-        public router: Router,
-        public afAuth: AngularFireAuth,
-        public db: AngularFireDatabase
-        ) {}
+    constructor(public userService: UserService,
+                public router: Router,
+                public afAuth: AngularFireAuth,
+                public db: AngularFireDatabase) {}
 
     // Init. Initialize anything more complicated than basic wiring.
     ngOnInit() {
         this.userAuth$ = this.afAuth.authState;
         this.homeList$ = this.db.list('/homeList/' + this.userId);
-        // console.log(this.fridgeList$.$ref.toJSON());
 
         this.myList = this.userService.getHome();
 
@@ -76,34 +73,32 @@ export class HomeComponent implements OnInit {
     addList():void {
         // AngularFire DB Integration Code
         if (this.nameInput.length >= 1) {
-
             // Add new list to homeList$.
             let newListKey = this.homeList$.push(this.nameInput).key;
             this.nameInput = '';
         }
     }
 
-    //Method for moving into the user selected list
+    // Method for moving into the user selected list
     selectList(key: string): void {
         this.userService.setCurrentList(key);
         this.router.navigateByUrl('/main/list');
     }
 
-    
-    // Rename List
+    // Method for renaming a list
     renameList(key: string): void {
         let newName = this.renameInput;
-
         if (newName.length > 0) {
             this.db.object('/homeList/' + this.userId + '/' + key).set(newName);
         }
-
         this.renameInput = '';
     }
 
+    // Method for resetting the checked states of the items in a selected list
     resetList(key: string): void {
         let mySub = this.db.list('/shoppingList/' + key).subscribe(datasnap => {
             for(let i of datasnap) {
+                // Queries to each item in the datasnap, sets checked state to false
                 let query = this.db.object('/shoppingList/' + this.userService.getCurrentList() + '/' + i.$key);
                 query.update({'checked': false});
             }
@@ -111,15 +106,13 @@ export class HomeComponent implements OnInit {
         });
     }
 
-    // Method for copying a new instance of a user's shopping list
+    // Method for copying and creating a new instance of a user's shopping list
     copyList(key: string, name: string): void {
-        //    console.log(key);
-        //    console.log(name);
            let copyListKey = this.homeList$.push(name).key;
-        //    console.log(copyListKey);
            let mySub = this.db.list('/shoppingList/' + key).subscribe(datasnap => {
            for(let i of datasnap){
                 console.log(i);
+                // Create a new item in fridge with the following attributes
                 this.db.list('/shoppingList/' + copyListKey).push({
                         'name': i.name,
                         'qty': i.qty,

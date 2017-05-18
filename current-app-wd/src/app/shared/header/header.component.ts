@@ -1,24 +1,22 @@
 
-import { Component, OnInit }     from '@angular/core';
-import { BUDDY_QUOTES }          from  './header.menu.buddyquotes';
-import { BUDDY_PICS }            from  './header.menu.buddypics';
-import { UserService }           from '../user-service/user.service';
-import { FridgeItem, DateTools } from '../user-service/user';
+import { Component, OnInit            } from '@angular/core';
+import { BUDDY_QUOTES                 } from  './header.menu.buddyquotes';
+import { BUDDY_PICS                   } from  './header.menu.buddypics';
+import { UserService                  } from '../user-service/user.service';
+import { FridgeItem, DateTools        } from '../user-service/user';
 import { Router,
          NavigationEnd,
-         NavigationStart }       from '@angular/router';
-
+         NavigationStart              } from '@angular/router';
 import { AngularFireDatabase,
          FirebaseListObservable,
-         FirebaseObjectObservable }    from 'angularfire2/database';
-import { Observable } from 'rxjs/Observable';
-import { AngularFireAuth } from 'angularfire2/auth';
-import * as firebase from 'firebase/app';
+         FirebaseObjectObservable     } from 'angularfire2/database';
+import { Observable                   } from 'rxjs/Observable';
+import { AngularFireAuth              } from 'angularfire2/auth';
+import * as firebase                    from 'firebase/app';
 
 /**
  * This class represents the navigation bar component.
  */
-
 @Component({
   moduleId: module.id,
   selector: 'gb-header',
@@ -67,46 +65,49 @@ export class HeaderComponent implements OnInit {
     // OnInit method. Angular's recommended place to perform initialization.
     ngOnInit() {
         this.closeNav();                     // Closes the nav bar
+        
+        // Sets the current page title depending on the router.url location
         this.router.events.subscribe((snap: any) => {
             let currentPage = snap.urlAfterRedirects;
-            // If User is on homepage
+            // If User is on HOME PAGE
             if (currentPage ===  '/main') {
-                this.pageTitle = 'Grocery Buddy';
-            // IF the user is on fridge page
-            } else if (currentPage === '/main/fridge') {
-                this.pageTitle = 'Fridge';
-            // If the user is in a list
-            } else if (currentPage === '/main/list') {
-                let listKey = this.userService.getCurrentList();
-                              this.db.object('/homeList/' + 
-                              this.userId + '/' +
-                              listKey).take(1).subscribe(snap => {
-                              this.pageTitle = snap.$value;
-                            });
-            // If the user is on settings page
-            } else if (currentPage === '/main/settings') {
-                this.pageTitle = 'Settings';
-            // If the user is on affiliates page
-            } else if (currentPage === '/main/affiliates') {
-                this.pageTitle = 'Affiliates';
+                this.pageTitle = 'Grocery Buddy';}
+            // IF the user is on FRIDGE page
+            else if (currentPage === '/main/fridge') {
+                this.pageTitle = 'Fridge';}
+            // If the user is on SETTINGS page
+            else if (currentPage === '/main/settings') {
+                this.pageTitle = 'Settings';}
+            // If the user is on AFFILIATES page
+            else if (currentPage === '/main/affiliates') {
+                this.pageTitle = 'Affiliates';}
+            // If the user is in a LIST
+            else if (currentPage === '/main/list') {
+                // Returns the user to HOME page if no list has been selected
+                if (!this.userService.getCurrentList()) {
+                    this.router.navigateByUrl('/main');}
+                else {
+                   // Sends User to selected LIST page
+                   let listKey = this.userService.getCurrentList();
+                                 this.db.object('/homeList/' + 
+                                 this.userId + '/' +
+                                 listKey).take(1).subscribe(snap => {
+                                 this.pageTitle = snap.$value;
+                                 });
+                }
             }
         });
-            // Default page title
 
         // Set up Firebase variables
         this.user = this.afAuth.authState;
         this.fridgeList$ = this.db.list('/fridgeList/' + this.userId);
 
         this.fridgeList$.subscribe(snap => {
-            // console.log(snap);
             this.expiringItems = this.pullExpiring(snap);  
             this.numExpiring   = this.notificationAmount(this.expiringItems);  
         }); 
     }
 
-    getListName(): void {
-
-    }
     // EXPIRY NOTIFICATION METHODS
     // Pulls expiring items out of user's fridge items.
     // pullExpiringDep(list: FridgeItem[]): FridgeItem[] {
@@ -132,15 +133,28 @@ export class HeaderComponent implements OnInit {
                 tempList.push(item);
             }
         }
-
         return tempList;
     }
 
-    // Pulls amount of expiring items in fridge.
+    // Pulls amount of expiring items in fridge. **DON'T DELETE!**
     notificationAmount(list: any[]): number {
         let amount = 0;
         amount = list.length;
         return amount;
+    }
+    
+    // Displays the amount of items nearing expiration
+    notificationNumber(): void {
+        let fridge = this.db.list('/fridgeList/' + this.userId);
+        let countItemExpiring: number = 0;
+        fridge.take(1).subscribe(datasnap => {
+            for(let i of datasnap){
+                if ((this.today - i.datePurchased) / i.shelfLife < 0.33) {
+                    countItemExpiring++;
+                }
+            }
+        });
+        this.numExpiring = countItemExpiring;
     }
 
     // Method for calculating the expiration bar colour
