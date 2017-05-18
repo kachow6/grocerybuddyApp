@@ -54,8 +54,8 @@
             </div>
 
             <!-- Clear and Submit Buttons -->
-            <button type="button" class="btn btn-success btn-block" (click)="checkEmail(); checkComplexity(password.value); confirmPassword(password.value, confirmpassword.value, true); changeInfo();">Submit</button>
-            <button type="button" class="btn btn-danger btn-block" (click)="clearFields()">Clear</button>
+            <button type="button" class="btn btn-success btn-block" (click)="checkComplexity(password.value); confirmPassword(password.value, confirmpassword.value, true); changeActInfo();">Submit</button>
+            <button type="button" class="btn btn-danger btn-block" (click)="clearFields();">Clear</button>
 
         </form>
     </div>

@@ -1,7 +1,13 @@
-import { Component }    from '@angular/core';
-import { UserService }  from '../shared/user-service/user.service';
-import { User }         from '../shared/user-service/user';
-import { Router }       from '@angular/router';
+import { Component, OnInit            } from '@angular/core';
+import { UserService                  } from '../shared/user-service/user.service';
+import { User                         } from '../shared/user-service/user';
+import { Router                       } from '@angular/router';
+import { AngularFireDatabase,
+         FirebaseListObservable,
+         FirebaseObjectObservable,    } from 'angularfire2/database';
+import { Observable                   } from 'rxjs/Observable';
+import { AngularFireAuth              } from 'angularfire2/auth';
+import * as firebase                    from 'firebase/app';
 
 /**
  * This class represents the lazy loaded HomeComponent.
@@ -14,36 +20,41 @@ import { Router }       from '@angular/router';
 })
 
 export class SettingsComponent {
+    
+    // Variables for the Accounts form
+    passwordcomplex        : boolean;
+    passwordconfirmed      : boolean = false;
+    passwordmessage        : string;
+    confirmpasswordmessage : string ='';
+    userpassword           : string;
+    userconfirmpassword    : string ='';
 
-    passwordcomplex: boolean;
-    passwordconfirmed: boolean = false;
-    passwordmessage: string;
-    confirmpasswordmessage: string ='';
-    userpassword: string;
-    userconfirmpassword: string ='';
+    // variables for user inputs
+    nameInput        : string = "";
+    emailInput       : string = "";
+    emailValid       : boolean;
+    invalidEmailMsg  : string = "";
 
-    nameInput: string = "";
+    // User ID and Firebase variables
+    userId      : string = 'user-1';
+    user        : Observable<firebase.User>;
+    userName    : string;
 
-    emailInput: string = "";
-    emailValid: boolean;
-    invalidEmailMsg: string = "";
+    // CONSTRUCTOR & INITIALIZATION.
+    // Used to inject all the necessary services and perform basic wiring.
+    constructor(private router: Router,
+                private userService: UserService,
+                public afAuth: AngularFireAuth,
+                public db: AngularFireDatabase) {}
 
-    //Constructor for implementing Router.
-    constructor(private router: Router){
+    // // Method for debugging user account information
+    // debug():void {
+    //     this.user = this.afAuth.authState; 
+    //     this.user.take(1).subscribe(userSnap => {
+    //         console.log(userSnap);
+    //     }) 
 
-    }
-
-    //Method for checking if the email entered is proper email format
-    checkEmail() {
-        let emailFormat = /^.+@.+\..+/.test(this.emailInput);
-
-        if(emailFormat && this.emailInput.length > 1) {
-            this.emailValid = true;
-            this.invalidEmailMsg = "";
-        } else {
-            this.invalidEmailMsg = "Please enter a valid email address"
-        }
-    }
+    // }
 
     //Method for checking if the password is complex
     checkComplexity(userpass: string): void {
@@ -86,21 +97,23 @@ export class SettingsComponent {
         this.userconfirmpassword = "";
     }
 
-    //A method for submitting the new account information
-    changeInfo(): void {
-        if(this.nameInput.length > 0 && this.emailValid
-            && this.passwordcomplex == true && this.passwordconfirmed == true) {
+    // Method for changing user account name and password if conditions are met
+    changeActInfo():void {
+         // Validating new name and password
+         if (this.nameInput.length > 2 && 
+             this.checkComplexity && 
+             this.confirmPassword) {
 
-                UserService.user.username = this.nameInput;
-                UserService.user.email = this.emailInput;
-                UserService.user.password = this.userpassword;
+                let newName = this.nameInput;
+                let newPass = this.userpassword;
 
-                this.clearFields();
-                console.log('ACCOUNT OVERWRITE SUCCESS');
-                this.router.navigateByUrl('/');
-        } else {
-            console.log('ACCOUNT OVERWRITE FAILED');
-        }
-        console.log(UserService.user);
+                firebase.auth().onAuthStateChanged((user) => {
+                    user.updateProfile({
+                        displayName: newName
+                        });
+                    user.updatePassword(newPass); 
+                });
+            }
+        
     }
 }

@@ -23,6 +23,7 @@ import * as firebase                    from 'firebase/app';
   templateUrl: 'header.component.html',
   styleUrls: ['header.component.css'],
 })
+
 export class HeaderComponent implements OnInit {
 
     // States for the progress bar
@@ -69,7 +70,7 @@ export class HeaderComponent implements OnInit {
 
         // Grabs and saves the user's Name off database.
         this.user = this.afAuth.authState;
-        this.user.subscribe(userSnap => {
+        this.user.take(1).subscribe(userSnap => {
             if(!userSnap) {
                 this.userName = 'Buddy';
             } else {
