@@ -137,8 +137,6 @@ export class HomeComponent implements OnInit {
 
         // Triggers the fade-out animation for items
     runDeleteAnimation(key: string, item: any): any {
-        console.log("Deleting...");
-
         item.deleteFinalized = true;
         setTimeout(() => {
             // Delete Shopping List
