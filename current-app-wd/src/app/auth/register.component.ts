@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { Observable } from 'rxjs/Observable';
 import { AngularFireAuth } from 'angularfire2/auth';
@@ -24,7 +25,8 @@ export class RegisterComponent {
 
     user: Observable<firebase.User>;
 
-    constructor(public afAuth: AngularFireAuth) {
+    constructor(public router: Router,
+                public afAuth: AngularFireAuth) {
         this.user = afAuth.authState;
     }
 
@@ -76,9 +78,8 @@ export class RegisterComponent {
                 /* If it's successful, update the user authentication record
                 // to include their display name. */
                 .then(user => {
-                    user.updateProfile({
-                        displayName: name
-                    });
+                    user.updateProfile({ displayName: name });
+                    this.router.navigateByUrl('/main');
                 })
                 // Catch any errors and log them to the console.
                 .catch(e => console.log(e.message));
