@@ -49,3 +49,7 @@
 .checkout-modal-footer {
 	padding: 8px;
 }
+
+.checkedOutItem {
+	background-color: lightgreen;
+}

@@ -94,6 +94,7 @@ export class ListComponent {
                 'name': this.nameInput,
                 'qty': this.numberInput,
                 'checked': false,
+                'checkedOut': false,
                 'autofillId': ''
             };
             // Push the item to the currentList$.
@@ -148,12 +149,23 @@ export class ListComponent {
                             new FridgeItem(i.name, i.qty, 10));
                     // Changes checked state of the items as they are added to the fridge
                     let query = this.db.object('/shoppingList/' + this.userService.getCurrentList() + '/' + i.$key);
+                    query.update({'checkedOut': true});
                     query.update({'checked': false});
                 }
             }
             // Moves the user to the fridge page after checking out
             this.router.navigateByUrl('/main/fridge');
         });
+    }
+
+    getCheckedOut(key: string): boolean {
+        let moved = false;
+        this.db.object('/shoppingList/' + this.userService.getCurrentList() + '/' + key).take(1).subscribe(datasnap => {
+            if (datasnap.checkedOut) {
+                moved = true;
+            }
+        });
+        return moved;
     }
 
     // Method to check if a item name is greater than 14 characters
