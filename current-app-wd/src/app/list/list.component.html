@@ -124,9 +124,9 @@
                 <h4 class="media-heading">Are you sure you want to reset this list?</h4>
             </div>
 
-            <div class="modal-footer">
-                <button type="button" class="btn btn-success btn-sm btn-default" data-dismiss="modal" (click)="resetModal.hide();  resetAllItems()" aria-label="Close">Yes - Uncheck all items</button>
-                <button type="button" class="btn btn-danger btn-sm btn-default" data-dismiss="modal" (click)="resetModal.hide()" aria-label="Close">No - I'm still using this list!</button>
+            <div class="checkout-modal-footer modal-footer">
+                <button type="button" class="btn btn-success btn-sm btn-default" data-dismiss="modal" (click)="resetModal.hide();  resetAllItems()" aria-label="Close">Yes- Uncheck all items</button>
+                <button type="button" class="btn btn-danger btn-sm btn-default" data-dismiss="modal" (click)="resetModal.hide()" aria-label="Close">No- I'm still using this list!</button>
             </div>
         </div>
     </div>
@@ -147,9 +147,9 @@
                 <h4 class="media-heading">Are you ready to checkout?</h4>
             </div>
 
-            <div class="modal-footer">
-                <button type="button" class="btn btn-success btn-sm btn-default" data-dismiss="modal" (click)="checkoutModal.hide();  getAllCheckoutItems();" aria-label="Close">Yes - Add items to my Fridge</button>
-                <button type="button" class="btn btn-danger btn-sm btn-default" data-dismiss="modal" (click)="checkoutModal.hide()" aria-label="Close">No - Keep Shopping</button>
+            <div class="checkout-modal-footer modal-footer">
+                <button type="button" class="btn btn-success btn-sm btn-default" data-dismiss="modal" (click)="checkoutModal.hide();  getAllCheckoutItems();" aria-label="Close">Yes- Add items to my Fridge</button>
+                <button type="button" class="btn btn-danger btn-sm btn-default" data-dismiss="modal" (click)="checkoutModal.hide()" aria-label="Close">No- Keep Shopping</button>
             </div>
         </div>
     </div>
