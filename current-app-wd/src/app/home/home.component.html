@@ -52,19 +52,15 @@
                 (swiperight)="item.deleteQueueRight=false">
 
             <!-- List container -->
-            <div class="col-lg-8 col-md-8 col-sm-7 col-xs-6"
-                 style="margin-top: 3px">
+            <div class="list-container col-lg-8 col-md-8 col-sm-7 col-xs-6">
                 <h4 class="item-name" (tap)="selectList(item.$key)">{{item.$value}}</h4>
             </div>
             
             <!-- Dropdown menu and options -->
-            <div class="dropdown"
-                 style="margin-top: 8px; right: 10px; font-size: 20px; position: absolute;"
-                 dropdown>
-                
+            <div class="dropdown" dropdown>
                 <a DATA-TOGGLE="#" dropdownToggle class="dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><span class="glyphicon glyphicon-option-vertical"></span></a>
 
-                <ul *dropdownMenu role="menu" class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1" style="z-index: 9001">
+                <ul *dropdownMenu role="menu" class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
                     <li role="menuitem" class="menu-item"><a DATA-TOGGLE="#" (click)="renameModal.show(); renameInput = item.$value" data-toggle="modal">Rename</a></li>
                     <li role="menuitem" class="menu-item"><a DATA-TOGGLE="#" (click)="copyList(item.$key, item.$value)">Copy</a></li>
 
