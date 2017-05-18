@@ -87,7 +87,6 @@ export class HomeComponent implements OnInit {
     selectList(key: string): void {
         this.userService.setCurrentList(key);
         this.router.navigateByUrl('/main/list');
-        console.log(key);
     }
 
     // Method for renaming a list
