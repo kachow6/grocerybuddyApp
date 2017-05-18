@@ -139,7 +139,7 @@ div.item-delete-container {
 /* New Item Banner */
 .new-object-input {
   padding: 20px;
-  padding-left: 30px
+  padding-left: 30px;
 }
 
 .title {
@@ -210,4 +210,40 @@ div.item-delete-container {
 
 .modal-footer {
   text-align: center;
+}
+
+/* Mobile View Adjustments */
+@media only screen and (max-width: 420px) {
+  .add-item {
+    height: 50px;
+    top: 59px;
+  }
+
+  .new-object-input {
+    padding: 10px;
+    padding-left: 30px;
+  }
+
+  .add-quantity {
+    padding: 10px;
+  }
+
+  .add-submit-button {
+    height: 33px;
+    width: 40px;
+  }
+
+  .add-submit-button-container {
+    margin-top: 8px;
+  }
+
+  .glyphicon-plus {
+    left: -5px;
+    top: -4px;
+  }
+
+  .main-container {
+    top: 44px;
+    margin-bottom: 60px;
+  }
 }
