@@ -71,15 +71,25 @@ export class FridgeComponent implements OnInit {
 
     // Adds a new item to the user's fridge list
     addItemToFridgeList(itemName: string, itemQty: number) {
+        let added = false;
         let fridgeItem = {name: itemName,
                          qty: itemQty,
                          autofillId: ''};
-        if (itemName.length >= 1 && itemQty > 0) {
-            this.fridgeList$.push(new FridgeItem(itemName, itemQty, 10)); 
+        if (itemName.length >= 1) {
+            if(itemQty > 0) {
+                this.fridgeList$.push(new FridgeItem(itemName, itemQty, 10));
+                added = true;
+            } else {
+               this.numberInput = null;
+            }
+        } else {
+            this.nameInput = '';
         }
         // Reset the form fields
-        this.nameInput = '';
-        this.numberInput = null;
+        if (added) {
+            this.nameInput = '';
+            this.numberInput = null;
+        }
     }
 
     // Method for calculating the expiration bar's colour
