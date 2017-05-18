@@ -1,18 +1,17 @@
-import { Component, OnInit }                   from '@angular/core';
-import { UserService }                         from '../shared/user-service/user.service';
+import { Component, OnInit           } from '@angular/core';
+import { UserService                 } from '../shared/user-service/user.service';
 import { ShoppingList,
          ShoppingItem,
-         FridgeItem }                          from '../shared/user-service/user';
-import { Router }                              from '@angular/router';
-import { FormsModule                         } from '@angular/forms';
-
-import 'rxjs/add/operator/take';
+         FridgeItem                  } from '../shared/user-service/user';
+import { Router                      } from '@angular/router';
+import { FormsModule                 } from '@angular/forms';
+import                                      'rxjs/add/operator/take';
 import { AngularFireDatabase,
-                 FirebaseListObservable,
-                 FirebaseObjectObservable }    from 'angularfire2/database';
-import { Observable }                          from 'rxjs/observable';
-import { AngularFireAuth }                     from 'angularfire2/auth';
-import * as firebase                           from 'firebase/app';
+         FirebaseListObservable,
+         FirebaseObjectObservable    } from 'angularfire2/database';
+import { Observable                  } from 'rxjs/observable';
+import { AngularFireAuth             } from 'angularfire2/auth';
+import * as firebase                   from 'firebase/app';
 
 /**
  * This class represents the lazy loaded HomeComponent.
@@ -27,26 +26,24 @@ import * as firebase                           from 'firebase/app';
 export class ListComponent {
     readonly msPerDay: number = 86400000;
 
-    //Instantiating the array object.
-    myList: ShoppingItem[] = [];
+    // User input variables
     nameInput: string = '';
     renameInput: string = '';
     numberInput: number;
     checkedInput: boolean;
     currentItem: any;
 
-
     // Database & Auth Variables.
     userId: string = 'user-1';
-
     userAuth$:    Observable<firebase.User>;
     currentList$: FirebaseListObservable<any[]>;
 
+    // CONSTRUCTOR & INITIALIZATION.
+    // Used to inject all the necessary services and perform basic wiring.
     constructor(public userService: UserService,
                 public router: Router,
                 public afAuth: AngularFireAuth,
-                public db: AngularFireDatabase) {
-    }
+                public db: AngularFireDatabase) {}
 
     ngOnInit() {
 
@@ -87,10 +84,9 @@ export class ListComponent {
         // });
     }
 
-    // Method for adding a new item by user input
+    // Method for adding a new item to a list from user input
     addItem(): void {
         if (this.nameInput.length > 0 && this.numberInput > 0) {
-
             // Build the new item to put in the shopping list
             let newItem = {
                 'name': this.nameInput,
@@ -98,7 +94,6 @@ export class ListComponent {
                 'checked': false,
                 'autofillId': ''
             };
-
             // Push the item to the currentList$.
             this.currentList$.push(newItem);
             this.nameInput = '';
@@ -109,12 +104,62 @@ export class ListComponent {
     // Method for a user to mark an item they have put in their basket
     checkItem(checked: boolean, key: string): void {
         let query = this.db.object('/shoppingList/' + this.userService.getCurrentList() + '/' + key);
-        // console.log(query.$ref);
         if (checked == true) {
             query.update({'checked': false});
         } else if (checked == false) {
             query.update({'checked': true});
         }
+    }
+
+    // Method for renaming an item in the user's fridge list.
+    itemRename(key: string): void {
+        let currentObj = this.db.object('/shoppingList/' + this.userService.getCurrentList() + '/' + key);
+        let newName = this.renameInput;
+        // The input cannot be nothing
+        if (newName.length > 2) {
+            currentObj.update({'name': newName});
+        }
+    }
+
+    // Reset All Items method 
+    resetAllItems(): void {
+        let mySub = this.db.list('/shoppingList/' + this.userService.getCurrentList())
+                           .take(1)
+                           .subscribe(datasnap => {
+            for(let i of datasnap){
+                // Goes through all items in the datasnap and sets the checked states to false
+                let query = this.db.object('/shoppingList/' + this.userService.getCurrentList() + '/' + i.$key);
+                query.update({'checked': false});
+            }
+        });
+    }
+
+    // Method for checking out all items into the user's fridge
+    getAllCheckoutItems(): void {
+        let mySub = this.db.list('/shoppingList/' + this.userService.getCurrentList())
+                           .take(1)
+                           .subscribe(datasnap => {
+            // Iterates through all items in the list via datasnap         
+            for(let i of datasnap){
+                if (i.checked) {
+                    this.db.list('fridgeList/' + this.userId).push(
+                            new FridgeItem(i.name, i.qty, 10));
+                    // Changes checked state of the items as they are added to the fridge
+                    let query = this.db.object('/shoppingList/' + this.userService.getCurrentList() + '/' + i.$key);
+                    query.update({'checked': false});
+                }
+            }
+            // Moves the user to the fridge page after checking out
+            this.router.navigateByUrl('/main/fridge');
+        });
+    }
+
+    // Method to check if a item name is greater than 14 characters
+    checkName(name: string): string {
+        if (name.length > 15) {
+            name = name.slice(0,15) + '...';
+        }
+        return name;
     }
 
     // ====== ITEM DELETE ====== //
@@ -134,76 +179,5 @@ export class ListComponent {
     clearItemDeleteTimer(timer: any): null {
         timer = clearTimeout(timer);
         return null;
-    }
-
-    // Method for renaming an item in the user's fridge list.
-    itemRename(key: string): void {
-        let currentObj = this.db.object('/shoppingList/' + this.userService.getCurrentList() + '/' + key);
-        let newName = this.renameInput;
-        if (newName.length > 2) {
-        currentObj.update({'name': newName});
-        }
-    }
-
-
-    //Method for resetting checked items to false
-    resetList(): void {
-        for(let i = 0; i < this.myList.length; i++) {
-            this.myList[i].checked = false;
-        }
-    }
-
-    //Method for transfering checked items to fridge array
-    checkout(): void {
-        for(let i = 0; i < this.myList.length; i++) {
-            if (this.myList[i].checked === true) {
-                UserService.user.fridgeList.
-                push(new FridgeItem(this.myList[i].name, this.myList[i].quantity, 10));
-            }
-        }
-    }
-
-    // Reset All Items method 
-    resetAllItems(): void {
-        
-        let mySub = this.db.list('/shoppingList/' + this.userService.getCurrentList())
-                           .take(1)
-                           .subscribe(datasnap => {
-
-            for(let i of datasnap){
-                
-                let query = this.db.object('/shoppingList/' + this.userService.getCurrentList() + '/' + i.$key);
-                query.update({'checked': false});
-
-            }
-        });
-    }
-
-    // Method for checking out all items into the user's fridge
-    getAllCheckoutItems(): void {
-        let mySub = this.db.list('/shoppingList/' + this.userService.getCurrentList())
-                           .take(1)
-                           .subscribe(datasnap => {
-                               
-            for(let i of datasnap){
-                if (i.checked) {
-                    this.db.list('fridgeList/' + this.userId).push(
-                       new FridgeItem(i.name, i.qty, 10));
-
-                    let query = this.db.object('/shoppingList/' + this.userService.getCurrentList() + '/' + i.$key);
-                    query.update({'checked': false});
-                }
-            }
-
-            this.router.navigateByUrl('/main/fridge');
-        });
-    }
-
-    // Method to check if a item name is greater than 14 characters
-    checkName(name: string): string {
-        if (name.length > 15) {
-            name = name.slice(0,15) + '...';
-        }
-        return name;
     }
 }
