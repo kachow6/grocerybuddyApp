@@ -157,8 +157,18 @@ a:hover {
   padding: 20px 15px;
 }
 
+.add-submit-button-container {
+  margin-top: 16px;
+}
+
 .add-submit-button {
-  margin-top: 15px;
+  height: 38px;
+  width: 50px;
+}
+
+.glyphicon-plus {
+  left: -1px;
+  top: -1px;
 }
 
 /* Main Body */

@@ -137,6 +137,7 @@
     position: fixed;
     z-index: 5000;
     min-width: 400px;
+    top: 0;
 }
 
 .navbar-header {
@@ -186,4 +187,26 @@ ul.nav-tabs > li a {
 
 ul.nav-tabs > li a:hover {
     background-color: #34E52E;
+}
+
+/* Mobile View Adjustments */
+@media only screen and (max-width: 420px) {
+    .notification-button {
+        height: 30px;
+        width: 30px;
+    }
+
+    .badge {
+        font-size: 1em;
+        left: -6px;
+    }
+
+    .page-title {
+        font-size: 1.2em;
+    }
+
+    .hamburger {
+        font-size: 25px;
+        padding-top: 20px;
+    }
 }
