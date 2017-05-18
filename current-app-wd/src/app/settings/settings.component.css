@@ -1,3 +1,31 @@
+.setting-form {
+	margin-bottom: 50px;
+	margin-top: 20px;
+}
+
 .setting-option {
 	margin-bottom: 0;
+}
+
+/* Notifications Settings */
+.notifications-title {
+	margin-top: 0;
+}
+
+.enabled-container {
+	margin-top: 5px;
+}
+
+.enabled-text {
+	margin-right: 15px;
+}
+
+.enabled-checkbox {
+	height: 20px;
+	width: 20px;
+}
+
+/* Account Settings */
+.confirm-error-msg {
+	color:tomato;
 }

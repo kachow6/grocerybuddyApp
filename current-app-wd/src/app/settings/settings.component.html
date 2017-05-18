@@ -1,5 +1,5 @@
 <!-- SETTINGS PAGE HTML -->
-<div class="setting-form container-fluid col-lg-8 col-md-10 col-sm-10 col-xs-12 col-lg-offset-2 col-md-offset-1 col-sm-offset-1" style="margin-top: 20px; margin-bottom: 50px">
+<div class="setting-form container-fluid col-lg-8 col-md-10 col-sm-10 col-xs-12 col-lg-offset-2 col-md-offset-1 col-sm-offset-1">
     
     <!-- MAIN PAGE CONTENT -->
     <div class="well">
@@ -7,10 +7,10 @@
             <div class="form-group">
 
                 <!-- Notifications Settings Begins -->
-                <h3 style="margin-top: 0">Notifications:</h3>
-                <div class="row col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top: 5px">
-                    <label><h4 style="margin-right: 15px">Enabled:</h4></label>
-                    <input type="checkbox" style="height: 20px; width: 20px;" checked data-toggle="toggle" data-onstyle="success" data-offstyle="default">
+                <h3 class="notifications-title">Notifications:</h3>
+                <div class="enabled-container row col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <label><h4 class="enabled-text">Enabled:</h4></label>
+                    <input class="enabled-checkbox" type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="default">
                 </div>
             </div>
 
@@ -32,13 +32,6 @@
                 <input [(ngModel)] = "nameInput" type="text" class="form-control" id="name" name="user_name" required>
             </div>
 
-            <!-- Account Email -->
-            <div class="form-group">
-                <label for="email"><h5 class="setting-option">Email:</h5></label>
-                <h5 id="emailerror" class="Emailerror" style="color:tomato">{{invalidEmailMsg}}</h5>
-                <input [(ngModel)] = "emailInput" type="email" class="form-control" id="email" name="user_email" required>
-            </div>
-
             <!-- Account Password -->
             <div class="form-group">
                 <label for="password"><h5 class="setting-option">Password:</h5></label>
@@ -49,7 +42,7 @@
             <!-- Account Confirm Password -->
             <div class="form-group">
                 <label for="confirmpassword"><h5 class="setting-option"h5>Confirm Password:</h5></label>
-                <h5 id="confirmpassworderror" class="error" style="color:tomato">{{confirmpasswordmessage}}</h5>
+                <h5 id="confirmpassworderror" class="confirm-error-msg error">{{confirmpasswordmessage}}</h5>
                 <input type="password" class="form-control" id="confirmpassword" name="user_confirmpassword" #confirmpassword [(ngModel)]="userconfirmpassword" required>
             </div>
 
