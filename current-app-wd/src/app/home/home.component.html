@@ -21,7 +21,9 @@
 <div class="container col-lg-8 col-md-10 col-lg-offset-2 col-md-offset-1" style="top: 80px; margin-bottom: 60px">
 
     <!-- HTML for individual items in the main list -->
-    <div class="container-fluid list-element" *ngFor="let item of homeList$ | async; let i = index">
+    <div *ngFor="let item of homeList$ | async; let i = index"
+         [class.item-delete-animation]="item.deleteFinalized"
+         class="container-fluid list-element item-delete-container">
 
         <!-- Swipe left delete interface -->
        <div class="list-item-swipe-display swipe-left"
@@ -41,7 +43,7 @@
 
         <!-- Time interval tracker for swipe delete feature -->
         <div class="row"
-                (swipe)="item.isQueuedForDelete=true; item.deleteTimer=startItemDeleteTimer(item.$key)"
+                (swipe)="item.isQueuedForDelete=true; item.deleteTimer=startItemDeleteTimer(item.$key, item)"
                 (swipeleft)="item.deleteQueueRight=true"
                 (swiperight)="item.deleteQueueRight=false">
 

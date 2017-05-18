@@ -126,16 +126,27 @@ export class HomeComponent implements OnInit {
 
     // ====== ITEM DELETE ====== //
     // Starts timer to delete items.getCurrentList
-    startItemDeleteTimer(key: string): any {
+    startItemDeleteTimer(key: string, item: any): any {
         return setTimeout(
                 () => {
-                    // Delete Shopping List
-                    this.db.object('/shoppingList/' + key).remove();
-                    // Delete Reference in Home List
-                    this.db.object('/homeList/'
-                                   + this.userId + '/' + key).remove();
+                    // Call Delete Function
+                    this.runDeleteAnimation(key, item);
                 }, 3000
             );
+    }
+
+        // Triggers the fade-out animation for items
+    runDeleteAnimation(key: string, item: any): any {
+        console.log("Deleting...");
+
+        item.deleteFinalized = true;
+        setTimeout(() => {
+            // Delete Shopping List
+            this.db.object('/shoppingList/' + key).remove();
+            // Delete Reference in Home List
+            this.db.object('/homeList/'
+                           + this.userId + '/' + key).remove();
+        }, 500);
     }
 
     // Cancel timer that deletes items.

@@ -164,15 +164,24 @@ export class ListComponent {
 
     // ====== ITEM DELETE ====== //
     // Starts timer to delete items.
-    startItemDeleteTimer(key: string): any {
+    startItemDeleteTimer(key: string, item: any): any {
         return setTimeout(
-                () => {
-                    // Perform Delete Query
-                    this.db.object('/shoppingList/'
-                       + this.userService.getCurrentList() + '/'
-                       + key).remove();
-                }, 3000
-            );
+            () => {
+                // Call Delete Function
+                this.runDeleteAnimation(key, item);
+            }, 3000
+        );
+    }
+
+    // Triggers the fade-out animation for items
+    runDeleteAnimation(key: string, item: any): any {
+        item.deleteFinalized = true;
+        setTimeout(() => {
+            // Perform Delete Query
+            this.db.object('/shoppingList/'
+               + this.userService.getCurrentList() + '/'
+               + key).remove();
+        }, 500);
     }
 
     // Cancel timer that deletes items.

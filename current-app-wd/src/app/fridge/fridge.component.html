@@ -25,8 +25,9 @@
 
     <!-- Individual Items Element. A new version of this is created for each
          item in the list. -->
-	<div class="container-fluid list-element"
-         *ngFor="let item of fridgeList$ | async; let i = index">
+	<div *ngFor="let item of fridgeList$ | async; let i = index"
+         [class.item-delete-animation]="item.deleteFinalized"
+         class="container-fluid list-element item-delete-container">
 
 		<!-- Swipe Left Undo -->
 		<div class="list-item-swipe-display swipe-left"
@@ -48,7 +49,7 @@
 
 		<!-- Undo Time Interval -->
         <div class="row"
-                (swipe)="item.isQueuedForDelete=true; item.deleteTimer=startItemDeleteTimer(item.$key)"
+                (swipe)="item.isQueuedForDelete=true; item.deleteTimer=startItemDeleteTimer(item.$key, item)"
                 (swipeleft)="item.deleteQueueRight=true"
                 (swiperight)="item.deleteQueueRight=false">
 
