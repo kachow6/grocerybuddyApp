@@ -143,10 +143,20 @@ export class FridgeComponent implements OnInit {
 
     // ====== ITEM DELETE ====== //
     // Starts timer to delete items.
-    startItemDeleteTimer(key: string): any {
-        return setTimeout(
-                () => {this.db.object('/fridgeList/' + this.userId + '/' + key).remove(); }, 3000
-            );
+    startItemDeleteTimer(key: string, item: any): any {
+        return setTimeout(() => {
+            // Call Delete Function
+            this.runDeleteAnimation(key, item);
+        }, 3000);
+    }
+
+    // Triggers the fade-out animation for items
+    runDeleteAnimation(key: string, item: any): any {
+        item.deleteFinalized = true;
+        setTimeout(() => {
+            // Perform Delete Query
+            this.db.object('/fridgeList/' + this.userId + '/' + key).remove();
+        }, 500);
     }
 
     // Cancel timer that deletes items.

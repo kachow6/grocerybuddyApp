@@ -80,47 +80,60 @@ a:hover {
 
 /* ===== SWIPE TO DELETE FUNCTIONALITY ===== */
 .list-item-swipe-display {
-    position: absolute;
-    height: 100%;
-    background-color: #555;
-    z-index: 10;
-    padding-top: 1em;
-    padding-bottom: 1em;
-    overflow: hidden;
-    word-wrap: none;
-    color: white;
-    white-space: nowrap;
+  position: absolute;
+  height: 100%;
+  background-color: #555;
+  z-index: 10;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  overflow: hidden;
+  word-wrap: none;
+  color: white;
+  white-space: nowrap;
 }
 
 .swipe-right {
-    left: 0px;
+  left: 0px;
 }
 
 .swipe-left {
-    right: 0;
+right: 0;
 }
 
 .swipe-display {
-    width: 100%;
-    padding-left: 1em;
-    padding-right: 1em;
+  width: 100%;
+  padding-left: 1em;
+  padding-right: 1em;
 
-    transition-property: padding width;
-    transition-duration: 0.35s;
+  transition-property: padding width;
+  transition-duration: 0.35s;
 }
 
 .swipe-hide {
-    width: 0%;
-    padding-left: 0em;
-    padding-right: 0em;
+  width: 0%;
+  padding-left: 0em;
+  padding-right: 0em;
 
-    transition-property: padding width;
-    transition-duration: 0.35s;
+  transition-property: padding width;
+  transition-duration: 0.35s;
 }
 
-.item-delete-animation {
-    font-weight: bold;
+html body div.item-delete-animation {
+  opacity: 0;
+  margin: -3px;
+  max-height: 0px;
+  transform: scale(0.5);
+  transition-property: max-height transform opacity margin;
+  transition-duration: 0.4s;
+  transition-timing-function: ease-in;
+  overflow: hidden;
 }
+
+div.item-delete-container {
+  max-height: 100px;
+  margin: 0px;
+}
+
 /* ===== END OF SWIPE-TO-DELETE CSS ===== */
 
 /* New Item Banner */

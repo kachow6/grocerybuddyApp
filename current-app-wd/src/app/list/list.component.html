@@ -23,7 +23,9 @@
 <!-- Main Body Content -->
 <div class="main-container container col-lg-8 col-md-10 col-lg-offset-2 col-md-offset-1">
     
-    <div class="container-fluid list-element" *ngFor = "let item of currentList$ | async; let i = index">
+    <div *ngFor = "let item of currentList$ | async; let i = index"
+         [class.item-delete-animation]="item.deleteFinalized"
+         class="container-fluid list-element item-delete-container">
 
         <!-- Swipe Left Undo Feature -->
         <div class="list-item-swipe-display swipe-left"
@@ -44,7 +46,7 @@
 
         <!-- Undo Timer Delay -->
         <div class="row"
-                (swipe)="item.isQueuedForDelete=true; item.deleteTimer=startItemDeleteTimer(item.$key)"
+                (swipe)="item.isQueuedForDelete=true; item.deleteTimer=startItemDeleteTimer(item.$key, item)"
                 (swipeleft)="item.deleteQueueRight=true"
                 (swiperight)="item.deleteQueueRight=false">
 
