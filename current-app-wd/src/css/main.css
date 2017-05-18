@@ -123,12 +123,13 @@ a:hover {
 }
 /* ===== END OF SWIPE-TO-DELETE CSS ===== */
 
+/* New Item Banner */
 .new-object-input {
   padding: 20px;
   padding-left: 30px
 }
 
-.title{
+.title {
   color: white;
   text-shadow: 2px 1px #818181;
 }
@@ -145,6 +146,39 @@ a:hover {
   white-space: nowrap;
 }
 
+.add-item {
+  background-color: #0A8056;
+  border: 0;
+  position: fixed;
+  z-index: 3000;
+}
+
+.add-quantity {
+  padding: 20px 15px;
+}
+
+.add-submit-button {
+  margin-top: 15px;
+}
+
+/* Main Body */
+.main-container {
+  top: 80px;
+  margin-bottom: 60px;
+}
+
+/* List Items */
+.list-element {
+  background-color: #E5E5E5;
+  border: 3px solid white;
+    position: relative;
+}
+
+/* Modals */
 .modal {
   z-index: 6000;
+}
+
+.modal-footer {
+  text-align: center;
 }

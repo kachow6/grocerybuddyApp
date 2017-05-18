@@ -1,4 +1,8 @@
-/* Navigation CSS */
+/* Side Navigation CSS */
+.header-height {
+    height: 71px;
+}
+
 .page-cover {
     height: 100%;
     width: 100%;
@@ -60,10 +64,48 @@
     margin-left: 50px;
 }
 
+.sidenav-title {
+    text-align: center;
+    margin-top: 0;
+    font-family: 'Chewy';
+    color: green
+}
+
+.buddy-station {
+    padding-bottom: 10px;
+}
+
+.buddy-quote-box {
+    text-align: center;
+    padding: 10px;
+}
+
+.buddy-quote {
+    font-size: 0.9em;
+}
+
+@keyframes wiggle {
+    0% { transform: rotate(0deg); }
+    80% { transform: rotate(0deg); }
+    85% { transform: rotate(10deg); }
+    95% { transform: rotate(-10deg); }
+    100% { transform: rotate(0deg); }
+}
+
+.wiggle {
+    animation: wiggle 4s infinite;
+}
+
+.wiggle:hover{
+    animation: none;
+}
+
+/* Header CSS */
 .hamburger {
     color: white;
     cursor:pointer;
     font-size:35px;
+    margin-right: 10px;
     padding-top: 25px;
     text-shadow: 1px 1px #818181;
 }
@@ -84,45 +126,61 @@
     font-size: 1.3em;
 }
 
-.buddy-station {
-    padding-bottom: 10px;
+.notification-button {
+    margin-top: 13px;
+    position: fixed;
+    right: 16px;
 }
-ul.nav-tabs > li {
-    background-color: #2CBF26;
-    width: 33.33%;
-    text-align: center;
-}
-ul.nav-tabs > li a {
-    color: white;
-    background-color: rgba(0,0,0,0.0);
-    border: none;
-    font-size: 1.4em;
-}
-ul.nav-tabs > li a:hover {
-    background-color: #34E52E;
-}
+
 .page-top {
     padding: 0;
     position: fixed;
     z-index: 5000;
     min-width: 400px;
 }
+
 .navbar-header {
     margin-right: 0;
 }
 
-@keyframes wiggle {
-    0% { transform: rotate(0deg); }
-    80% { transform: rotate(0deg); }
-    85% { transform: rotate(10deg); }
-    95% { transform: rotate(-10deg); }
-    100% { transform: rotate(0deg); }
+/* Notification Modal */
+.notification-header {
+    padding: 10px;
 }
 
-.wiggle {
-    animation: wiggle 4s infinite;
+.expiring-element {
+    height: 100px;
 }
 
-.wiggle:hover{
-    animation: none;
+.notification-bar {
+    height: 13px;
+}
+
+.notification-bar-value {
+    height: 9px;
+    margin-top: 2px;
+}
+
+.to-fridge-button {
+    bottom: 10px;
+    color: white;
+    position: relative; 
+}
+
+/* Footer CSS */
+ul.nav-tabs > li {
+    background-color: #2CBF26;
+    width: 33.33%;
+    text-align: center;
+}
+
+ul.nav-tabs > li a {
+    color: white;
+    background-color: rgba(0,0,0,0.0);
+    border: none;
+    font-size: 1.4em;
+}
+
+ul.nav-tabs > li a:hover {
+    background-color: #34E52E;
 }
