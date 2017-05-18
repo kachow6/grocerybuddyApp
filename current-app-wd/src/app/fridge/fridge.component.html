@@ -26,6 +26,8 @@
     <!-- Individual Items Element. A new version of this is created for each
          item in the list. -->
 	<div *ngFor="let item of fridgeList$ | async; let i = index"
+         (panup)="doScroll($event)"
+         (pandown)="doScroll($event)"
          [class.item-delete-animation]="item.deleteFinalized"
          class="container-fluid list-element item-delete-container">
 

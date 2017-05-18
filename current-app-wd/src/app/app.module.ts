@@ -33,12 +33,13 @@ export class MyHammerConfig extends HammerGestureConfig  {
     overrides = <any>{
         // override hammerjs default configuration
         'pan': {
-            threshold: 5
+            threshold: 1
         },
         'swipe': {
             velocity: 0.4,
             threshold: 5,
-            direction: 31 // /!\ ugly hack to allow swipe in all direction
+            prevent_default: true,
+            // direction: 31 // /!\ ugly hack to allow swipe in all direction
         }
     }
 }

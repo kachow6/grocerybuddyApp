@@ -25,6 +25,8 @@
     
     <div *ngFor = "let item of currentList$ | async; let i = index"
          [class.item-delete-animation]="item.deleteFinalized"
+         (panup)="doScroll($event)"
+         (pandown)="doScroll($event)"
          class="container-fluid list-element item-delete-container">
 
         <!-- Swipe Left Undo Feature -->
