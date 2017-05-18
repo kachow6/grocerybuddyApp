@@ -22,11 +22,9 @@ export class LoggedOutGuard implements CanActivate {
                 public afAuth: AngularFireAuth) {}
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
-        let nextUrl: string = route.url.toString();
-        let curUrl: string = state.url.toString();
-
-        console.log("next:    " + nextUrl);
-        console.log("current: " + curUrl);
+        // Storing these in case redirection becomes important later
+        // let nextUrl: string = route.url.toString();
+        // let curUrl: string = state.url.toString();
 
         return this.afAuth.authState                                    // Observable. Emits an event every time it receives a snapshot of data from the auth server.
                    .map(userSnap => {return !Boolean(userSnap) })        // Map all possible data snapshots to boolean.
