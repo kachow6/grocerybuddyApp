@@ -100,10 +100,9 @@
     animation: none;
 }
 
-#EcodersLogo {
-    margin-top: 10px;
-    bottom:0;
-    width: 100%;
+.ecoders-logo {
+    margin-bottom: 5px;
+    margin-top: 50px;
     text-align: center;
 }
 
