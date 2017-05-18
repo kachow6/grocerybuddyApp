@@ -1,3 +1,8 @@
+.logo-container {
+	margin-top: 10px;
+}
+
+/* Login Form */
 .btn {
 	padding: 2px 0;
 }
@@ -10,12 +15,28 @@
 	background-color: #5CB85C;
 }
 
+.email-signin {
+	color: white;
+	vertical-align: middle;
+}
+
+.email-signin-graphic {
+	font-size: 22px;
+	padding-right: 15px;
+	vertical-align: middle;
+}
+
 .sign-in {
 	bottom: 20px;
 }
 
 .login-container {
 	background-color: #5CB85C;
+}
+
+.reminder-checkbox {
+	color: #4B4B4B;
+	top: -12px;
 }
 
 .form-element {
@@ -39,10 +60,12 @@ a {
 #customBtn:hover {
   cursor: pointer;
 }
+
 span.label {
   font-family: serif;
   font-weight: normal;
 }
+
 span.icon {
   background: url('../../assets/imgs/google-logo1.png') transparent 5px 50% no-repeat;
   display: inline-block;
@@ -50,6 +73,7 @@ span.icon {
   width: 42px;
   height: 42px;
 }
+
 span.buttonText {
   vertical-align: middle;
   font-size: 15px;
