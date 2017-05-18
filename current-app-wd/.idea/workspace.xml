@@ -95,13 +95,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="affiliates.component.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/app/affiliates/affiliates.component.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="456">
-              <caret line="119" column="12" lean-forward="true" selection-start-line="119" selection-start-column="12" selection-end-line="119" selection-end-column="12" />
-              <folding />
-            </state>
+      <file leaf-file-name="favicon.ico" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/favicon.ico">
+          <provider selected="true" editor-type-id="images">
+            <state />
           </provider>
         </entry>
       </file>
@@ -590,7 +587,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="HbShouldOpenHtmlAsHb" value="" />
-    <property name="SearchEverywhereHistoryKey" value="affi&#9;FILE&#9;file:///Users/ysl183/Desktop/grocerybuddyApp/current-app-wd/src/app/affiliates/affiliates.component.html&#10;home&#9;null&#9;null&#10;connect&#9;FILE&#9;file:///Users/ysl183/Desktop/grocerybuddyApp/current-app-wd/src/app/auth/connect.component.ts&#10;connec&#9;FILE&#9;file:///Users/ysl183/Desktop/grocerybuddyApp/current-app-wd/src/app/auth/connect.component.html&#10;coremodule&#9;null&#9;null&#10;core&#9;FILE&#9;file:///Users/ysl183/Desktop/grocerybuddyApp/current-app-wd/node_modules/@angular/cli/ember-cli/lib/ext/core-object.js&#10;apikey&#9;null&#9;null" />
+    <property name="SearchEverywhereHistoryKey" value="favicon&#9;FILE&#9;file:///Users/ysl183/Desktop/grocerybuddyApp/current-app-wd/src/favicon.ico&#10;favico&#9;FILE&#9;file:///Users/ysl183/Desktop/grocerybuddyApp/current-app-wd/src/assets/favicon/favicon-PROD.ico&#10;affi&#9;FILE&#9;file:///Users/ysl183/Desktop/grocerybuddyApp/current-app-wd/src/app/affiliates/affiliates.component.html&#10;home&#9;null&#9;null&#10;connect&#9;FILE&#9;file:///Users/ysl183/Desktop/grocerybuddyApp/current-app-wd/src/app/auth/connect.component.ts&#10;connec&#9;FILE&#9;file:///Users/ysl183/Desktop/grocerybuddyApp/current-app-wd/src/app/auth/connect.component.html&#10;coremodule&#9;null&#9;null&#10;core&#9;FILE&#9;file:///Users/ysl183/Desktop/grocerybuddyApp/current-app-wd/node_modules/@angular/cli/ember-cli/lib/ext/core-object.js&#10;apikey&#9;null&#9;null" />
     <property name="nodejs_interpreter_path" value="/usr/local/bin/node" />
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -686,7 +683,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="15357000" />
+    <option name="totallyTimeSpent" value="15660000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="90" y="23" width="1266" height="757" extended-state="0" />
@@ -731,27 +728,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/app/app.module.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/shared/toolbar/toolbar.component.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/shared/navbar/navbar.component.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/app/auth/auth.component.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1212,6 +1188,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/affiliates/affiliates.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="280">
+          <caret line="48" column="57" lean-forward="false" selection-start-line="48" selection-start-column="57" selection-end-line="48" selection-end-column="120" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/assets/favicon/favicon-DEV.ico">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/assets/favicon/favicon-PROD.ico">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/app/list/list.component.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="219">
@@ -1220,12 +1214,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/affiliates/affiliates.component.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="456">
-          <caret line="119" column="12" lean-forward="true" selection-start-line="119" selection-start-column="12" selection-end-line="119" selection-end-column="12" />
-          <folding />
-        </state>
+    <entry file="file://$PROJECT_DIR$/src/favicon.ico">
+      <provider selected="true" editor-type-id="images">
+        <state />
       </provider>
     </entry>
   </component>
