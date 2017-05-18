@@ -47,8 +47,9 @@
             </div>
 
             <!-- Clear and Submit Buttons -->
+            <h5 id="accountOverwrite" class="confirm-account-overwrite">{{accountOverwrite}}</h5>
             <button type="button" class="btn btn-success btn-block" (click)="checkComplexity(password.value); confirmPassword(password.value, confirmpassword.value, true); changeActInfo();">Submit</button>
-            <button type="button" class="btn btn-danger btn-block" (click)="clearFields();">Clear</button>
+            <button type="button" class="btn btn-danger btn-block" (click)="clearFields(); debug()">Clear</button>
 
         </form>
     </div>

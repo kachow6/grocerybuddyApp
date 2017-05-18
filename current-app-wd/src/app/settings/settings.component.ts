@@ -34,6 +34,7 @@ export class SettingsComponent {
     emailInput       : string = "";
     emailValid       : boolean;
     invalidEmailMsg  : string = "";
+    accountOverwrite : string = "";
 
     // User ID and Firebase variables
     userId      : string = 'user-1';
@@ -99,21 +100,30 @@ export class SettingsComponent {
 
     // Method for changing user account name and password if conditions are met
     changeActInfo():void {
-         // Validating new name and password
+         // Validating the new name and password
          if (this.nameInput.length > 2 && 
              this.checkComplexity && 
              this.confirmPassword) {
 
-                let newName = this.nameInput;
-                let newPass = this.userpassword;
+                this.afAuth.auth.currentUser.updateProfile(
+                    {displayName: this.nameInput,
+                     photoURL: ''});
+                     console.log('NEW DISPLAY NAME: ' + this.nameInput);
+                this.afAuth.auth.currentUser.updatePassword(this.userpassword);
 
-                firebase.auth().onAuthStateChanged((user) => {
-                    user.updateProfile({
-                        displayName: newName
-                        });
-                    user.updatePassword(newPass); 
-                });
-            }
+                // Signs the user out and returns them to the Sign-in page
+                this.accountOverwrite = "ACCOUNT OVERWRITE SUCCESSFUL"
+                this.afAuth.auth.signOut();
+                setTimeout(() => {
+                    this.router.navigateByUrl('login');}, 2000);
+                }
         
     }
+
+    // // A function for debugging account information
+    // debug() {
+    //     this.afAuth.authState.subscribe(userSnap => {
+    //         console.log(userSnap);
+    //     });
+    // }
 }

@@ -29,3 +29,8 @@
 .confirm-error-msg {
 	color:tomato;
 }
+
+.confirm-account-overwrite {
+	color:#5CB85C;
+	text-align: center; 
+}
