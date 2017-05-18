@@ -9,7 +9,7 @@ import { Router,
          NavigationStart              } from '@angular/router';
 import { AngularFireDatabase,
          FirebaseListObservable,
-         FirebaseObjectObservable     } from 'angularfire2/database';
+         FirebaseObjectObservable,    } from 'angularfire2/database';
 import { Observable                   } from 'rxjs/Observable';
 import { AngularFireAuth              } from 'angularfire2/auth';
 import * as firebase                    from 'firebase/app';
@@ -53,6 +53,7 @@ export class HeaderComponent implements OnInit {
     // User ID and Firebase variables
     userId      : string = 'user-1';
     user        : Observable<firebase.User>;
+    userName    : string;
     fridgeList$ : FirebaseListObservable<any[]>; 
 
     // CONSTRUCTOR & INITIALIZATION.
@@ -65,7 +66,17 @@ export class HeaderComponent implements OnInit {
     // OnInit method. Angular's recommended place to perform initialization.
     ngOnInit() {
         this.closeNav();                     // Closes the nav bar
-        
+
+        // Grabs and saves the user's Name off database.
+        this.user = this.afAuth.authState;
+        this.user.subscribe(userSnap => {
+            if(!userSnap) {
+                this.userName = 'Buddy';
+            } else {
+                this.userName = userSnap.displayName;
+            }
+        });
+
         // Sets the current page title depending on the router.url location
         this.router.events.subscribe((snap: any) => {
             let currentPage = snap.urlAfterRedirects;
@@ -183,6 +194,7 @@ export class HeaderComponent implements OnInit {
 
     //changes buddy pictures randomly on click
     changeBuddy(): void {
+        
         let number1 = this.picIndex;
         this.buddyPic = BUDDY_PICS[number1];
         this.picIndex = Math.floor((Math.random() * BUDDY_PICS.length));
