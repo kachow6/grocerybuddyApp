@@ -88,11 +88,6 @@
 		<div class="modal fade" id="listModal" tabindex="-1" role="dialog" aria-labelledby="options" bsModal #itemModal="bs-modal"
 			tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"aria-hidden="true">
 
-			<!-- Easter Egg Appearance -->
-			<div *ngIf="showEasterEgg" class="easteregg shake-slow shake-constant">
-				<img src="../../assets/imgs/non-buddies/easteregg.png" height="400" width="400">
-			</div>
-
 			<div class="modal-dialog">
 				<div class="modal-content">
 
@@ -104,6 +99,11 @@
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true" aria-label="Close" (click)="itemModal.hide()">
 							<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
 						</button>
+					</div>
+
+					<!-- Easter Egg Appearance -->
+					<div *ngIf="showEasterEgg">
+						<img src="../../assets/imgs/non-buddies/easteregg.png" height="400" width="400" class="easteregg shake-slow shake-constant">
 					</div>
 
 					<!-- Rename Option -->
