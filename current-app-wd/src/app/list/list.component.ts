@@ -192,13 +192,6 @@ export class ListComponent {
         return null;
     }
 
-    // Event Detect
-    eventDetect(e: any): void {
-        // console.log(e);
-    }
-
-    @Output() mEvent = new EventEmitter();
-
     // Drag
     doScroll(e: any): void {
         // Collect necessary variables
