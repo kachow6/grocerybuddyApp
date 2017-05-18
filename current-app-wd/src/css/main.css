@@ -197,9 +197,11 @@ div.item-delete-container {
     position: relative;
 }
 
-.list-element:hover:not(#buttonHolder) {
+/* DEPRECATED: Caused some sort of weird error that prevented modals from being
+// closed. */
+/*.list-element:hover:not(#buttonHolder) {
   opacity: 0.5;
-}
+}*/
 
 /* Modals */
 .modal {
