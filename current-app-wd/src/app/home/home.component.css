@@ -29,3 +29,7 @@
 .dropdown-menu {
 	z-index: 9001;
 }
+
+.selected {
+	background-color:orange;
+}

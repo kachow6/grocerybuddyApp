@@ -31,6 +31,10 @@ export class HomeComponent implements OnInit {
     userAuth$:    Observable<firebase.User>;
     homeList$:    FirebaseListObservable<any[]>;
 
+    selectedList: string = this.userService.getCurrentList();
+
+    homeList: ShoppingList[] = this.userService.getHome();
+
     // CONSTRUCTOR & INITIALIZATION.
     // Constructor. Inject all necessary dependencies.
     constructor(public userService: UserService,
@@ -83,6 +87,7 @@ export class HomeComponent implements OnInit {
     selectList(key: string): void {
         this.userService.setCurrentList(key);
         this.router.navigateByUrl('/main/list');
+        console.log(key);
     }
 
     // Method for renaming a list
