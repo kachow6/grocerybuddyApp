@@ -21,10 +21,13 @@
 </div>
 
 <!-- Main Body Content -->
-<div class="main-container container col-lg-8 col-md-10 col-lg-offset-2 col-md-offset-1">
+<div class="main-container container col-lg-8 col-md-10 col-lg-offset-2 col-md-offset-1"
+     (pan)="eventDetect($event)">
     
     <div *ngFor = "let item of currentList$ | async; let i = index"
          [class.item-delete-animation]="item.deleteFinalized"
+         (panup)="doScroll($event)"
+         (pandown)="doScroll($event)"
          class="container-fluid list-element item-delete-container">
 
         <!-- Swipe Left Undo Feature -->

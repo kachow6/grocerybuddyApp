@@ -13,6 +13,8 @@ import { Observable                  } from 'rxjs/observable';
 import { AngularFireAuth             } from 'angularfire2/auth';
 import * as firebase                   from 'firebase/app';
 
+import { Output, EventEmitter } from '@angular/core';
+
 /**
  * This class represents the lazy loaded HomeComponent.
  */
@@ -188,5 +190,23 @@ export class ListComponent {
     clearItemDeleteTimer(timer: any): null {
         timer = clearTimeout(timer);
         return null;
+    }
+
+    // Event Detect
+    eventDetect(e: any): void {
+        // console.log(e);
+    }
+
+    @Output() mEvent = new EventEmitter();
+
+    // Drag
+    doScroll(e: any): void {
+        // Collect necessary variables
+        let src: Window = e.srcEvent.currentTarget;
+        let scrollDistance: number = -1 * e.srcEvent.movementY;
+
+        // Scroll
+        src.scrollBy(0, scrollDistance);
+        
     }
 }
