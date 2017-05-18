@@ -1,9 +1,23 @@
+.login-container {
+	margin-top: 10px;
+}
+
+.login-return-text {
+	color: white;
+	vertical-align: middle;
+}
+
 .btn {
 	padding: 2px 0;
 }
 
 .checkbox {
 	padding: 2px 14px;
+}
+
+.remember-checkbox {
+	color: #4B4B4B;
+	top: -12px;
 }
 
 .login-form {
@@ -14,7 +28,7 @@
 	bottom: 20px;
 }
 
-.login-container {
+.form-container {
 	background-color: #5CB85C;
 }
 
