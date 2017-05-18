@@ -1,25 +1,47 @@
-.list-element{
-	background-color: #E5E5E5;
-	border: 3px solid white;
-    position: relative;
+/* Individual List Elements */
+.list-item-name {
+	margin-top: 10px;
 }
-.add-item{
-	background-color: #0A8056;
-	border: 0;
-	color: white;
-	z-index: 5000;
-	position: fixed;
+
+.list-item-quantity {
+	margin-top: 25px;
+	padding-right: 0;
 }
-.title{
-	text-shadow: 2px 1px #818181;
+
+.list-item-quantity-input {
+	margin-top: 11px;
 }
-.item-checkbox{
+
+.list-item-checkbox {
+	margin-top: 5px;
+}
+
+.item-checkbox {
 	height: 40px;
 	width: 40px;
 }
+
 .item-fly-off {
     opacity: 0.4;
 }
+
 .item-regular {
     position: absolute;
+}
+
+/* Checkout and Reset */
+.checkout-container {
+	text-align: center;
+}
+
+.checkout-button {
+	margin: 10px 0;
+}
+
+.checkout-modal-header {
+	padding: 10px;
+}
+
+.checkout-modal-body {
+	text-align: center;
 }

@@ -1,18 +1,3 @@
-.list-element{
-	background-color: #E5E5E5;
-	border: 3px solid white;
-    position: relative;
-}
-.add-item{
-	background-color: #0A8056;
-	border: 0;
-	color: white;
-	position: fixed;
-	z-index: 3000;
-}
-.title{
-	text-shadow: 2px 1px #818181;
-}
-.modal-body{
+.modal-body {
 	padding-bottom: 0;
 }
