@@ -17,7 +17,6 @@ import * as firebase                    from 'firebase/app';
 /**
  * This class represents the navigation bar component.
  */
-
 @Component({
   moduleId: module.id,
   selector: 'gb-header',
@@ -67,6 +66,7 @@ export class HeaderComponent implements OnInit {
     ngOnInit() {
         this.closeNav();                     // Closes the nav bar
         
+        // Sets the current page title depending on the router.url location
         this.router.events.subscribe((snap: any) => {
             let currentPage = snap.urlAfterRedirects;
             // If User is on HOME PAGE
@@ -133,15 +133,28 @@ export class HeaderComponent implements OnInit {
                 tempList.push(item);
             }
         }
-
         return tempList;
     }
 
-    // Pulls amount of expiring items in fridge.
+    // Pulls amount of expiring items in fridge. **DON'T DELETE!**
     notificationAmount(list: any[]): number {
         let amount = 0;
         amount = list.length;
         return amount;
+    }
+    
+    // Displays the amount of items nearing expiration
+    notificationNumber(): void {
+        let fridge = this.db.list('/fridgeList/' + this.userId);
+        let countItemExpiring: number = 0;
+        fridge.take(1).subscribe(datasnap => {
+            for(let i of datasnap){
+                if ((this.today - i.datePurchased) / i.shelfLife < 0.33) {
+                    countItemExpiring++;
+                }
+            }
+        });
+        this.numExpiring = countItemExpiring;
     }
 
     // Method for calculating the expiration bar colour
