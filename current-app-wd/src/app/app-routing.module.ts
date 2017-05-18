@@ -3,7 +3,7 @@ import { RouterModule } from '@angular/router';
 import { ConnectComponent } from './auth/connect.component';
 import { RegisterComponent } from './auth/register.component';
 
-import { LoggedInGuard } from './shared/user-service/logged-in-guard.service';
+import { LoggedOutGuard } from './shared/user-service/logged-out-guard.service';
 
 @NgModule({
     imports: [
@@ -16,19 +16,20 @@ import { LoggedInGuard } from './shared/user-service/logged-in-guard.service';
             {
                 path: 'login',
                 component: ConnectComponent,
-                // canActivate: [ LoggedInGuard ]
+                canActivate: [ LoggedOutGuard ]
             },
             {
                 path: 'register',
                 component: RegisterComponent,
-                // canActivate: [ LoggedInGuard ]
+                canActivate: [ LoggedOutGuard ]
             }
             /* define app module routes here, e.g., to lazily load a module
                  (do not place feature module routes here, use an own -routing.module.ts in the feature instead)
              */
         ])
     ],
-    exports: [RouterModule]
+    exports: [RouterModule],
+    providers: [ LoggedOutGuard ]
 })
 export class AppRoutingModule { }
 
