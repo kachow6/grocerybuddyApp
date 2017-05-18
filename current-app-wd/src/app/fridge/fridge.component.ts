@@ -74,10 +74,22 @@ export class FridgeComponent implements OnInit {
         let added = false;
         let fridgeItem = {name: itemName,
                          qty: itemQty,
-                         autofillId: ''};
+                         autofillId: itemName};
         if (itemName.length >= 1) {
             if(itemQty > 0) {
-                this.fridgeList$.push(new FridgeItem(itemName, itemQty, 10));
+
+                let fridgeItemRef = this.fridgeList$.push(new FridgeItem(itemName, itemQty, 10));
+
+                // Pull expiry info from the expiryEstimate reference in the
+                // DB, based on the "autofillId" property in the checked
+                // item.
+                this.db.object('expiryEstimate/' + fridgeItem.autofillId)
+                       .take(1).subscribe(expItem => {
+                           if (expItem.$value) {
+                               fridgeItemRef.update({shelfLife: expItem.$value});
+                           }
+                       });
+
                 added = true;
             } else {
                this.numberInput = null;
