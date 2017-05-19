@@ -1,0 +1,62 @@
+/* Individual List Elements */
+.list-item-name {
+	margin-top: 10px;
+}
+
+.list-item-quantity {
+	margin-top: 25px;
+	padding-right: 0;
+}
+
+.list-item-quantity-input {
+	margin-top: 11px;
+}
+
+.list-item-checkbox {
+	margin-top: 5px;
+}
+
+.item-checkbox {
+	height: 40px;
+	margin-top: 6px;
+	width: 40px;
+}
+
+.item-fly-off {
+    opacity: 0.4;
+}
+
+.item-regular {
+    position: absolute;
+}
+
+/* Checkout and Reset */
+.checkout-container {
+	text-align: center;
+}
+
+.checkout-button {
+	margin: 10px 0;
+}
+
+.checkout-modal-header {
+	padding: 10px;
+}
+
+.checkout-modal-body {
+	text-align: center;
+}
+
+.checkout-modal-footer {
+	padding: 8px;
+}
+
+/* Checked Out Items */
+.checkedOutItem {
+	opacity: 0.5;
+}
+
+/* Checked Out Items */
+.hidden {
+	display: none;
+}

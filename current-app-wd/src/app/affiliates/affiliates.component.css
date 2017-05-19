@@ -1,0 +1,22 @@
+.affiliates-main-container {
+	margin-bottom: 70px;
+	top: 30px;
+}
+
+.affiliate {
+	padding: 5px 20px;
+}
+
+.affiliate-name {
+	text-align: center;
+}
+
+.affiliate-img {
+	margin-bottom: 20px;
+}
+
+.affiliate-modal-img {
+	padding: 15px;
+	padding-bottom: 0;
+}
+

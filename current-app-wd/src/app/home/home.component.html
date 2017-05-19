@@ -1,0 +1,101 @@
+<!-- HOME PAGE HTML -->
+<!-- NEW LIST BANNER -->
+<div class="add-item container-fluid col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="row list-inline">
+
+        <!-- New List Name Input -->
+        <div class="col-lg-6 col-md-6 col-sm-7 col-xs-8 col-lg-offset-2 col-sm-offset-1 new-object-input">
+            <input #listName [(ngModel)] = "nameInput" (keyup.enter)="addListButton.click()" type="text" class="form-control input-sm" id="new-list-form" placeholder="New List" >
+        </div>
+
+        <!-- New List Submit Button -->
+        <div class="add-submit-button-container col-lg-1 col-md-1 col-sm-1 col-xs-1 col-lg-offset-1 col-md-offset-3 col-xs-offset-1">
+            <button #addListButton (click)="addList()" class="btn btn-lg btn-success title add-submit-button" type="button">
+                <span class="glyphicon glyphicon-plus"></span>
+            </button>
+        </div>
+
+    </div>
+</div>
+
+<!-- Main Page Content -->
+<div class="main-container container col-lg-6 col-md-8 col-sm-10 col-lg-offset-3 col-md-offset-2 col-sm-offset-1">
+
+    <!-- HTML for individual items in the main list -->
+    <div *ngFor="let item of homeList$ | async; let i = index"
+         (panup)="doScroll($event)"
+         (pandown)="doScroll($event)"
+         [class.item-delete-animation]="item.deleteFinalized"
+         class="container-fluid list-element item-delete-container listItem" [class.selected]="item.$key == selectedList">
+
+        <!-- Swipe left delete interface -->
+       <div class="list-item-swipe-display swipe-left"
+            [class.swipe-display]="item.isQueuedForDelete && item.deleteQueueRight"
+            [class.swipe-hide]="!(item.isQueuedForDelete && item.deleteQueueRight)"
+            (swiperight)="item.isQueuedForDelete=false; item.deleteTimer=clearItemDeleteTimer(item.deleteTimer)"
+            (tap)="item.isQueuedForDelete=false; item.deleteTimer=clearItemDeleteTimer(item.deleteTimer)"
+            #swipeLeft><span>Undo</span></div>
+        
+        <!-- Swipe right delete interface -->
+        <div class="list-item-swipe-display swipe-right"
+            [class.swipe-display]="item.isQueuedForDelete && !item.deleteQueueRight"
+            [class.swipe-hide]="!(item.isQueuedForDelete && !item.deleteQueueRight)"
+            (swipeleft)="item.isQueuedForDelete=false; item.deleteTimer=clearItemDeleteTimer(item.deleteTimer)"
+            (tap)="item.isQueuedForDelete=false; item.deleteTimer=clearItemDeleteTimer(item.deleteTimer)"
+            #swipeRight><span>Undo</span></div>
+
+        <!-- Time interval tracker for swipe delete feature -->
+        <div class="row"
+                (swipe)="item.isQueuedForDelete=true; item.deleteTimer=startItemDeleteTimer(item.$key, item)"
+                (swipeleft)="item.deleteQueueRight=true"
+                (swiperight)="item.deleteQueueRight=false">
+
+            <!-- List container -->
+            <div class="list-container col-lg-11 col-md-11 col-sm-11 col-xs-11">
+                <h4 class="item-name" (tap)="selectList(item.$key)">{{item.$value}}</h4>
+            </div>
+            
+            <!-- Dropdown menu and options -->
+            <div class="dropdown" dropdown>
+                <a DATA-TOGGLE="#" dropdownToggle class="dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><span class="glyphicon glyphicon-option-vertical"></span></a>
+
+                <ul *dropdownMenu role="menu" class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
+                    <li role="menuitem" class="menu-item"><a DATA-TOGGLE="#" (click)="renameModal.show(); renameInput = item.$value" data-toggle="modal">Rename</a></li>
+                    <li role="menuitem" class="menu-item"><a DATA-TOGGLE="#" (click)="copyList(item.$key, item.$value)">Copy</a></li>
+
+                    <li role="menuitem" class="menu-item"><a DATA-TOGGLE="#" (click)="item.isQueuedForDelete=true; item.deleteTimer=startItemDeleteTimer(item.$key)">Delete</a></li>
+                    <li role="menuitem" class="menu-item"><a DATA-TOGGLE="#" (click)="resetList(item.$key)">Reset</a></li>
+                </ul>
+            </div>
+
+        </div>
+        
+        <!-- Rename Modal -->
+        <div class="modal fade" id="renameModal" tabindex="-1" role="dialog" bsModal #renameModal="bs-modal" aria-labelledby="rename" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <button class="close" data-dismiss="modal" (click)="renameModal.hide()" aria-hidden="true"><span class="glyphicon glyphicon-remove"></span></button>
+                    </div>
+
+                    <div class="modal-body">
+                        <div class="row">
+                            <form class="col-lg-11 col-md-11 col-sm-11 col-xs-11">
+                                <label for="rename-form"><h3 class="media-heading">Rename: </h3></label>
+                                <input (keyup.enter) = "renameButton.click()" [(ngModel)]="renameInput" [ngModelOptions]="{standalone: true}" type="text" class="form-control" id="rename-form">
+                            </form>
+                        </div>
+                    </div>
+                    
+                    <div class="modal-footer">
+                        <div class="row">
+                            <button #renameButton type="button" class="btn btn-lg btn-success" (click)=" renameList(item.$key); renameModal.hide()" >Save Changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

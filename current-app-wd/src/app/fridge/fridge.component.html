@@ -1,0 +1,178 @@
+<!-- FRIDGE PAGE HTML -->
+<!-- Add New Item Banner -->
+<div class="container-fluid add-item col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="row ">
+
+		<!-- New Item Name Input -->
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6 col-lg-offset-2 col-md-offset-1 col-sm-offset-1 new-object-input">
+            <input #name [(ngModel)] = "nameInput" type="text" class="form-control input-sm" id="new-item-form" placeholder="New Item" (keyup.enter)="number.focus()">
+        </div>
+
+		<!-- New Item Qty Input -->
+        <div class="add-quantity col-lg-2 col-md-2 col-sm-2 col-xs-3">
+            <input #number [(ngModel)] = "numberInput" type="number" class="form-control input-sm" id="new-qty-form" placeholder="Qty." (keyup.enter)="addToFridgeButton.click()">
+        </div>
+
+		<!-- New Item Submit Button -->
+        <div class="add-submit-button-container col-lg-1 col-md-1 col-sm-1 col-xs-1 col-lg-offset-1 col-md-offset-3 col-sm-offset-3">
+            <button #addToFridgeButton (click)=" addItemToFridgeList(nameInput, numberInput);" class="btn btn-lg btn-success title add-submit-button" type="button" data-toggle="dropdown"><span class="glyphicon glyphicon-plus"></span></button>
+        </div>
+    </div>
+</div>
+
+<!-- Main Content Body -->
+<div class="main-container container col-lg-6 col-md-8 col-sm-10 col-lg-offset-3 col-md-offset-2 col-sm-offset-1">
+
+    <!-- Individual Items Element. A new version of this is created for each
+         item in the list. -->
+	<div *ngFor="let item of fridgeList$ | async; let i = index"
+         (panup)="doScroll($event)"
+         (pandown)="doScroll($event)"
+         [class.item-delete-animation]="item.deleteFinalized"
+         class="container-fluid list-element item-delete-container">
+
+		<!-- Swipe Left Undo -->
+		<div class="list-item-swipe-display swipe-left"
+            [class.swipe-display]="item.isQueuedForDelete && item.deleteQueueRight"
+            [class.swipe-hide]="!(item.isQueuedForDelete && item.deleteQueueRight)"
+            (swiperight)="item.isQueuedForDelete=false; item.deleteTimer=clearItemDeleteTimer(item.deleteTimer)"
+            (tap)="item.isQueuedForDelete=false; item.deleteTimer=clearItemDeleteTimer(item.deleteTimer)"
+            #swipeLeft><span>Undo</span>
+        </div>
+	
+		<!-- Swipe Right Undo -->
+        <div class="list-item-swipe-display swipe-right"
+            [class.swipe-display]="item.isQueuedForDelete && !item.deleteQueueRight"
+            [class.swipe-hide]="!(item.isQueuedForDelete && !item.deleteQueueRight)"
+            (swipeleft)="item.isQueuedForDelete=false; item.deleteTimer=clearItemDeleteTimer(item.deleteTimer)"
+            (tap)="item.isQueuedForDelete=false; item.deleteTimer=clearItemDeleteTimer(item.deleteTimer)"
+            #swipeRight><span>Undo</span>
+        </div>
+
+		<!-- Undo Time Interval -->
+        <div class="row"
+                (swipe)="item.isQueuedForDelete=true; item.deleteTimer=startItemDeleteTimer(item.$key, item)"
+                (swipeleft)="item.deleteQueueRight=true"
+                (swiperight)="item.deleteQueueRight=false">
+
+			<!-- Fridge Item Name -->
+			<div class="col-lg-8 col-md-8 col-sm-7 col-xs-6">
+				<h4 class="item-name fridge-item-name">{{item.name}}</h4>
+			</div>
+
+			<!-- Fridge Item Qty -->
+			<div class="fridge-item-qty col-lg-3 col-md-3 col-sm-3 col-xs-4">
+				<h4>x{{item.qty}}</h4>
+			</div>
+
+			<!-- Menu Options -->
+			<div class="fridge-menu-options">
+				<a DATA-TOGGLE="#" (click)="itemModal.show(); renameInput = item.name; reQtyInput = item.qty; newShelfLifeInput = item.shelfLife" data-toggle="modal" data-target="#listModal"><span class="glyphicon glyphicon-option-vertical"></span></a>
+			</div>
+		</div>
+
+		<!-- Expiration Bar -->
+		<div class="expiration-bar-container row col-lg-11 col-md-11 col-sm-10 col-xs-10">
+			<div class="expiration-bar progress">
+				<div class="expiration-bar-value progress-bar {{freshnessBarColour((1 - (today - item.datePurchased) / item.shelfLife))}}"
+                     role="progressbar"
+                     aria-valuenow="item.expiration * 100"
+                     aria-valuemin="0"
+                     aria-valuemax="100"
+                     [style.width]="(1 - (today - item.datePurchased) / item.shelfLife) * 100 + '%'">
+				</div>
+			</div>
+		</div>
+		
+		<!-- Options Modal -->
+		<div class="modal fade" id="listModal" tabindex="-1" role="dialog" aria-labelledby="options" bsModal #itemModal="bs-modal"
+			tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"aria-hidden="true">
+
+			<div class="modal-dialog">
+				<div class="modal-content">
+
+					<!-- Modal Header -->
+					<div class="fridge-options-modal-header modal-header">
+						<div class="fridge-options-modal-name pull-left">
+							<h3><strong>{{item.name}}</strong></h3>
+						</div>
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true" aria-label="Close" (click)="itemModal.hide()">
+							<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+						</button>
+					</div>
+
+					<!-- Rename Option -->
+					<div class="fridge-options-modal-body-rename modal-body">
+						<div class="row">
+
+							<form class="fridge-options-modal-rename col-lg-2 col-md-2 col-sm-2 col-xs-3">
+								<label for="rename-form"><h4 class="media-heading">Rename: </h4></label>
+							</form>
+
+							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 col-xs-offset-2">	
+								<input #rename [(ngModel)]="renameInput" [ngModelOptions]="{standalone: true}" type="text" class="form-control input-sm" id="rename-form" (keyup.enter)="requantity.focus()">
+							</div>
+
+						</div>
+					</div>
+
+					<!-- Easter Egg Appearance -->
+					<div *ngIf="showEasterEgg">
+						<img src="../../assets/imgs/non-buddies/easteregg.png" height="400" width="400" class="easteregg shake-slow shake-constant">
+					</div>
+
+					<hr>
+
+					<!-- Quantity Option -->
+					<div class="fridge-options-modal-body-qty modal-body">
+						<div class="row">
+
+							<form class="col-lg-2 col-md-2 col-sm-2 col-xs-3">
+								<label for="quantity-form"><h4 class="media-heading">Quantity: </h4></label>
+							</form>
+
+							<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 col-xs-offset-1">
+								<strong><span class="text-muted">x</span></strong>
+							</div>
+
+							<div class="fridge-options-modal-qty-input col-lg-3 col-md-3 col-sm-3 col-xs-4">
+								<input #requantity [(ngModel)]="reQtyInput" [ngModelOptions]="{standalone: true}" type="number" class="form-control input-sm" value="1" min="0" (keyup.enter)="reexpiry.focus()">
+							</div>
+
+						</div>
+					</div>
+
+					<hr>
+
+					<!-- Expiration Date Option -->
+					<div class="fridge-options-modal-body-expiration modal-body">
+						<div class="row">
+
+							<div class="fridge-options-modal-expiration col-lg-4 col-md-4 col-sm-4 col-xs-5 pull-left">
+								<h4 class="media-heading">Expiration Date: </h4>
+							</div>
+
+							<div class="fridge-options-modal-expiration-input col-lg-2 col-md-2 col-sm-2 col-xs-3">
+								<input #reexpiry [(ngModel)]="newShelfLifeInput" [ngModelOptions]="{standalone: true}" type="number" class="form-control input-sm" value="1" min="0" (keyup)="activateEasterEgg(this.newShelfLifeInput)" (keyup.enter)="saveButton.click()">
+							</div>
+
+							<div class="fridge-options-modal-expiration-days col-lg-2 col-md-2 col-sm-2 col-xs-2">
+								<h5><strong><span class="text-muted">days</span></strong></h5>
+							</div>
+
+						</div>
+					</div>
+
+					<!-- Save Changes Button -->
+					<div class="modal-footer">
+						<div class="row">
+							<button #saveButton class="btn btn-md btn-success" (click)="itemModal.hide(); itemRename(item.$key); editQty(item.$key); editShelfLife(item)">Save Changes</button>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>

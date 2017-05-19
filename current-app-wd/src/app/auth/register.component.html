@@ -1,0 +1,78 @@
+<!-- REGISTER PAGE HTML -->
+<div class="container-fluid">
+    <div class="row">
+
+        <!-- Grocery Buddy Logo -->
+        <div class="login-container container col-lg-4 col-md-6 col-sm-6 col-xs-10 col-lg-offset-4 col-md-offset-3 col-sm-offset-3 col-xs-offset-1">
+            <img src="../../assets/imgs/GroceryBuddyLogin.png" alt="Grocery Buddy" class="img-responsive buddyLogo">
+        </div>
+        
+        <!-- Main Form Container -->
+        <div class="container col-lg-12 col-md-12 col-sm-12 col-xs-12 col-lg-offset-0 col-md-offset-0 col-sm-offset-0 col-xs-offset-0 form-container">
+
+            <div class="container col-lg-6 col-md-8 col-sm-8 col-xs-12 col-lg-offset-3 col-md-offset-2 col-sm-offset-2 col-xs-offset-0 login-form">
+                <div class="row">
+
+                    <!-- Form Begins Here -->
+                    <form method="post" id="registerform" action="">
+                        <a [routerLink]="['../login']">
+
+                            <!-- Back to Login Page -->
+                            <button type="button" class="btn btn-danger btn-block form-element">
+                                <span class="login-return-text">Back to Login</span>
+                            </button>
+                        </a>
+                        
+                        <!-- Sign-up Form -->
+                        <h4 class="title">Sign Up: </h4>
+
+                        <!-- User Name -->
+                        <div class="form-group form-element">
+                            <h5 id="confirmpassworderror" class="confirm-error-msg error">{{confirmNameMessage}}</h5>
+                            <input [(ngModel)]="userName" #name type="name" class="form-control" id="name" placeholder="Name" name="user_name" required>
+                        </div>
+
+                        <!-- User Email -->
+                        <div class="form-group form-element">
+                            <h5 id="confirmpassworderror" class="confirm-error-msg error">{{confirmEmailMessage}}</h5>
+                            <input [(ngModel)]="userEmail" #email type="email" class="form-control" id="email" placeholder="Email" name="user_email" required>
+                        </div>
+
+                        <!-- User Password -->
+                        <div class="form-group form-element">
+                            <h5 class="title">Must contain at least one uppercase and lower case letter as well as a number and a special character (ie. $, #, !, %). Must also have a minimum length of 6 characters.</h5>
+
+                            <input #password type="password" class="form-control" id="password" placeholder="Password" name="user_password" (blur)="checkComplexity(password.value)" [(ngModel)]="userpassword" required>
+                        </div>
+
+                        <!-- User Confirm Password -->
+                        <div class="form-group form-element">
+                            <h5 id="confirmpassworderror" class="confirm-error-msg error">{{confirmpasswordmessage}}</h5>
+                            <input #confirmpassword
+                                   type="password"
+                                   class="form-control"
+                                   id="confirmpassword"
+                                   placeholder="Confirm Password"
+                                   name="user_confirmpassword"
+                                   (blur)="confirmPassword(password.value, confirmpassword.value, true)"
+                                   [(ngModel)]="userconfirmpassword"
+                                   required>
+                        </div>
+
+                        <!-- Remember Me and Forgot Password Options -->
+                        <div class="checkbox row form-element">
+                            <label><input class="remember-checkbox" type="checkbox"><small>Remember me</small></label>
+                            <a class="pull-right" href="#"><small>Forgot Password?</small></a>
+                        </div>
+                        
+                        <!-- Submit Button -->
+                        <button type="button" class="btn btn-primary btn-block form-element"
+                                (click)="checkName(); checkEmail(); signUpWithEmail(name.value, email.value, password.value, confirmpassword.value)">Submit</button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>

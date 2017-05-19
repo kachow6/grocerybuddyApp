@@ -1,0 +1,56 @@
+<!-- SETTINGS PAGE HTML -->
+<div class="setting-form container-fluid col-lg-8 col-md-10 col-sm-10 col-xs-12 col-lg-offset-2 col-md-offset-1 col-sm-offset-1">
+    
+    <!-- MAIN PAGE CONTENT -->
+    <div class="well">
+        <form>
+            <div class="form-group">
+
+                <!-- Notifications Settings Begins -->
+                <h3 class="notifications-title">Notifications:</h3>
+                <div class="enabled-container row col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <label><h4 class="enabled-text">Enabled:</h4></label>
+                    <input class="enabled-checkbox" type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="default">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="notifyuser"><h5>Notify me at:</h5></label>
+                <input type="time" class="form-control" id="notifyuser">
+            </div>
+            <div class="form-group">
+                <label for="reminder"><h5>Remind me again at:</h5></label>
+                <input type="time" class="form-control" id="reminder">
+            </div>
+
+            <!-- Account Settings Begins -->
+            <h3>Account Settings:</h3>
+            <div class="form-group">
+
+                <!-- Account Name -->
+                <label for="name"><h5 class="setting-option">Name:</h5></label>
+                <input [(ngModel)] = "nameInput" type="text" class="form-control" id="name" name="user_name" required>
+            </div>
+
+            <!-- Account Password -->
+            <div class="form-group">
+                <label for="password"><h5 class="setting-option">Password:</h5></label>
+                    <h5>Must contain at least one uppercase and lower case letter as well as a number and a special character (ie. $, #, !, %)</h5>
+                <input type="password" class="form-control" id="password" name="user_password" #password [(ngModel)]="userpassword" required>
+            </div>
+
+            <!-- Account Confirm Password -->
+            <div class="form-group">
+                <label for="confirmpassword"><h5 class="setting-option"h5>Confirm Password:</h5></label>
+                <h5 id="confirmpassworderror" class="confirm-error-msg error">{{confirmpasswordmessage}}</h5>
+                <input type="password" class="form-control" id="confirmpassword" name="user_confirmpassword" #confirmpassword [(ngModel)]="userconfirmpassword" required>
+            </div>
+
+            <!-- Clear and Submit Buttons -->
+            <h5 id="accountOverwrite" class="confirm-account-overwrite">{{accountOverwrite}}</h5>
+            <button type="button" class="btn btn-success btn-block" (click)="checkComplexity(password.value); confirmPassword(password.value, confirmpassword.value, true); changeActInfo();">Submit</button>
+            <button type="button" class="btn btn-danger btn-block" (click)="clearFields(); debug()">Clear</button>
+
+        </form>
+    </div>
+</div>

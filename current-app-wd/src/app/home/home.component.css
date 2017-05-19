@@ -1,0 +1,35 @@
+/* New List */
+.add-list {
+	background-color: #0A8056;
+	border: 0;
+	color: white;
+	position: fixed;
+	z-index: 5000;
+}
+
+/* Individual List Elements */
+.list-container {
+	margin-top: 3px;
+}
+
+.list-element {
+	background-color: #E5E5E5;
+	border: 3px solid white;
+    position: relative;
+}
+
+/* Dropdown */
+.dropdown {
+	font-size: 20px;
+	margin-top: 8px;
+	position: absolute;
+	right: 10px;
+}
+
+.dropdown-menu {
+	z-index: 9001;
+}
+
+.selected {
+	background-color:orange;
+}

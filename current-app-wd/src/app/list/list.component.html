@@ -1,0 +1,162 @@
+<!-- LIST PAGE HTML -->
+<!-- NEW ITEM BANNER -->
+<div class="container-fluid add-item col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="row ">
+
+        <!-- New Item Name -->
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6 col-lg-offset-2 col-md-offset-1 col-sm-offset-1 new-object-input">
+            <input #item [(ngModel)] = "nameInput" (keyup.enter) = "quantity.focus()" type="text" class="form-control input-sm" id="new-item-form" placeholder="New Item">
+        </div>
+
+        <!-- New Item Qty -->
+        <div class="add-quantity col-lg-2 col-md-2 col-sm-2 col-xs-3">
+            <input #quantity [(ngModel)] = "numberInput" (keyup.enter) = "addItemButton.click()" type="number" min=0 class="form-control input-sm" id="new-qty-form" placeholder="Qty.">
+        </div>
+
+        <!-- New Item Submit Button -->
+        <div class="add-submit-button-container col-lg-1 col-md-1 col-sm-1 col-xs-1 col-lg-offset-1 col-md-offset-3 col-sm-offset-3">
+            <button #addItemButton (click)="addItem(); item.focus();" class="btn btn-lg btn-success title add-submit-button" type="button"><span class="glyphicon glyphicon-plus"></span></button>
+        </div>
+    </div>
+</div>
+
+<!-- Main Body Content -->
+<div class="main-container container col-lg-6 col-md-8 col-sm-10 col-lg-offset-3 col-md-offset-2 col-sm-offset-1">
+
+    <div *ngFor = "let item of currentList$ | async; let i = index"
+         [class.item-delete-animation]="item.deleteFinalized"
+         (panup)="doScroll($event)"
+         (pandown)="doScroll($event)"
+         class="container-fluid list-element item-delete-container">
+
+        <!-- Swipe Left Undo Feature -->
+        <div class="list-item-swipe-display swipe-left"
+            [class.swipe-display]="item.isQueuedForDelete && item.deleteQueueRight"
+            [class.swipe-hide]="!(item.isQueuedForDelete && item.deleteQueueRight)"
+            (swiperight)="item.isQueuedForDelete=false; item.deleteTimer=clearItemDeleteTimer(item.deleteTimer)"
+            (tap)="item.isQueuedForDelete=false; item.deleteTimer=clearItemDeleteTimer(item.deleteTimer)"
+            #swipeLeft><span>Undo</span></div>
+
+
+        <!-- Swipe Right Undo Feature -->
+        <div class="list-item-swipe-display swipe-right"
+            [class.swipe-display]="item.isQueuedForDelete && !item.deleteQueueRight"
+            [class.swipe-hide]="!(item.isQueuedForDelete && !item.deleteQueueRight)"
+            (swipeleft)="item.isQueuedForDelete=false; item.deleteTimer=clearItemDeleteTimer(item.deleteTimer)"
+            (tap)="item.isQueuedForDelete=false; item.deleteTimer=clearItemDeleteTimer(item.deleteTimer)"
+            #swipeRight><span>Undo</span></div>
+
+        <!-- Undo Timer Delay -->
+        <div class="row"
+                (swipe)="item.isQueuedForDelete=true; item.deleteTimer=startItemDeleteTimer(item.$key, item)"
+                (swipeleft)="item.deleteQueueRight=true"
+                (swiperight)="item.deleteQueueRight=false" [class.checkedOutItem]="getCheckedOut(item.$key)">
+
+            <!-- List Item Name -->
+            <div class="list-item-name col-lg-8 col-md-8 col-sm-7 col-xs-6">
+                <h4 class="item-name" data-toggle="modal" (tap)="!item.checkedOut?renameModal.show():0; renameInput = item.name" (keyup.esc)="renameModal.hide()">{{ item.name }}</h4>
+            </div>
+
+            <!-- List Item Qty -->
+            <div class="list-item-quantity col-lg-1 col-md-1 col-sm-1 col-xs-1">
+                <label>x</label>
+            </div>
+            <div class="list-item-quantity-input list-inline col-lg-2 col-md-2 col-sm-2 col-xs-3">
+                <input [disabled] = "getCheckedOut(item.$key)" [(ngModel)] = "item.qty" type="number" class="form-control" id="qty-form1">
+            </div>
+
+            <!-- List Item Checkbox -->
+            <div class="col-lg-1 col-md-1 col-sm-2 col-xs-2">
+                <input [disabled] = "getCheckedOut(item.$key)" [(ngModel)] = 'item.checked' (click)="checkItem(item.checked, item.$key)" type="checkbox" class="item-checkbox" value="">
+            </div>
+
+        </div>
+
+        <!-- Rename Modal -->
+        <div class="modal fade" id="renameModal" tabindex="-1" role="dialog" bsModal #renameModal="bs-modal" aria-labelledby="rename" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" aria-label="Close" (click)="renameModal.hide()">
+                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+                        <div class="row">
+                            <form class="col-lg-11 col-md-11 col-sm-11 col-xs-11">
+                                <label for="rename-form"><h3 class="media-heading">Rename: </h3></label>
+                                <input [(ngModel)]="renameInput" [ngModelOptions]="{standalone: true}" type="text" class="form-control" id="rename-form" (keyup.enter)="saveButton.click()">
+                            </form>
+                        </div>
+                    </div>
+                    
+                    <div class="modal-footer">
+                        <div class="row">
+                            <button class="btn btn-md btn-danger" (click)="renameModal.hide();" >Undo Changes</button>
+                            <button #saveButton class="btn btn-md btn-success" (click)="renameModal.hide(); itemRename(item.$key)">Save Changes</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Reset and Checkout Button Container -->
+    <div class="checkout-container container-fluid list-element" id="buttonHolder">
+        <div class="row">
+            <button class="checkout-button btn btn-md btn-danger" (tap)="resetModal.show()" data-toggle="modal" data-target="#listModal">Reset List</button>
+            <button class="checkout-button btn btn-md btn-success" (tap)="checkoutModal.show()" data-toggle="modal" data-target="#listModal">Checkout</button>
+        </div>
+    </div>
+
+</div>
+
+<!-- Reset List Modal --> 
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="delete" aria-hidden="true" bsModal #resetModal="bs-modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="checkout-modal-header modal-header">
+                <button type="button" class="close" (click)="resetModal.hide()" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove"></span></button>
+                <br>
+            </div>
+
+            <div class="checkout-modal-body modal-body">
+                <br>
+                <h4 class="media-heading">Are you sure you want to reset this list?</h4>
+            </div>
+
+            <div class="checkout-modal-footer modal-footer">
+                <button type="button" class="btn btn-success btn-sm btn-default" data-dismiss="modal" (click)="resetModal.hide();  resetAllItems()" aria-label="Close">Yes- Uncheck all items</button>
+                <button type="button" class="btn btn-danger btn-sm btn-default" data-dismiss="modal" (click)="resetModal.hide()" aria-label="Close">No- I'm still using this list!</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Checkout Modal -->
+<div class="modal fade" id="checkoutModal" tabindex="-1" role="dialog" bsModal #checkoutModal="bs-modal" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="checkout-modal-header modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" (click)="checkoutModal.hide()"><span class="glyphicon glyphicon-remove"></span></button>
+                <br>
+            </div>
+
+            <div class="checkout-modal-body modal-body">
+                <br>
+                <h4 class="media-heading">Are you ready to checkout?</h4>
+            </div>
+
+            <div class="checkout-modal-footer modal-footer">
+                <button type="button" class="btn btn-success btn-sm btn-default" data-dismiss="modal" (click)="checkoutModal.hide();  getAllCheckoutItems();" aria-label="Close">Yes- Add items to my Fridge</button>
+                <button type="button" class="btn btn-danger btn-sm btn-default" data-dismiss="modal" (click)="checkoutModal.hide()" aria-label="Close">No- Keep Shopping</button>
+            </div>
+        </div>
+    </div>
+</div>
