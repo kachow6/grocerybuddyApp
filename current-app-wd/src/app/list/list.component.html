@@ -58,12 +58,12 @@
                 <label>x</label>
             </div>
             <div class="list-item-quantity-input list-inline col-lg-2 col-md-2 col-sm-2 col-xs-3">
-                <input [(ngModel)] = "item.qty" type="number" class="form-control" id="qty-form1">
+                <input [disabled] = "getCheckedOut(item.$key)" [(ngModel)] = "item.qty" type="number" class="form-control" id="qty-form1">
             </div>
 
             <!-- List Item Checkbox -->
             <div class="col-lg-1 col-md-1 col-sm-2 col-xs-2">
-                <input [(ngModel)] = 'item.checked' (click)="checkItem(item.checked, item.$key)" type="checkbox" class="item-checkbox" value="">
+                <input [disabled] = "getCheckedOut(item.$key)" [(ngModel)] = 'item.checked' (click)="checkItem(item.checked, item.$key)" type="checkbox" class="item-checkbox" value="">
             </div>
 
         </div>

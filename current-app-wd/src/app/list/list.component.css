@@ -18,6 +18,7 @@
 
 .item-checkbox {
 	height: 40px;
+	margin-top: 6px;
 	width: 40px;
 }
 
@@ -48,4 +49,9 @@
 
 .checkout-modal-footer {
 	padding: 8px;
+
+/* Checked Out Items */
+.checkedOutItem {
+	background-color: #555555;
+	color: white;
 }

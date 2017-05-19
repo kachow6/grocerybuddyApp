@@ -170,11 +170,11 @@ export class ListComponent {
                            .take(1)
                            .subscribe(datasnap => {
 
-            for(let i of datasnap){
+            for(let i of datasnap) {
                 
                 let query = this.db.object('/shoppingList/' + this.userService.getCurrentList() + '/' + i.$key);
-                query.update({'checked': false});
-
+                query.update({'checkedOut': false});
+                query.update({'moved': false});
             }
         });
     }
