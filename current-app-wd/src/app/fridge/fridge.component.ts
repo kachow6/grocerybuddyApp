@@ -23,7 +23,7 @@ export class FridgeComponent implements OnInit {
     readonly today        : number = DateTools.getDays(new Date());
 
     // Local access variables to keep track of user name, etc.
-    userId: string = 'user-1';
+    userId: string;
     currentItemName: string;
 
     // User Auth Object
@@ -60,12 +60,15 @@ export class FridgeComponent implements OnInit {
     ngOnInit() {
         //Initializes User Settings
         this.userAuth$ = this.afAuth.authState;
-        this.fridgeList$ = this.db.list('/fridgeList/' + this.userId);
+        this.userAuth$.take(1).subscribe(response => {
+            this.userId = response.uid;
+            this.fridgeList$ = this.db.list('/fridgeList/' + this.userId);
 
-        this.fridgeList$.subscribe(snap => {
-            for (let item of snap) {
-                item.expiration = 1 - ((this.today - item.datePurchased) / item.shelfLife);
-            }
+            this.fridgeList$.subscribe(snap => {
+                for (let item of snap) {
+                    item.expiration = 1 - ((this.today - item.datePurchased) / item.shelfLife);
+                }
+            });
         });
     }
 

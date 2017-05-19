@@ -52,7 +52,7 @@ export class HeaderComponent implements OnInit {
     buddyPic: string = BUDDY_PICS[this.picIndex];
 
     // User ID and Firebase variables
-    userId      : string = 'user-1';
+    userId      : string;
     user        : Observable<firebase.User>;
     userName    : string;
     fridgeList$ : FirebaseListObservable<any[]>; 
@@ -112,12 +112,15 @@ export class HeaderComponent implements OnInit {
 
         // Set up Firebase variables
         this.user = this.afAuth.authState;
-        this.fridgeList$ = this.db.list('/fridgeList/' + this.userId);
+        this.user.take(1).subscribe(response => {
+            this.userId = response.uid;
+            this.fridgeList$ = this.db.list('/fridgeList/' + this.userId);
 
-        this.fridgeList$.subscribe(snap => {
-            this.expiringItems = this.pullExpiring(snap);  
-            this.numExpiring   = this.notificationAmount(this.expiringItems);  
-        }); 
+            this.fridgeList$.subscribe(snap => {
+                this.expiringItems = this.pullExpiring(snap);  
+                this.numExpiring   = this.notificationAmount(this.expiringItems);  
+            });
+        });
     }
 
     // EXPIRY NOTIFICATION METHODS
