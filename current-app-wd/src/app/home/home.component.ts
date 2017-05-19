@@ -27,7 +27,7 @@ export class HomeComponent implements OnInit {
     renameInput: string = "";
 
     // Database & Auth Variables.
-    userId: string = 'user-1';
+    userId: string;
     userAuth$:    Observable<firebase.User>;
     homeList$:    FirebaseListObservable<any[]>;
 
@@ -44,13 +44,14 @@ export class HomeComponent implements OnInit {
 
     // Init. Initialize anything more complicated than basic wiring.
     ngOnInit() {
-        this.userAuth$ = this.afAuth.authState;
-        this.homeList$ = this.db.list('/homeList/' + this.userId);
-
-        this.myList = this.userService.getHome();
-
         // Firebase Objects Setup
         this.userAuth$ = this.afAuth.authState;
+        this.userAuth$.take(1).subscribe(response => {
+            this.userId = response.uid;
+            this.homeList$ = this.db.list('/homeList/' + this.userId);
+            this.myList = this.userService.getHome();
+            this.userAuth$.take(1).subscribe(response => this.userId = response.uid);
+        });
 
         /* ====== SUBSCRIPTIONS ====== */
         /* userAuth$ subscription */

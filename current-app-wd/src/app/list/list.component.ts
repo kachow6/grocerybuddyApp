@@ -36,7 +36,7 @@ export class ListComponent {
     currentItem: any;
 
     // Database & Auth Variables.
-    userId: string = 'user-1';
+    userId: string;
     userAuth$:    Observable<firebase.User>;
     currentList$: FirebaseListObservable<any[]>;
 
@@ -61,8 +61,11 @@ export class ListComponent {
 
         // Firebase Objects Setup
         this.userAuth$    = this.afAuth.authState;
-        this.currentList$ = this.db.list('/shoppingList/'
+        this.userAuth$.take(1).subscribe(response => {
+            this.userId = response.uid;
+            this.currentList$ = this.db.list('/shoppingList/'
                           + this.userService.getCurrentList());
+        });
 
         /* ====== SUBSCRIPTIONS ====== */
         /* userAuth$ subscription */
