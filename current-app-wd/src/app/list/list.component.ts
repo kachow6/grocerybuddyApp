@@ -130,10 +130,12 @@ export class ListComponent {
         let mySub = this.db.list('/shoppingList/' + this.userService.getCurrentList())
                            .take(1)
                            .subscribe(datasnap => {
-            for(let i of datasnap){
+
+            for(let i of datasnap) {
                 // Goes through all items in the datasnap and sets the checked states to false
                 let query = this.db.object('/shoppingList/' + this.userService.getCurrentList() + '/' + i.$key);
-                query.update({'checked': false});
+                query.update({'checkedOut': false});
+                query.update({'moved': false});
             }
         });
     }
