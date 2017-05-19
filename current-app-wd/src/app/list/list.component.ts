@@ -173,7 +173,7 @@ export class ListComponent {
                     // Unchecks items as they are added to the fridge.
                     this.db.object('/shoppingList/' + this.userService.getCurrentList() + '/' + i.$key)
                            .update({'checked': false,
-                                    'checkedOut': false});
+                                    'checkedOut': true});
                 }
             }
             // Moves the user to the fridge page after checking out

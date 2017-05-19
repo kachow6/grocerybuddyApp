@@ -27,7 +27,7 @@
          [class.item-delete-animation]="item.deleteFinalized"
          (panup)="doScroll($event)"
          (pandown)="doScroll($event)"
-         class="container-fluid list-element item-delete-container" [class.checkedOutItem]="getCheckedOut(item.$key)">
+         class="container-fluid list-element item-delete-container">
 
         <!-- Swipe Left Undo Feature -->
         <div class="list-item-swipe-display swipe-left"
@@ -50,11 +50,11 @@
         <div class="row"
                 (swipe)="item.isQueuedForDelete=true; item.deleteTimer=startItemDeleteTimer(item.$key, item)"
                 (swipeleft)="item.deleteQueueRight=true"
-                (swiperight)="item.deleteQueueRight=false">
+                (swiperight)="item.deleteQueueRight=false" [class.checkedOutItem]="getCheckedOut(item.$key)">
 
             <!-- List Item Name -->
             <div class="list-item-name col-lg-8 col-md-8 col-sm-7 col-xs-6">
-                <h4 class="item-name" data-toggle="modal" (tap)="renameModal.show(); renameInput = item.name">{{ item.name }}</h4>
+                <h4 class="item-name" data-toggle="modal" (tap)="!item.checkedOut?renameModal.show():0; renameInput = item.name" (keyup.esc)="renameModal.hide()">{{ item.name }}</h4>
             </div>
 
             <!-- List Item Qty -->

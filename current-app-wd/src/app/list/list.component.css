@@ -53,6 +53,10 @@
 
 /* Checked Out Items */
 .checkedOutItem {
-	background-color: #555555;
-	color: white;
+	opacity: 0.5;
+}
+
+/* Checked Out Items */
+.hidden {
+	display: none;
 }
