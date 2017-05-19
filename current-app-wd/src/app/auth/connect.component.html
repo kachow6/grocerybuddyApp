@@ -46,12 +46,13 @@
 
                         <!-- Password Input -->
                         <div class="form-group form-element">
+                            <h5 id="accountOverwrite" class="confirm-login-password-error">{{incorrectPassMsg}}</h5>
                             <input #password type="password" class="form-control" id="password" placeholder="Password">
                         </div>
 
                         <!-- Remember Me and Forgot Password -->
                         <div class="checkbox row form-element">
-                            <label><input class="reminder-checkbox" type="checkbox"><small>Remember me</small></label>
+                            <label><input class="reminder-checkbox" (click)="debug()" type="checkbox"><small>Remember me</small></label>
                             <a class="pull-right" href="#"><small>Forgot Password?</small></a>
                         </div>
 

@@ -1,10 +1,10 @@
-import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Component          } from '@angular/core';
+import { FormsModule        } from '@angular/forms';
+import { Router             } from '@angular/router';
 
-import { Observable } from 'rxjs/Observable';
-import { AngularFireAuth } from 'angularfire2/auth';
-import * as firebase from 'firebase/app';
+import { Observable         } from 'rxjs/Observable';
+import { AngularFireAuth    } from 'angularfire2/auth';
+import * as firebase          from 'firebase/app';
 
 /**
  * This class represents the lazy loaded RegisterComponent.
@@ -16,20 +16,60 @@ import * as firebase from 'firebase/app';
     styleUrls: ['register.component.css'],
 })
 export class RegisterComponent {
-    passwordcomplex: boolean;
-    passwordconfirmed: boolean;
-    passwordmessage: string;
-    confirmpasswordmessage: string ='';
-    userpassword: string;
-    userconfirmpassword: string ='';
 
+    // Variables for validation
+    nameState           : boolean = false;
+    emailState          : boolean = false;
+    passwordcomplex     : boolean;
+    passwordconfirmed   : boolean;
+    passwordmessage     : string;
+
+    // Error validation messages
+    confirmNameMessage     : string ="";
+    confirmEmailMessage    : string ="";
+    confirmpasswordmessage : string ="";
+
+    // User Inputs
+    userName             : string = "";
+    userEmail            : string = "";
+    userpassword         : string = "";
+    userconfirmpassword  : string ="";
+
+    // Initializing user firebase object
     user: Observable<firebase.User>;
 
+    // CONSTRUCTOR & INITIALIZATION.
+    // Used to inject all the necessary services and perform basic wiring.
     constructor(public router: Router,
                 public afAuth: AngularFireAuth) {
         this.user = afAuth.authState;
     }
 
+    // Method for checking if a name has been entered
+    checkName(): void {
+        if (this.userName.length > 0) {
+            this.nameState = true;
+            this.confirmNameMessage = "";
+        } else {
+            this.nameState = false;
+            this.confirmNameMessage = "Must enter a name";
+        }
+    }
+
+    // Method for checking if a valid email has been entered
+    checkEmail(): void {
+        let regex = /[a-zA-Z\d]+@.+\..+$/;
+
+        if (regex.test(this.userEmail)) {
+            this.emailState = true;
+            this.confirmEmailMessage = "";
+        } else {
+            this.emailState = false;
+            this.confirmEmailMessage = "Must be a valid email";
+        }
+    }
+
+    // Method for checking if the user's password is complex
     checkComplexity(userpass: string): boolean {
         let hasUpperCase = /[A-Z]/g.test(userpass);
         let hasLowerCase = /[a-z]/g.test(userpass);
@@ -41,20 +81,19 @@ export class RegisterComponent {
             this.passwordcomplex = true;
             return true;
         } else {
-            this.passwordmessage = "Must contain at least one uppercase and lower case letter as well as a number and a special character (ie. $, #, !, %)";
+            this.passwordmessage = "";
             // this.userpassword = null;
             return false;
         }
     }
 
+    // Method for checking if the two passwords entered are the same
     confirmPassword(pass1: string, pass2: string, ignoreblank: boolean): boolean {
 
         if(ignoreblank == true && pass2.length == 0) {
-            this.confirmpasswordmessage = "";
         }
 
         if(pass1 == pass2) {
-            this.confirmpasswordmessage = "";
             this.passwordconfirmed = true;
             return true;
         } else {
@@ -64,13 +103,16 @@ export class RegisterComponent {
         }
     }
 
+    // Method for creating a user with the input information
     signUpWithEmail(name: string,
                     email: string,
                     password: string,
                     confirmPassword: string) {
 
         // Double-check that the user has the right complexity requirements.
-        if (this.checkComplexity(password)
+        if (this.nameState 
+         && this.emailState
+         && this.checkComplexity(password)
          && this.confirmPassword(password, confirmPassword, true)) {
 
             // Run create user request.

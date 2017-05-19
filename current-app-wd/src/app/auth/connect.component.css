@@ -44,6 +44,10 @@
 	margin: 22px 0;
 }
 
+.confirm-login-password-error {
+	color: red;
+}
+
 a {
 	text-decoration: none;
 }
