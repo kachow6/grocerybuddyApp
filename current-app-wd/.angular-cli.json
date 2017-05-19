@@ -20,7 +20,8 @@
       "prefix": "app",
       "styles": [
         "css/main.css",
-        "styles.css"
+        "styles.css",
+		"css/csshake.min.css"
       ],
       "scripts": [],
       "environmentSource": "environments/environment.ts",
