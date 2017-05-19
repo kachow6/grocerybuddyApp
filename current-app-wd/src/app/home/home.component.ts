@@ -42,6 +42,7 @@ export class HomeComponent implements OnInit {
                 public afAuth: AngularFireAuth,
                 public db: AngularFireDatabase) {}
 
+
     // Init. Initialize anything more complicated than basic wiring.
     ngOnInit() {
         // Firebase Objects Setup
