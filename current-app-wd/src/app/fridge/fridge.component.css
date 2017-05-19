@@ -39,6 +39,17 @@
 	z-index: 1;
 }
 
+/* Mobile View Adjustments */
+@media only screen and (max-width: 420px) {
+	.easteregg {
+		position: absolute;
+		text-align: center;
+		width: 100%;
+		height: 50%;
+		z-index: 1;
+	}
+}
+
 /* Fridge Options Modal */
 .fridge-options-modal-header {
 	padding: 10px;
