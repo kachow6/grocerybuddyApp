@@ -101,11 +101,11 @@ export class HomeComponent implements OnInit {
 
     // Method for resetting the checked states of the items in a selected list
     resetList(key: string): void {
-        let mySub = this.db.list('/shoppingList/' + key).subscribe(datasnap => {
+        let mySub = this.db.list('/shoppingList/' + key).take(1).subscribe(datasnap => {
             for(let i of datasnap) {
                 // Queries to each item in the datasnap, sets checked state to false
                 let query = this.db.object('/shoppingList/' + this.userService.getCurrentList() + '/' + i.$key);
-                query.update({'checked': false});
+                query.update({'checkedOut': false});
             }
             mySub.unsubscribe();
         });
