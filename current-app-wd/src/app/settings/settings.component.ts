@@ -30,11 +30,14 @@ export class SettingsComponent {
     userconfirmpassword    : string ='';
 
     // variables for user inputs
-    nameInput        : string = "";
-    emailInput       : string = "";
-    emailValid       : boolean;
-    invalidEmailMsg  : string = "";
-    accountOverwrite : string = "";
+    nameInput          : string = "";
+    emailInput         : string = "";
+    emailValid         : boolean;
+    invalidEmailMsg    : string = "";
+    nameChangeSuccess  : string = "";
+    nameChangeError    : string = "";
+    accountOverwrite   : string = "";
+    googleMessage      : string = "";
 
     // User ID and Firebase variables
     userId      : string = 'user-1';
@@ -56,6 +59,36 @@ export class SettingsComponent {
     //     }) 
 
     // }
+
+    ngOnInit() {
+        // Testing to check for a user's sign in method.
+        console.log(this.afAuth.auth.currentUser.providerId);
+        console.log(this.afAuth.auth.currentUser.providerData["0"].providerId);
+    }  
+
+    // Detects if user is signd in with a google account and disableds account changes
+    googleAccount(): boolean{
+        let googleAcc = false;
+        if (this.afAuth.auth.currentUser.providerData["0"].providerId == "google.com") {
+            googleAcc = true;
+            this.googleMessage = "Account changes are disabled for Google accounts";
+        }
+        return googleAcc;
+    }
+
+    // Method for changing a user's name
+    changeUserName(): void {
+        if (this.nameInput.length > 0) {
+            this.afAuth.auth.currentUser.updateProfile(
+                {displayName: this.nameInput,
+                 photoURL: ''});
+            this.nameChangeSuccess = "Name Change successful!";
+            setTimeout(() => {
+                    this.nameChangeSuccess = "";}, 2000);
+        } else {
+            this.nameChangeError = "Name field must be filled!";
+        }
+    }
 
     //Method for checking if the password is complex
     checkComplexity(userpass: string): void {
@@ -99,16 +132,9 @@ export class SettingsComponent {
     }
 
     // Method for changing user account name and password if conditions are met
-    changeActInfo():void {
+    changePassword():void {
          // Validating the new name and password
-         if (this.nameInput.length > 2 && 
-             this.checkComplexity && 
-             this.confirmPassword) {
-
-                this.afAuth.auth.currentUser.updateProfile(
-                    {displayName: this.nameInput,
-                     photoURL: ''});
-                     console.log('NEW DISPLAY NAME: ' + this.nameInput);
+         if (this.checkComplexity && this.confirmPassword) {
                 this.afAuth.auth.currentUser.updatePassword(this.userpassword);
 
                 // Signs the user out and returns them to the Sign-in page

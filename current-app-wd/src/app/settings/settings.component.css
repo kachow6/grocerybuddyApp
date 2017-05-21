@@ -12,6 +12,10 @@
 	margin-top: 0;
 }
 
+.spacer {
+	height: 25px;
+}
+
 .enabled-container {
 	margin-top: 5px;
 }
@@ -33,4 +37,22 @@
 .confirm-account-overwrite {
 	color:#5CB85C;
 	text-align: center; 
+}
+
+.confirm-name-success {
+	color:#5CB85C;
+	text-align: center; 
+}
+
+.confirm-name-error {
+	color:red;
+	text-align: center; 
+}
+
+.googleSignIn {
+	opacity: 0.5;
+}
+
+.sign-in-google {
+	color: tomato;
 }
