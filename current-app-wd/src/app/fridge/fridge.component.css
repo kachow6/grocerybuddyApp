@@ -99,3 +99,7 @@
 .fridge-options-modal-expiration-days {
 	top:-12px;
 }
+
+.past-freshness {
+	background-color: #FFDFDF;
+}

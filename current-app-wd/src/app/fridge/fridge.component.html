@@ -29,7 +29,8 @@
          (panup)="doScroll($event)"
          (pandown)="doScroll($event)"
          [class.item-delete-animation]="item.deleteFinalized"
-         class="container-fluid list-element item-delete-container">
+         class="container-fluid list-element item-delete-container"
+		 [class.past-freshness]="pastFresh(item)">
 
 		<!-- Swipe Left Undo -->
 		<div class="list-item-swipe-display swipe-left"
@@ -83,7 +84,7 @@
 				</div>
 			</div>
 		</div>
-		
+
 		<!-- Options Modal -->
 		<div class="modal fade" id="listModal" tabindex="-1" role="dialog" aria-labelledby="options" bsModal #itemModal="bs-modal"
 			tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"aria-hidden="true">
@@ -166,7 +167,7 @@
 					<!-- Save Changes Button -->
 					<div class="modal-footer">
 						<div class="row">
-							<button #saveButton class="btn btn-md btn-success" (click)="itemModal.hide(); itemRename(item.$key); editQty(item.$key); editShelfLife(item)">Save Changes</button>
+							<button #saveButton class="btn btn-md btn-success" (click)="itemModal.hide(); itemRename(item.$key); editQty(item.$key); editShelfLife(item);">Save Changes</button>
 						</div>
 					</div>
 					

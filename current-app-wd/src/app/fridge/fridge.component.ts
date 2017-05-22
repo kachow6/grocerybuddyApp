@@ -118,6 +118,26 @@ export class FridgeComponent implements OnInit {
         }
     }
 
+    // // Debugging method Ignore
+    // debug(item: any): void {
+    //     console.log(item.expiration);
+    // }
+
+    // Method for checking if an item's freshness bar has run out
+    pastFresh(item: any): boolean {
+        let key = item.$key;
+        let pastFreshness = false;
+        // Checks to see if item originally had a shelf life
+        if (item.shelfLife > 0) {
+            item.expiration = 1 - ((this.today - item.datePurchased) / item.shelfLife);
+            // Checks to see if the bar is empty
+            if (item.expiration === 0) {
+            pastFreshness = true;
+            }
+        }
+        return pastFreshness;
+    }
+
     // Method for renaming an item in the user's fridge list.
     itemRename(key: string) {
         this.currentItem$ = this.db.list('/fridgeList/' + key);
