@@ -131,7 +131,7 @@ export class FridgeComponent implements OnInit {
         if (item.shelfLife > 0) {
             item.expiration = 1 - ((this.today - item.datePurchased) / item.shelfLife);
             // Checks to see if the bar is empty
-            if (item.expiration === 0) {
+            if (item.expiration <= 0) {
             pastFreshness = true;
             }
         }
