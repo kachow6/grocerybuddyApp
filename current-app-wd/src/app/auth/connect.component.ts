@@ -51,9 +51,15 @@ export class ConnectComponent {
                 })
                 .catch(e => { console.log(e.message) });
     }
-    // Isn't needed here
-    // logout() {
-    //     this.afAuth.auth.signOut()
-    //             .catch(e => { console.log(e.message) });
-    // }
+
+    // Method for Logging in with Facebook account
+    loginWithFacebook() {
+        this.afAuth.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider())
+                .then(response => {
+                    console.log("Logged In");
+                    this.router.navigateByUrl('/main');
+                })
+                .catch(e => { console.log(e.message) });
+    }
+
 }

@@ -27,6 +27,12 @@
                             </div>
                         </div>
 
+                        <!-- Sign Up Through Facebook -->                       
+                        <button type="button" class="fb-btn btn btn-block form-element" (click)="loginWithFacebook()">
+                            <img src="../../assets/imgs/fb-logo.png" alt="Facebook" class="fb-logo">
+                            <span class="fb-signin">Sign in with Facebook</span>
+                        </button>
+
                         <!-- Sign Up Through Email -->                       
                         <div id="name"></div>
                         <a [routerLink]="['../register']">
