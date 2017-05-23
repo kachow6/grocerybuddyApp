@@ -21,8 +21,8 @@
 }
 
 .email-signin-graphic {
-	font-size: 22px;
-	padding-right: 15px;
+	font-size: 25px;
+	padding-right: 10px;
 	vertical-align: middle;
 }
 
@@ -50,6 +50,21 @@
 
 a {
 	text-decoration: none;
+}
+
+/* FACEBOOK SIGN-IN BUTTON CSS */
+.fb-logo {
+	height: 30px;
+	margin-right: 10px;
+	width: 30px;
+}
+
+.fb-btn {
+	background-color: #3B5998; 
+}
+
+.fb-btn:hover {
+	color: white;
 }
 
 /* GOOGLE SIGN-IN BUTTON CSS */
