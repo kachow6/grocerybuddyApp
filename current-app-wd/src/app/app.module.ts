@@ -4,6 +4,7 @@ import { APP_BASE_HREF }          from '@angular/common';
 import { HttpModule }             from '@angular/http';
 import { AppComponent }           from './app.component';
 import { AppRoutingModule }       from './app-routing.module';
+import { FormsModule }            from '@angular/forms';
 
 import { SharedModule }           from './shared/shared.module';
 import { AboutModule }            from './about/about.module';
@@ -26,6 +27,7 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { environment }            from '../environments/environment';
 
 import { DateTools, User } from './shared/user-service/user';
+import { Ng2CompleterModule } from 'ng2-completer';
 
 
 
@@ -70,6 +72,9 @@ export class MyHammerConfig extends HammerGestureConfig  {
         AngularFireModule.initializeApp(environment.firebase),
         AngularFireAuthModule,
         AngularFireDatabaseModule,
+
+        Ng2CompleterModule,
+        FormsModule
     ],
     declarations: [
         AppComponent

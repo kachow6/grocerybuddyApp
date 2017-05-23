@@ -8,6 +8,11 @@ import { Observable               } from 'rxjs/observable';
 import { AngularFireAuth          } from 'angularfire2/auth';
 import * as firebase                from 'firebase/app';
 
+import {
+         CompleterService,
+         CompleterData
+       }                               from 'ng2-completer';
+
 /**
  * This class represents the lazy loaded HomeComponent.
  */
@@ -20,7 +25,8 @@ import * as firebase                from 'firebase/app';
 
 export class FridgeComponent implements OnInit {
 
-    readonly today        : number = DateTools.getDays(new Date());
+    readonly msPerDay: number = 86400000;
+    readonly today        : number = new Date().getTime();
 
     // Local access variables to keep track of user name, etc.
     userId: string;
@@ -51,11 +57,16 @@ export class FridgeComponent implements OnInit {
     stateSuccess: string = 'progress-bar-success';
     itemState:    string = '';
 
+    // Autofill Data.
+    autofillData: any[] = [];
+    dataService: CompleterData;
+
     // CONSTRUCTOR AND INITIALIZATION.
     // Used to inject all the necessary services and performr basic wiring.
     constructor(private userService: UserService,
                 public afAuth: AngularFireAuth,
-                public db: AngularFireDatabase) {}
+                public db: AngularFireDatabase,
+                public completerService: CompleterService) {}
 
     // OnInit method. Angular's recommended place to perform initialization.
     ngOnInit() {
@@ -70,6 +81,22 @@ export class FridgeComponent implements OnInit {
                     item.expiration = 1 - ((this.today - item.datePurchased) / item.shelfLife);
                 }
             });
+        });
+
+        // Grab autofill data and store it locally.
+        // Note: this is just grabbing the keys. The expiry data gets grabbed
+        // later.
+        this.db.list('expiryEstimate').take(1).subscribe(response => {
+
+            for (let item of response) {
+                console.log(item.$key);
+                this.autofillData.push({
+                    autofillId: item.$key,
+                    shelfLife: item.$value
+                });
+            }
+
+            this.dataService = this.completerService.local(this.autofillData, 'autofillId', 'autofillId');
         });
     }
 
@@ -150,7 +177,7 @@ export class FridgeComponent implements OnInit {
         let pastFreshness = false;
         // Checks to see if item originally had a shelf life
         if (item.shelfLife > 0) {
-            item.expiration = 1 - ((this.today - item.datePurchased) / item.shelfLife);
+            item.expiration = 1 - ((this.today - item.datePurchased) / (item.shelfLife * this.msPerDay));
             // Checks to see if the bar is empty
             if (item.expiration <= 0) {
             pastFreshness = true;

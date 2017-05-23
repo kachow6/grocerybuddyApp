@@ -197,6 +197,58 @@ div.item-delete-container {
     position: relative;
 }
 
+/* NG2-COMPLETER (AUTOCOMPLETE) STYLES */
+
+ng2-completer.form-control {
+  padding: 0px;
+  width: 100%;
+  height: 100%;
+  font-size: 12px;
+}
+
+.completer-holder {
+  border: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.completer-holder input {
+  font-size: 12px;
+}
+
+input.completer-input {
+  margin: 0;
+  padding: 5px 10px;
+  border: none;
+  width: 100%;
+  height: 100%;
+}
+.completer-dropdown-holder {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  position: relative;
+  top: 6px;
+}
+
+html div.completer-dropdown {
+  width: 100%;
+  margin-top: 0px;
+}
+.completer-searching {}
+.completer-no-results {}
+.completer-row {}
+.completer-image-holder {}
+.completer-image {}
+.completer-image-default {}
+.completer-title {}
+.completer-description {}
+.completer-list-item-holder {}
+.completer-list-item {}
+.completer-selected-row {}
+
 /* DEPRECATED: Caused some sort of weird error that prevented modals from being
 // closed. */
 /*.list-element:hover:not(#buttonHolder) {
