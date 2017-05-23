@@ -25,7 +25,8 @@ import {
 
 export class FridgeComponent implements OnInit {
 
-    readonly today        : number = DateTools.getDays(new Date());
+    readonly msPerDay: number = 86400000;
+    readonly today        : number = new Date().getTime();
 
     // Local access variables to keep track of user name, etc.
     userId: string;
@@ -155,7 +156,7 @@ export class FridgeComponent implements OnInit {
         let pastFreshness = false;
         // Checks to see if item originally had a shelf life
         if (item.shelfLife > 0) {
-            item.expiration = 1 - ((this.today - item.datePurchased) / item.shelfLife);
+            item.expiration = 1 - ((this.today - item.datePurchased) / (item.shelfLife * this.msPerDay));
             // Checks to see if the bar is empty
             if (item.expiration <= 0) {
             pastFreshness = true;
