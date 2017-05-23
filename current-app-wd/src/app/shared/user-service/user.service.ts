@@ -33,4 +33,18 @@ export class UserService {
     setCurrentList(listKey: string) {
         UserService.user.currentList = listKey;
     }
+
+    static makePresentable(str: string): string {
+        return str.slice(0,1).toUpperCase().concat(str.slice(1).toLowerCase());
+    }
+
+    static makeSearchable(str: string): string {
+        str = str.toLowerCase();
+
+        if (str.slice(str.length-1) == 's') {
+            str = str.slice(0, str.length-1);
+        }
+
+        return str;
+    }
 }

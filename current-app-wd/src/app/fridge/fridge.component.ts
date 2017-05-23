@@ -89,7 +89,7 @@ export class FridgeComponent implements OnInit {
             for (let item of response) {
                 console.log(item.$key);
                 this.autofillData.push({
-                    autofillId: item.$key,
+                    autofillId: (UserService.makePresentable(item.$key)),
                     shelfLife: item.$value
                 });
             }
