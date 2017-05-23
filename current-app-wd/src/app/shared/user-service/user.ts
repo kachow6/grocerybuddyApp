@@ -4,6 +4,7 @@ export class DateTools {
     // Return the number of days
     static getDays(date: Date): number {
         return Math.round(Date.parse( date.toJSON() ) / this.msPerDay);
+        // return Math.round(Date.parse( date.toJSON() ) / this.msPerDay);
     }
 }
 

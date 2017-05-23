@@ -36,13 +36,14 @@ export class FridgeComponent implements OnInit {
     fridgeList: any[] = [];
 
     // Input Variables
-    nameInput:         string = '';
-    numberInput:       number;
-    expiration:        number;
-    renameInput:       string = '';
-    newQtyInput:       number;
-    newShelfLifeInput: number;
-    showEasterEgg      = false;
+    nameInput         : string = '';
+    numberInput       : number;
+    expiration        : number;
+    renameInput       : string = '';
+    newQtyInput       : number;
+    newShelfLifeInput : number;
+    showEasterEgg     : boolean = false;
+    daysLeft          : string;
 
     //States for the progress bar
     stateDanger:  string = 'progress-bar-danger';
@@ -70,6 +71,21 @@ export class FridgeComponent implements OnInit {
                 }
             });
         });
+    }
+
+    // Method for calculating the amount of days leftfor an item
+    itemDaysLeft(item): void {
+        if(item.expiration) {
+            let days: number;
+            days = Math.round(item.expiration * 10);
+            if (days <= 0) {
+                this.daysLeft = " - 0 days left";
+            } else {
+                this.daysLeft = " - " + days + " days left";
+            }
+        } else {
+            this.daysLeft = "";
+        }
     }
 
     // Adds a new item to the user's fridge list
@@ -118,10 +134,15 @@ export class FridgeComponent implements OnInit {
         }
     }
 
-    // // Debugging method Ignore
-    // debug(item: any): void {
-    //     console.log(item.expiration);
-    // }
+    // Debugging method Ignore
+    debug(item: any): void {
+        // console.log("item exp - " + item.expiration);
+        // console.log("today - datepur / shelf" + (this.today - item.datePurchased) / item.shelfLife);
+        console.log(this.today);
+        console.log(new Date(this.today).getDate());
+        console.log(new Date(this.today).getMonth());
+        console.log(new Date(this.today).getFullYear());
+    }
 
     // Method for checking if an item's freshness bar has run out
     pastFresh(item: any): boolean {
@@ -155,15 +176,37 @@ export class FridgeComponent implements OnInit {
         }
     }
 
+    // Method for getting the number of days remaining for an item.
+    getDaysLeft(item: any) {
+        let key = item.$key;
+        let days: number;
+        if (item.expiration <= 0) {
+            this.newShelfLifeInput = 0;
+        } else {
+            this.newShelfLifeInput = Math.round(item.expiration * 10)
+        }
+        
+    }
+
     // Method for editing the max shelf-life of an item in the user's fridge
     editShelfLife(item: any) {
+
         let key = item.$key;
-        let newShelfLife = this.newShelfLifeInput;
-        if (newShelfLife > 0) {
-            this.db.object('/fridgeList/' + this.userId + '/' + key).update({'shelfLife': newShelfLife});
-            item.expiration = 1 - ((this.today - item.datePurchased) / item.shelfLife);
+        let temp = item.shelfLife * item.shelfLife;
+        if (item.expiration < 0) {
+            this.db.object('/fridgeList/' + this.userId + '/' + key).update({'shelfLife': item.shelfLife 
+                                                                         + temp
+                                                                         + this.newShelfLifeInput});
         }
-    }
+        console.log(item.shelfLife);
+        console.log(item.expiration);
+        }
+
+        // let newShelfLife = this.newShelfLifeInput;
+        // if (newShelfLife > 0) {
+        //     this.db.object('/fridgeList/' + this.userId + '/' + key).update({'shelfLife': newShelfLife});
+        //     item.expiration = 1 - ((this.today - item.datePurchased) / item.shelfLife);
+        // }
 
     // Displays easteregg img if expiration is set to over 9000.
     activateEasterEgg(expiration: number): void {
