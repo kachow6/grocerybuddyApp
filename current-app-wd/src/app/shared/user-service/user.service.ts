@@ -39,7 +39,7 @@ export class UserService {
     }
 
     static makeSearchable(str: string): string {
-        str = str.toLowerCase();
+        str = str.trim().toLowerCase();
 
         if (str.slice(str.length-1) == 's') {
             str = str.slice(0, str.length-1);
