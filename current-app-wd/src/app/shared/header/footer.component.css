@@ -1,1 +1,8 @@
-
+/* Mobile View Adjustments */
+@media only screen and (max-height: 550px) {
+	
+	/* Removes bottom navigation tabs on Android when keyboard appears */
+	.bot-bar {
+		display: none;
+	}
+}
