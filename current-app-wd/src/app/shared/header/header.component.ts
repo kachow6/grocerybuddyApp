@@ -35,6 +35,7 @@ export class HeaderComponent implements OnInit {
 
     // Page Display Variables
     pageTitle: string;  // Tracks the title of the current page.
+    pageIcon : string;
     push     : number;  // Used to push the extending nav bar out from the side.
     bodyBg   : string;  // Color of div that covers page when nav bar pops out.
     extended : boolean; // Whether or not the nav bar is extended.
@@ -81,6 +82,7 @@ export class HeaderComponent implements OnInit {
         // Sets the current page title depending on the router.url location
         this.router.events.subscribe((snap: any) => {
             let currentPage = snap.urlAfterRedirects;
+
             // If User is on HOME PAGE
             if (currentPage ===  '/main') {
                 this.pageTitle = 'Grocery Buddy';}
