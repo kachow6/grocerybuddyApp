@@ -63,13 +63,13 @@
                         
                         <!-- Back to Login Page -->
                         <a [routerLink]="['../login']">
-                            <button type="button" class="btn btn-danger btn-lg form-btn">
+                            <button type="button" class="btn btn-danger btn-md form-btn">
                                 <span class="login-return-text">Back to Login</span>
                             </button>
                         </a>
 
                         <!-- Submit Button -->
-                        <button type="button" class="btn btn-primary btn-lg form-btn pull-right"
+                        <button type="button" class="btn btn-primary btn-md form-btn pull-right"
                                 (click)="checkName(); checkEmail(); signUpWithEmail(name.value, email.value, password.value, confirmpassword.value)">Submit</button>
                     </form>
                 </div>

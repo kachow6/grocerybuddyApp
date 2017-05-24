@@ -4,6 +4,7 @@ export class DateTools {
     // Return the number of days
     static getDays(date: Date): number {
         return Math.round(Date.parse( date.toJSON() ) / this.msPerDay);
+        // return Math.round(Date.parse( date.toJSON() ) / this.msPerDay);
     }
 }
 
@@ -19,7 +20,7 @@ export class FridgeItem  {
     constructor(name: string, qty: number, shelfLife: number) {
       this.name = name;
       this.qty = qty;
-      this.datePurchased = DateTools.getDays( new Date() );
+      this.datePurchased = new Date().getTime();
       this.shelfLife = shelfLife;
     }
 
