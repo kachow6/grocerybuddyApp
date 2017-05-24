@@ -4,10 +4,10 @@
     <!-- MAIN PAGE CONTENT -->
     <div class="well">
         <form>
-            <div class="form-group">
+            <!--<div class="form-group">-->
 
                 <!-- Notifications Settings Begins -->
-                <h3 class="notifications-title">Notifications:</h3>
+                <!--<h3 class="notifications-title">Notifications:</h3>
                 <div class="enabled-container row col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <label><h4 class="enabled-text">Enabled:</h4></label>
                     <input class="enabled-checkbox" type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="default">
@@ -21,11 +21,11 @@
             <div class="form-group">
                 <label for="reminder"><h5>Remind me again at:</h5></label>
                 <input type="time" class="form-control" id="reminder">
-            </div>
+            </div>-->
 
             <!-- Account Settings Begins -->
             <h3>Account Settings:</h3>
-            <h5 id="GoogleAccDetected" class=sign-in-google>{{googleMessage}}</h5>
+            <h5 id="GoogleAccDetected" class=sign-in-google>{{googleMessage}}{{facebookMessage}}</h5>
             <div [class.googleSignIn]="googleAccount()">
                 <div class="form-group" >
 

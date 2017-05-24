@@ -38,6 +38,7 @@ export class SettingsComponent {
     nameChangeError    : string = "";
     accountOverwrite   : string = "";
     googleMessage      : string = "";
+    facebookMessage    : string = "";
 
     // User ID and Firebase variables
     userId      : string = 'user-1';
@@ -69,11 +70,16 @@ export class SettingsComponent {
     // Detects if user is signd in with a google account and disableds account changes
     googleAccount(): boolean{
         let googleAcc = false;
+        let facebookAcc = false;
         if (this.afAuth.auth.currentUser.providerData["0"].providerId == "google.com") {
             googleAcc = true;
             this.googleMessage = "Account changes are disabled for Google accounts";
+            return googleAcc;
+        } else if (this.afAuth.auth.currentUser.providerData["0"].providerId == "facebook.com") {
+            facebookAcc = true;
+            this.facebookMessage = "Account changes are disabled for Facebook accounts"
+            return facebookAcc;
         }
-        return googleAcc;
     }
 
     // Method for changing a user's name
