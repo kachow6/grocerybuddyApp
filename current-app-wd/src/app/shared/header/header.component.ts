@@ -55,7 +55,7 @@ export class HeaderComponent implements OnInit {
     userId      : string;
     user        : Observable<firebase.User>;
     userName    : string;
-    fridgeList$ : FirebaseListObservable<any[]>; 
+    fridgeList$ : FirebaseListObservable<any[]>;
 
     // CONSTRUCTOR & INITIALIZATION.
     // Used to inject all the necessary services and perform basic wiring.
@@ -101,7 +101,7 @@ export class HeaderComponent implements OnInit {
                 else {
                    // Sends User to selected LIST page
                    let listKey = this.userService.getCurrentList();
-                                 this.db.object('/homeList/' + 
+                                 this.db.object('/homeList/' +
                                  this.userId + '/' +
                                  listKey).take(1).subscribe(snap => {
                                  this.pageTitle = snap.$value;
@@ -117,8 +117,8 @@ export class HeaderComponent implements OnInit {
             this.fridgeList$ = this.db.list('/fridgeList/' + this.userId);
 
             this.fridgeList$.subscribe(snap => {
-                this.expiringItems = this.pullExpiring(snap);  
-                this.numExpiring   = this.notificationAmount(this.expiringItems);  
+                this.expiringItems = this.pullExpiring(snap);
+                this.numExpiring   = this.notificationAmount(this.expiringItems);
             });
         });
     }
@@ -157,7 +157,7 @@ export class HeaderComponent implements OnInit {
         amount = list.length;
         return amount;
     }
-    
+
     // Displays the amount of items nearing expiration
     notificationNumber(): void {
         let fridge = this.db.list('/fridgeList/' + this.userId);
@@ -198,7 +198,7 @@ export class HeaderComponent implements OnInit {
 
     //changes buddy pictures randomly on click
     changeBuddy(): void {
-        
+
         let number1 = this.picIndex;
         this.buddyPic = BUDDY_PICS[number1];
         this.picIndex = Math.floor((Math.random() * BUDDY_PICS.length));

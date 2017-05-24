@@ -5,7 +5,16 @@
 
         <!-- New Item Name -->
         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6 col-lg-offset-2 col-md-offset-1 col-sm-offset-1 new-object-input">
-            <input #item [(ngModel)] = "nameInput" (keyup.enter) = "quantity.focus()" type="text" class="form-control input-sm" id="new-item-form" placeholder="New Item">
+            <ng2-completer
+                #item
+                [(ngModel)]="nameInput"
+                [datasource]="dataService"
+                [minSearchLength]="1"
+                (keyup.enter)="quantity.focus()"
+                type="text"
+                class="form-control input-sm"
+                id="new-item-form"
+                placeholder="New Item"></ng2-completer>
         </div>
 
         <!-- New Item Qty -->
@@ -93,7 +102,15 @@
                         <div class="row">
                             <form class="col-lg-11 col-md-11 col-sm-11 col-xs-11">
                                 <label for="rename-form"><h3 class="media-heading">Rename: </h3></label>
-                                <input [(ngModel)]="renameInput" [ngModelOptions]="{standalone: true}" type="text" class="form-control" id="rename-form" (keyup.enter)="saveButton.click()">
+                                <ng2-completer
+                                    [(ngModel)]="renameInput"
+                                    [datasource]="dataService"
+                                    [minSearchLength]="1"
+                                    [ngModelOptions]="{standalone: true}"
+                                    type="text"
+                                    class="form-control"
+                                    id="new-item-form"
+                                    (keyup.enter)="saveButton.click()"></ng2-completer>
                             </form>
                         </div>
                     </div>

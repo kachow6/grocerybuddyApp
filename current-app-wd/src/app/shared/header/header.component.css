@@ -220,3 +220,10 @@ ul.nav-tabs > li a:hover {
         padding-top: 20px;
     }
 }
+
+ul { list-style-type: none;
+     text-decoration: none;
+      }
+
+li { float: left;
+    display: inline; }
