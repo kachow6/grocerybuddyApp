@@ -100,6 +100,12 @@
     animation: none;
 }
 
+.social {
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0;
+}
+
 .ecoders-logo {
     margin-bottom: 5px;
     margin-top: 50px;
