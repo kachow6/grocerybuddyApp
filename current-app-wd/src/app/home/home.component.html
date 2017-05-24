@@ -20,6 +20,7 @@
 
 <!-- Main Page Content -->
 <div class="main-container container col-lg-6 col-md-8 col-sm-10 col-lg-offset-3 col-md-offset-2 col-sm-offset-1">
+
     <!--Buddy Helper that shows up when no list items are present-->
     <div class="buddyHelper" *ngIf="(homeList$ | async)?.length==0">
         <div class="bubble bubbleShow">Welcome!<br><br>There are no lists yet! Enter the name of a new list above and press <span class="plusButton">+</span> to get started!</div>
