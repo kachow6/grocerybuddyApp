@@ -25,17 +25,14 @@
             <a [routerLink]="['affiliates']" (click)="closeNav()">Affiliates</a>
             <hr>
             <!-- Social button goes here!!! Whenever Toni gets to it. -->
-              <ul> <li> <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fgrocerybuddytest.firebaseapp.com%2F&amp;src=sdkpreparse">
+              <ul id="social"> <li> <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fgrocerybuddytest.firebaseapp.com%2F&amp;src=sdkpreparse">
                     <img src="../../assets/imgs/fbshare.png" alt="Facebook Share" class="img-responsive" height="50" width="50">
                 </a>
-                  </li>
-                  <li>
-                <a target="_blank" href="https://twitter.com/intent/tweet?text=http%3A%2F%2Fgrocerybuddytest.firebaseapp.com%2F&amp;src=sdkpreparse">
+                  </li> <li><a target="_blank" href="https://twitter.com/intent/tweet?text=http%3A%2F%2Fgrocerybuddytest.firebaseapp.com%2F&amp;src=sdkpreparse">
                     <img src="../../assets/imgs/twittershare.png" alt="Twitter Share" class="img-responsive" height="50" width="50">
                 </a>
                   </li>
               </ul>
-            <br><br>
             <hr>
             <a DATA-TARGET="#" (click)="logout()">Logout</a>
 
@@ -91,12 +88,12 @@
                 </div>
                 <div class="col-lg-11 col-md-11 col-sm-11 col-xs-11">
                     <div class="progress notification-bar">
-                        <div class="notification-bar-value progress-bar {{calculateExp(expiringitem.expiration)}}"
+                        <div class="notification-bar-value progress-bar {{freshnessBarColour(expiringitem)}}"
                              role="progressbar"
-                             aria-valuenow="(expiration * 100) + '%'"
+                             aria-valuenow="item.expiration * 100"
                              aria-valuemin="0"
                              aria-valuemax="100"
-                             [style.width]="(expiringitem.expiration * 100) + '%'">
+                             [style.width]="(1 - (today - expiringitem.datePurchased) / (expiringitem.shelfLife * msPerDay)) * 100 + '%'">
                         </div>
                     </div>
                 </div>
