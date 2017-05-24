@@ -20,6 +20,8 @@ import {
          CompleterData
        }                               from 'ng2-completer';
 
+import { WindowRefService } from '../shared/user-service/window-ref.service';
+
 /**
  * This class represents the lazy loaded HomeComponent.
  */
@@ -49,17 +51,20 @@ export class ListComponent {
     autofillData: any[] = [];
     dataService: CompleterData;
 
+    private _window: Window;
+
     // CONSTRUCTOR & INITIALIZATION.
     // Used to inject all the necessary services and perform basic wiring.
     constructor(public userService: UserService,
                 public router: Router,
                 public afAuth: AngularFireAuth,
                 public db: AngularFireDatabase,
-                public completerService: CompleterService) {}
+                public completerService: CompleterService,
+                public winRef: WindowRefService) {}
 
     ngOnInit() {
 
-
+        this._window = this.winRef.nativeWindow;
 
         let myDate: Date = new Date();
 
@@ -240,11 +245,15 @@ export class ListComponent {
 
     // Enable drag to scroll
     doScroll(e: any): void {
+        let scrollTolerance = 50;
+
         // Collect necessary variables
         let src: Window = e.srcEvent.currentTarget;
         let scrollDistance: number = -1 * e.srcEvent.movementY;
 
+        if (Math.abs(scrollDistance) > scrollTolerance) {scrollDistance = 0}
+
         // Scroll
-        src.scrollBy(0, scrollDistance);
+        this._window.scrollBy(0, scrollDistance);
     }
 }

@@ -13,6 +13,8 @@ import {
          CompleterData
        }                            from 'ng2-completer';
 
+import { WindowRefService } from '../shared/user-service/window-ref.service';
+
 /**
  * This class represents the lazy loaded HomeComponent.
  */
@@ -61,15 +63,20 @@ export class FridgeComponent implements OnInit {
     autofillData: any[] = [];
     dataService: CompleterData;
 
+    private _window: Window;
+
     // CONSTRUCTOR AND INITIALIZATION.
     // Used to inject all the necessary services and performr basic wiring.
     constructor(private userService: UserService,
                 public afAuth: AngularFireAuth,
                 public db: AngularFireDatabase,
-                public completerService: CompleterService) {}
+                public completerService: CompleterService,
+                public winRef: WindowRefService) {}
 
     // OnInit method. Angular's recommended place to perform initialization.
     ngOnInit() {
+        this._window = this.winRef.nativeWindow;
+
         //Initializes User Settings
         this.userAuth$ = this.afAuth.authState;
         this.userAuth$.take(1).subscribe(response => {
@@ -300,14 +307,17 @@ export class FridgeComponent implements OnInit {
         return null;
     }
 
-    // Drag
+    // Enable drag to scroll
     doScroll(e: any): void {
+        let scrollTolerance = 50;
+
         // Collect necessary variables
         let src: Window = e.srcEvent.currentTarget;
         let scrollDistance: number = -1 * e.srcEvent.movementY;
 
+        if (Math.abs(scrollDistance) > scrollTolerance) {scrollDistance = 0}
+
         // Scroll
-        src.scrollBy(0, scrollDistance);
-        
+        this._window.scrollBy(0, scrollDistance);
     }
 }

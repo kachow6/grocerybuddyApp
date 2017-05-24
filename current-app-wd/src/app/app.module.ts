@@ -29,6 +29,8 @@ import { environment }            from '../environments/environment';
 import { DateTools, User } from './shared/user-service/user';
 import { Ng2CompleterModule } from 'ng2-completer';
 
+import { WindowRefService }     from './shared/user-service/window-ref.service';
+
 
 
 export class MyHammerConfig extends HammerGestureConfig  {
@@ -86,7 +88,9 @@ export class MyHammerConfig extends HammerGestureConfig  {
     { 
         provide: HAMMER_GESTURE_CONFIG, 
         useClass: MyHammerConfig 
-    }],
+    },
+        WindowRefService
+    ],
     bootstrap: [AppComponent]
 
 })

@@ -10,6 +10,8 @@ import { Observable                          } from 'rxjs/observable';
 import { AngularFireAuth                     } from 'angularfire2/auth';
 import * as firebase                           from 'firebase/app';
 
+import { WindowRefService } from '../shared/user-service/window-ref.service';
+
 /**
  * This class represents the lazy loaded HomeComponent.
  */
@@ -35,16 +37,21 @@ export class HomeComponent implements OnInit {
 
     homeList: ShoppingList[] = this.userService.getHome();
 
+    private _window: Window;
+
     // CONSTRUCTOR & INITIALIZATION.
     // Constructor. Inject all necessary dependencies.
     constructor(public userService: UserService,
                 public router: Router,
                 public afAuth: AngularFireAuth,
-                public db: AngularFireDatabase) {}
+                public db: AngularFireDatabase,
+                public winRef: WindowRefService) {}
 
 
     // Init. Initialize anything more complicated than basic wiring.
     ngOnInit() {
+        this._window = this.winRef.nativeWindow;
+        
         // Firebase Objects Setup
         this.userAuth$ = this.afAuth.authState;
         this.userAuth$.take(1).subscribe(response => {
@@ -160,13 +167,17 @@ export class HomeComponent implements OnInit {
         return null;
     }
 
-    // Drag
+    // Enable drag to scroll
     doScroll(e: any): void {
+        let scrollTolerance = 50;
+
         // Collect necessary variables
         let src: Window = e.srcEvent.currentTarget;
         let scrollDistance: number = -1 * e.srcEvent.movementY;
 
+        if (Math.abs(scrollDistance) > scrollTolerance) {scrollDistance = 0}
+
         // Scroll
-        src.scrollBy(0, scrollDistance);
+        this._window.scrollBy(0, scrollDistance);
     }
 }
