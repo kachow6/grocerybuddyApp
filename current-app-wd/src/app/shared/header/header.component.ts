@@ -73,12 +73,15 @@ export class HeaderComponent implements OnInit {
 
         // Grabs and saves the user's Name off database.
         this.user = this.afAuth.authState;
-        this.user.take(1).subscribe(userSnap => {
-            if(!userSnap) {
-                this.userName = 'Buddy';
-            } else {
-                this.userName = userSnap.displayName;
-            }
+        this.user.subscribe(userSnap => {
+
+            this.userName = 'Buddy';
+            try {
+                if (userSnap.displayName.trim().length > 0) {
+                    this.userName = userSnap.displayName;
+                }
+            } catch (e) {}
+            
         });
 
         // Sets the current page title depending on the router.url location

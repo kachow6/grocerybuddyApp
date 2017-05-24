@@ -120,8 +120,13 @@ export class RegisterComponent {
                 /* If it's successful, update the user authentication record
                 // to include their display name. */
                 .then(user => {
-                    user.updateProfile({ displayName: name });
-                    this.router.navigateByUrl('/main');
+                    // console.log(user);
+                    // console.log("updating username");
+                    user.updateProfile({ displayName: name })
+                        .then(user => {
+                        // console.log("routing...");
+                        this.router.navigateByUrl('/main');
+                });
                 })
                 // Catch any errors and log them to the console.
                 .catch(e => console.log(e.message));
