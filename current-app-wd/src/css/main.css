@@ -269,6 +269,7 @@ html div.completer-dropdown {
 /* Buddy Helper CSS*/
 .buddyHelper {
   float: right;
+  position: relative;
   z-index: -1;
 }
 
