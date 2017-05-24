@@ -449,6 +449,10 @@ html div.completer-dropdown {
   }
 }
 
+.regCursor {
+  cursor: pointer;
+}
+
 /*! * * * * * * * * * * * * * * * * * * * *\
   CSShake :: Package
   v1.5.0
