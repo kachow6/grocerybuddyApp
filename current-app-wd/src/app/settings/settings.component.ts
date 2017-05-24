@@ -82,11 +82,13 @@ export class SettingsComponent {
             this.afAuth.auth.currentUser.updateProfile(
                 {displayName: this.nameInput,
                  photoURL: ''});
+            this.nameInput = "";
             this.nameChangeSuccess = "Name Change successful!";
             setTimeout(() => {
                     this.nameChangeSuccess = "";}, 2000);
         } else {
             this.nameChangeError = "Name field must be filled!";
+            this.nameInput = "";
         }
     }
 
