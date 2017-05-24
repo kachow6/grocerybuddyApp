@@ -197,8 +197,6 @@ div.item-delete-container {
     position: relative;
 }
 
-<<<<<<< HEAD
-=======
 /* NG2-COMPLETER (AUTOCOMPLETE) STYLES */
 
 ng2-completer.form-control {
@@ -257,7 +255,6 @@ html div.completer-dropdown {
   opacity: 0.5;
 }*/
 
->>>>>>> 3a412494d1b12284c19c3763af53f07ea3e8e141
 /* Modals */
 .modal {
   z-index: 6000;
