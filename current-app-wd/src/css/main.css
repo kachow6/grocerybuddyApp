@@ -197,12 +197,6 @@ div.item-delete-container {
     position: relative;
 }
 
-/* DEPRECATED: Caused some sort of weird error that prevented modals from being
-// closed. */
-/*.list-element:hover:not(#buttonHolder) {
-  opacity: 0.5;
-}*/
-
 /* Modals */
 .modal {
   z-index: 6000;
@@ -210,6 +204,82 @@ div.item-delete-container {
 
 .modal-footer {
   text-align: center;
+}
+
+/* Buddy Helper CSS*/
+.buddyHelper {
+  float: right;
+  z-index: -1;
+}
+
+.buddyHelper img {
+  margin-top: 20%;
+}
+
+.bubble {
+  margin: 12px;
+  display: none;
+  position: relative;
+  float: left;
+  width: 180px;
+  padding: 0px;
+  background: #FFA500;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  border: #FFA500 solid 5px;
+  top: 20%;
+  padding: 12px;
+  color: green;
+  font-family: Chewy;
+  font-size: 18px;
+}
+
+.bubble:after {
+  content: '';
+  position: absolute;
+  border-style: solid;
+  border-width: 9px 0 9px 15px;
+  border-color: transparent #FFA500;
+  display: block;
+  width: 0;
+  z-index: 1;
+  right: -15px;
+  top: 75%;
+}
+
+.bubble:before {
+  content: '';
+  position: absolute;
+  border-style: solid;
+  border-width: 13px 0 13px 19px;
+  border-color: transparent #FFA500;
+  display: block;
+  width: 0;
+  z-index: 0;
+  right: -24px;
+  top: 71%;
+}
+
+.plusButton {
+  font-family: "Arial Rounded MT Bold";
+  font-weight: 900;
+  font-size: 12px;
+  color: white;
+  background-color: #5cb85c;
+  border: solid 1px #5cb85c;
+  border-radius: 5px;
+  padding-left: 2px;
+  padding-right: 2px;
+  box-shadow: 1px 2px 4px rgba(0, 0, 0, .5);
+}
+
+.bubbleShow {
+  display:block;
+}
+
+.bubbleHide {
+  display:none;
 }
 
 /* Mobile View Adjustments */
@@ -245,6 +315,79 @@ div.item-delete-container {
   .main-container {
     top: 44px;
     margin-bottom: 60px;
+  }
+
+  /* Buddy Helper CSS*/
+  .buddyHelper {
+    position: fixed;
+    top: 27%;
+    right: 0;
+    z-index: -1;
+  }
+
+  .bubble {
+    margin: 12px;
+    display: none;
+    position: fixed;
+    width: 180px;
+    padding: 0px;
+    background: #FFA500;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    border: #FFA500 solid 5px;
+    top: 20%;
+    padding: 12px;
+    right: 110px;
+    color: green;
+    font-family: Chewy;
+    font-size: 18px;
+  }
+  .bubble:after {
+    content: '';
+    position: absolute;
+    border-style: solid;
+    border-width: 9px 0 9px 15px;
+    border-color: transparent #FFA500;
+    display: block;
+    width: 0;
+    z-index: 1;
+    right: -15px;
+    top: 75%;
+  }
+
+  .bubble:before {
+    content: '';
+    position: absolute;
+    border-style: solid;
+    border-width: 13px 0 13px 19px;
+    border-color: transparent #FFA500;
+    display: block;
+    width: 0;
+    z-index: 0;
+    right: -24px;
+    top: 71%;
+  }
+
+  .plusButton {
+    font-family: "Arial Rounded MT Bold";
+    font-weight: 900;
+    font-size: 12px;
+    color: white;
+    background-color: #5cb85c;
+    border: solid 1px #5cb85c;
+    border-radius: 5px;
+    padding-left: 2px;
+    padding-right: 2px;
+    box-shadow: 1px 2px 4px rgba(0, 0, 0, .5);
+  }
+
+  .bubbleShow {
+    display:block;
+  }
+
+  .bubbleHide {
+    display:none;
   }
 }
 

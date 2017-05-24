@@ -23,6 +23,12 @@
 <!-- Main Body Content -->
 <div class="main-container container col-lg-6 col-md-8 col-sm-10 col-lg-offset-3 col-md-offset-2 col-sm-offset-1">
 
+    <!--Buddy Helper that shows up when no list items are present-->
+    <div class="buddyHelper" *ngIf="(currentList$ | async)?.length==0">
+        <div class="bubble bubbleShow">There are no items in this list! Enter the name of an item and the quantity you want to buy above, then press <span class="plusButton">+</span> to add something!</div>
+        <img src="../../assets/imgs/buddies/carrot.png" height="200" width="140"/>
+    </div>
+
     <div *ngFor = "let item of currentList$ | async; let i = index"
          [class.item-delete-animation]="item.deleteFinalized"
          (panup)="doScroll($event)"
@@ -106,7 +112,7 @@
     </div>
 
     <!-- Reset and Checkout Button Container -->
-    <div class="checkout-container container-fluid list-element" id="buttonHolder">
+    <div class="checkout-container container-fluid list-element" id="buttonHolder" *ngIf="(currentList$ | async)?.length > 0">
         <div class="row">
             <button class="checkout-button btn btn-md btn-danger" (tap)="resetModal.show()" data-toggle="modal" data-target="#listModal">Reset List</button>
             <button class="checkout-button btn btn-md btn-success" (tap)="checkoutModal.show()" data-toggle="modal" data-target="#listModal">Checkout</button>

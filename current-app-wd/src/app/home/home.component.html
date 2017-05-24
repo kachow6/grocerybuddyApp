@@ -20,8 +20,11 @@
 
 <!-- Main Page Content -->
 <div class="main-container container col-lg-6 col-md-8 col-sm-10 col-lg-offset-3 col-md-offset-2 col-sm-offset-1">
-
-    <div class="buddyHelper" *ngIf="(homeList$ | async)?.length==0"><div class="bubble bubbleShow">There are no lists yet! Enter the name of a new list above and press <span class="plusButton">+</span> to get started!</div><img src="../../assets/imgs/buddies/carrot.png" height="160" width="120"/></div>
+    <!--Buddy Helper that shows up when no list items are present-->
+    <div class="buddyHelper" *ngIf="(homeList$ | async)?.length==0">
+        <div class="bubble bubbleShow">Welcome!<br><br>There are no lists yet! Enter the name of a new list above and press <span class="plusButton">+</span> to get started!</div>
+        <img src="../../assets/imgs/buddies/carrot.png" height="200" width="140"/>
+    </div>
 
     <!-- HTML for individual items in the main list -->
     <div *ngFor="let item of homeList$ | async; let i = index"
