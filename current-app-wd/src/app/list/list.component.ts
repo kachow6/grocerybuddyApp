@@ -240,11 +240,13 @@ export class ListComponent {
 
     // Enable drag to scroll
     doScroll(e: any): void {
-        // Collect necessary variables
-        let src: Window = e.srcEvent.currentTarget;
-        let scrollDistance: number = -1 * e.srcEvent.movementY;
+        try {
+            // Collect necessary variables
+            let src: Window = e.srcEvent.currentTarget;
+            let scrollDistance: number = -1 * e.srcEvent.movementY;
 
-        // Scroll
-        src.scrollBy(0, scrollDistance);
+            // Scroll
+            src.scrollBy(0, scrollDistance);
+        } catch (e) {}
     }
 }
