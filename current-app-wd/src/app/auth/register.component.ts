@@ -95,6 +95,7 @@ export class RegisterComponent {
 
         if(pass1 == pass2) {
             this.passwordconfirmed = true;
+            this.confirmpasswordmessage = "";
             return true;
         } else {
             this.confirmpasswordmessage = "This password must match the one above"

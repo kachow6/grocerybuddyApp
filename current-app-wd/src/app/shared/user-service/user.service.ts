@@ -52,9 +52,9 @@ export class UserService {
     static makeSearchable(str: string): string {
         str = str.trim().toLowerCase().replace(/ /g, '_');
 
-        if (str.slice(str.length-1) == 's') {
-            str = str.slice(0, str.length-1);
-        }
+        // if (str.slice(str.length-1) == 's') {
+        //     str = str.slice(0, str.length-1);
+        // }
 
         return str;
     }
