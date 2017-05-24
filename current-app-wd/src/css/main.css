@@ -253,7 +253,7 @@ html div.completer-dropdown {
 /* Resolves bottom margin issue on Firefox Browser */
 @-moz-document url-prefix() {
   .main-container {
-    margin-bottom: 80px;
+    margin-bottom: 145px;
   }
 }
 
