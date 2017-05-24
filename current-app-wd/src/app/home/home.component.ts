@@ -35,6 +35,9 @@ export class HomeComponent implements OnInit {
 
     homeList: ShoppingList[] = this.userService.getHome();
 
+    //Toggles buddy helper message.
+    helpMessage = false;
+
     // CONSTRUCTOR & INITIALIZATION.
     // Constructor. Inject all necessary dependencies.
     constructor(public userService: UserService,
@@ -167,6 +170,5 @@ export class HomeComponent implements OnInit {
 
         // Scroll
         src.scrollBy(0, scrollDistance);
-        
     }
 }

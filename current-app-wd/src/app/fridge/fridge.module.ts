@@ -6,11 +6,14 @@ import { FormsModule }             from '@angular/forms';
 
 import { BsRootModule }            from 'ngx-bootstrap';
 
+import { Ng2CompleterModule }      from 'ng2-completer';
+
 @NgModule({
     imports: [
         SharedModule,
         FormsModule,
-        BsRootModule
+        BsRootModule,
+        Ng2CompleterModule
     ],
     declarations: [
         FridgeComponent

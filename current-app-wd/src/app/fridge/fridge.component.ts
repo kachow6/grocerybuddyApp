@@ -8,6 +8,11 @@ import { Observable               } from 'rxjs/observable';
 import { AngularFireAuth          } from 'angularfire2/auth';
 import * as firebase                from 'firebase/app';
 
+import {
+         CompleterService,
+         CompleterData
+       }                               from 'ng2-completer';
+
 /**
  * This class represents the lazy loaded HomeComponent.
  */
@@ -50,11 +55,16 @@ export class FridgeComponent implements OnInit {
     stateSuccess: string = 'progress-bar-success';
     itemState:    string = '';
 
+    // Autofill Data.
+    autofillData: any[] = [];
+    dataService: CompleterData;
+
     // CONSTRUCTOR AND INITIALIZATION.
     // Used to inject all the necessary services and performr basic wiring.
     constructor(private userService: UserService,
                 public afAuth: AngularFireAuth,
-                public db: AngularFireDatabase) {}
+                public db: AngularFireDatabase,
+                public completerService: CompleterService) {}
 
     // OnInit method. Angular's recommended place to perform initialization.
     ngOnInit() {
@@ -69,6 +79,22 @@ export class FridgeComponent implements OnInit {
                     item.expiration = 1 - ((this.today - item.datePurchased) / item.shelfLife);
                 }
             });
+        });
+
+        // Grab autofill data and store it locally.
+        // Note: this is just grabbing the keys. The expiry data gets grabbed
+        // later.
+        this.db.list('expiryEstimate').take(1).subscribe(response => {
+
+            for (let item of response) {
+                console.log(item.$key);
+                this.autofillData.push({
+                    autofillId: (UserService.makePresentable(item.$key)),
+                    shelfLife: item.$value
+                });
+            }
+
+            this.dataService = this.completerService.local(this.autofillData, 'autofillId', 'autofillId');
         });
     }
 

@@ -13,7 +13,12 @@ import { Observable                  } from 'rxjs/observable';
 import { AngularFireAuth             } from 'angularfire2/auth';
 import * as firebase                   from 'firebase/app';
 
-import { Output, EventEmitter } from '@angular/core';
+import { Output, EventEmitter }        from '@angular/core';
+
+import {
+         CompleterService,
+         CompleterData
+       }                               from 'ng2-completer';
 
 /**
  * This class represents the lazy loaded HomeComponent.
@@ -29,25 +34,32 @@ export class ListComponent {
     readonly msPerDay: number = 86400000;
 
     // User input variables
-    nameInput: string = '';
-    renameInput: string = '';
-    numberInput: number;
+    nameInput:    string = '';
+    renameInput:  string = '';
+    numberInput:  number;
     checkedInput: boolean;
-    currentItem: any;
+    currentItem:  any;
 
     // Database & Auth Variables.
-    userId: string;
+    userId:       string;
     userAuth$:    Observable<firebase.User>;
     currentList$: FirebaseListObservable<any[]>;
+
+    // Autofill Data.
+    autofillData: any[] = [];
+    dataService: CompleterData;
 
     // CONSTRUCTOR & INITIALIZATION.
     // Used to inject all the necessary services and perform basic wiring.
     constructor(public userService: UserService,
                 public router: Router,
                 public afAuth: AngularFireAuth,
-                public db: AngularFireDatabase) {}
+                public db: AngularFireDatabase,
+                public completerService: CompleterService) {}
 
     ngOnInit() {
+
+
 
         let myDate: Date = new Date();
 
@@ -59,7 +71,7 @@ export class ListComponent {
         // Make sure a list is selected
 
 
-        // Firebase Objects Setup
+        // Firebase Objects Setup.
         this.userAuth$    = this.afAuth.authState;
         this.userAuth$.take(1).subscribe(response => {
             this.userId = response.uid;
@@ -67,26 +79,20 @@ export class ListComponent {
                           + this.userService.getCurrentList());
         });
 
-        /* ====== SUBSCRIPTIONS ====== */
-        /* userAuth$ subscription */
-        /* This callback function is invoked every time the userAuth$ observable
-        // is updated. The new data snapshot that is returned is passed into the
-        // callback via variable "userSnap."
-        */
-        // this.userAuth$.subscribe(userSnap => {
-        //     if (!userSnap) {
-        //         // If there is no user, clean out all the other local data.
-        //         this.currentList$ = null;
+        // Grab autofill data and store it locally.
+        // Note: this is just grabbing the keys. The expiry data gets grabbed
+        // later.
+        this.db.list('expiryEstimate').take(1).subscribe(response => {
 
-        //     } else {
-        //         // If there is a user...
-        //         // this.userId = userSnap.uid;
+            for (let item of response) {
+                this.autofillData.push({
+                    autofillId: (UserService.makePresentable(item.$key)),
+                    shelfLife: item.$value
+                });
+            }
 
-        //         // Set the homeList observer to track the right field in the db
-        //         this.currentList$ = this.db.list('/shoppingList/'
-        //                           + this.userService.getCurrentList());
-        //     } 
-        // });
+            this.dataService = this.completerService.local(this.autofillData, 'autofillId', 'autofillId');
+        });
     }
 
     // Method for adding a new item to a list from user input
