@@ -24,7 +24,7 @@
 
 		<!-- New Item Submit Button -->
         <div class="add-submit-button-container col-lg-1 col-md-1 col-sm-1 col-xs-1 col-lg-offset-1 col-md-offset-3 col-sm-offset-3">
-            <button #addToFridgeButton (click)=" addItemToFridgeList(nameInput, numberInput);" class="btn btn-lg btn-success title add-submit-button" type="button" data-toggle="dropdown"><span class="glyphicon glyphicon-plus"></span></button>
+            <button #addToFridgeButton (click)="addItemToFridgeList(nameInput, numberInput);  name.focus()" class="btn btn-lg btn-success title add-submit-button" type="button" data-toggle="dropdown"><span class="glyphicon glyphicon-plus"></span></button>
         </div>
     </div>
 </div>
