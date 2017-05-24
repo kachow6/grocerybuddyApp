@@ -89,7 +89,7 @@ export class FridgeComponent implements OnInit {
         this.db.list('expiryEstimate').take(1).subscribe(response => {
 
             for (let item of response) {
-                console.log(item.$key);
+                // console.log(item.$key);
                 this.autofillData.push({
                     autofillId: item.$key,
                     shelfLife: item.$value
@@ -100,18 +100,44 @@ export class FridgeComponent implements OnInit {
         });
     }
 
-    // Method for calculating the amount of days leftfor an item
-    itemDaysLeft(item): void {
-        if(item.expiration) {
-            let days: number;
-            days = Math.round(item.expiration * 10);
-            if (days <= 0) {
-                this.daysLeft = " - 0 days left";
-            } else {
-                this.daysLeft = " - " + days + " days left";
+    // // Method for calculating the amount of days leftfor an item
+    // itemDaysLeft(item): void {
+    //     if(item.expiration) {
+    //         let days: number;
+    //         days = Math.round(item.expiration * 10);
+    //         if (days <= 0) {
+    //             this.daysLeft = " - 0 days left";
+    //         } else {
+    //             this.daysLeft = " - " + days + " days left";
+    //         }
+    //     } else {
+    //         this.daysLeft = "";
+    //     }
+    // }
+
+    // Method for displaying the item purchase date
+    itemPurchDate(item): void {
+        if (item.shelfLife > 0) {
+            let days = Math.round(((this.today - item.datePurchased) / this.msPerDay) + item.shelfLife);
+            let month: string;
+            console.log(new Date(this.today).getMonth());
+            switch(new Date(this.today).getMonth()) {
+                case  0:  month = "January";    break;
+                case  1:  month = "February";   break;
+                case  2:  month = "March";      break;
+                case  3:  month = "April";      break;
+                case  4:  month = "May";        break;
+                case  5:  month = "June";       break;
+                case  6:  month = "July";       break;
+                case  7:  month = "August";     break;
+                case  8:  month = "September";  break;
+                case  9:  month = "October";    break;
+                case 10:  month = "November";   break;
+                case 11:  month = "December";   break;
             }
-        } else {
-            this.daysLeft = "";
+            this.daysLeft =  " | " + month + " " 
+                             + new Date(this.today).getDate()
+                             + ", " + new Date(this.today).getFullYear();
         }
     }
 
@@ -152,7 +178,7 @@ export class FridgeComponent implements OnInit {
 
     // Method for calculating the expiration bar's colour
     freshnessBarColour(item: any): string {
-        let exp = Math.round(((this.today - item.datePurchased) / this.msPerDay) + item.shelfLife);
+        let exp = Math.round(item.shelfLife - ((this.today - item.datePurchased) / this.msPerDay));
 
         if (exp > 5) {
             return this.stateSuccess;

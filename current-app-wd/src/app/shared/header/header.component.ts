@@ -143,12 +143,17 @@ export class HeaderComponent implements OnInit {
         let tempList: any[] = [];
 
         for (let item of list) {
-            let exp = 1 - ((this.today - item.datePurchased) / (item.shelfLife * this.msPerDay));
+            let exp = Math.round(item.shelfLife - ((this.today - item.datePurchased) / this.msPerDay))
+            // let exp = 1 - ((this.today - item.datePurchased) / (item.shelfLife * this.msPerDay));
 
-            if (exp < 0.33 && exp > 0) {
+            if (exp <= 2 && exp > 0) {
                 item.expiration = exp;
                 tempList.push(item);
             }
+            // if (exp < 0.33 && exp > 0) {
+            //     item.expiration = exp;
+            //     tempList.push(item);
+            // }
         }
         return tempList;
     }
@@ -174,14 +179,16 @@ export class HeaderComponent implements OnInit {
         this.numExpiring = countItemExpiring;
     }
 
-    // Method for calculating the expiration bar colour
-    calculateExp(expiration: number): string {
-        if (expiration < 0.33){
-            return this.stateDanger;
-        } else if (expiration >= 0.66){
+    // Method for calculating the expiration bar's colour
+    freshnessBarColour(item: any): string {
+        let exp = Math.round(item.shelfLife - ((this.today - item.datePurchased) / this.msPerDay));
+
+        if (exp > 5) {
             return this.stateSuccess;
-        } else {
+        } else if (exp > 2) {
             return this.stateWarning;
+        } else {
+            return this.stateDanger;
         }
     }
 

@@ -78,12 +78,12 @@
                 </div>
                 <div class="col-lg-11 col-md-11 col-sm-11 col-xs-11">
                     <div class="progress notification-bar">
-                        <div class="notification-bar-value progress-bar {{calculateExp(expiringitem.expiration)}}"
+                        <div class="notification-bar-value progress-bar {{freshnessBarColour(expiringitem)}}"
                              role="progressbar"
-                             aria-valuenow="(expiration * 100) + '%'"
+                             aria-valuenow="item.expiration * 100"
                              aria-valuemin="0"
                              aria-valuemax="100"
-                             [style.width]="(expiringitem.expiration * 100) + '%'">
+                             [style.width]="(1 - (today - expiringitem.datePurchased) / (expiringitem.shelfLife * msPerDay)) * 100 + '%'">
                         </div>
                     </div>
                 </div>
