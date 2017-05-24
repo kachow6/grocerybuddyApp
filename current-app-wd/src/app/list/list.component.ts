@@ -85,6 +85,10 @@ export class ListComponent {
         this.db.list('expiryEstimate').take(1).subscribe(response => {
 
             for (let item of response) {
+<<<<<<< HEAD
+=======
+                // console.log(item.$key);
+>>>>>>> raly-fridgeQuickFix
                 this.autofillData.push({
                     autofillId: (UserService.makePresentable(item.$key)),
                     shelfLife: item.$value
