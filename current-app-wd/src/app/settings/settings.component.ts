@@ -71,14 +71,16 @@ export class SettingsComponent {
     googleAccount(): boolean{
         let googleAcc = false;
         let facebookAcc = false;
-        if (this.afAuth.auth.currentUser.providerData["0"].providerId == "google.com") {
-            googleAcc = true;
-            this.googleMessage = "Account changes are disabled for Google accounts";
-            return googleAcc;
-        } else if (this.afAuth.auth.currentUser.providerData["0"].providerId == "facebook.com") {
-            facebookAcc = true;
-            this.facebookMessage = "Account changes are disabled for Facebook accounts"
-            return facebookAcc;
+        if(this.afAuth.auth.currentUser) {
+            if (this.afAuth.auth.currentUser.providerData["0"].providerId == "google.com") {
+                googleAcc = true;
+                this.googleMessage = "Account changes are disabled for Google accounts";
+                return googleAcc;
+            } else if (this.afAuth.auth.currentUser.providerData["0"].providerId == "facebook.com") {
+                facebookAcc = true;
+                this.facebookMessage = "Account changes are disabled for Facebook accounts"
+                return facebookAcc;
+            }
         }
     }
 
