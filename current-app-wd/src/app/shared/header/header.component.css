@@ -223,7 +223,10 @@ ul.nav-tabs > li a:hover {
 
 ul { list-style-type: none;
      text-decoration: none;
+     display: flex;
+     justify-content: center;
+
       }
 
-li { float: left;
+li {
     display: inline; }

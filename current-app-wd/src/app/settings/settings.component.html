@@ -34,7 +34,7 @@
                     <input [disabled] = "googleAccount()" [(ngModel)] = "nameInput" placeholder="New name" type="text" class="form-control" id="name" name="user_name" required>
                     <h5 id="nameOverwrite" class=confirm-name-success>{{nameChangeSuccess}}</h5>
                     <h5 id="nameOverwrite" class=confirm-name-error>{{nameChangeError}}</h5>
-                    <button type="button" class="btn btn-success btn-block" (click)="changeUserName()">Submit</button>
+                    <button type="button" class="btn btn-success btn-block" (click)="changeUserName()" [disabled] = "googleAccount()">Submit</button>
                 </div>
                 <div class="spacer"></div>
 
@@ -54,8 +54,8 @@
 
                 <!-- Clear and Submit Buttons -->
                 <h5 id="accountOverwrite" class="confirm-account-overwrite">{{accountOverwrite}}</h5>
-                <button type="button" class="btn btn-success btn-block" (click)="checkComplexity(password.value); confirmPassword(password.value, confirmpassword.value, true); changePassword();">Submit</button>
-                <button type="button" class="btn btn-danger btn-block" (click)="clearFields()">Clear</button>
+                <button type="button" class="btn btn-success btn-block" [disabled] = "googleAccount()" (click)="checkComplexity(password.value); confirmPassword(password.value, confirmpassword.value, true); changePassword();">Submit</button>
+                <button type="button" class="btn btn-danger btn-block" [disabled] = "googleAccount()" (click)="clearFields()">Clear</button>
             </div>
         </form>
     </div>
