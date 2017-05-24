@@ -1,11 +1,8 @@
-body, html {
-	height: 100%;
-	background-color: #5CB85C;
-}
-
 .container-fluid {
 	background-color: #5CB85C;
 	height: 100vh;
+	min-height: 850px;
+	width: 100%;
 }
 
 .logo-container {
@@ -126,11 +123,11 @@ span.buttonText {
 @media (min-width: 1200px) {
 
 	.logo-container {
-		margin-top: 12%;
+		margin-top: 150px;
 	}
 
 	.login-container {
-		margin-top: 8%;		
+		margin-top: 150px;		
 	}
 }
 
