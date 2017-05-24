@@ -1,8 +1,31 @@
+body, html {
+	height: 100%;
+	background-color: #5CB85C;
+}
+
+.container-fluid {
+	background-color: #5CB85C;
+	height: 100vh;
+}
+
 .logo-container {
+	background-color: white;
+	border-radius: 50%;
 	margin-top: 10px;
+	padding: 20px;
 }
 
 /* Login Form */
+.form-title {
+	text-align: center;
+	margin-top: -10px;
+}
+
+.form-title-text {
+	font-size: 6em;
+	margin-bottom: 30px;
+}
+
 .btn {
 	padding: 2px 0;
 }
@@ -11,13 +34,8 @@
 	padding: 2px 14px;
 }
 
-.login-form {
-	background-color: #5CB85C;
-}
-
 .email-signin {
 	color: white;
-	vertical-align: middle;
 }
 
 .email-signin-graphic {
@@ -32,6 +50,7 @@
 
 .login-container {
 	background-color: #5CB85C;
+	padding: 10px 25px;
 }
 
 .reminder-checkbox {
@@ -42,6 +61,12 @@
 .form-element {
 	padding: 0;
 	margin: 22px 0;
+}
+
+.form-btn {
+	margin: 1px 0 40px;
+	width: 49%;
+	vertical-align: center;
 }
 
 .confirm-login-password-error {
@@ -99,4 +124,23 @@ span.buttonText {
   font-weight: bold;
   /* Use the Roboto font that is loaded in the <head> */
   font-family: 'Roboto', sans-serif;
+}
+
+/* Display for large desktop view*/
+@media (min-width: 1200px) {
+
+	.logo-container {
+		margin-top: 12%;
+	}
+
+	.login-container {
+		margin-top: 8%;		
+	}
+}
+
+@media (max-width: 1200px) {
+
+	.form-title {
+		display: none;
+	}
 }

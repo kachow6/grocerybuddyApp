@@ -3,28 +3,24 @@
     <div class="row">
 
         <!-- Grocery Buddy Logo -->
-        <div class="login-container container col-lg-4 col-md-6 col-sm-6 col-xs-10 col-lg-offset-4 col-md-offset-3 col-sm-offset-3 col-xs-offset-1">
+        <div class="logo-container container col-lg-4 col-md-6 col-sm-8 col-xs-10 col-lg-offset-1 col-md-offset-3 col-sm-offset-2 col-xs-offset-1">
             <img src="../../assets/imgs/GroceryBuddyLogin.png" alt="Grocery Buddy" class="img-responsive buddyLogo">
         </div>
         
         <!-- Main Form Container -->
-        <div class="container col-lg-12 col-md-12 col-sm-12 col-xs-12 col-lg-offset-0 col-md-offset-0 col-sm-offset-0 col-xs-offset-0 form-container">
+        <div class="container col-lg-5 col-md-12 col-sm-12 col-xs-12 col-lg-offset-1 col-md-offset-0 col-sm-offset-0 col-xs-offset-0 login-container">
 
-            <div class="container col-lg-6 col-md-8 col-sm-8 col-xs-12 col-lg-offset-3 col-md-offset-2 col-sm-offset-2 col-xs-offset-0 login-form">
+            <div class="container col-lg-12 col-md-8 col-sm-10 col-xs-12 col-lg-offset-0 col-md-offset-2 col-sm-offset-1 col-xs-offset-0 login-form">
                 <div class="row">
 
                     <!-- Form Begins Here -->
                     <form method="post" id="registerform" action="">
-                        <a [routerLink]="['../login']">
-
-                            <!-- Back to Login Page -->
-                            <button type="button" class="btn btn-danger btn-block form-element">
-                                <span class="login-return-text">Back to Login</span>
-                            </button>
-                        </a>
+                        <div class="form-title title">
+                            <h1 class="form-title-text">Grocery Buddy</h1>
+                        </div>
                         
                         <!-- Sign-up Form -->
-                        <h4 class="title">Sign Up: </h4>
+                        <h3 class="title">Sign Up: </h3>
 
                         <!-- User Name -->
                         <div class="form-group form-element">
@@ -65,8 +61,15 @@
                             <a class="pull-right" href="#"><small>Forgot Password?</small></a>
                         </div>
                         
+                        <!-- Back to Login Page -->
+                        <a [routerLink]="['../login']">
+                            <button type="button" class="btn btn-danger btn-lg form-btn">
+                                <span class="login-return-text">Back to Login</span>
+                            </button>
+                        </a>
+
                         <!-- Submit Button -->
-                        <button type="button" class="btn btn-primary btn-block form-element"
+                        <button type="button" class="btn btn-primary btn-lg form-btn pull-right"
                                 (click)="checkName(); checkEmail(); signUpWithEmail(name.value, email.value, password.value, confirmpassword.value)">Submit</button>
                     </form>
                 </div>
