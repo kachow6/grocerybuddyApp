@@ -11,7 +11,7 @@ import * as firebase                from 'firebase/app';
 import {
          CompleterService,
          CompleterData
-       }                               from 'ng2-completer';
+       }                            from 'ng2-completer';
 
 /**
  * This class represents the lazy loaded HomeComponent.
@@ -46,7 +46,7 @@ export class FridgeComponent implements OnInit {
     numberInput       : number;
     expiration        : number;
     renameInput       : string = '';
-    newQtyInput       : number;
+    reQtyInput        : number;
     newShelfLifeInput : number;
     showEasterEgg     : boolean = false;
     daysLeft          : string;
@@ -124,7 +124,7 @@ export class FridgeComponent implements OnInit {
         if (itemName.length >= 1) {
             if(itemQty > 0) {
 
-                let fridgeItemRef = this.fridgeList$.push(new FridgeItem(itemName, itemQty, 10));
+                let fridgeItemRef = this.fridgeList$.push(new FridgeItem(itemName, itemQty, 0));
 
                 // Pull expiry info from the expiryEstimate reference in the
                 // DB, based on the "autofillId" property in the checked
@@ -151,13 +151,15 @@ export class FridgeComponent implements OnInit {
     }
 
     // Method for calculating the expiration bar's colour
-    freshnessBarColour(expiration: number): string {
-        if (expiration < 0.33){
-            return this.stateDanger;
-        } else if (expiration >= 0.66){
+    freshnessBarColour(item: any): string {
+        let exp = Math.round(((this.today - item.datePurchased) / this.msPerDay) + item.shelfLife);
+
+        if (exp > 5) {
             return this.stateSuccess;
-        } else {
+        } else if (exp > 2) {
             return this.stateWarning;
+        } else {
+            return this.stateDanger;
         }
     }
 
@@ -165,10 +167,11 @@ export class FridgeComponent implements OnInit {
     debug(item: any): void {
         // console.log("item exp - " + item.expiration);
         // console.log("today - datepur / shelf" + (this.today - item.datePurchased) / item.shelfLife);
-        console.log(this.today);
-        console.log(new Date(this.today).getDate());
-        console.log(new Date(this.today).getMonth());
-        console.log(new Date(this.today).getFullYear());
+        // console.log(item.expiration);
+        // console.log(new Date(this.today).getDate());
+        // console.log(new Date(this.today).getMonth());
+        // console.log(new Date(this.today).getFullYear());
+        // console.log(item.datePurchased);
     }
 
     // Method for checking if an item's freshness bar has run out
@@ -179,6 +182,7 @@ export class FridgeComponent implements OnInit {
         if (item.shelfLife > 0) {
             item.expiration = 1 - ((this.today - item.datePurchased) / (item.shelfLife * this.msPerDay));
             // Checks to see if the bar is empty
+            // console.log(item.expiration);
             if (item.expiration <= 0) {
             pastFreshness = true;
             }
@@ -197,7 +201,7 @@ export class FridgeComponent implements OnInit {
 
     // Method for editing the quantity of an item in the user's fridge list
     editQty(key: string) {
-        let newQty = this.newQtyInput;
+        let newQty = this.reQtyInput;
         if (newQty > 0) {
             this.db.object('/fridgeList/' + this.userId + '/' + key).update({'qty': newQty});
         }
@@ -206,11 +210,13 @@ export class FridgeComponent implements OnInit {
     // Method for getting the number of days remaining for an item.
     getDaysLeft(item: any) {
         let key = item.$key;
+        let daysLeft = Math.round(item.shelfLife - ((this.today - item.datePurchased) / this.msPerDay));
+        
         let days: number;
-        if (item.expiration <= 0) {
+        if (daysLeft <= 0) {
             this.newShelfLifeInput = 0;
         } else {
-            this.newShelfLifeInput = Math.round(item.expiration * 10)
+            this.newShelfLifeInput = daysLeft;
         }
         
     }
@@ -219,14 +225,12 @@ export class FridgeComponent implements OnInit {
     editShelfLife(item: any) {
 
         let key = item.$key;
-        let temp = item.shelfLife * item.shelfLife;
-        if (item.expiration < 0) {
-            this.db.object('/fridgeList/' + this.userId + '/' + key).update({'shelfLife': item.shelfLife 
-                                                                         + temp
-                                                                         + this.newShelfLifeInput});
-        }
-        console.log(item.shelfLife);
-        console.log(item.expiration);
+        // let newShelfLife = this.newShelfLifeInput + item.shelfLife;
+        // console.log(newShelfLife);
+        let change = Math.round(((this.today - item.datePurchased) / this.msPerDay) + this.newShelfLifeInput);
+            this.db.object('/fridgeList/' + this.userId + '/' + key).update({'shelfLife': change});
+        // console.log(item.shelfLife);
+        // console.log(item.expiration);
         }
 
         // let newShelfLife = this.newShelfLifeInput;
