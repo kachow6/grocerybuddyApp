@@ -120,8 +120,8 @@ export class FridgeComponent implements OnInit {
         if (item.shelfLife > 0) {
             let days = Math.round(((this.today - item.datePurchased) / this.msPerDay) + item.shelfLife);
             let month: string;
-            console.log(new Date(this.today).getMonth());
-            switch(new Date(this.today).getMonth()) {
+            console.log(new Date(item.datePurchased).getMonth());
+            switch(new Date(item.datePurchased).getMonth()) {
                 case  0:  month = "January";    break;
                 case  1:  month = "February";   break;
                 case  2:  month = "March";      break;
@@ -136,8 +136,8 @@ export class FridgeComponent implements OnInit {
                 case 11:  month = "December";   break;
             }
             this.daysLeft =  " | " + month + " " 
-                             + new Date(this.today).getDate()
-                             + ", " + new Date(this.today).getFullYear();
+                             + new Date(item.datePurchased).getDate()
+                             + ", " + new Date(item.datePurchased).getFullYear();
         }
     }
 
