@@ -27,8 +27,8 @@
 	padding: 2px 0;
 }
 
-.checkbox {
-	padding: 2px 14px;
+.forgot-password {
+	padding: 2px 14px 25px;
 }
 
 .email-signin-graphic {
@@ -57,7 +57,7 @@
 }
 
 .form-btn {
-	margin: 1px 0 40px;
+	margin: 1px 0 15px;
 	width: 49%;
 	vertical-align: center;
 }

@@ -32,12 +32,6 @@
                             <input #password type="password" class="form-control" id="password" placeholder="Password">
                         </div>
 
-                        <!-- Remember Me and Forgot Password -->
-                        <div class="checkbox row form-element">
-                            <label><input class="reminder-checkbox" (click)="debug()" type="checkbox"><small>Remember me</small></label>
-                            <a class="pull-right" href="#"><small>Forgot Password?</small></a>
-                        </div>
-
                         <!-- Sign Up Through Email -->                       
                         <div id="name"></div>
                         <a [routerLink]="['../register']">
@@ -48,6 +42,11 @@
                         
                         <!-- Form Submit Button -->
                         <button type="button" class="btn btn-primary btn-md pull-right form-btn" (click)="loginWithEmail(email.value,password.value)">Submit</button>
+
+                        <!-- Forgot Password -->
+                        <div class="forgot-password row">
+                            <a class="pull-right" href="#"><small>Forgot Password?</small></a>
+                        </div>
 
                         <!-- In the callback, you would hide the gSignInWrapper element on a successful sign in -->
                         <div id="gSignInWrapper btn-block">
