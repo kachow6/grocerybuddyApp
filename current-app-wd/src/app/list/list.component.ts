@@ -173,7 +173,8 @@ export class ListComponent {
                     // Pull expiry info from the expiryEstimate reference in the
                     // DB, based on the "autofillId" property in the checked
                     // item.
-                    this.db.object('expiryEstimate/' + i.autofillId)
+                    console.log(UserService.makeSearchable(i.autofillId));
+                    this.db.object('expiryEstimate/' + UserService.makeSearchable(i.autofillId))
                            .take(1).subscribe(expItem => {
                                if (expItem.$value) {
                                    fridgeItemRef.update({shelfLife: expItem.$value});
@@ -237,7 +238,7 @@ export class ListComponent {
         return null;
     }
 
-    // Drag
+    // Enable drag to scroll
     doScroll(e: any): void {
         // Collect necessary variables
         let src: Window = e.srcEvent.currentTarget;

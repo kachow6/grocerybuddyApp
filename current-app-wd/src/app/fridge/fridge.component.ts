@@ -155,7 +155,7 @@ export class FridgeComponent implements OnInit {
                 // Pull expiry info from the expiryEstimate reference in the
                 // DB, based on the "autofillId" property in the checked
                 // item.
-                this.db.object('expiryEstimate/' + fridgeItem.autofillId)
+                this.db.object('expiryEstimate/' + UserService.makeSearchable(fridgeItem.autofillId))
                        .take(1).subscribe(expItem => {
                            if (expItem.$value) {
                                fridgeItemRef.update({shelfLife: expItem.$value});
