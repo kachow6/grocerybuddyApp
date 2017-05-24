@@ -85,7 +85,7 @@ export class ListComponent {
         this.db.list('expiryEstimate').take(1).subscribe(response => {
 
             for (let item of response) {
-                console.log(item.$key);
+                // console.log(item.$key);
                 this.autofillData.push({
                     autofillId: item.$key,
                     shelfLife: item.$value
