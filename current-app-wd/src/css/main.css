@@ -197,11 +197,12 @@ div.item-delete-container {
     position: relative;
 }
 
-/* DEPRECATED: Caused some sort of weird error that prevented modals from being
-// closed. */
-/*.list-element:hover:not(#buttonHolder) {
-  opacity: 0.5;
-}*/
+/* Resolves bottom margin issue on Firefox Browser */
+@-moz-document url-prefix() {
+  .main-container {
+    margin-bottom: 80px;
+  }
+}
 
 /* Modals */
 .modal {
