@@ -93,7 +93,9 @@ export class SettingsComponent {
             this.nameInput = "";
             this.nameChangeSuccess = "Name Change successful!";
             setTimeout(() => {
-                    this.nameChangeSuccess = "";}, 2000);
+                    this.afAuth.auth.signOut();
+                    this.router.navigateByUrl('login');
+                    }, 2000);
         } else {
             this.nameChangeError = "Name field must be filled!";
             this.nameInput = "";
