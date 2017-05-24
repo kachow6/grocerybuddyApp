@@ -4,24 +4,6 @@
     <!-- MAIN PAGE CONTENT -->
     <div class="well">
         <form>
-            <!--<div class="form-group">-->
-
-                <!-- Notifications Settings Begins -->
-                <!--<h3 class="notifications-title">Notifications:</h3>
-                <div class="enabled-container row col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <label><h4 class="enabled-text">Enabled:</h4></label>
-                    <input class="enabled-checkbox" type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="default">
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label for="notifyuser"><h5>Notify me at:</h5></label>
-                <input type="time" class="form-control" id="notifyuser">
-            </div>
-            <div class="form-group">
-                <label for="reminder"><h5>Remind me again at:</h5></label>
-                <input type="time" class="form-control" id="reminder">
-            </div>-->
 
             <!-- Account Settings Begins -->
             <h3>Account Settings:</h3>
@@ -31,7 +13,7 @@
 
                     <!-- Account Name -->
                     <label for="name"><h5 class="setting-option">Change Username:</h5></label>
-                    <input [disabled] = "googleAccount()" [(ngModel)] = "nameInput" placeholder="New name" type="text" class="form-control" id="name" name="user_name" required>
+                    <input [disabled] = "googleAccount()" [(ngModel)] = "nameInput" type="text" class="form-control" id="name" name="user_name" required>
                     <h5 id="nameOverwrite" class=confirm-name-success>{{nameChangeSuccess}}</h5>
                     <h5 id="nameOverwrite" class=confirm-name-error>{{nameChangeError}}</h5>
                     <button type="button" class="btn btn-success btn-block" (click)="changeUserName()" [disabled] = "googleAccount()">Submit</button>
@@ -42,14 +24,14 @@
                 <div class="form-group">
                     <label for="password"><h5 class="setting-option">Change Password:</h5></label>
                         <h5>Must contain at least one uppercase and lower case letter as well as a number and a special character (ie. $, #, !, %)</h5>
-                    <input type="password" placeholder="New password" [disabled] = "googleAccount()" class="form-control" id="password" name="user_password" #password [(ngModel)]="userpassword" required>
+                    <input type="password" [disabled] = "googleAccount()" class="form-control" id="password" name="user_password" #password [(ngModel)]="userpassword" required>
                 </div>
 
                 <!-- Account Confirm Password -->
                 <div class="form-group">
                     <label for="confirmpassword"><h5 class="setting-option"h5>Confirm Password:</h5></label>
                     <h5 id="confirmpassworderror" class="confirm-error-msg error">{{confirmpasswordmessage}}</h5>
-                    <input type="password" placeholder="New password" [disabled] = "googleAccount()" class="form-control" id="confirmpassword" name="user_confirmpassword" #confirmpassword [(ngModel)]="userconfirmpassword" required>
+                    <input type="password" [disabled] = "googleAccount()" class="form-control" id="confirmpassword" name="user_confirmpassword" #confirmpassword [(ngModel)]="userconfirmpassword" required>
                 </div>
 
                 <!-- Clear and Submit Buttons -->
