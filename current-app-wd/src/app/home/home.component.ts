@@ -150,6 +150,7 @@ export class HomeComponent implements OnInit {
             // Delete Reference in Home List
             this.db.object('/homeList/'
                            + this.userId + '/' + key).remove();
+            this.userService.setCurrentList(null);
         }, 500);
     }
 
