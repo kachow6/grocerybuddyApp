@@ -25,20 +25,20 @@
                         <!-- User Name -->
                         <div class="form-group form-element">
                             <h5 id="confirmpassworderror" class="confirm-error-msg error">{{confirmNameMessage}}</h5>
-                            <input [(ngModel)]="userName" #name type="name" class="form-control" id="name" placeholder="Name" name="user_name" required>
+                            <input [(ngModel)]="userName" #name (keyup.enter)="email.focus()" type="name" class="form-control" id="name" placeholder="Name" name="user_name" required>
                         </div>
 
                         <!-- User Email -->
                         <div class="form-group form-element">
                             <h5 id="confirmpassworderror" class="confirm-error-msg error">{{confirmEmailMessage}}</h5>
-                            <input [(ngModel)]="userEmail" #email type="email" class="form-control" id="email" placeholder="Email" name="user_email" required>
+                            <input [(ngModel)]="userEmail" #email (keyup.enter)="password.focus()" type="email" class="form-control" id="email" placeholder="Email" name="user_email" required>
                         </div>
 
                         <!-- User Password -->
                         <div class="form-group form-element">
                             <h5 class="title">Must contain at least one uppercase and lower case letter as well as a number and a special character (ie. $, #, !, %). Must also have a minimum length of 6 characters.</h5>
 
-                            <input #password type="password" class="form-control" id="password" placeholder="Password" name="user_password" (blur)="checkComplexity(password.value)" [(ngModel)]="userpassword" required>
+                            <input #password type="password" class="form-control" id="password" placeholder="Password" name="user_password" (blur)="checkComplexity(password.value)" (keyup.enter)="confirmpassword.focus()" [(ngModel)]="userpassword" required>
                         </div>
 
                         <!-- User Confirm Password -->
@@ -50,6 +50,7 @@
                                    id="confirmpassword"
                                    placeholder="Confirm Password"
                                    name="user_confirmpassword"
+                                   (keyup.enter)="submit.click()"
                                    (blur)="confirmPassword(password.value, confirmpassword.value, true)"
                                    [(ngModel)]="userconfirmpassword"
                                    required>
@@ -69,7 +70,7 @@
                         </a>
 
                         <!-- Submit Button -->
-                        <button type="button" class="btn btn-primary btn-md form-btn pull-right"
+                        <button type="button" class="btn btn-primary btn-md form-btn pull-right" #submit
                                 (click)="checkName(); checkEmail(); signUpWithEmail(name.value, email.value, password.value, confirmpassword.value)">Submit</button>
                     </form>
                 </div>
