@@ -55,12 +55,6 @@
                                    [(ngModel)]="userconfirmpassword"
                                    required>
                         </div>
-
-                        <!-- Remember Me and Forgot Password Options -->
-                        <div class="checkbox row form-element">
-                            <label><input class="remember-checkbox" type="checkbox"><small>Remember me</small></label>
-                            <a class="pull-right" href="#"><small>Forgot Password?</small></a>
-                        </div>
                         
                         <!-- Back to Login Page -->
                         <a [routerLink]="['../login']">
@@ -72,6 +66,13 @@
                         <!-- Submit Button -->
                         <button type="button" class="btn btn-primary btn-md form-btn pull-right" #submit
                                 (click)="checkName(); checkEmail(); signUpWithEmail(name.value, email.value, password.value, confirmpassword.value)">Submit</button>
+
+                        <!-- Forgot Password -->
+                        <div class="forgot-password row">
+                            <a class="pull-right" href="#">
+                                <small>Forgot Password?</small>
+                            </a>
+                        </div>
                     </form>
                 </div>
             </div>
