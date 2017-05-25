@@ -165,6 +165,12 @@
     height: 100px;
 }
 
+.notification-modal-element {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
 .wiggle:hover{
     animation: none;
 }
