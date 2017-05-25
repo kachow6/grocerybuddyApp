@@ -52,6 +52,10 @@
 		height: 60%;
 		z-index: 1;
 	}
+
+	.buddyHelper img {
+		padding-right: 10px;
+	}
 }
 
 /* Fridge Options Modal */
@@ -115,5 +119,5 @@
 }
 
 .bubble {
-	margin-right: 30px;
+	margin-right: 20px;
 }
