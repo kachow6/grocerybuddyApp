@@ -150,6 +150,7 @@
     z-index: 5000;
     min-width: 400px;
     top: 0;
+    box-shadow: 0 0 0.1em rgba(0,0,0,0.3);
 }
 
 .navbar-header {
@@ -210,6 +211,16 @@ ul.nav-tabs > li a {
 /*ul.nav-tabs > li a:hover {
     background-color: #34E52E;
 }*/
+
+.navbar-fixed-bottom ul {
+    box-shadow: 0 0 1.5em rgba(0,0,0,0.18);
+    padding: 0;
+    margin: 0;
+}
+
+.navbar-fixed-bottom ul li {
+    margin-top: 0;
+}
 
 ul.nav-tabs > li a.active-link {
     background-color: #34E52E;
