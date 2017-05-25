@@ -27,10 +27,6 @@
 	padding: 2px 0;
 }
 
-.forgot-password {
-	padding: 2px 14px 25px;
-}
-
 .email-signin-graphic {
 	font-size: 25px;
 	padding-right: 10px;
@@ -57,7 +53,7 @@
 }
 
 .form-btn {
-	margin: 1px 0 15px;
+	margin: 1px 0 40px;
 	width: 49%;
 	vertical-align: center;
 }

@@ -194,7 +194,7 @@ div.item-delete-container {
 .list-element {
   background-color: #E5E5E5;
   border: 3px solid white;
-    position: relative;
+  position: relative;
 }
 
 /* NG2-COMPLETER (AUTOCOMPLETE) STYLES */
@@ -269,6 +269,7 @@ html div.completer-dropdown {
 /* Buddy Helper CSS*/
 .buddyHelper {
   float: right;
+  position: relative;
   z-index: -1;
 }
 
