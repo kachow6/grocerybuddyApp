@@ -31,7 +31,7 @@
          (panup)="doScroll($event)"
          (pandown)="doScroll($event)"
          [class.item-delete-animation]="item.deleteFinalized"
-         class="container-fluid list-element item-delete-container listItem" [class.selected]="item.$key == selectedList">
+         class="container-fluid list-element item-delete-container" [class.selected]="item.$key == selectedList">
 
         <!-- Swipe left delete interface -->
        <div class="list-item-swipe-display swipe-left"
@@ -103,4 +103,9 @@
         </div>
 
     </div>
+</div>
+
+<!-- Background Image Buddies -->
+<div class="background-img container col-lg-6 col-md-8 col-sm-8 col-xs-12 col-lg-offset-3 col-md-offset-2 col-sm-offset-2 col-xs-offset-0">
+    <img class="img-responsive" src="../../assets/imgs/decoration/bg3.png"/>
 </div>
