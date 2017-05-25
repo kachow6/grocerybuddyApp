@@ -207,9 +207,9 @@ ul.nav-tabs > li a {
     font-size: 1.4em;
 }
 
-ul.nav-tabs > li a:hover {
+/*ul.nav-tabs > li a:hover {
     background-color: #34E52E;
-}
+}*/
 
 ul.nav-tabs > li a.active-link {
     background-color: #34E52E;
