@@ -59,6 +59,12 @@
 	padding: 10px;
 }
 
+.fridge-options-title {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
 .modal-body {
 	padding-bottom: 0;
 }
