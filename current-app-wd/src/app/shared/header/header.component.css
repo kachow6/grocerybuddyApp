@@ -205,6 +205,10 @@ ul.nav-tabs > li a:hover {
     background-color: #34E52E;
 }
 
+ul.nav-tabs > li a.active-link {
+    background-color: #34E52E;
+}
+
 /* Mobile View Adjustments */
 @media only screen and (max-width: 420px) {
     .notification-button {
