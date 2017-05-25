@@ -61,6 +61,10 @@
 	display: none;
 }
 
+.buddyHelper img {
+	padding-right: 5px;
+}
+
 /*.blankfill {*/
 	/*height: 200px;*/
 /*}*/

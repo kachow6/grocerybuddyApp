@@ -289,7 +289,7 @@ html div.completer-dropdown {
   -moz-border-radius: 10px;
   border-radius: 10px;
   border: #FFA500 solid 5px;
-  top: 20%;
+  top: 50px;
   padding: 12px;
   color: green;
   font-family: Chewy;
@@ -345,8 +345,9 @@ html div.completer-dropdown {
 
 .more{
   text-decoration: underline;
-  font-size: 12px;
   float: right;
+  font-family: Calibri;
+  font-size: 14px;
 }
 
 /* Mobile View Adjustments */
@@ -455,12 +456,6 @@ html div.completer-dropdown {
 
   .bubbleHide {
     display:none;
-  }
-
-  .more{
-    text-decoration: underline;
-    font-size: 12px;
-    float: right;
   }
 }
 
