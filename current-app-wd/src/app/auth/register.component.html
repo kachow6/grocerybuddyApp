@@ -37,7 +37,7 @@
                         <!-- User Password -->
                         <div class="form-group form-element">
                             <h5 class="title">Must contain at least one uppercase and lower case letter as well as a number and a special character (ie. $, #, !, %). Must also have a minimum length of 6 characters.</h5>
-
+                            <h5 id="confirmpassworderror" class="confirm-error-msg error">{{passwordmessage}}</h5>
                             <input #password type="password" class="form-control" id="password" placeholder="Password" name="user_password" (blur)="checkComplexity(password.value)" (keyup.enter)="confirmpassword.focus()" [(ngModel)]="userpassword" required>
                         </div>
 

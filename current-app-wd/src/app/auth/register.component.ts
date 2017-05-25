@@ -22,18 +22,18 @@ export class RegisterComponent {
     emailState          : boolean = false;
     passwordcomplex     : boolean;
     passwordconfirmed   : boolean;
-    passwordmessage     : string;
+    passwordmessage     : string  = "";
 
     // Error validation messages
-    confirmNameMessage     : string ="";
-    confirmEmailMessage    : string ="";
-    confirmpasswordmessage : string ="";
+    confirmNameMessage     : string = "";
+    confirmEmailMessage    : string = "";
+    confirmpasswordmessage : string = "";
 
     // User Inputs
     userName             : string = "";
     userEmail            : string = "";
     userpassword         : string = "";
-    userconfirmpassword  : string ="";
+    userconfirmpassword  : string = "";
 
     // Initializing user firebase object
     user: Observable<firebase.User>;
@@ -81,7 +81,7 @@ export class RegisterComponent {
             this.passwordcomplex = true;
             return true;
         } else {
-            this.passwordmessage = "";
+            this.passwordmessage = "The password must meet the criteria above";
             // this.userpassword = null;
             return false;
         }
