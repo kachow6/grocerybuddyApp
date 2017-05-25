@@ -34,7 +34,7 @@
 
 	<!--Buddy Helper that shows up when no list items are present-->
 	<div class="buddyHelper" *ngIf="(fridgeList$ | async)?.length==0" (tap)="changeQuote()">
-		<div class="bubble bubbleShow">{{helperQuote}} <br><br><span class="more">Learn more...</span></div>
+		<div class="bubble bubbleShow">{{helperQuote}} <br><br><span class="more">Click to learn more...</span></div>
 		<img class="jump" src="../../assets/imgs/buddies/tomato.png" height="200" width="100"/>
 	</div>
 
