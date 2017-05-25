@@ -27,3 +27,10 @@
 .selected {
 	background-color: orange;
 }
+
+/* Mobile View Adjustments */
+@media only screen and (max-width: 420px) {
+	.buddyHelper img {
+		padding-left: 20px;
+	}
+}

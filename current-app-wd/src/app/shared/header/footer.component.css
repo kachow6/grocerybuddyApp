@@ -1,3 +1,7 @@
+.bot-bar {
+	position: fixed;
+}
+
 /* Mobile View Adjustments */
 @media only screen and (max-height: 550px) {
 	
