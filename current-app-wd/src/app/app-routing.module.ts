@@ -11,7 +11,7 @@ import { LoggedOutGuard } from './shared/user-service/logged-out-guard.service';
             {
                 path: '',
                 pathMatch: 'full',
-                redirectTo: '/main',
+                redirectTo: '/main/home',
             },
             {
                 path: 'login',
