@@ -7,6 +7,9 @@
 .fridge-item-qty {
 	margin-top: 3px;
 	text-align: right;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 
 .fridge-menu-options {
@@ -54,6 +57,12 @@
 /* Fridge Options Modal */
 .fridge-options-modal-header {
 	padding: 10px;
+}
+
+.fridge-options-title {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 
 .modal-body {

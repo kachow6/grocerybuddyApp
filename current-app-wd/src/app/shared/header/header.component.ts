@@ -89,7 +89,7 @@ export class HeaderComponent implements OnInit {
             let currentPage = snap.urlAfterRedirects;
 
             // If User is on HOME PAGE
-            if (currentPage ===  '/main') {
+            if (currentPage ===  '/main/home') {
                 this.pageTitle = 'Grocery Buddy';}
             // IF the user is on FRIDGE page
             else if (currentPage === '/main/fridge') {

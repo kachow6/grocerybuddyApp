@@ -165,6 +165,12 @@
     height: 100px;
 }
 
+.notification-modal-element {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
 .wiggle:hover{
     animation: none;
 }
@@ -202,6 +208,10 @@ ul.nav-tabs > li a {
 }
 
 ul.nav-tabs > li a:hover {
+    background-color: #34E52E;
+}
+
+ul.nav-tabs > li a.active-link {
     background-color: #34E52E;
 }
 

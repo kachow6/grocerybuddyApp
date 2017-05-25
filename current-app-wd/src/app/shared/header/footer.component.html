@@ -1,9 +1,22 @@
 <div class="container-fluid bot-bar col-lg-12 col-md-12 col-sm-12 col-xs-12">
     <nav class="nav navbar-fixed-bottom">
+
         <ul class='nav nav-tabs'>
-            <li><a data-toggle="tab" class="glyphicon glyphicon-th-list" [routerLink]="['list']"></a></li>
-            <li><a data-toggle="tab" class="glyphicon glyphicon-home" [routerLink]="['home']"></a></li>
-            <li><a data-toggle="tab" [routerLink]="['fridge']"><img src="../../../assets/imgs/icons/fridgeicon.png" width="24" height="28"></a></li>
+            <li><a data-toggle="tab"
+                   class="glyphicon glyphicon-th-list"
+                   [routerLink]="['list']"
+                   routerLinkActive="active-link"></a></li>
+
+            <li><a data-toggle="tab"
+                   class="glyphicon glyphicon-home"
+                   [routerLink]="['home']"
+                   routerLinkActive="active-link"></a></li>
+
+            <li><a data-toggle="tab"
+                   class="glyphicon glyphicon-home"
+                   [routerLink]="['fridge']"
+                   routerLinkActive="active-link"><img src="../../../assets/imgs/icons/fridgeicon.png" width="24" height="28"></a></li>
         </ul>
+
     </nav>
 </div>
