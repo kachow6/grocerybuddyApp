@@ -35,7 +35,7 @@
     <!--Buddy Helper that shows up when no list items are present-->
     <div class="buddyHelper" *ngIf="(currentList$ | async)?.length==0">
         <div class="bubble bubbleShow">There are no items in this list! Enter the name of an item and the quantity you want to buy above, then press <span class="plusButton">+</span> to add something!</div>
-        <img src="../../assets/imgs/buddies/carrot.png" height="200" width="140"/>
+        <img class="jump" src="../../assets/imgs/buddies/banana.png" height="200" width="140"/>
     </div>
 
     <div *ngFor = "let item of currentList$ | async; let i = index"

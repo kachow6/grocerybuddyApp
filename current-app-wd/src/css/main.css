@@ -455,6 +455,19 @@ html div.completer-dropdown {
   cursor: pointer;
 }
 
+/*Bounce animation*/
+
+@keyframes jump {
+  0%   {transform: translate3d(0,0,0) scale3d(1,1,1);}
+  80%   {transform: translate3d(0,0,0) scale3d(1,1,1);}
+  90%  {transform: translate3d(0,-30,0) scale3d(1,1,1);}
+  100% {transform: translate3d(0,30%,0) scale3d(1.2,.8,1);}
+}
+.jump {
+  transform-origin: 50% 50%;
+  animation: jump 3s linear alternate infinite;
+}
+
 /*! * * * * * * * * * * * * * * * * * * * *\
   CSShake :: Package
   v1.5.0
