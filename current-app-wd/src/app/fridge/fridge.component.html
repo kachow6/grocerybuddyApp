@@ -33,8 +33,8 @@
 <div class="main-container container col-lg-6 col-md-8 col-sm-10 col-lg-offset-3 col-md-offset-2 col-sm-offset-1">
 
 	<!--Buddy Helper that shows up when no list items are present-->
-	<div class="buddyHelper" *ngIf="(fridgeList$ | async)?.length==0">
-		<div class="bubble bubbleShow">There are no items your fridge! Check out an item from your grocery list or enter an item and the quantity above, then press <span class="plusButton">+</span> to add something!</div>
+	<div class="buddyHelper" *ngIf="(fridgeList$ | async)?.length==0" (tap)="changeQuote()">
+		<div class="bubble bubbleShow">{{helperQuote}} <br><br><span class="more">Learn more...</span></div>
 		<img class="jump" src="../../assets/imgs/buddies/tomato.png" height="200" width="100"/>
 	</div>
 

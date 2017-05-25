@@ -1,4 +1,5 @@
 import { Component, OnInit           } from '@angular/core';
+import { HELPER_QUOTES               } from './list.helperquotes';
 import { UserService                 } from '../shared/user-service/user.service';
 import { ShoppingList,
          ShoppingItem,
@@ -32,6 +33,10 @@ import {
 
 export class ListComponent {
     readonly msPerDay: number = 86400000;
+
+    //helper quote index
+    quoteIndex: number = 0;
+    helperQuote: string = HELPER_QUOTES[this.quoteIndex];
 
     // User input variables
     nameInput:    string = '';
@@ -246,5 +251,15 @@ export class ListComponent {
 
         // Scroll
         src.scrollBy(0, scrollDistance);
+    }
+
+    //changes helper quotes based on incrementing index
+    changeQuote(): void {
+        this.quoteIndex ++;
+        if (this.quoteIndex >= HELPER_QUOTES.length) {
+            this.quoteIndex = 0;
+        }
+        this.helperQuote = HELPER_QUOTES[this.quoteIndex];
+        console.log(this.quoteIndex);
     }
 }

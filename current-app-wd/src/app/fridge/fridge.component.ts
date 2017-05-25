@@ -1,4 +1,5 @@
 import { Component, OnInit        } from '@angular/core';
+import { HELPER_QUOTES            } from './fridge.helperquotes';
 import { UserService              } from '../shared/user-service/user.service';
 import { FridgeItem, DateTools    } from '../shared/user-service/user';
 import { AngularFireDatabase,
@@ -27,6 +28,10 @@ export class FridgeComponent implements OnInit {
 
     readonly msPerDay: number = 86400000;
     readonly today        : number = new Date().getTime();
+
+    //helper quote index
+    quoteIndex: number = 0;
+    helperQuote: string = HELPER_QUOTES[this.quoteIndex];
 
     // Local access variables to keep track of user name, etc.
     userId: string;
@@ -308,6 +313,14 @@ export class FridgeComponent implements OnInit {
 
         // Scroll
         src.scrollBy(0, scrollDistance);
-        
+    }
+    //changes helper quotes based on incrementing index
+    changeQuote(): void {
+        this.quoteIndex ++;
+        if (this.quoteIndex >= HELPER_QUOTES.length) {
+            this.quoteIndex = 0;
+        }
+        this.helperQuote = HELPER_QUOTES[this.quoteIndex];
+        console.log(this.quoteIndex);
     }
 }
