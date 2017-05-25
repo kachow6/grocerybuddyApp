@@ -1,6 +1,8 @@
 .container-fluid {
 	background-color: #5CB85C;
 	height: 100vh;
+	min-height: 800px;
+	width: 100%;
 }
 
 .logo-container {
