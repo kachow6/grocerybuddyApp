@@ -64,6 +64,8 @@ button {
   height: 40px;
   padding: 8px 18px;
   text-decoration: none;
+  
+  box-shadow: 1px 1px 1px rgba(0,0,0,0.05);
 }
 
 button:hover {
