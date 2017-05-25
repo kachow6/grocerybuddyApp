@@ -131,7 +131,6 @@ html body div.item-delete-animation {
 
 div.item-delete-container {
   max-height: 100px;
-  margin: 0px;
 }
 
 /* ===== END OF SWIPE-TO-DELETE CSS ===== */
@@ -190,10 +189,17 @@ div.item-delete-container {
   margin-bottom: 60px;
 }
 
+.background-img {
+  bottom: 80px;
+  opacity: 0.2;
+  position: fixed;
+  z-index: -3;
+}
+
 /* List Items */
 .list-element {
   background-color: #E5E5E5;
-  border: 3px solid white;
+  margin: 5px 0;
   position: relative;
 }
 
