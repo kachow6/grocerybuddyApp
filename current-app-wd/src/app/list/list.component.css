@@ -4,7 +4,7 @@
 }
 
 .list-item-quantity {
-	margin-top: 25px;
+	margin-top: 20px;
 	padding-right: 0;
 }
 
@@ -59,4 +59,17 @@
 /* Checked Out Items */
 .hidden {
 	display: none;
+}
+
+.buddyHelper img {
+	padding-right: 5px;
+}
+
+/*.blankfill {*/
+	/*height: 200px;*/
+/*}*/
+
+.list-item-swipe-display {
+  padding-top: 0.9em;
+  padding-bottom: 0.9em;
 }

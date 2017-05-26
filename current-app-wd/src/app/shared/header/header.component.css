@@ -39,6 +39,7 @@
     overflow-x: hidden;
     transition: 0.5s;
     padding-top: 60px;
+    box-shadow: 1px 0 1.5em rgba(0, 0, 0, .2);
 }
 
 .sidenav a {
@@ -100,6 +101,12 @@
     animation: none;
 }
 
+.social {
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0;
+}
+
 .ecoders-logo {
     margin-bottom: 5px;
     margin-top: 50px;
@@ -144,6 +151,7 @@
     z-index: 5000;
     min-width: 400px;
     top: 0;
+    box-shadow: 0 0 0.1em rgba(0,0,0,0.3);
 }
 
 .navbar-header {
@@ -157,6 +165,12 @@
 
 .expiring-element {
     height: 100px;
+}
+
+.notification-modal-element {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .wiggle:hover{
@@ -195,7 +209,21 @@ ul.nav-tabs > li a {
     font-size: 1.4em;
 }
 
-ul.nav-tabs > li a:hover {
+/*ul.nav-tabs > li a:hover {
+    background-color: #34E52E;
+}*/
+
+.navbar-fixed-bottom ul {
+    box-shadow: 0 0 1.5em rgba(0,0,0,0.18);
+    padding: 0;
+    margin: 0;
+}
+
+.navbar-fixed-bottom ul li {
+    margin-top: 0;
+}
+
+ul.nav-tabs > li a.active-link {
     background-color: #34E52E;
 }
 
@@ -220,3 +248,13 @@ ul.nav-tabs > li a:hover {
         padding-top: 20px;
     }
 }
+
+ul { list-style-type: none;
+     text-decoration: none;
+     display: flex;
+     justify-content: center;
+
+      }
+
+li {
+    display: inline; }

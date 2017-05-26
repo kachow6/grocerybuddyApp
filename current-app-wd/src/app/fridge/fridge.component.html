@@ -5,7 +5,16 @@
 
 		<!-- New Item Name Input -->
         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6 col-lg-offset-2 col-md-offset-1 col-sm-offset-1 new-object-input">
-            <input #name [(ngModel)] = "nameInput" type="text" class="form-control input-sm" id="new-item-form" placeholder="New Item" (keyup.enter)="number.focus()">
+            <ng2-completer
+                #name
+                [(ngModel)]="nameInput"
+                [datasource]="dataService"
+                [minSearchLength]="1"
+                type="text"
+                class="form-control"
+                id="new-item-form"
+                placeholder="New Item"
+                (keyup.enter)="number.focus()"></ng2-completer>
         </div>
 
 		<!-- New Item Qty Input -->
@@ -15,7 +24,7 @@
 
 		<!-- New Item Submit Button -->
         <div class="add-submit-button-container col-lg-1 col-md-1 col-sm-1 col-xs-1 col-lg-offset-1 col-md-offset-3 col-sm-offset-3">
-            <button #addToFridgeButton (click)=" addItemToFridgeList(nameInput, numberInput);" class="btn btn-lg btn-success title add-submit-button" type="button" data-toggle="dropdown"><span class="glyphicon glyphicon-plus"></span></button>
+            <button #addToFridgeButton (click)="addItemToFridgeList(nameInput, numberInput);  name.focus()" class="btn btn-lg btn-success title add-submit-button" type="button" data-toggle="dropdown"><span class="glyphicon glyphicon-plus"></span></button>
         </div>
     </div>
 </div>
@@ -23,13 +32,20 @@
 <!-- Main Content Body -->
 <div class="main-container container col-lg-6 col-md-8 col-sm-10 col-lg-offset-3 col-md-offset-2 col-sm-offset-1">
 
+	<!--Buddy Helper that shows up when no list items are present-->
+	<div class="buddyHelper" *ngIf="(fridgeList$ | async)?.length==0" (tap)="changeQuote()">
+		<div class="bubble bubbleShow">{{helperQuote}} <br><br><span class="more">Click to learn more...</span></div>
+		<img class="jump" src="../../assets/imgs/buddies/tomato.png" height="200" width="100"/>
+	</div>
+
     <!-- Individual Items Element. A new version of this is created for each
          item in the list. -->
 	<div *ngFor="let item of fridgeList$ | async; let i = index"
          (panup)="doScroll($event)"
          (pandown)="doScroll($event)"
          [class.item-delete-animation]="item.deleteFinalized"
-         class="container-fluid list-element item-delete-container">
+         class="container-fluid list-element item-delete-container"
+		 [class.past-freshness]="pastFresh(item)">
 
 		<!-- Swipe Left Undo -->
 		<div class="list-item-swipe-display swipe-left"
@@ -67,23 +83,23 @@
 
 			<!-- Menu Options -->
 			<div class="fridge-menu-options">
-				<a DATA-TOGGLE="#" (click)="itemModal.show(); renameInput = item.name; reQtyInput = item.qty; newShelfLifeInput = item.shelfLife" data-toggle="modal" data-target="#listModal"><span class="glyphicon glyphicon-option-vertical"></span></a>
+				<a DATA-TOGGLE="#" (click)="itemModal.show(); renameInput = item.name; reQtyInput = item.qty; itemPurchDate(item); getDaysLeft(item);" data-toggle="modal" data-target="#listModal"><span class="glyphicon glyphicon-option-vertical"></span></a>
 			</div>
 		</div>
 
 		<!-- Expiration Bar -->
 		<div class="expiration-bar-container row col-lg-11 col-md-11 col-sm-10 col-xs-10">
 			<div class="expiration-bar progress">
-				<div class="expiration-bar-value progress-bar {{freshnessBarColour((1 - (today - item.datePurchased) / item.shelfLife))}}"
+				<div class="expiration-bar-value progress-bar {{freshnessBarColour(item)}}"
                      role="progressbar"
                      aria-valuenow="item.expiration * 100"
                      aria-valuemin="0"
                      aria-valuemax="100"
-                     [style.width]="(1 - (today - item.datePurchased) / item.shelfLife) * 100 + '%'">
+                     [style.width]="(1 - (today - item.datePurchased) / (item.shelfLife * msPerDay)) * 100 + '%'">
 				</div>
 			</div>
 		</div>
-		
+
 		<!-- Options Modal -->
 		<div class="modal fade" id="listModal" tabindex="-1" role="dialog" aria-labelledby="options" bsModal #itemModal="bs-modal"
 			tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"aria-hidden="true">
@@ -93,8 +109,8 @@
 
 					<!-- Modal Header -->
 					<div class="fridge-options-modal-header modal-header">
-						<div class="fridge-options-modal-name pull-left">
-							<h3><strong>{{item.name}}</strong></h3>
+						<div class="fridge-options-modal-name col-lg-8 col-md-8 col-sm-8 col-xs-8 pull-left">
+							<h4 class="fridge-options-title"><strong>{{item.name}}{{daysLeft}}</strong></h4>
 						</div>
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true" aria-label="Close" (click)="itemModal.hide()">
 							<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
@@ -110,7 +126,16 @@
 							</form>
 
 							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 col-xs-offset-2">	
-								<input #rename [(ngModel)]="renameInput" [ngModelOptions]="{standalone: true}" type="text" class="form-control input-sm" id="rename-form" (keyup.enter)="requantity.focus()">
+								<ng2-completer
+                                    #rename
+                                    [(ngModel)]="renameInput"
+                                    [datasource]="dataService"
+                                    [minSearchLength]="1"
+                                    [ngModelOptions]="{standalone: true}"
+                                    type="text"
+                                    class="form-control"
+                                    id="rename-form"
+                                    (keyup.enter)="requantity.focus()"></ng2-completer>
 							</div>
 
 						</div>
@@ -149,7 +174,7 @@
 						<div class="row">
 
 							<div class="fridge-options-modal-expiration col-lg-4 col-md-4 col-sm-4 col-xs-5 pull-left">
-								<h4 class="media-heading">Expiration Date: </h4>
+								<h4 class="media-heading">Days Left: </h4>
 							</div>
 
 							<div class="fridge-options-modal-expiration-input col-lg-2 col-md-2 col-sm-2 col-xs-3">
@@ -166,7 +191,7 @@
 					<!-- Save Changes Button -->
 					<div class="modal-footer">
 						<div class="row">
-							<button #saveButton class="btn btn-md btn-success" (click)="itemModal.hide(); itemRename(item.$key); editQty(item.$key); editShelfLife(item)">Save Changes</button>
+							<button #saveButton class="btn btn-md btn-success" (click)="itemModal.hide(); itemRename(item.$key); editQty(item.$key); editShelfLife(item);">Save Changes</button>
 						</div>
 					</div>
 					
@@ -175,4 +200,9 @@
 		</div>
 
 	</div>
+</div>
+
+<!-- Background Image Buddies -->
+<div class="background-img container col-lg-6 col-md-8 col-sm-8 col-xs-12 col-lg-offset-3 col-md-offset-2 col-sm-offset-2 col-xs-offset-0">
+	<img class="img-responsive" src="../../assets/imgs/decoration/bg3.png"/>
 </div>

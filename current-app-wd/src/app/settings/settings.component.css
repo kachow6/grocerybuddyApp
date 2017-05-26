@@ -1,15 +1,19 @@
 .setting-form {
-	margin-bottom: 50px;
+	margin-bottom: 45px;
 	margin-top: 20px;
 }
 
 .setting-option {
-	margin-bottom: 0;
+	margin-bottom: 5px;
 }
 
 /* Notifications Settings */
 .notifications-title {
 	margin-top: 0;
+}
+
+.spacer {
+	height: 25px;
 }
 
 .enabled-container {
@@ -33,4 +37,22 @@
 .confirm-account-overwrite {
 	color:#5CB85C;
 	text-align: center; 
+}
+
+.confirm-name-success {
+	color:#5CB85C;
+	text-align: center; 
+}
+
+.confirm-name-error {
+	color:red;
+	text-align: center; 
+}
+
+.googleSignIn {
+	opacity: 0.5;
+}
+
+.sign-in-google {
+	color: tomato;
 }

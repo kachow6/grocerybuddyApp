@@ -20,8 +20,8 @@ import { LoggedInGuard } from '../shared/user-service/logged-in-guard.service';
             children: [
                 { path: 'affiliates', component: AffiliatesComponent },
                 { path: 'fridge', component: FridgeComponent },
-                { path: 'home', redirectTo: '', pathMatch: 'full' },
-                { path: '', component: HomeComponent },
+                { path: '', redirectTo: 'home', pathMatch: 'full' },
+                { path: 'home', component: HomeComponent },
                 { path: 'list', component: ListComponent },
                 { path: 'settings', component: SettingsComponent }
             ]

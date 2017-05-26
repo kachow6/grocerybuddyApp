@@ -21,12 +21,18 @@
 <!-- Main Page Content -->
 <div class="main-container container col-lg-6 col-md-8 col-sm-10 col-lg-offset-3 col-md-offset-2 col-sm-offset-1">
 
+    <!--Buddy Helper that shows up when no list items are present-->
+    <div class="buddyHelper" *ngIf="(homeList$ | async)?.length==0">
+        <div class="bubble bubbleShow">Welcome!<br><br>There are no lists yet! Enter the name of a new list above and press <span class="plusButton">+</span> to get started!</div>
+        <img class="jump" src="../../assets/imgs/buddies/carrot.png" height="200" width="140"/>
+    </div>
+
     <!-- HTML for individual items in the main list -->
     <div *ngFor="let item of homeList$ | async; let i = index"
          (panup)="doScroll($event)"
          (pandown)="doScroll($event)"
          [class.item-delete-animation]="item.deleteFinalized"
-         class="container-fluid list-element item-delete-container listItem" [class.selected]="item.$key == selectedList">
+         class="container-fluid list-element item-delete-container" [class.selected]="item.$key == selectedList">
 
         <!-- Swipe left delete interface -->
        <div class="list-item-swipe-display swipe-left"
@@ -63,7 +69,7 @@
                     <li role="menuitem" class="menu-item"><a DATA-TOGGLE="#" (click)="renameModal.show(); renameInput = item.$value" data-toggle="modal">Rename</a></li>
                     <li role="menuitem" class="menu-item"><a DATA-TOGGLE="#" (click)="copyList(item.$key, item.$value)">Copy</a></li>
 
-                    <li role="menuitem" class="menu-item"><a DATA-TOGGLE="#" (click)="item.isQueuedForDelete=true; item.deleteTimer=startItemDeleteTimer(item.$key)">Delete</a></li>
+                    <li role="menuitem" class="menu-item"><a DATA-TOGGLE="#" (click)="item.isQueuedForDelete=true; item.deleteTimer=startItemDeleteTimer(item.$key, item); item.deleteQueueRight=true">Delete</a></li>
                     <li role="menuitem" class="menu-item"><a DATA-TOGGLE="#" (click)="resetList(item.$key)">Reset</a></li>
                 </ul>
             </div>
@@ -98,4 +104,9 @@
         </div>
 
     </div>
+</div>
+
+<!-- Background Image Buddies -->
+<div class="background-img container col-lg-6 col-md-8 col-sm-8 col-xs-12 col-lg-offset-3 col-md-offset-2 col-sm-offset-2 col-xs-offset-0">
+    <img class="img-responsive" src="../../assets/imgs/decoration/bg3.png"/>
 </div>

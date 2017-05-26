@@ -1,28 +1,35 @@
+.container-fluid {
+	background-color: #5CB85C;
+	height: 100vh;
+	min-height: 850px;
+	width: 100%;
+}
+
 .logo-container {
+	background-color: white;
+	border-radius: 50%;
 	margin-top: 10px;
+	padding: 20px;
 }
 
 /* Login Form */
+.form-title {
+	text-align: center;
+	margin-top: -10px;
+}
+
+.form-title-text {
+	font-size: 6em;
+	margin-bottom: 30px;
+}
+
 .btn {
 	padding: 2px 0;
 }
 
-.checkbox {
-	padding: 2px 14px;
-}
-
-.login-form {
-	background-color: #5CB85C;
-}
-
-.email-signin {
-	color: white;
-	vertical-align: middle;
-}
-
 .email-signin-graphic {
-	font-size: 22px;
-	padding-right: 15px;
+	font-size: 25px;
+	padding-right: 10px;
 	vertical-align: middle;
 }
 
@@ -32,6 +39,7 @@
 
 .login-container {
 	background-color: #5CB85C;
+	padding: 10px 25px;
 }
 
 .reminder-checkbox {
@@ -44,12 +52,33 @@
 	margin: 22px 0;
 }
 
+.form-btn {
+	margin: 1px 0 40px;
+	width: 49%;
+	vertical-align: center;
+}
+
 .confirm-login-password-error {
 	color: red;
 }
 
 a {
 	text-decoration: none;
+}
+
+/* FACEBOOK SIGN-IN BUTTON CSS */
+.fb-logo {
+	height: 30px;
+	margin-right: 10px;
+	width: 30px;
+}
+
+.fb-btn {
+	background-color: #3B5998; 
+}
+
+.fb-btn:hover {
+	color: white;
 }
 
 /* GOOGLE SIGN-IN BUTTON CSS */
@@ -84,4 +113,23 @@ span.buttonText {
   font-weight: bold;
   /* Use the Roboto font that is loaded in the <head> */
   font-family: 'Roboto', sans-serif;
+}
+
+/* Display for large desktop view*/
+@media (min-width: 1200px) {
+
+	.logo-container {
+		margin-top: 150px;
+	}
+
+	.login-container {
+		margin-top: 125px;		
+	}
+}
+
+@media (max-width: 1200px) {
+
+	.form-title {
+		display: none;
+	}
 }

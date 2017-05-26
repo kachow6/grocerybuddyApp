@@ -7,6 +7,9 @@
 .fridge-item-qty {
 	margin-top: 3px;
 	text-align: right;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 
 .fridge-menu-options {
@@ -49,11 +52,21 @@
 		height: 60%;
 		z-index: 1;
 	}
+
+	.buddyHelper img {
+		padding-right: 10px;
+	}
 }
 
 /* Fridge Options Modal */
 .fridge-options-modal-header {
 	padding: 10px;
+}
+
+.fridge-options-title {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 
 .modal-body {
@@ -98,4 +111,18 @@
 
 .fridge-options-modal-expiration-days {
 	top:-12px;
+}
+
+.past-freshness {
+	color: #DF0000;
+	background-color: #FFDFDF;
+}
+
+.bubble {
+	margin-right: 25px;
+}
+
+.list-item-swipe-display {
+  padding-top: 1.4em;
+  padding-bottom: 1.4em;
 }

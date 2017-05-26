@@ -22,18 +22,18 @@ export class RegisterComponent {
     emailState          : boolean = false;
     passwordcomplex     : boolean;
     passwordconfirmed   : boolean;
-    passwordmessage     : string;
+    passwordmessage     : string  = "";
 
     // Error validation messages
-    confirmNameMessage     : string ="";
-    confirmEmailMessage    : string ="";
-    confirmpasswordmessage : string ="";
+    confirmNameMessage     : string = "";
+    confirmEmailMessage    : string = "";
+    confirmpasswordmessage : string = "";
 
     // User Inputs
     userName             : string = "";
     userEmail            : string = "";
     userpassword         : string = "";
-    userconfirmpassword  : string ="";
+    userconfirmpassword  : string = "";
 
     // Initializing user firebase object
     user: Observable<firebase.User>;
@@ -81,7 +81,7 @@ export class RegisterComponent {
             this.passwordcomplex = true;
             return true;
         } else {
-            this.passwordmessage = "";
+            this.passwordmessage = "The password must meet the criteria above";
             // this.userpassword = null;
             return false;
         }
@@ -95,6 +95,7 @@ export class RegisterComponent {
 
         if(pass1 == pass2) {
             this.passwordconfirmed = true;
+            this.confirmpasswordmessage = "";
             return true;
         } else {
             this.confirmpasswordmessage = "This password must match the one above"
@@ -120,8 +121,13 @@ export class RegisterComponent {
                 /* If it's successful, update the user authentication record
                 // to include their display name. */
                 .then(user => {
-                    user.updateProfile({ displayName: name });
-                    this.router.navigateByUrl('/main');
+                    // console.log(user);
+                    // console.log("updating username");
+                    user.updateProfile({ displayName: name })
+                        .then(user => {
+                        // console.log("routing...");
+                        this.router.navigateByUrl('/main');
+                });
                 })
                 // Catch any errors and log them to the console.
                 .catch(e => console.log(e.message));

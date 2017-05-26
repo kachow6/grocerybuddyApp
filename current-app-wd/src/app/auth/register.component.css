@@ -1,4 +1,19 @@
+.container-fluid {
+	background-color: #5CB85C;
+	height: 100vh;
+	min-height: 800px;
+	width: 100%;
+}
+
+.logo-container {
+	background-color: white;
+	border-radius: 50%;
+	margin-top: 10px;
+	padding: 20px;
+}
+
 .login-container {
+	background-color: #5CB85C;
 	margin-top: 10px;
 }
 
@@ -11,10 +26,6 @@
 	padding: 2px 0;
 }
 
-.checkbox {
-	padding: 2px 14px;
-}
-
 .remember-checkbox {
 	color: #4B4B4B;
 	top: -12px;
@@ -22,6 +33,16 @@
 
 .login-form {
 	background-color: #5CB85C;
+}
+
+.form-title {
+	text-align: center;
+	margin-top: -10px;
+}
+
+.form-title-text {
+	font-size: 6em;
+	margin-bottom: 30px;
 }
 
 .sign-in {
@@ -34,7 +55,13 @@
 
 .form-element {
 	padding: 0;
-	margin: 14px 0;
+	margin: 25px 0;
+}
+
+.form-btn {
+	margin: 1px 0 20px;
+	width: 49%;
+	vertical-align: center;
 }
 
 a {
@@ -43,4 +70,23 @@ a {
 
 .confirm-error-msg {
 	color: red;
+}
+
+/* Display for large desktop view*/
+@media (min-width: 1200px) {
+
+	.logo-container {
+		margin-top: 12%;
+	}
+
+	.login-container {
+		margin-top: 8%;		
+	}
+}
+
+@media (max-width: 1200px) {
+
+	.form-title {
+		display: none;
+	}
 }

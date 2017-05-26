@@ -31,10 +31,11 @@ export class HeaderComponent implements OnInit {
     readonly stateWarning : string = 'progress-bar-warning';
     readonly stateSuccess : string = 'progress-bar-success';
 
-    readonly today        : number = DateTools.getDays(new Date());
+    readonly today        : number = new Date().getTime();
 
     // Page Display Variables
     pageTitle: string;  // Tracks the title of the current page.
+    pageIcon : string;
     push     : number;  // Used to push the extending nav bar out from the side.
     bodyBg   : string;  // Color of div that covers page when nav bar pops out.
     extended : boolean; // Whether or not the nav bar is extended.
@@ -55,7 +56,9 @@ export class HeaderComponent implements OnInit {
     userId      : string;
     user        : Observable<firebase.User>;
     userName    : string;
-    fridgeList$ : FirebaseListObservable<any[]>; 
+    fridgeList$ : FirebaseListObservable<any[]>;
+
+    readonly msPerDay: number = 86400000;
 
     // CONSTRUCTOR & INITIALIZATION.
     // Used to inject all the necessary services and perform basic wiring.
@@ -70,19 +73,23 @@ export class HeaderComponent implements OnInit {
 
         // Grabs and saves the user's Name off database.
         this.user = this.afAuth.authState;
-        this.user.take(1).subscribe(userSnap => {
-            if(!userSnap) {
-                this.userName = 'Buddy';
-            } else {
-                this.userName = userSnap.displayName;
-            }
+        this.user.subscribe(userSnap => {
+
+            this.userName = 'Buddy';
+            try {
+                if (userSnap.displayName.trim().length > 0) {
+                    this.userName = userSnap.displayName;
+                }
+            } catch (e) {}
+            
         });
 
         // Sets the current page title depending on the router.url location
         this.router.events.subscribe((snap: any) => {
             let currentPage = snap.urlAfterRedirects;
+
             // If User is on HOME PAGE
-            if (currentPage ===  '/main') {
+            if (currentPage ===  '/main/home') {
                 this.pageTitle = 'Grocery Buddy';}
             // IF the user is on FRIDGE page
             else if (currentPage === '/main/fridge') {
@@ -101,7 +108,7 @@ export class HeaderComponent implements OnInit {
                 else {
                    // Sends User to selected LIST page
                    let listKey = this.userService.getCurrentList();
-                                 this.db.object('/homeList/' + 
+                                 this.db.object('/homeList/' +
                                  this.userId + '/' +
                                  listKey).take(1).subscribe(snap => {
                                  this.pageTitle = snap.$value;
@@ -117,8 +124,8 @@ export class HeaderComponent implements OnInit {
             this.fridgeList$ = this.db.list('/fridgeList/' + this.userId);
 
             this.fridgeList$.subscribe(snap => {
-                this.expiringItems = this.pullExpiring(snap);  
-                this.numExpiring   = this.notificationAmount(this.expiringItems);  
+                this.expiringItems = this.pullExpiring(snap);
+                this.numExpiring   = this.notificationAmount(this.expiringItems);
             });
         });
     }
@@ -141,12 +148,17 @@ export class HeaderComponent implements OnInit {
         let tempList: any[] = [];
 
         for (let item of list) {
-            let exp = 1 - ((this.today - item.datePurchased) / item.shelfLife);
+            let exp = Math.round(item.shelfLife - ((this.today - item.datePurchased) / this.msPerDay))
+            // let exp = 1 - ((this.today - item.datePurchased) / (item.shelfLife * this.msPerDay));
 
-            if (exp < 0.33 && exp > 0) {
+            if (exp <= 2 && exp > 0) {
                 item.expiration = exp;
                 tempList.push(item);
             }
+            // if (exp < 0.33 && exp > 0) {
+            //     item.expiration = exp;
+            //     tempList.push(item);
+            // }
         }
         return tempList;
     }
@@ -157,7 +169,7 @@ export class HeaderComponent implements OnInit {
         amount = list.length;
         return amount;
     }
-    
+
     // Displays the amount of items nearing expiration
     notificationNumber(): void {
         let fridge = this.db.list('/fridgeList/' + this.userId);
@@ -172,14 +184,16 @@ export class HeaderComponent implements OnInit {
         this.numExpiring = countItemExpiring;
     }
 
-    // Method for calculating the expiration bar colour
-    calculateExp(expiration: number): string {
-        if (expiration < 0.33){
-            return this.stateDanger;
-        } else if (expiration >= 0.66){
+    // Method for calculating the expiration bar's colour
+    freshnessBarColour(item: any): string {
+        let exp = Math.round(item.shelfLife - ((this.today - item.datePurchased) / this.msPerDay));
+
+        if (exp > 5) {
             return this.stateSuccess;
-        } else {
+        } else if (exp > 2) {
             return this.stateWarning;
+        } else {
+            return this.stateDanger;
         }
     }
 
@@ -198,7 +212,7 @@ export class HeaderComponent implements OnInit {
 
     //changes buddy pictures randomly on click
     changeBuddy(): void {
-        
+
         let number1 = this.picIndex;
         this.buddyPic = BUDDY_PICS[number1];
         this.picIndex = Math.floor((Math.random() * BUDDY_PICS.length));

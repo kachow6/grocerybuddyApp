@@ -2,7 +2,6 @@ import { Component, OnInit, Input, Output    } from '@angular/core';
 import { UserService                         } from '../shared/user-service/user.service';
 import { ShoppingList, ShoppingItem          } from '../shared/user-service/user';
 import { Router                              } from '@angular/router';
-
 import { AngularFireDatabase,
          FirebaseListObservable,
          FirebaseObjectObservable            } from 'angularfire2/database';
@@ -150,6 +149,7 @@ export class HomeComponent implements OnInit {
             // Delete Reference in Home List
             this.db.object('/homeList/'
                            + this.userId + '/' + key).remove();
+            this.userService.setCurrentList(null);
         }, 500);
     }
 
@@ -167,6 +167,5 @@ export class HomeComponent implements OnInit {
 
         // Scroll
         src.scrollBy(0, scrollDistance);
-        
     }
 }
