@@ -354,7 +354,7 @@ html div.completer-dropdown {
 .more{
   text-decoration: underline;
   float: right;
-  font-family: Calibri;
+  font-family: "Calibri", sans-serif ;
   font-size: 14px;
 }
 
