@@ -2,7 +2,6 @@ import { Component, OnInit, Input, Output    } from '@angular/core';
 import { UserService                         } from '../shared/user-service/user.service';
 import { ShoppingList, ShoppingItem          } from '../shared/user-service/user';
 import { Router                              } from '@angular/router';
-
 import { AngularFireDatabase,
          FirebaseListObservable,
          FirebaseObjectObservable            } from 'angularfire2/database';
