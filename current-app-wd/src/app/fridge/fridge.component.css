@@ -121,3 +121,8 @@
 .bubble {
 	margin-right: 25px;
 }
+
+.list-item-swipe-display {
+  padding-top: 1.4em;
+  padding-bottom: 1.4em;
+}

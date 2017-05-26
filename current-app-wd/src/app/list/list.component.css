@@ -68,3 +68,8 @@
 /*.blankfill {*/
 	/*height: 200px;*/
 /*}*/
+
+.list-item-swipe-display {
+  padding-top: 0.9em;
+  padding-bottom: 0.9em;
+}
